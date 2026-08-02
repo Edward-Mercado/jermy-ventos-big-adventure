@@ -1,23 +1,29 @@
 <template>
     <div
         class="w-[80%] bg-slate-600/70 fixed bottom-[5%] h-[12%] border-black border-4 p-3 shadow-md flex justify-between">
-        <span class="typewriter dialogue-font text-xl">{{ displayedText }}<span class="cursor pixfont" v-if="!isDone">|</span></span>
+        <span class="typewriter dialogue-font text-xl">{{ displayedText }}<span class="cursor pixfont"
+                v-if="!isDone">|</span></span>
         <transition name="slide-up">
             <button v-if="canProceed" @click="$emit('proceed')"
-                class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] left-[40%] bottom-[-30%] border-black border-4 text-lg
+                class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] right-[5%] bottom-[-30%] border-black border-4 text-lg
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
                 Proceed.
             </button>
         </transition>
-        <div class="absolute bg-slate-700 top-[-30%] px-4 border-4 border-black h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-2" 
-        :class="`${currentLine.align}-[5%]`">
+        <button @click="$emit('skip')"
+            class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] left-[5%] bottom-[-30%] border-black border-4 text-lg
+            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
+            Skip
+        </button>
+        <div class="absolute bg-slate-700 top-[-30%] px-4 border-4 border-black h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-2"
+            :class="`${currentLine.align}-[5%]`">
             {{ props.currentLine.speaker }}
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["proceed"])
+const emit = defineEmits(["proceed", "skip"])
 const props = defineProps<{
     currentLine: {
         speaker: string,
@@ -77,7 +83,6 @@ const transitionSpeed = computed(() => {
 .slide-up-leave-to {
     bottom: -100%;
     opacity: 0
-
 }
 
 .slide-up-enter-to,
@@ -87,6 +92,6 @@ const transitionSpeed = computed(() => {
 }
 
 .slide-up-enter-active {
-    transition: all ease-in-out v-bind(transitionSpeed )
+    transition: all ease-in-out v-bind(transitionSpeed)
 }
 </style>

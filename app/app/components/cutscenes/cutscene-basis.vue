@@ -1,6 +1,7 @@
 <template>
     <cutscenes-dialogue-box :current-line="currentLine" v-if="linePlaying"
-        @proceed="proceedDialogue()"></cutscenes-dialogue-box>
+        @proceed="proceedDialogue()"
+        @skip="campaignSaveStore.gameState++"></cutscenes-dialogue-box>
 </template>
 
 <script setup lang="ts">

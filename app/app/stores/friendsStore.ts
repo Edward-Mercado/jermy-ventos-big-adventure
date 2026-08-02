@@ -6,7 +6,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Magically Touch Nose With Tongue",
             abilityDesc: "Touch your nose with your tongue. Magically. Confuse the target.",
             targetType: "Single",
-            spriteURL: "/public/images/gabFriend.png",
+            spriteURL: "/public/images/gab.png",
             ability: () => {
                 
             },
@@ -20,7 +20,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Make it Wild",
             abilityDesc: "Randomize enemy health, defense, and attack.",
             targetType: "AOE",
-            spriteURL: "/public/images/gavinFriend.png",
+            spriteURL: "/public/images/gavin.png",
             ability: () => {
                 
             },
@@ -32,7 +32,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "MultiWielding",
             abilityDesc: "Hit three more times, with decreasing power.",
             targetType: "Single",
-            spriteURL: "/public/images/noureFriend.png",
+            spriteURL: "/public/images/noure.png",
             ability: () => {
                 
             },
@@ -44,7 +44,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Moon Princess Halation",
             abilityDesc: "Hit enemies with a massive AOE beam of light.",
             targetType: "AOE",
-            spriteURL: "/public/images/kortneeFriend.png",
+            spriteURL: "/public/images/kortnee.png",
             ability: () => {
                 
             },
@@ -56,7 +56,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "You Tell Me",
             abilityDesc: "Counter with an exact copy of enemy attacks.",
             targetType: "AOE",
-            spriteURL: "/public/images/matteoFriend.png",
+            spriteURL: "/public/images/matteo.png",
             ability: () => {
                 
             },
@@ -68,7 +68,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Mind Clear",
             abilityDesc: "Heals statuses, health, and temporarily increases defense.",
             targetType: "Self",
-            spriteURL: "/public/images/mrspaulaventoFriend.png",
+            spriteURL: "/public/images/mrspaulavento.png",
             ability: () => {
                 
             },
@@ -80,7 +80,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Meta Narrative",
             abilityDesc: "Copies everything that has happened in the battle already.",
             targetType: "Special",
-            spriteURL: "/public/images/pierceFriend.png",
+            spriteURL: "/public/images/pierce.png",
             ability: () => {
                 
             },
@@ -92,7 +92,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Blue Border",
             abilityDesc: "Puts up a shield that blocks one hit. Negates damage with a small chance to reflect.",
             targetType: "Self",
-            spriteURL: "/public/images/scottthewozFriend.png",
+            spriteURL: "/public/images/scottthewoz.png",
             ability: () => {
                 
             },
@@ -104,7 +104,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Buff Lie",
             abilityDesc: "20% chance to give a random stat boost.",
             targetType: "Self",
-            spriteURL: "/public/images/gilFriend.png",
+            spriteURL: "/public/images/gil.png",
             ability: () => {
                 
             },
@@ -116,7 +116,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Shrink",
             abilityDesc: "shrink",
             targetType: "Self",
-            spriteURL: "/public/images/kellanFriend.png",
+            spriteURL: "/public/images/kellan.png",
             ability: () => {
                 
             },
@@ -128,7 +128,31 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Scan",
             abilityDesc: "See what the target will do prematurely.",
             targetType: "Single",
-            spriteURL: "/public/images/columboFriend.png",
+            spriteURL: "/public/images/columbo.png",
+            ability: () => {
+                
+            },
+            manaCost: 100
+        } as Friend,
+        "Thira": {
+            name: "Thira",
+            eachTurnCheck: null,
+            abilityName: "Flashback",
+            abilityDesc: "Turn back one turn",
+            targetType: "Special",
+            spriteURL: "/public/images/thira.png",
+            ability: () => {
+                
+            },
+            manaCost: 100
+        } as Friend,
+        "Lucia": {
+            name: "Lucia",
+            eachTurnCheck: null,
+            abilityName: "Scan",
+            abilityDesc: "See what the target will do prematurely.",
+            targetType: "Single",
+            spriteURL: "/public/images/lucia.png",
             ability: () => {
                 
             },
@@ -140,7 +164,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Mango Consumption",
             abilityDesc: "Eat a mango. Heal.",
             targetType: "Self",
-            spriteURL: "/public/images/humdFriend.png",
+            spriteURL: "/public/images/humd.png",
             ability: () => {
                 
             },
