@@ -31,6 +31,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.gameState = Number(localStorage.getItem("gameState")) || 0
             this.friends = JSON.parse(localStorage.getItem("friends") || "[]")
             this.currentStatus = localStorage.getItem("status") || null
+            this.maxHP = this.playerLevelData[this.playerLevel]!.maxHP
+            this.currentHP = Number(localStorage.getItem("currentHP")) || this.playerLevelData[this.playerLevel]!.maxHP
+            this.attack = this.playerLevelData[this.playerLevel]!.attack
+            this.defense = this.playerLevelData[this.playerLevel]!.defense
+            this.friendSlots = this.playerLevel
+            this.expGained = Number(localStorage.getItem("expGained")) || this.playerLevelData[this.playerLevel]!.expRequirement
         },
         changeStats() {
             if (this.playerLevel > 5) {
@@ -74,6 +80,11 @@ export const useCampaignSaveStore = defineStore('campaign', {
             localStorage.setItem("level", (this.playerLevel).toString())
             localStorage.setItem("gameState", (this.gameState).toString())
             localStorage.setItem("friends", JSON.stringify(this.friends))
+            localStorage.setItem("currentHP", (this.currentHP).toString())
+            localStorage.setItem("maxHP", (this.currentHP).toString())
+            localStorage.setItem("attack", (this.attack).toString())
+            localStorage.setItem("defense", (this.defense).toString())
+            localStorage.setItem("expGained", (this.expGained).toString())
         },
     }
 })
