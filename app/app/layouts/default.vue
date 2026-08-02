@@ -1,6 +1,6 @@
 <template>
     <div class="h-screen w-full">
-        <div class="sticky flex items-center px-2 justify-between h-[8vh] bg-slate-600/70">
+        <div class="sticky flex items-center px-2 justify-between h-[8vh] bg-slate-600/70 shadow-md border-b-4 border-b-slate-900">
             <NuxtLink to="/" class="pixfont text-2xl text-white hover:font-bold transition-all duration-300 ease-in-out hover:text-sky-100"> JOEY VENTO's BIG ADVENTURE </NuxtLink>
             <div class="flex items-center justify-center gap-2 h-full">
                 <a href="https://github.com/Edward-Mercado/joey-vento-game"
