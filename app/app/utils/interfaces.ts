@@ -11,6 +11,8 @@ export interface Friend {
 
 export interface Enemy {
     name: string,
+    attack: number,
+    defense: number,
     ability: Function,
     currentHP: number,
     maxHP: number,
