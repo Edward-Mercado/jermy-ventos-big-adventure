@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   pages: true,
   app: {
     head: {
-      title: "Little Vento's Big Adventure"
+      title: "JermyVentos's Big Adventure"
     }
   },
   vite: {

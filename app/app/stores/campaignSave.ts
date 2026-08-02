@@ -1,19 +1,18 @@
-export const useCampaignSaveStore = defineStore('savefile', {
+export const useCampaignSaveStore = defineStore('campaign', {
     state: () => ({
-        playerName: localStorage.getItem("name") || "Joey",
-        playerLevel: Number(localStorage.getItem("playerLevel")) || 1,
-        gameState: Number(localStorage.getItem("gameState")) || 1, // what level or cutscene the player is on
-        friends: JSON.parse(localStorage.getItem("friends") || "[]"), // list of friend names
+        playerName: "Joey",
+        playerLevel: 1,
+        gameState: 0,
+        friends: [] as string[],
         friendsData: [] as Friend[],
         sprite: "/public/images/joey.png" as string,
-        currentStatus: localStorage.getItem("status") || null,
+        currentStatus: null as string | null,
 
-        // based on level
-        attack: 15 as number, // base damage
-        defense: 0 as number, // & damage neg
+        attack: 15 as number,
+        defense: 0 as number,
         currentHP: 100 as number,
         maxHP: 100 as number,
-        friendSlots: 1 as number, // level
+        friendSlots: 1 as number,
         expGained: 0 as number,
 
         playerLevelData: {
@@ -25,6 +24,14 @@ export const useCampaignSaveStore = defineStore('savefile', {
         } as Record<number, LevelStats>,
     }),
     actions: {
+        loadFromLocalStorage() {
+            if (typeof window === "undefined") return
+            this.playerName = localStorage.getItem("name") || "Joey"
+            this.playerLevel = Number(localStorage.getItem("playerLevel")) || 1
+            this.gameState = Number(localStorage.getItem("gameState")) || 0
+            this.friends = JSON.parse(localStorage.getItem("friends") || "[]")
+            this.currentStatus = localStorage.getItem("status") || null
+        },
         changeStats() {
             if (this.playerLevel > 5) {
                 this.playerLevel = 5
@@ -39,12 +46,18 @@ export const useCampaignSaveStore = defineStore('savefile', {
                 this.playerLevel]
         },
         listenLevelUp() {
-            if (this.playerLevel !== 5) {
-                const nextLevel = (this.playerLevel + 1)
-                //@ts-ignore
-                if (this.expGained > this.playerLevelData![nextLevel].expRequirement) {
-                    this.playerLevel += 1
+            let potentialLevelUp = true
+            while (potentialLevelUp) {
+                if (this.playerLevel >= 5) {
+                    potentialLevelUp = false
+                    break
+                }
+                const nextLevel = this.playerLevel + 1
+                if (this.expGained > this.playerLevelData[nextLevel]!.expRequirement) {
+                    this.playerLevel++
                     this.changeStats()
+                } else {
+                    potentialLevelUp = false
                 }
             }
         },
@@ -60,7 +73,7 @@ export const useCampaignSaveStore = defineStore('savefile', {
             localStorage.setItem("name", this.playerName);
             localStorage.setItem("level", (this.playerLevel).toString())
             localStorage.setItem("gameState", (this.gameState).toString())
-            localStorage.setItem("friends", this.friends)
+            localStorage.setItem("friends", JSON.stringify(this.friends))
         },
     }
 })

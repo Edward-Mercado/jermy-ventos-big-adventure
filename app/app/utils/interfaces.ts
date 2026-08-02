@@ -25,3 +25,13 @@ export interface LevelStats {
     maxHP: number
     expRequirement: number
 }
+
+export interface DialogueLine {
+    speaker: string,
+    dialogue: string
+}
+
+export interface stateKey {
+    name: string,
+    type: ("cutscene" | "battle")
+}
