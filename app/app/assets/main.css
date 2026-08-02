@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin 'daisyui';
+
+html {
+  overflow-y: hidden;
+}
+
+.forum {
+  font-family: "Forum", serif;
+}
