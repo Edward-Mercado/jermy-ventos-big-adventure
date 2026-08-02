@@ -16,6 +16,8 @@ export interface Enemy {
     ability: Function,
     currentHP: number,
     maxHP: number,
+    currentMana: number,
+    maxMana: number,
     spriteURL: string
 }
 
@@ -24,6 +26,7 @@ export interface LevelStats {
     defense: number
     maxHP: number
     expRequirement: number
+    maxMana: number
 }
 
 export interface DialogueLine {
