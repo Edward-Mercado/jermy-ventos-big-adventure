@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 @import "tailwindcss";
 @plugin 'daisyui';
 
@@ -7,4 +9,9 @@ html {
 
 .forum {
   font-family: "Forum", serif;
+}
+
+.pixfont {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
 }
