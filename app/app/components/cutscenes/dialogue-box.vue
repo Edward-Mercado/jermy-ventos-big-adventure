@@ -9,7 +9,8 @@
                 Proceed.
             </button>
         </transition>
-        <div class="absolute bg-slate-700 top-[-30%] px-4 left-[-5%] border-4 border-black h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-2">
+        <div class="absolute bg-slate-700 top-[-30%] px-4 border-4 border-black h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-2" 
+        :class="`${currentLine.align}-[5%]`">
             {{ props.currentLine.speaker }}
         </div>
     </div>
@@ -20,9 +21,10 @@ const emit = defineEmits(["proceed"])
 const props = defineProps<{
     currentLine: {
         speaker: string,
-        dialogue: string
+        align: string,
+        dialogue: string,
+        speed: number
     }
-    speed?: number // ms per character, optional
 }>()
 
 const displayedText = ref<string>("")
@@ -30,7 +32,7 @@ const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
 onMounted(() => {
-    const charSpeed = props.speed ?? 50
+    const charSpeed = props.currentLine.speed ?? 50
     let index = 0
 
     const interval = setInterval(() => {
@@ -42,11 +44,18 @@ onMounted(() => {
             isDone.value = true
             setTimeout(() => {
                 canProceed.value = true
-            }, 500)
+            }, props.currentLine.speed * 5)
         }
     }, charSpeed)
 
 })
+
+const transitionSpeed = computed(() => {
+    return `${props.currentLine.speed * 10}ms`
+})
+
+'left-[5%]'
+'right-[5%]'
 </script>
 
 <style scoped>
@@ -78,6 +87,6 @@ onMounted(() => {
 }
 
 .slide-up-enter-active {
-    transition: all ease-in-out .8s
+    transition: all ease-in-out v-bind(transitionSpeed )
 }
 </style>

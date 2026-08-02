@@ -1,5 +1,5 @@
 <template>
-    <cutscenes-dialogue-box :current-line="currentLine" :speed="40" v-if="linePlaying"
+    <cutscenes-dialogue-box :current-line="currentLine" v-if="linePlaying"
         @proceed="proceedDialogue()"></cutscenes-dialogue-box>
 </template>
 

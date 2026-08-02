@@ -28,7 +28,9 @@ export interface LevelStats {
 
 export interface DialogueLine {
     speaker: string,
-    dialogue: string
+    dialogue: string,
+    speed: number,
+    align: ("left" | "right")
 }
 
 export interface stateKey {

@@ -5,7 +5,7 @@
             <div class="flex items-center justify-center gap-2 h-full">
                 <a href="https://github.com/Edward-Mercado/joey-vento-game"
                     class="px-2 h-[50%] bg-slate-600/40 pixfont shadow-lg hover:shadow-xl 
-            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-600/80 active:bg-slate-400 flex items-center justify-center">
+            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-sky-600/40 active:bg-sky-600 flex items-center justify-center">
                     Github Repo
                 </a>
                 <button @click="resetData()"
