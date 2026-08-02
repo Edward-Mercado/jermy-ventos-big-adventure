@@ -5,7 +5,7 @@
         <div class="w-full flex items-center justify-center gap-2 h-[40%]">
             <transition name="slide-right">
                 <NuxtLink to="/campaign" v-if="playClicked"
-                    class="text-2xl pixfont bg-slate-900 hover:bg-slate-800 active:bg-slate-600 transition-all duration-300 ease-in-out p-2 flex items-center justify-center border-2 border-slate-200 relative mt-20 h-[50%] px-5">
+                    class="text-2xl pixfont bg-slate-900 hover:bg-slate-800 active:bg-slate-600 transition-all duration-300 ease-in-out p-2 flex items-center justify-center border-2 border-slate-200 relative mt-20 h-[50%] px-5 w-[30%]">
                     CAMPAIGN
                 </NuxtLink>
             </transition>
@@ -15,7 +15,7 @@
             </button>
             <transition name="slide-left">
                 <NuxtLink to="/endless" v-if="playClicked"
-                    class="text-2xl pixfont bg-slate-900 hover:bg-slate-800 active:bg-slate-600 transition-all duration-300 ease-in-out p-2 flex items-center justify-center border-2 border-slate-200 relative mt-20 h-[50%] px-5">
+                    class="text-2xl pixfont bg-slate-900 hover:bg-slate-800 active:bg-slate-600 transition-all duration-300 ease-in-out p-2 flex items-center justify-center border-2 border-slate-200 relative mt-20 h-[50%] px-5 w-[30%]">
                     ENDLESS
                 </NuxtLink>
             </transition>

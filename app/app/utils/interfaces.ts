@@ -1,6 +1,25 @@
 export interface Friend {
     name: string,
-    eachTurnCheck: Function | null,
-    abilityName: Function,
-    manaCost: number
+    eachTurnCheck: null | Function,
+    abilityName: string,
+    abilityDesc: string,
+    targetType: ("Single" | "AOE" | "Self" | "Special"),
+    spriteURL: string,
+    ability: Function,
+    manaCost: number | Function
+}
+
+export interface Enemy {
+    name: string,
+    ability: Function,
+    currentHP: number,
+    maxHP: number,
+    spriteURL: string
+}
+
+export interface LevelStats {
+    attack: number
+    defense: number
+    maxHP: number
+    expRequirement: number
 }
