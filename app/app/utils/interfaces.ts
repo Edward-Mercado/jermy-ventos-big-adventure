@@ -3,6 +3,7 @@ export interface Friend {
     eachTurnCheck: null | Function,
     abilityName: string,
     abilityDesc: string,
+    abilityTiming: ("With Attack" | "Before Turn" | "Follows Enemy" | "After Turn"),
     targetType: ("Single" | "AOE" | "Self" | "Special"),
     spriteURL: string,
     ability: Function,
@@ -18,7 +19,8 @@ export interface Enemy {
     maxHP: number,
     currentMana: number,
     maxMana: number,
-    spriteURL: string
+    spriteURL: string,
+    expDrop: number,
 }
 
 export interface LevelStats {
@@ -31,9 +33,10 @@ export interface LevelStats {
 
 export interface DialogueLine {
     speaker: string,
-    dialogue: string,
+    imgURL: string,
+    dialogue: string | null,
     speed: number,
-    align: ("left" | "right")
+    align: ("left" | "right"),
 }
 
 export interface stateKey {

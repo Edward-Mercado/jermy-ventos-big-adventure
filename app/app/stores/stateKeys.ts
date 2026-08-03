@@ -3,18 +3,18 @@ export const stateKeys = [
         type: 'cutscene',
         name: 'opening'
     },{
-        type: 'battle',
-        name: 'first'
-    },{
         type: 'cutscene',
-        name: 'opening'
-    },{
+        name: 'firstEncounter' 
+    }, // battle
+    {
         type: 'cutscene',
-        name: 'opening'
-    },{
+        name: 'secondEncounter'
+    }, // battle
+    {
         type: 'cutscene',
-        name: 'opening'
-    },{
+        name: 'battleKellan'
+    }, // battle
+    {
         type: 'cutscene',
         name: 'opening'
     },

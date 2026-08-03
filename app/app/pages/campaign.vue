@@ -22,7 +22,7 @@ const campaignRunning = ref<boolean>(false)
 const storyPoint = computed(():number => {
     return campaignStore.gameState
 })
-console.log(storyPoint.value)
+
 </script>
 
 <style scoped>

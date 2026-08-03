@@ -1,6 +1,6 @@
 <template>
     <div class="bg-slate-400 h-dvh p-5 items-center flex flex-col">
-        <h1 class="text-[4rem] text-black pixfont text-center font-extrabold shaky mt-12">WELCOME TO JOEY VENTO'S BIG
+        <h1 class="text-[4rem] text-black pixfont text-center font-extrabold shaky mt-12">WELCOME TO JERMYVENTO'S BIG
             ADVENTURE!</h1>
         <div class="w-full flex items-center justify-center gap-2 h-[40%]">
             <transition name="slide-right">

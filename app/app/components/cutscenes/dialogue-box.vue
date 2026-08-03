@@ -23,14 +23,10 @@
 </template>
 
 <script setup lang="ts">
+import type { DialogueLine } from '#imports';
 const emit = defineEmits(["proceed", "skip"])
 const props = defineProps<{
-    currentLine: {
-        speaker: string,
-        align: string,
-        dialogue: string,
-        speed: number
-    }
+    currentLine: DialogueLine
 }>()
 
 const displayedText = ref<string>("")
@@ -42,8 +38,8 @@ onMounted(() => {
     let index = 0
 
     const interval = setInterval(() => {
-        if (index < props.currentLine.dialogue.length) {
-            displayedText.value += props.currentLine.dialogue[index]
+        if (index < props.currentLine.dialogue!.length) {
+            displayedText.value += props.currentLine.dialogue![index]
             index++
         } else {
             clearInterval(interval)
