@@ -19,6 +19,18 @@
             :class="`${currentLine.align}-[5%]`">
             {{ props.currentLine.speaker }}
         </div>
+        <img
+    :src="props.currentLine.imgURL"
+    :alt="props.currentLine.speaker"
+    class="h-[30vh] max-w-[28%] absolute bottom-full"
+    :class="[
+        `${currentLine.align}-[6%]`,
+        {
+            'shake-left': !isDone && currentLine.align === 'left',
+            'shake-right': !isDone && currentLine.align === 'right'
+        }
+    ]"
+>
     </div>
 </template>
 
@@ -56,8 +68,18 @@ const transitionSpeed = computed(() => {
     return `${props.currentLine.speed * 10}ms`
 })
 
+const shakeSpeed = computed(() => {
+    return `${props.currentLine.speed * 2}ms`
+})
+
+const animationName = computed(() => {
+    return `shake-${props.currentLine.align}`
+})
+
 'left-[5%]'
 'right-[5%]'
+'left-[6%]'
+'right-[6%]'
 </script>
 
 <style scoped>
@@ -89,5 +111,31 @@ const transitionSpeed = computed(() => {
 
 .slide-up-enter-active {
     transition: all ease-in-out v-bind(transitionSpeed)
+}
+
+@keyframes shake-left {
+    0% {
+        transform: rotate(-5deg) translateY(-8%)
+    }
+    100% {
+        transform: rotate(5deg) translateY(0%)
+    }
+}
+
+@keyframes shake-right {
+    0% {
+        transform: rotate(5deg) translateY(-8%)
+    }
+    100% {
+        transform: rotate(-5deg) translateY(0%)
+    }
+}
+
+.shake-right {
+    animation: shake-right v-bind(shakeSpeed) infinite linear alternate;
+}
+
+.shake-left {
+    animation: shake-left v-bind(shakeSpeed) infinite linear alternate;
 }
 </style>
