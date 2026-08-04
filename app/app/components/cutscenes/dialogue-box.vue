@@ -15,22 +15,20 @@
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
             Skip
         </button>
-        <div class="absolute bg-slate-700 top-[-30%] px-4 border-4 border-black h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-2"
-            :class="`${currentLine.align}-[5%]`">
-            {{ props.currentLine.speaker }}
+        <div class="absolute bg-slate-700 top-[-30%]  h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-8"
+            :class="`${currentLine.align}-[5%] z-8`">
+            <div
+                class="bg-slate-700 px-4 border-4 border-black h-full pixfont flex items-center justify-center text-xl w-full z-8">
+                {{ props.currentLine.speaker }}
+            </div>
+            <img v-if="props.currentLine.imgURL" :src="props.currentLine.imgURL" :alt="props.currentLine.speaker"
+                class="h-[30vh] absolute bottom-full z-7 left-1/2 -translate-x-1/2" :class="{
+                    'shake-left': !isDone && currentLine.align === 'left',
+                    'shake-right': !isDone && currentLine.align === 'right'
+                }">
+            
         </div>
-        <img
-    :src="props.currentLine.imgURL"
-    :alt="props.currentLine.speaker"
-    class="h-[30vh] max-w-[28%] absolute bottom-full"
-    :class="[
-        `${currentLine.align}-[6%]`,
-        {
-            'shake-left': !isDone && currentLine.align === 'left',
-            'shake-right': !isDone && currentLine.align === 'right'
-        }
-    ]"
->
+
     </div>
 </template>
 
@@ -117,6 +115,7 @@ const animationName = computed(() => {
     0% {
         transform: rotate(-5deg) translateY(-8%)
     }
+
     100% {
         transform: rotate(5deg) translateY(0%)
     }
@@ -126,6 +125,7 @@ const animationName = computed(() => {
     0% {
         transform: rotate(5deg) translateY(-8%)
     }
+
     100% {
         transform: rotate(-5deg) translateY(0%)
     }

@@ -106,7 +106,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Matteo",
-                dialogue: "I think we need to take the Royal Crown off this evil... EVIL... man.",
+                dialogue: "I think we need to take the Royal Crown off this evil... EVIL... stinky (x1000).",
                 imgURL: "/images/matteo.png",
                 speed: 45,
                 align: "left"
