@@ -113,21 +113,26 @@ const animationName = computed(() => {
 
 @keyframes shake-left {
     0% {
-        transform: rotate(-5deg) translateY(-8%) translateX(0vw)
+        transform: rotate(-5deg) translateY(-8%) translateX(0vw);
+        left: 18vw;
+        
     }
 
     100% {
-        transform: rotate(5deg) translateY(0%) translateX(0vw)
+        transform: rotate(5deg) translateY(0%) translateX(0vw);
+        left: 18vw;
     }
 }
 
 @keyframes shake-right {
     0% {
-        transform: rotate(5deg) translateY(-8%) translateX(0vw)
+        transform: rotate(5deg) translateY(-8%) translateX(0vw);
+        right: 18vw
     }
 
     100% {
-        transform: rotate(-5deg) translateY(0%) translateX(0vw)
+        transform: rotate(-5deg) translateY(0%) translateX(0vw);
+        right: 18vw
     }
 }
 
