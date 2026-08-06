@@ -35,12 +35,24 @@ const playClicked = ref<boolean>(false)
         transform: rotate(0deg)
     }
 
+    16% {
+        transform: rotate(5deg);
+        color: rgb(8, 48, 88)
+    }
+
     33% {
+        scale: 0.9;
+        transform: rotate(-5deg);
+        color: black
+    }
+
+    50% {
         transform: rotate(5deg);
         color: rgb(8, 48, 88)
     }
 
     67% {
+        scale: 1.1;
         transform: rotate(-5deg);
         color: black
     }
