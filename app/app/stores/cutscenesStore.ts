@@ -6,7 +6,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 imgURL: "/images/noure.png",
                 dialogue: "It was a bright summer day...",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/gavin.m4a',
+                sound: '/sounds/noure.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -189,12 +189,14 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "One by one, they all got hit by Joevil's evil beams. They were defenseless, and the day was swiftly lost.",
                 imgURL: "/images/noure.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/noure.caf',
                 speed: 45,
                 align: "left"
             }, {
                 speaker: "Gavin (evil)",
                 dialogue: "DON'T THINK I FORGOT ABOUT YOU! i love you bb mwah",
                 imgURL: "/images/gavinevil.png",
+                sound: '/sounds/gavin.m4a',
                 backgroundURL: '/backgrounds/evil.png',
                 speed: 45,
                 align: "right"
@@ -203,6 +205,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "OW!",
                 imgURL: "/images/noure.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/noure.caf',
                 speed: 45,
                 align: "left"
             }, {
