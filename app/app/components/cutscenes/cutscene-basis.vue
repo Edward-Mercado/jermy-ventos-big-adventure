@@ -1,4 +1,8 @@
 <template>
+    <cutscenes-additional-content
+    v-if="linePlaying && currentLine"
+    :current-line="currentLine">
+    </cutscenes-additional-content>
     <cutscenes-dialogue-box
         :current-line="currentLine"
         v-if="linePlaying && currentLine"

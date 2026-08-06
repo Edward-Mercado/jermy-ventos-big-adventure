@@ -33,7 +33,12 @@ export interface LevelStats {
 
 export interface DialogueLine {
     speaker: string,
-    imgURL: string,
+    imgURL: string, // speaker
+    backgroundURL: string,
+    animation?: {
+        animationType: ("div" | "img"),
+        transform: string
+    }
     dialogue: string | null,
     speed: number,
     align: ("left" | "right"),

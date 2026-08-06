@@ -22,7 +22,7 @@
                 {{ props.currentLine.speaker }}
             </div>
             <img v-if="props.currentLine.imgURL" :src="props.currentLine.imgURL" :alt="props.currentLine.speaker"
-                class="h-[30vh] absolute bottom-full z-7 left-1/2 -translate-x-1/2" :class="{
+                class="h-[30vh] absolute bottom-full z-7 left-1/2 -translate-x-1/2 aspect-1.2/1" :class="{
                     'shake-left': !isDone && currentLine.align === 'left',
                     'shake-right': !isDone && currentLine.align === 'right'
                 }">
@@ -113,21 +113,21 @@ const animationName = computed(() => {
 
 @keyframes shake-left {
     0% {
-        transform: rotate(-5deg) translateY(-8%)
+        transform: rotate(-5deg) translateY(-8%) translateX(0vw)
     }
 
     100% {
-        transform: rotate(5deg) translateY(0%)
+        transform: rotate(5deg) translateY(0%) translateX(0vw)
     }
 }
 
 @keyframes shake-right {
     0% {
-        transform: rotate(5deg) translateY(-8%)
+        transform: rotate(5deg) translateY(-8%) translateX(0vw)
     }
 
     100% {
-        transform: rotate(-5deg) translateY(0%)
+        transform: rotate(-5deg) translateY(0%) translateX(0vw)
     }
 }
 
