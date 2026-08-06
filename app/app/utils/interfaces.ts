@@ -38,7 +38,8 @@ export interface DialogueLine {
     animation?: {
         animationType: ("div" | "img"),
         transform: string
-    }
+    },
+    sound?: string,
     dialogue: string | null,
     speed: number,
     align: ("left" | "right"),

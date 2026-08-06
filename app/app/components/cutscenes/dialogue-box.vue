@@ -33,7 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import type { DialogueLine } from '#imports';
+import {Howl, Howler} from 'howler';
+
 const emit = defineEmits(["proceed", "skip"])
 const props = defineProps<{
     currentLine: DialogueLine
@@ -43,12 +44,17 @@ const displayedText = ref<string>("")
 const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
+var dialogueBeep = new Howl({
+    src: [props.currentLine.sound as string | '']
+})
+
 onMounted(() => {
     const charSpeed = props.currentLine.speed ?? 50
     let index = 0
 
     const interval = setInterval(() => {
         if (index < props.currentLine.dialogue!.length) {
+            if(!(index % 2)) dialogueBeep.play()
             displayedText.value += props.currentLine.dialogue![index]
             index++
         } else {

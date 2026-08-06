@@ -6,6 +6,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 imgURL: "/images/noure.png",
                 dialogue: "It was a bright summer day...",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/gavin.m4a',
                 speed: 45,
                 align: "left"
             }, {
