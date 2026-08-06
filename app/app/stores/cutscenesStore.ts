@@ -14,6 +14,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Wow guys, I am finally almost 16!",
                 imgURL: "/images/joey.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -21,6 +22,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Still 15, you haven't completed your birthday challenge yet! But I, am 16.",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/edward.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -28,6 +30,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Dude, what the hell.",
                 imgURL: "/images/joey.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -35,6 +38,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Don't you mean, 'what the smell?'",
                 imgURL: "/images/gab.png",
                 backgroundURL: '/backgrounds/greengas.png',
+                sound: '/sounds/gab.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -49,6 +53,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I AM JOEVIL! I AM HERE TO... uhh...",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "right"
             }, {
@@ -56,6 +61,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Kill us? Yeah, like that's gonna happen...",
                 imgURL: "/images/pierce.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/baselow.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -63,6 +69,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "YES. TO KILL YOU. BECAUSE. I AM EVIL. JOEVIL.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "right"
             }, {
@@ -70,6 +77,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Well, that's not very nice.",
                 imgURL: "/images/mrspaulavento.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/basehigh.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -77,6 +85,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Yeah dude, I'm gonna ball all over you.",
                 imgURL: "/images/kellan.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/baselow.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -84,6 +93,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Nuh uh.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 70,
                 align: "right"
             }, {
@@ -112,6 +122,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I am evil. Don't look into it.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "right"
             }, {
@@ -126,6 +137,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I think we need to take the Royal Crown off this evil... EVIL... stinky (x1000).",
                 imgURL: "/images/matteo.png",
                 backgroundURL: '/backgrounds/matteo-domain-expansion.png',
+                sound: '/sounds/baselow.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -133,6 +145,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Yeah, he's a !$%#*@",
                 imgURL: "/images/lucia.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/lucia.m4a',
                 speed: 75,
                 align: "left"
             }, {
@@ -140,6 +153,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Dude, I'm evil, not monstrous. Also, I'm not even gay :(",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "right"
             }, {
@@ -154,6 +168,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "HII!!!!! mwahmwahmwah oh shit what is tha-",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/edward.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -161,6 +176,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "EVIL BEAM GO!",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/joey.m4a',
                 speed: 5,
                 align: "right"
             }, {
@@ -168,6 +184,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "OW! That hurts...",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/edward.caf',
                 speed: 45,
                 align: "left"
             }, {
@@ -175,6 +192,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I... AM NOW EVIL EDWARD! HERE'S YOUR BIRTHDAY GIFT ON TIME, SUCKERS! EVIL BEAM GO!!!",
                 imgURL: "/images/edwardevil.png",
                 backgroundURL: '/backgrounds/evil.png',
+                sound: '/sounds/edward.caf',
                 speed: 30,
                 align: "right"
             }, {
@@ -182,6 +200,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "NOOOOOO!!!!!!",
                 imgURL: "/images/crowd.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/baselow.caf',
                 speed: 250,
                 align: "left"
             }, {
@@ -210,9 +229,10 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Omnipotent Narrator",
-                dialogue: "Now, it is all down to you.",
+                dialogue: "Now, it is all down to you. To stop Joevil's reign. And to turn 16.",
                 backgroundURL: '/backgrounds/summer.png',
                 imgURL: null,
+                sound: '/sounds/baselow.caf',
                 speed: 60,
                 align: "left"
             }] as DialogueLine[],

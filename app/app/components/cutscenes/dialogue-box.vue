@@ -45,8 +45,10 @@ const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
 var dialogueBeep = new Howl({
-    src: [props.currentLine.sound as string | '']
+    src: [props.currentLine.sound as string | ''],
+    volume: 0.8
 })
+console.log(dialogueBeep)
 
 onMounted(() => {
     const charSpeed = props.currentLine.speed ?? 50
