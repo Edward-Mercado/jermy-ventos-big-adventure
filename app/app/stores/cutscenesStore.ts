@@ -101,6 +101,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Yuh uh.",
                 imgURL: "/images/kellan.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/baselow.caf',
                 speed: 100,
                 align: "left"
             }, {

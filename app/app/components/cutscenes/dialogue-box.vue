@@ -15,25 +15,33 @@
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
             Skip
         </button>
-        <div class="absolute bg-slate-700 top-[-30%]  h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-8"
+        <div class="absolute bg-slate-700 top-[-30%] h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-8"
             :class="`${currentLine.align}-[5%] z-8`">
             <div
                 class="bg-slate-700 px-4 border-4 border-black h-full pixfont flex items-center justify-center text-xl w-full z-8">
                 {{ props.currentLine.speaker }}
             </div>
-            <img v-if="props.currentLine.imgURL" :src="props.currentLine.imgURL" :alt="props.currentLine.speaker"
-                class="h-[30vh] absolute bottom-full z-7 left-1/2 -translate-x-1/2 aspect-1.2/1" :class="{
-                    'shake-left': !isDone && currentLine.align === 'left',
-                    'shake-right': !isDone && currentLine.align === 'right'
-                }">
-            
-        </div>
 
+            <!-- centering wrapper: owns left/translateX only, never touched by the shake animation -->
+            <div v-if="props.currentLine.imgURL"
+                class="absolute bottom-full left-1/2 -translate-x-1/2 z-7">
+                <!-- shake target: owns rotate/translateY only, via animation -->
+                <img
+                    :src="props.currentLine.imgURL"
+                    :alt="props.currentLine.speaker"
+                    class="min-w-full min-h-[30vh] block"
+                    :class="{
+                        'shake-left': !isDone && currentLine.align === 'left',
+                        'shake-right': !isDone && currentLine.align === 'right'
+                    }"
+                >
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import {Howl, Howler} from 'howler';
+import { Howl, Howler } from 'howler';
 
 const emit = defineEmits(["proceed", "skip"])
 const props = defineProps<{
@@ -48,7 +56,6 @@ var dialogueBeep = new Howl({
     src: [props.currentLine.sound as string | ''],
     volume: 0.8
 })
-console.log(dialogueBeep)
 
 onMounted(() => {
     const charSpeed = props.currentLine.speed ?? 50
@@ -56,7 +63,7 @@ onMounted(() => {
 
     const interval = setInterval(() => {
         if (index < props.currentLine.dialogue!.length) {
-            if(!(index % 2)) dialogueBeep.play()
+            if (!(index % 2)) dialogueBeep.play()
             displayedText.value += props.currentLine.dialogue![index]
             index++
         } else {
@@ -67,7 +74,6 @@ onMounted(() => {
             }, props.currentLine.speed * 5)
         }
     }, charSpeed)
-
 })
 
 const transitionSpeed = computed(() => {
@@ -77,15 +83,6 @@ const transitionSpeed = computed(() => {
 const shakeSpeed = computed(() => {
     return `${props.currentLine.speed * 2}ms`
 })
-
-const animationName = computed(() => {
-    return `shake-${props.currentLine.align}`
-})
-
-'left-[5%]'
-'right-[5%]'
-'left-[6%]'
-'right-[6%]'
 </script>
 
 <style scoped>
@@ -121,26 +118,19 @@ const animationName = computed(() => {
 
 @keyframes shake-left {
     0% {
-        transform: rotate(-5deg) translateY(-8%) translateX(0vw);
-        left: 18vw;
-        
+        transform: rotate(-5deg) translateY(-12%);
     }
-
     100% {
-        transform: rotate(5deg) translateY(0%) translateX(0vw);
-        left: 18vw;
+        transform: rotate(5deg) translateY(-4%);
     }
 }
 
 @keyframes shake-right {
     0% {
-        transform: rotate(5deg) translateY(-8%) translateX(0vw);
-        right: 18vw
+        transform: rotate(5deg) translateY(-12%);
     }
-
     100% {
-        transform: rotate(-5deg) translateY(0%) translateX(0vw);
-        right: 18vw
+        transform: rotate(-5deg) translateY(-4%);
     }
 }
 
