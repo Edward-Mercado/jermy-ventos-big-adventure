@@ -24,12 +24,12 @@
 
             <!-- centering wrapper: owns left/translateX only, never touched by the shake animation -->
             <div v-if="props.currentLine.imgURL"
-                class="absolute bottom-full left-1/2 -translate-x-1/2 z-7">
+                class="absolute bottom-full left-1/2 -translate-x-1/2 z-7 h-[30vh]">
                 <!-- shake target: owns rotate/translateY only, via animation -->
                 <img
                     :src="props.currentLine.imgURL"
                     :alt="props.currentLine.speaker"
-                    class="min-w-full min-h-[30vh] block"
+                    class="min-w-full! block aspect-3/2 object-cover h-full"
                     :class="{
                         'shake-left': !isDone && currentLine.align === 'left',
                         'shake-right': !isDone && currentLine.align === 'right'

@@ -116,6 +116,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Guys... I think we need to get to the bottom of why he's so evil! I think.",
                 imgURL: "/images/columbo.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/columbo.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -131,6 +132,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I guess that solves it.",
                 imgURL: "/images/columbo.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/columbo.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -186,10 +188,15 @@ export const useCutsceneStore = defineStore('cutscene', {
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
                 sound: '/sounds/edward.caf',
+                animation: {
+                    animationType: 'div',
+                    classes: 'bg-linear-to-l to-red-500 from-red-950 z-3 w-[80vw] fixed top-[55vh] left-[20vw] rounded-l-full max-h-[20vh]',
+                    transform: 'evil-beam'
+                },
                 speed: 45,
                 align: "left"
             }, {
-                speaker: "Edward (now evil)",
+                speaker: "Edward (evil)",
                 dialogue: "I... AM NOW EVIL EDWARD! HERE'S YOUR BIRTHDAY GIFT ON TIME, SUCKERS! EVIL BEAM GO!!!",
                 imgURL: "/images/edwardevil.png",
                 backgroundURL: '/backgrounds/evil.png',
@@ -201,6 +208,11 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "NOOOOOO!!!!!!",
                 imgURL: "/images/crowd.png",
                 backgroundURL: '/backgrounds/summer.png',
+                animation: {
+                    animationType: 'div',
+                    classes: 'bg-linear-to-l to-red-500 from-red-950 z-3 w-[80vw] fixed top-[55vh] left-[20vw] rounded-l-full max-h-[20vh]',
+                    transform: 'evil-beam'
+                },
                 sound: '/sounds/baselow.caf',
                 speed: 250,
                 align: "left"
@@ -226,6 +238,11 @@ export const useCutsceneStore = defineStore('cutscene', {
                 imgURL: "/images/noure.png",
                 backgroundURL: '/backgrounds/summer.png',
                 sound: '/sounds/noure.caf',
+                animation: {
+                    animationType: 'div',
+                    classes: 'bg-linear-to-l to-red-500 from-red-950 z-3 w-[80vw] fixed top-[55vh] left-[20vw] rounded-l-full max-h-[20vh]',
+                    transform: 'evil-beam'
+                },
                 speed: 45,
                 align: "left"
             }, {

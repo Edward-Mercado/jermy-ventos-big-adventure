@@ -37,7 +37,9 @@ export interface DialogueLine {
     backgroundURL: string,
     animation?: {
         animationType: ("div" | "img"),
-        transform: string
+        src?: string, // if animationType === 'img'
+        classes: string,
+        transform: string, // animation name
     },
     sound?: string,
     dialogue: string | null,
