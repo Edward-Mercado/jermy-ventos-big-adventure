@@ -13,9 +13,15 @@
 
 <script setup lang="ts">
 const campaignSaveStore = useCampaignSaveStore()
-const cutsceneScore = useCutsceneStore()
+const cutsceneStore = useCutsceneStore()
 const currentLineIndex = ref<number>(0)
-const linePlaying = ref<boolean>(true)
+
+//@ts-ignore
+const linePlaying = ref<boolean>(cutsceneStore.cutscenes[stateKeys[campaignSaveStore.gameState].name][0] ? true : false)
+
+watch(() => campaignSaveStore.gameState, () => {
+    console.log(campaignSaveStore.gameState)
+})
 
 const currentStateKey = computed(() => {
     return stateKeys[campaignSaveStore.gameState]
@@ -23,7 +29,7 @@ const currentStateKey = computed(() => {
 
 const currentCutscene = computed(() => {
     if (!currentStateKey.value) return []
-    return cutsceneScore.cutscenes[currentStateKey.value.name] ?? []
+    return cutsceneStore.cutscenes[currentStateKey.value.name] ?? []
 })
 
 const currentLine = computed(() => {
@@ -32,9 +38,9 @@ const currentLine = computed(() => {
 
 function skipCutscene() {
     campaignSaveStore.gameState++
-        linePlaying.value = false
-        currentLineIndex.value = 0
-        campaignSaveStore.saveGame()
+    linePlaying.value = false
+    currentLineIndex.value = 0
+    campaignSaveStore.saveGame()
 }
 
 async function proceedDialogue() {
