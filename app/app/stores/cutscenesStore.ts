@@ -38,6 +38,12 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Don't you mean, 'what the smell?'",
                 imgURL: "/images/gab.png",
                 backgroundURL: '/backgrounds/greengas.png',
+                animation: {
+                    animationType: 'img',
+                    src: '/images/greengas.png',
+                    classes: 'fixed z-0 left-[30vw] top-[40vh] bottom-[20vh] max-w-[40vw] max-h-[40vh]',
+                    transform: 'fart'
+                },
                 sound: '/sounds/gab.m4a',
                 speed: 45,
                 align: "left"

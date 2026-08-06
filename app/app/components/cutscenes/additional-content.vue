@@ -30,6 +30,9 @@ const props = defineProps<{
 }>()
 
 const opacityClass = ref<string>('opacity-0')
+if(props.currentLine.animation?.animationType === 'img') {
+    console.log(props.currentLine.animation.src)
+}
 
 async function fadeIn() {
   opacityClass.value = 'opacity-0'
@@ -46,7 +49,6 @@ const animationSpeed = computed(() => {
 </script>
 
 <style scoped>
-/* Evil Beam Animation */
 .evil-beam-enter-from,
 .evil-beam-leave-to {
   width: 0vw;
@@ -61,6 +63,23 @@ const animationSpeed = computed(() => {
 
 .evil-beam-enter-active,
 .evil-beam-leave-active {
+  transition: all v-bind(animationSpeed) ease;
+}
+
+.fart-enter-from,
+.fart-leave-to {
+  opacity: 0;
+  scale: 0
+}
+
+.fart-enter-to,
+.fart-leave-from {
+  opacity: 1;
+  scale: 1
+}
+
+.fart-enter-active,
+.fart-leave-active {
   transition: all v-bind(animationSpeed) ease;
 }
 </style>

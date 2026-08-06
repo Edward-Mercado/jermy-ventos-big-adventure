@@ -22,19 +22,13 @@
                 {{ props.currentLine.speaker }}
             </div>
 
-            <!-- centering wrapper: owns left/translateX only, never touched by the shake animation -->
             <div v-if="props.currentLine.imgURL"
-                class="absolute bottom-full left-1/2 -translate-x-1/2 z-7 h-[30vh]">
-                <!-- shake target: owns rotate/translateY only, via animation -->
-                <img
-                    :src="props.currentLine.imgURL"
-                    :alt="props.currentLine.speaker"
-                    class="min-w-full! block aspect-3/2 object-cover h-full"
-                    :class="{
+                class="absolute bottom-full left-1/2 -translate-x-1/2 z-7 h-[30vh] p-0 overflow-x-visible">
+                <img :src="props.currentLine.imgURL" :alt="props.currentLine.speaker"
+                    class="h-full w-auto block max-w-none" :class="{
                         'shake-left': !isDone && currentLine.align === 'left',
                         'shake-right': !isDone && currentLine.align === 'right'
-                    }"
-                >
+                    }">
             </div>
         </div>
     </div>
@@ -120,6 +114,7 @@ const shakeSpeed = computed(() => {
     0% {
         transform: rotate(-5deg) translateY(-12%);
     }
+
     100% {
         transform: rotate(5deg) translateY(-4%);
     }
@@ -129,6 +124,7 @@ const shakeSpeed = computed(() => {
     0% {
         transform: rotate(5deg) translateY(-12%);
     }
+
     100% {
         transform: rotate(-5deg) translateY(-4%);
     }
