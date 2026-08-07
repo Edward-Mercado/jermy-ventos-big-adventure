@@ -439,6 +439,11 @@ export const useCutsceneStore = defineStore('cutscene', {
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/basehigh.m4a',
                     imgURL: "/images/kortnee.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
                     speed: 60,
                     align: "right"
                 },
@@ -469,7 +474,40 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speed: 45,
                     align: "right"
                 },
-            ] as DialogueLine[]
+            ] as DialogueLine[],
+
+            "saveHumd": [
+                {
+                    speaker: "Humd",
+                    dialogue: "WHEEEEWWW!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/humd.m4a',
+                    imgURL: "/images/humd.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveNoure": [
+                {
+                    speaker: "Noure",
+                    dialogue: "WHOOOOOO!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/noure.caf',
+                    imgURL: "/images/noure.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
         } as Record<string, DialogueLine[]>
     })
 })

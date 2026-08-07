@@ -1,6 +1,6 @@
-export const useChoicesStore = defineStore('cutscene', {
+export const useChoicesStore = defineStore('choices', {
     state: () => ({
-        'HumdOrNoure': {
+        'HumdNoure': {
             question: "Which girlfriend are you saving first, Humd or Noure? You will have the opportunity to save the other later.",
             choiceA: {
                 img: "/images/humd.png",
@@ -11,6 +11,8 @@ export const useChoicesStore = defineStore('cutscene', {
                     choices.HumdNoureSave1 = "saveHumd"
                     choices.HumdNoureBattle2 = "battleNoure"
                     choices.HumdNoureSave2 = "saveNoure"
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
                 },
             },
             choiceB: {
@@ -22,6 +24,8 @@ export const useChoicesStore = defineStore('cutscene', {
                     choices.HumdNoureSave1 = "saveNoure"
                     choices.HumdNoureBattle2 = "battleHumd"
                     choices.HumdNoureSave2 = "saveHumd"
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
                 },
             }
         }
