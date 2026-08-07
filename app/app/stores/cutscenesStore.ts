@@ -264,9 +264,9 @@ export const useCutsceneStore = defineStore('cutscene', {
             "firstEncounter": [
                 {
                     speaker: "Joey",
-                    dialogue: "Damn. I must try to find my friends again.",
+                    dialogue: "Damn. I must try to find my friends again. And save them from Joevil. All at 15 years old?",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/joey.m4a',
                     imgURL: "/images/joey.png",
                     speed: 60,
                     align: "left"
@@ -275,7 +275,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Little Guy 1",
                     dialogue: "Prepare for a battle!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.m4a',
+                    sound: '/sounds/baselow.caf',
                     imgURL: "/images/littleguys.png",
                     speed: 45,
                     align: "right"
@@ -293,7 +293,178 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Little Guy 1",
                     dialogue: "Try to find a way to beat us little guys!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.m4a',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+            ] as DialogueLine[],
+            "saveKellan": [
+                {
+                    speaker: "Kellan (evil)",
+                    dialogue: "Damn it... I've been weakened. I can't even make a free throw...",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Kellan (evil)",
+                    dialogue: "Not that... I could've made one anyway...",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "BIRTHDAY BEAM!!! GO!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan (evil)",
+                    dialogue: "AUAGGHHH!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "Did... that work?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "What? Where am I?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "Where is Joevil? I'm so dizzy...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "It worked! It's a birthday miracle!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "Joey... I need to warn you... There's many of them out there...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "I don't know if you can win this on your own.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "So can you join me?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "I guess... It's almost your birthday after all.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "We have to save the others!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "It's Humd and Noure ahead... a fork in the road... Who should we save first?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveKortnee": [
+                {
+                    speaker: "Kortnee (evil)",
+                    dialogue: "WOAH!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/kortnee.png",
+                    speed: 60,
+                    align: "right"
+                },
+                {
+                    speaker: "Little Guy 1",
+                    dialogue: "Prepare for a battle!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Little Guy 2",
+                    dialogue: "With both of us!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Little Guy 1",
+                    dialogue: "Try to find a way to beat us little guys!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
                     imgURL: "/images/littleguys.png",
                     speed: 45,
                     align: "right"
@@ -302,3 +473,46 @@ export const useCutsceneStore = defineStore('cutscene', {
         } as Record<string, DialogueLine[]>
     })
 })
+
+/*
+
+"template": [
+                {
+                    speaker: "Joey",
+                    dialogue: "Damn. I must try to find my friends again. And save them from Joevil. All at 15 years old?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 60,
+                    align: "left"
+                },
+                {
+                    speaker: "Little Guy 1",
+                    dialogue: "Prepare for a battle!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Little Guy 2",
+                    dialogue: "With both of us!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Little Guy 1",
+                    dialogue: "Try to find a way to beat us little guys!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/littleguys.png",
+                    speed: 45,
+                    align: "right"
+                },
+            ] as DialogueLine[]
+
+*/

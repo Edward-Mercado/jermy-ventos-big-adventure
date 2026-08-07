@@ -66,6 +66,23 @@ const animationSpeed = computed(() => {
   transition: all v-bind(animationSpeed) ease;
 }
 
+.birthday-beam-enter-from,
+.birthday-beam-leave-to {
+  width: 0vw;
+  right: 100vw;
+}
+
+.birthday-beam-enter-to,
+.birthday-beam-leave-from {
+  width: 80vw;
+  right: 20vw;
+}
+
+.birthday-beam-enter-active,
+.birthday-beam-leave-active {
+  transition: all v-bind(animationSpeed) ease;
+}
+
 .stink-enter-from,
 .stink-leave-to {
   opacity: 1;

@@ -10,7 +10,7 @@
                 Proceed.
             </button>
         </transition>
-        <button @click="$emit('skip')"
+        <button @click="stopInterval(); $emit('skip')"
             class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] left-[5%] bottom-[-30%] border-black border-4 text-lg
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center select-none absolute">
             Skip
@@ -51,11 +51,13 @@ var dialogueBeep = new Howl({
     volume: 0.8
 })
 
+let interval:any = null
+
 onMounted(() => {
     const charSpeed = props.currentLine.speed ?? 50
     let index = 0
 
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
         if (index < props.currentLine.dialogue!.length) {
             if (!(index % 2)) dialogueBeep.play()
             displayedText.value += props.currentLine.dialogue![index]
@@ -69,6 +71,10 @@ onMounted(() => {
         }
     }, charSpeed)
 })
+
+function stopInterval() {
+    if(interval) clearInterval(interval)
+}
 
 const transitionSpeed = computed(() => {
     return `${props.currentLine.speed * 10}ms`

@@ -22,11 +22,14 @@
 <script setup lang="ts">
 const campaignStore = useCampaignSaveStore()
 const endlessStore = useEndlessStore()
+const stateKeys = useStateKeys()
 
 function resetData() {
     campaignStore.$reset()
     endlessStore.$reset()
     campaignStore.saveGame()
+    stateKeys.$reset()
+    stateKeys.saveChoices()
     return navigateTo("/")
 }
 </script>

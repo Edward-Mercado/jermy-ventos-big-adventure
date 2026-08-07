@@ -16,16 +16,17 @@ const campaignSaveStore = useCampaignSaveStore()
 const cutsceneStore = useCutsceneStore()
 const currentLineIndex = ref<number>(0)
 const emit = defineEmits(['continue'])
+const stateKeys = useStateKeys()
 
 //@ts-ignore
-const linePlaying = ref<boolean>(cutsceneStore.cutscenes[stateKeys[campaignSaveStore.gameState].name][0] ? true : false)
+const linePlaying = ref<boolean>(stateKeys.keys[campaignSaveStore.gameState]?.name ? true : false)
 
 watch(() => campaignSaveStore.gameState, () => {
     console.log(campaignSaveStore.gameState)
 })
 
 const currentStateKey = computed(() => {
-    return stateKeys[campaignSaveStore.gameState]
+    return stateKeys.keys[campaignSaveStore.gameState]
 })
 
 const currentCutscene = computed(() => {
