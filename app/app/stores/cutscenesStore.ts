@@ -37,12 +37,12 @@ export const useCutsceneStore = defineStore('cutscene', {
                 speaker: "Gab",
                 dialogue: "Don't you mean, 'what the smell?'",
                 imgURL: "/images/gab.png",
-                backgroundURL: '/backgrounds/greengas.png',
+                backgroundURL: '/backgrounds/summer.png',
                 animation: {
                     animationType: 'img',
                     src: '/images/greengas.png',
-                    classes: 'fixed z-0 left-[30vw] top-[40vh] bottom-[20vh] max-w-[40vw] max-h-[40vh]',
-                    transform: 'fart'
+                    classes: 'fixed z-0 left-[17vw] top-[16vh] max-w-[40vw] max-h-[40vh]',
+                    transform: 'stink'
                 },
                 sound: '/sounds/gab.m4a',
                 speed: 45,
@@ -169,6 +169,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 speaker: "Humd",
                 dialogue: "hiii :)",
                 imgURL: "/images/humd.png",
+                sound: '/sounds/humd.m4a',
                 backgroundURL: '/backgrounds/summer.png',
                 speed: 60,
                 align: "left"
@@ -254,7 +255,7 @@ export const useCutsceneStore = defineStore('cutscene', {
             }, {
                 speaker: "Omnipotent Narrator",
                 dialogue: "Now, it is all down to you. To stop Joevil's reign. And to turn 16.",
-                backgroundURL: '/backgrounds/summer.png',
+                backgroundURL: '/backgrounds/evil.png',
                 imgURL: null,
                 sound: '/sounds/baselow.caf',
                 speed: 60,
@@ -266,8 +267,29 @@ export const useCutsceneStore = defineStore('cutscene', {
                     dialogue: "",
                     imgURL: "",
                     speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "",
+                    dialogue: "",
+                    imgURL: "",
+                    speed: 45,
                     align: "right"
-                }
+                },
+                {
+                    speaker: "",
+                    dialogue: "",
+                    imgURL: "",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "",
+                    dialogue: "",
+                    imgURL: "",
+                    speed: 45,
+                    align: "right"
+                },
             ] as DialogueLine[]
         } as Record<string, DialogueLine[]>
     })

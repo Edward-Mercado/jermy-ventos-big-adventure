@@ -4,7 +4,7 @@
       :key="currentLine.backgroundURL"
       :src="currentLine.backgroundURL"
       :class="opacityClass"
-      class="transition-opacity min-w-full min-h-full duration-200 ease-in-out"
+      class="transition-opacity min-w-full min-h-full duration-200 ease-in-out select-none"
     />
 
     <Transition :name="currentLine.animation?.transform" appear>
@@ -66,20 +66,20 @@ const animationSpeed = computed(() => {
   transition: all v-bind(animationSpeed) ease;
 }
 
-.fart-enter-from,
-.fart-leave-to {
-  opacity: 0;
-  scale: 0
-}
-
-.fart-enter-to,
-.fart-leave-from {
+.stink-enter-from,
+.stink-leave-to {
   opacity: 1;
-  scale: 1
+  translate: 0 100%;
 }
 
-.fart-enter-active,
-.fart-leave-active {
+.stink-enter-to,
+.stink-leave-from {
+  opacity: 0.5;
+  translate: 0 0
+}
+
+.stink-enter-active,
+.stink-leave-active {
   transition: all v-bind(animationSpeed) ease;
 }
 </style>

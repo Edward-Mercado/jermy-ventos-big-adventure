@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-slate-400 h-dvh p-5 items-center flex flex-col justify-between py-4">
+    <div class="bg-slate-400 h-dvh p-5 items-center flex flex-col justify-between py-4 select-none">
         <client-only v-if="campaignRunning">
             <cutscenes-cutscene-basis v-if="stateKeys[storyPoint]!.type === 'cutscene'"></cutscenes-cutscene-basis>
         </client-only> 

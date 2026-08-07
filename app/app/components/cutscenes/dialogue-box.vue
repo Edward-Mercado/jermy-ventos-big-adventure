@@ -1,31 +1,31 @@
 <template>
     <div
         class="w-[80%] bg-slate-600/70 fixed bottom-[5%] h-[12%] border-black border-4 p-3 shadow-md flex justify-between">
-        <span class="typewriter dialogue-font text-xl">{{ displayedText }}<span class="cursor pixfont"
+        <span class="typewriter dialogue-font text-xl select-none">{{ displayedText }}<span class="cursor pixfont"
                 v-if="!isDone">|</span></span>
         <transition name="slide-up">
             <button v-if="canProceed" @click="$emit('proceed')"
-                class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] right-[5%] bottom-[-30%] border-black border-4 text-lg
+                class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] right-[5%] bottom-[-30%] border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
                 Proceed.
             </button>
         </transition>
         <button @click="$emit('skip')"
             class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] left-[5%] bottom-[-30%] border-black border-4 text-lg
-            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
+            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center select-none absolute">
             Skip
         </button>
         <div class="absolute bg-slate-700 top-[-30%] h-[40%] pixfont flex items-center justify-center text-xl min-w-[30%] z-8"
             :class="`${currentLine.align}-[5%] z-8`">
             <div
-                class="bg-slate-700 px-4 border-4 border-black h-full pixfont flex items-center justify-center text-xl w-full z-8">
+                class="bg-slate-700 px-4 border-4 border-black h-full pixfont flex items-center justify-center text-xl w-full z-8 select-none">
                 {{ props.currentLine.speaker }}
             </div>
 
             <div v-if="props.currentLine.imgURL"
                 class="absolute bottom-full left-1/2 -translate-x-1/2 z-7 h-[30vh] p-0 overflow-x-visible">
                 <img :src="props.currentLine.imgURL" :alt="props.currentLine.speaker"
-                    class="h-full w-auto block max-w-none" :class="{
+                    class="h-full w-auto block max-w-none select-none" :class="{
                         'shake-left': !isDone && currentLine.align === 'left',
                         'shake-right': !isDone && currentLine.align === 'right'
                     }">
@@ -47,7 +47,7 @@ const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
 var dialogueBeep = new Howl({
-    src: [props.currentLine.sound as string | ''],
+    src: [props.currentLine.sound as string | '/sounds/basehigh.m4a'],
     volume: 0.8
 })
 
