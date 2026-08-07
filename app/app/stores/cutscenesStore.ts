@@ -52,6 +52,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "GUYS! THERE'S SOMETHING COMING THIS WAY! WHO IS THAT?",
                 imgURL: "/images/kortnee.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/kortnee.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -115,6 +116,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Ladies, pack it up.",
                 imgURL: "/images/gil.png",
                 backgroundURL: '/backgrounds/summer.png',
+                sound: "/sounds/gil.m4a",
                 speed: 45,
                 align: "left"
             }, {
@@ -445,7 +447,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kortnee (evil)",
                     dialogue: "WOAH!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/basehigh.m4a',
+                    sound: '/sounds/kortnee.m4a',
                     imgURL: "/images/kortnee.png",
                     animation: {
                         animationType: 'div',
@@ -507,6 +509,38 @@ export const useCutsceneStore = defineStore('cutscene', {
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/noure.caf',
                     imgURL: "/images/noure.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveGil": [
+                {
+                    speaker: "Gil (evil)",
+                    dialogue: "AAAAAAAAAAAAAAAAA",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gil.m4a',
+                    imgURL: "/images/gil.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveGav": [
+                {
+                    speaker: "Gavin (evil)",
+                    dialogue: "oUW!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gavin.m4a',
+                    imgURL: "/images/gavinevil.png",
                     animation: {
                         animationType: 'div',
                         classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
