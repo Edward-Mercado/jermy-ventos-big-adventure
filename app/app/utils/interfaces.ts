@@ -47,7 +47,7 @@ export interface DialogueLine {
     align: ("left" | "right"),
 }
 
-export interface stateKey {
+export interface StateKey {
     name: string,
-    type: ("cutscene" | "battle")
+    type: ("cutscene" | "battle" | "choice" | "shop"),
 }

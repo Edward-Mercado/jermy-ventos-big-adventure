@@ -4,7 +4,7 @@
       :key="currentLine.backgroundURL"
       :src="currentLine.backgroundURL"
       :class="opacityClass"
-      class="transition-opacity min-w-full min-h-full duration-200 ease-in-out select-none"
+      class="transition-opacity min-w-full min-h-full duration-200 ease-in-out select-none bottom-0 absolute"
     />
 
     <Transition :name="currentLine.animation?.transform" appear>

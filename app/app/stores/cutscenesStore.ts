@@ -263,30 +263,38 @@ export const useCutsceneStore = defineStore('cutscene', {
             }] as DialogueLine[],
             "firstEncounter": [
                 {
-                    speaker: "",
-                    dialogue: "",
-                    imgURL: "",
-                    speed: 45,
+                    speaker: "Joey",
+                    dialogue: "Damn. I must try to find my friends again.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/joey.png",
+                    speed: 60,
                     align: "left"
                 },
                 {
-                    speaker: "",
-                    dialogue: "",
-                    imgURL: "",
+                    speaker: "Little Guy 1",
+                    dialogue: "Prepare for a battle!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.m4a',
+                    imgURL: "/images/littleguys.png",
                     speed: 45,
                     align: "right"
                 },
                 {
-                    speaker: "",
-                    dialogue: "",
-                    imgURL: "",
+                    speaker: "Little Guy 2",
+                    dialogue: "With both of us!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/littleguys.png",
                     speed: 45,
                     align: "right"
                 },
                 {
-                    speaker: "",
-                    dialogue: "",
-                    imgURL: "",
+                    speaker: "Little Guy 1",
+                    dialogue: "Try to find a way to beat us little guys!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/baselow.m4a',
+                    imgURL: "/images/littleguys.png",
                     speed: 45,
                     align: "right"
                 },

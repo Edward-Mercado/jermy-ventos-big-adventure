@@ -1,7 +1,9 @@
 <template>
     <div class="bg-slate-400 h-dvh p-5 items-center flex flex-col justify-between py-4 select-none">
         <client-only v-if="campaignRunning">
-            <cutscenes-cutscene-basis v-if="stateKeys[storyPoint]!.type === 'cutscene'"></cutscenes-cutscene-basis>
+            <cutscenes-cutscene-basis v-if="stateKeys[storyPoint]!.type === 'cutscene'"
+            @continue="proceedLevel()"
+            ></cutscenes-cutscene-basis>
         </client-only> 
         <div v-else class=" w-full flex items-center justify-center gap-[20%] h-[80%]">
             <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl 
@@ -22,6 +24,10 @@ const campaignRunning = ref<boolean>(false)
 const storyPoint = computed(():number => {
     return campaignStore.gameState
 })
+
+function proceedLevel() {
+
+}
 
 </script>
 

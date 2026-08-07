@@ -18,4 +18,4 @@ export const stateKeys = [
         type: 'cutscene',
         name: 'opening'
     },
-] as stateKey[]
+] as StateKey[]

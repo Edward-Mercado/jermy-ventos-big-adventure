@@ -15,6 +15,7 @@
 const campaignSaveStore = useCampaignSaveStore()
 const cutsceneStore = useCutsceneStore()
 const currentLineIndex = ref<number>(0)
+const emit = defineEmits(['continue'])
 
 //@ts-ignore
 const linePlaying = ref<boolean>(cutsceneStore.cutscenes[stateKeys[campaignSaveStore.gameState].name][0] ? true : false)
@@ -37,10 +38,9 @@ const currentLine = computed(() => {
 })
 
 function skipCutscene() {
-    campaignSaveStore.gameState++
     linePlaying.value = false
     currentLineIndex.value = 0
-    campaignSaveStore.saveGame()
+    emit('continue')
 }
 
 async function proceedDialogue() {
@@ -51,10 +51,9 @@ async function proceedDialogue() {
     }
 
     if (currentLineIndex.value >= cutscene.length - 1) {
-        campaignSaveStore.gameState++
         linePlaying.value = false
         currentLineIndex.value = 0
-        campaignSaveStore.saveGame()
+        emit('continue')
     } else {
         currentLineIndex.value++
         linePlaying.value = false
