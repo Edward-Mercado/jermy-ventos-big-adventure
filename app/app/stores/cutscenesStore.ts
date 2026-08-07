@@ -260,6 +260,14 @@ export const useCutsceneStore = defineStore('cutscene', {
                 sound: '/sounds/baselow.caf',
                 speed: 60,
                 align: "left"
+            }, {
+                speaker: "Omnipotent Narrator",
+                dialogue: "The power rests in your birthday beams... Use them wisely...",
+                backgroundURL: '/backgrounds/evil.png',
+                imgURL: null,
+                sound: '/sounds/baselow.caf',
+                speed: 60,
+                align: "left"
             }] as DialogueLine[],
             "firstEncounter": [
                 {
@@ -478,7 +486,7 @@ export const useCutsceneStore = defineStore('cutscene', {
 
             "saveHumd": [
                 {
-                    speaker: "Humd",
+                    speaker: "Humd (evil)",
                     dialogue: "WHEEEEWWW!!!!",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/humd.m4a',
@@ -494,7 +502,7 @@ export const useCutsceneStore = defineStore('cutscene', {
             ] as DialogueLine[],
             "saveNoure": [
                 {
-                    speaker: "Noure",
+                    speaker: "Noure (evil)",
                     dialogue: "WHOOOOOO!!!!",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/noure.caf',
