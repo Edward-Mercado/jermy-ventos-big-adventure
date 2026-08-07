@@ -4,7 +4,7 @@
         transition-all duration-300 ease-in-out hover:translate-y-[-2vh] active:translate-y-[1vh] shadow-md hover:shadow-lg flex p-2
         flex-col items-center hover:-rotate-3 active:-rotate-6"
         :class="choiceMade === currentStateKey.choiceA ? 'bg-white' : 'bg-slate-600/70'"
-        @click="choiceMade = currentStateKey.choiceA">
+        @click="clickSFX(); choiceMade = currentStateKey.choiceA">
          <h3 class="pixfont text-[2rem]"
          :class="choiceMade === currentStateKey.choiceA ? 'text-slate-900' : 'text-white'">{{ currentStateKey.choiceA.desc }}</h3>
          <div class="max-h-[80%] max-w-full flex items-center">
@@ -19,7 +19,7 @@
         transition-all duration-300 ease-in-out hover:translate-y-[-2vh] active:translate-y-[1vh] shadow-md hover:shadow-lg flex p-2
         flex-col items-center hover:rotate-3 active:rotate-6"
         :class="choiceMade === currentStateKey.choiceB ? 'bg-white' : 'bg-slate-600/70'"
-        @click="choiceMade = currentStateKey.choiceB">
+        @click="clickSFX(); choiceMade = currentStateKey.choiceB">
          <h3 class="pixfont text-[2rem]"
          :class="choiceMade === currentStateKey.choiceB ? 'text-slate-900' : 'text-white'">{{ currentStateKey.choiceB.desc }}</h3>
          <div class="max-h-[80%] max-w-full flex items-center">
@@ -30,7 +30,7 @@
     </div>
     <button class="bg-slate-600/70 w-[90vw] h-[10%] fixed bottom-5 left-[5vw] border-black border-4 hover:bg-slate-800 active:bg-slate-950 shadow-md hover:shadow-lg 
     active:shadow-none transition-all duration-300 ease-in-out hover:translate-y-[-0.4vw] active:translate-y-[0.2vw] pixfont font-bold text-[3rem]"
-    @click="confirmChoice()"> {{ buttonText }} </button>
+    @click="clickSFX(); confirmChoice()"> {{ buttonText }} </button>
 </template>
 
 <script setup lang="ts">
