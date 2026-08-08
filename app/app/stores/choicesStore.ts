@@ -67,6 +67,81 @@ export const useChoicesStore = defineStore('choices', {
                     useStateKeys().loadChoices()
                 },
             }
+        },
+        'ElementariesFakes': {
+            question: "Do you want to save your elementary school pals, or fake people first?",
+            choiceA: {
+                img: "/images/gs.png",
+                desc: "Save Lucia, Thira, and Matteo First",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.LuciaColumboBattle1 = "battleLucia"
+                    choices.LuciaColumboSave1 = "saveLucia"
+                    choices.LuciaColumboBattle2 = "battleColumbo"
+                    choices.LuciaColumboSave2 = "saveColumbo"
+
+                    choices.ThiraPierceBattle1 = "battleThira"
+                    choices.ThiraPierceSave1 = "saveThira"
+                    choices.ThiraPierceBattle2 = "battlePierce"
+                    choices.ThiraPierceSave2 = "savePierce"
+
+                    choices.MatteoWozBattle1 = "battleMatteo"
+                    choices.MatteoWozSave1 = "saveMatteo"
+                    choices.MatteoWozBattle2 = "battleWoz"
+                    choices.MatteoWozSave2 = "saveWoz"
+
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            },
+            choiceB: {
+                img: "/images/ventos.png",
+                desc: "Save Columbo, Pierce, and Scott the Woz First",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.LuciaColumboBattle1 = "battleColumbo"
+                    choices.LuciaColumboSave1 = "saveColumbo"
+                    choices.LuciaColumboBattle2 = "battleLucia"
+                    choices.LuciaColumboSave2 = "saveLucia"
+
+                    choices.ThiraPierceBattle1 = "battlePierce"
+                    choices.ThiraPierceSave1 = "savePierce"
+                    choices.ThiraPierceBattle2 = "battleThira"
+                    choices.ThiraPierceSave2 = "saveThira"
+
+                    choices.MatteoWozBattle1 = "battleWoz"
+                    choices.MatteoWozSave1 = "saveWoz"
+                    choices.MatteoWozBattle2 = "battleMatteo"
+                    choices.MatteoWozSave2 = "saveMatteo"
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            }
         }
+        'EndingChoice': {
+            question: "Decide Joevil's fate.",
+            choiceA: {
+                img: "/images/joevilsaved.png",
+                desc: "Save Joevil",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.ending = "saveJoevil"
+
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            },
+            choiceB: {
+                img: "/images/joevildead.png",
+                desc: "Kill Joevil",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.ending = "killJoevil"
+
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            }
+        },
     })
 })
