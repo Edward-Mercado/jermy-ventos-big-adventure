@@ -521,7 +521,7 @@ export const useCutsceneStore = defineStore('cutscene', {
             "saveGil": [
                 {
                     speaker: "Gil (evil)",
-                    dialogue: "AAAAAAAAAAAAAAAAA",
+                    dialogue: "JOEY JOEY PLEASE IT HURTS",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/gil.m4a',
                     imgURL: "/images/gil.png",
@@ -546,6 +546,103 @@ export const useCutsceneStore = defineStore('cutscene', {
                         classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
                         transform: 'birthday-beam'
                     },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveGab": [
+                {
+                    speaker: "Gab (evil)",
+                    dialogue: "uh.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gab.m4a',
+                    imgURL: "/images/gab.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveMom": [
+                {
+                    speaker: "Mrs. Paula Vento (evil)",
+                    dialogue: "OH!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/mrspaulavento.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "approachingEdward": [
+                {
+                    speaker: "Joey",
+                    dialogue: "Guys! I see evil Edward up ahead!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Humd",
+                    dialogue: "WOW! heheheh",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/humd.m4a',
+                    imgURL: "/images/humd.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Noure",
+                    dialogue: "We must defeat him, this evil Deltarune fan...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/noure.caf',
+                    imgURL: "/images/noure.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Kellan",
+                    dialogue: "This, 5'5 Filipino boy... I can surely ball on him!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/kellan.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Kortnee",
+                    dialogue: "This is for the cookies...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/kortnee.m4a',
+                    imgURL: "/images/kortnee.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Gil",
+                    dialogue: "I really... don't know this guy...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gil.m4a',
+                    imgURL: "/images/gil.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Edward",
+                    dialogue: "I'm gonna burn you suckers to the ground!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/edward.caf',
+                    imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
                 }

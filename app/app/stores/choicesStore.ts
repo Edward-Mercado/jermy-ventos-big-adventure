@@ -28,6 +28,45 @@ export const useChoicesStore = defineStore('choices', {
                     useStateKeys().loadChoices()
                 },
             }
+        },
+        'GsVentos': {
+            question: "Do you want to save some white boys, or your own family first?",
+            choiceA: {
+                img: "/images/gs.png",
+                desc: "Save Gil and Gavin First",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.GilGabBattle1 = "battleGil"
+                    choices.GilGabSave1 = "saveGil"
+                    choices.GilGabBattle2 = "battleGab"
+                    choices.GilGabSave2 = "saveGab"
+
+                    choices.GavMomBattle1 = "battleGav"
+                    choices.GavMomSave1 = "saveGav"
+                    choices.GavMomBattle2 = "battleMom"
+                    choices.GavMomSave2 = "saveMom"
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            },
+            choiceB: {
+                img: "/images/ventos.png",
+                desc: "Save Your Family First",
+                func: () => {
+                    const choices = useStateKeys().choicesMade
+                    choices.GilGabBattle1 = "battleGab"
+                    choices.GilGabSave1 = "saveGab"
+                    choices.GilGabBattle2 = "battleGil"
+                    choices.GilGabSave2 = "saveGil"
+
+                    choices.GavMomBattle1 = "battleMom"
+                    choices.GavMomSave1 = "saveMom"
+                    choices.GavMomBattle2 = "battleGav"
+                    choices.GavMomSave2 = "saveGav"
+                    useStateKeys().saveChoices()
+                    useStateKeys().loadChoices()
+                },
+            }
         }
     })
 })
