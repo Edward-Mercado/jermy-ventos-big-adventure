@@ -57,7 +57,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "I AM JOEVIL! I AM HERE TO... uhh...",
+                dialogue: "BWAHAHAH! I AM JOEVIL! I AM HERE TO... uhh...",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -73,7 +73,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "YES. TO KILL YOU. BECAUSE. I AM EVIL. JOEVIL.",
+                dialogue: "IIINNNDEEED!!!. TO KILL YOU. BECAUSE. I AM EVIL. JOEVIL.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -97,7 +97,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "Nuh uh.",
+                dialogue: "Narrr bro.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -129,7 +129,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "I am evil. Don't look into it.",
+                dialogue: "I am that evil. Don't look into it.",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -161,7 +161,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "Dude, I'm evil, not monstrous. Also, I'm not even gay :(",
+                dialogue: "Bro, uh.. I'm evil, not monstrous. Also, I'm not even gay :(",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -185,7 +185,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Joevil",
-                dialogue: "EVIL BEAM GO!",
+                dialogue: "EDWARD! EVIL BEAM GO!",
                 imgURL: "/images/joevil.png",
                 backgroundURL: '/backgrounds/evil.png',
                 sound: '/sounds/joey.m4a',
@@ -456,34 +456,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     },
                     speed: 60,
                     align: "right"
-                },
-                {
-                    speaker: "Little Guy 1",
-                    dialogue: "Prepare for a battle!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
-                {
-                    speaker: "Little Guy 2",
-                    dialogue: "With both of us!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/basehigh.m4a',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
-                {
-                    speaker: "Little Guy 1",
-                    dialogue: "Try to find a way to beat us little guys!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
+                }
             ] as DialogueLine[],
 
             "saveHumd": [
@@ -639,15 +612,356 @@ export const useCutsceneStore = defineStore('cutscene', {
                 },
                 {
                     speaker: "Edward",
-                    dialogue: "I'm gonna burn you suckers to the ground!",
+                    dialogue: "I'll defeat all of you!",
                     backgroundURL: '/backgrounds/evil.png',
                     sound: '/sounds/edward.caf',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
+                },
+                {
+                    speaker: "Joevil",
+                    dialogue: "I'm gonna burn you to the ground after he's done!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
                 }
             ] as DialogueLine[],
-        } as Record<string, DialogueLine[]>
+            "saveLucia": [
+                {
+                    speaker: "Lucia (evil)",
+                    dialogue: "You &$#@*&!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/lucia.m4a',
+                    imgURL: "/images/lucia.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveColumbo": [
+                {
+                    speaker: "Columbo (evil)",
+                    dialogue: "WOAH!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/columbo.m4a',
+                    imgURL: "/images/columbo.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveThira": [
+                {
+                    speaker: "Thira (evil)",
+                    dialogue: "WAH(tches)!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/thira.m4a',
+                    imgURL: "/images/thira.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "savePierce": [
+                {
+                    speaker: "Pierce (evil)",
+                    dialogue: "AHHHH!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/pierce.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveMatteo": [
+                {
+                    speaker: "Matteo (evil)",
+                    dialogue: "AHHHH!",
+                    backgroundURL: '/backgrounds/matteo-domain-expansion.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/matteo.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveWoz": [
+                {
+                    speaker: "Scott the Woz (evil)",
+                    dialogue: "HEY AAAAHHHlll!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/scottthewoz.m4a',
+                    imgURL: "/images/scotthewoz.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "allSaved": [
+                {
+                    speaker: "Joey",
+                    dialogue: "I did it... I saved you all...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Humd",
+                    dialogue: "Did you forget someone?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/humd.m4a',
+                    imgURL: "/images/humd.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "Nope.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Gavin",
+                    dialogue: "What about Edward?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gavin.m4a',
+                    imgURL: "/images/gavin.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Lucia",
+                    dialogue: "Damn he is so cool. I should have never called him a ch",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/lucia.m4a',
+                    imgURL: "/images/lucia.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "No swearing. Anyways, he's just up ahead.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Edward (evil)",
+                    dialogue: "SUP FUCKERS?",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/edwardevil.m4a',
+                    imgURL: "/images/edwardevil.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Thira",
+                    dialogue: "WELL... NOW YOU'RE OUT OF TIME! WE'RE GONNA STOP YOU!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/thira.m4a',
+                    imgURL: "/images/thira.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Gab",
+                    dialogue: "Don't you mean... 'Smell, you're out of time?'",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gab.m4a',
+                    imgURL: "/images/gab.png",
+                    animation: {
+                    animationType: 'img',
+                    src: '/images/greengas.png',
+                    classes: 'fixed z-0 left-[17vw] top-[16vh] max-w-[40vw] max-h-[40vh]',
+                    transform: 'stink'
+                },
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Noure",
+                    dialogue: "No. Anyways, let's kill this guy.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/noure.m4a',
+                    imgURL: "/images/noure.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "Edward (evil)",
+                    dialogue: "I'D LIKE TO SEE YOU TRY!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/edwardevil.m4a',
+                    imgURL: "/images/edwardevil.png",
+                    speed: 45,
+                    align: "right"
+                }
+            ] as DialogueLine[],
+            "saveEdward": [
+                {
+                    speaker: "Edward (evil)",
+                    dialogue: "NOOOOOO!!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/edward.m4a',
+                    imgURL: "/images/edwardevil.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 60,
+                    align: "left"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "Hey all. How's it going?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Edward",
+                    dialogue: "I'm... alright... It's just...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/edward.m4a',
+                    imgURL: "/images/edward.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Edward",
+                    dialogue: "Joevil is right up ahead... I don't know if we can beat him.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/edward.m4a',
+                    imgURL: "/images/edward.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joey",
+                    dialogue: "That's alright! We'll do this together! I've waited too damn long to turn 16 anyway.",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joey.png",
+                    speed: 45,
+                    align: "left"
+                },
+                {
+                    speaker: "All",
+                    dialogue: "We're all with you Joey!!! Let's all turn 16!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/crowd.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Joevil",
+                    dialogue: "Let's see you try to stop me!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                },
+            ] as DialogueLine[], 
+            "joevilsPlea": [
+                {
+                    speaker: "Joevil",
+                    dialogue: "Damn your... CURSE YOUR TOGETHERNESS!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joevil",
+                    dialogue: "Am I really attrocious to that degree?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joevil",
+                    dialogue: "Please... don't kill me...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                },
+                {
+                    speaker: "Joevil",
+                    dialogue: "I humbly... beg of you...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                }
+            ],
+            "killJoevil": [
+                {
+                    speaker: "Joevil",
+                    dialogue: "im dead bleh",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                }
+            ],
+            "spareJoevil": [
+                {
+                    speaker: "Joevil",
+                    dialogue: "yayyyy",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "right"
+                }
+            ],
+    } as Record<string, DialogueLine[]>
     })
 })
 

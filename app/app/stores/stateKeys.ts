@@ -28,6 +28,8 @@ const DEFAULT_CHOICES = {
     MatteoWozSave1: 'saveWoz',
     MatteoWozBattle2: 'battleMatteo',
     MatteoWozSave2: 'saveMatteo',
+
+    ending: "killJoevil"
 } as const
 
 // 3. Automatically generate the type for choicesMade based on the object above
@@ -67,7 +69,9 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'cutscene', dynamic: 'MatteoWozSave2', name: 'saveMatteo' },
                 { type: 'cutscene', name: 'allSaved' },
                 { type: 'cutscene', name: 'saveEdward' },
-                { type: 'cutscene', name: 'killJoevil' },
+                { type: 'cutscene', name: 'joevilsPlea' },
+                { type: 'choice', name: 'EndingChoice' },
+                { type: 'cutscene', dynamic: 'ending', name: 'killJoevil' },
                 { type: 'cutscene', name: 'closing' },
             ] as StateKey[],
             choicesMade: initialChoices
