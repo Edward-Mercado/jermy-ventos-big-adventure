@@ -629,6 +629,25 @@ export const useCutsceneStore = defineStore('cutscene', {
                     align: "right"
                 }
             ] as DialogueLine[],
+            "edwardDefeat": [
+                {
+                    speaker: "Edward (evil)",
+                    dialogue: "THIS ISN'T THE LAST YOU'LL SEE OF ME!",
+                    backgroundURL: '/backgrounds/evil.png',
+                    sound: '/sounds/edward.m4a',
+                    imgURL: "/images/edwardevil.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Gil",
+                    dialogue: "Yeah... sure buddy...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gil.m4a',
+                    imgURL: "/images/gil.png",
+                    speed: 45,
+                    align: "left"
+                },
+            ] as DialogueLine[],
             "saveLucia": [
                 {
                     speaker: "Lucia (evil)",
@@ -715,7 +734,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     dialogue: "HEY AAAAHHHlll!",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/scottthewoz.m4a',
-                    imgURL: "/images/scotthewoz.png",
+                    imgURL: "/images/scottthewoz.png",
                     animation: {
                         animationType: 'div',
                         classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',

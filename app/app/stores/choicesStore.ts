@@ -4,6 +4,7 @@ export const useChoicesStore = defineStore('choices', {
             question: "Which girlfriend are you saving first, Humd or Noure? You will have the opportunity to save the other later.",
             choiceA: {
                 img: "/images/humd.png",
+                imgClasses: 'w-full xl:mb-[-60%] mb-[-40%] mt-[5%]',
                 desc: "Save Humd First",
                 func: () => {
                     const choices = useStateKeys().choicesMade
@@ -17,6 +18,7 @@ export const useChoicesStore = defineStore('choices', {
             },
             choiceB: {
                 img: "/images/noure.png",
+                imgClasses: 'min-w-[140%] ml-[-20%] mb-[-10%] ',
                 desc: "Save Noure First",
                 func: () => {
                     const choices = useStateKeys().choicesMade
@@ -33,6 +35,7 @@ export const useChoicesStore = defineStore('choices', {
             question: "Do you want to save some white boys, or your own family first?",
             choiceA: {
                 img: "/images/gs.png",
+                imgClasses: 'min-w-full translate-y-[25%]',
                 desc: "Save Gil and Gavin First",
                 func: () => {
                     const choices = useStateKeys().choicesMade
@@ -52,6 +55,7 @@ export const useChoicesStore = defineStore('choices', {
             choiceB: {
                 img: "/images/ventos.png",
                 desc: "Save Your Family First",
+                imgClasses: 'min-w-[115%] ml-[-15%]',
                 func: () => {
                     const choices = useStateKeys().choicesMade
                     choices.GilGabBattle1 = "battleGab"
@@ -71,8 +75,9 @@ export const useChoicesStore = defineStore('choices', {
         'ElementariesFakes': {
             question: "Do you want to save your elementary school pals, or fake people first?",
             choiceA: {
-                img: "/images/gs.png",
+                img: "/images/elementary.png",
                 desc: "Save Lucia, Thira, and Matteo First",
+                imgClasses: 'translate-y-[10%]',
                 func: () => {
                     const choices = useStateKeys().choicesMade
                     choices.LuciaColumboBattle1 = "battleLucia"
@@ -95,8 +100,9 @@ export const useChoicesStore = defineStore('choices', {
                 },
             },
             choiceB: {
-                img: "/images/ventos.png",
+                img: "/images/fakes.png",
                 desc: "Save Columbo, Pierce, and Scott the Woz First",
+                imgClasses: 'translate-y-[25%] translate-x-[15%]',
                 func: () => {
                     const choices = useStateKeys().choicesMade
                     choices.LuciaColumboBattle1 = "battleColumbo"
@@ -117,15 +123,16 @@ export const useChoicesStore = defineStore('choices', {
                     useStateKeys().loadChoices()
                 },
             }
-        }
+        },
         'EndingChoice': {
             question: "Decide Joevil's fate.",
             choiceA: {
                 img: "/images/joevilsaved.png",
-                desc: "Save Joevil",
+                desc: "Spare Joevil",
+                imgClasses: 'translate-y-[10%] w-[70%] ml-[15%]',
                 func: () => {
                     const choices = useStateKeys().choicesMade
-                    choices.ending = "saveJoevil"
+                    choices.ending = "spareJoevil"
 
                     useStateKeys().saveChoices()
                     useStateKeys().loadChoices()
@@ -134,6 +141,7 @@ export const useChoicesStore = defineStore('choices', {
             choiceB: {
                 img: "/images/joevildead.png",
                 desc: "Kill Joevil",
+                imgClasses: 'translate-y-[10%] w-[70%] ml-[15%]',
                 func: () => {
                     const choices = useStateKeys().choicesMade
                     choices.ending = "killJoevil"

@@ -5,11 +5,11 @@
         flex-col items-center hover:-rotate-3 active:-rotate-6 relative text-center overflow-hidden"
         :class="choiceMade === currentStateKey.choiceA ? 'bg-white' : 'bg-slate-600/70'"
         @click="clickSFX(); choiceMade = currentStateKey.choiceA">
-         <h3 class="pixfont text-[2rem]"
-         :class="choiceMade === currentStateKey.choiceA ? 'text-slate-900' : 'text-white'">{{ currentStateKey.choiceA.desc }}</h3>
-         <div class="max-h-[80%] max-w-full flex items-center absolute bottom-0 left-0">
+         <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
+         :class="choiceMade === currentStateKey.choiceA ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceA.desc }}</h3>
+         <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
             <img :src="currentStateKey.choiceA.img" :alt="currentStateKey.choiceA.desc"
-            class="max-h-full max-w-full ">
+            :class="currentStateKey.choiceA.imgClasses ?? 'w-full'">
          </div>
         </div>
         <div class="pixfont text-black text-[1.5rem] lg:text-[2rem] text-center w-[20vw]">
@@ -20,11 +20,11 @@
         flex-col items-center hover:rotate-3 active:rotate-6 relative text-center overflow-hidden"
         :class="choiceMade === currentStateKey.choiceB ? 'bg-white' : 'bg-slate-600/70'"
         @click="clickSFX(); choiceMade = currentStateKey.choiceB">
-         <h3 class="pixfont text-[2rem]"
-         :class="choiceMade === currentStateKey.choiceB ? 'text-slate-900' : 'text-white'">{{ currentStateKey.choiceB.desc }}</h3>
-         <div class="max-h-[80%] max-w-full flex items-center absolute bottom-0 left-0">
+         <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
+         :class="choiceMade === currentStateKey.choiceB ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceB.desc }}</h3>
+         <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
             <img :src="currentStateKey.choiceB.img" :alt="currentStateKey.choiceB.desc"
-         class="max-h-full min-w-full">
+         :class="currentStateKey.choiceB.imgClasses ?? 'w-full'">
          </div>
         </div>
     </div>
