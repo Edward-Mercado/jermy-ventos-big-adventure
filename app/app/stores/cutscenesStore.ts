@@ -92,7 +92,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Yeah dude, I'm gonna ball all over you.",
                 imgURL: "/images/kellan.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/kellan.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -108,7 +108,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Yuh uh.",
                 imgURL: "/images/kellan.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/kellan.m4a',
                 speed: 100,
                 align: "left"
             }, {
@@ -314,7 +314,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan (evil)",
                     dialogue: "Damn it... I've been weakened. I can't even make a free throw...",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -323,7 +323,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan (evil)",
                     dialogue: "Not that... I could've made one anyway...",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -341,7 +341,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan (evil)",
                     dialogue: "AUAGGHHH!!!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     animation: {
                         animationType: 'div',
@@ -364,7 +364,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "What? Where am I?",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -373,7 +373,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "Where is Joevil? I'm so dizzy...",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -391,7 +391,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "Joey... I need to warn you... There's many of them out there...",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -400,7 +400,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "I don't know if you can win this on your own.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -418,7 +418,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "I guess... It's almost your birthday after all.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -436,7 +436,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "It's Humd and Noure ahead... a fork in the road... Who should we save first?",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -634,7 +634,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "THIS ISN'T THE LAST YOU'LL SEE OF ME!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edward.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -646,7 +646,15 @@ export const useCutsceneStore = defineStore('cutscene', {
                     imgURL: "/images/gil.png",
                     speed: 45,
                     align: "left"
-                },
+                },{
+                    speaker: "Kortnee",
+                    dialogue: "Up ahead! I see a lot more people...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/kortnee.m4a',
+                    imgURL: "/images/kortnee.png",
+                    speed: 45,
+                    align: "left"
+                }
             ] as DialogueLine[],
             "saveLucia": [
                 {
@@ -856,7 +864,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "NOOOOOO!!!!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edwardevil.png",
                     animation: {
                         animationType: 'div',
@@ -879,7 +887,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "I'm... alright... It's just...",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
@@ -888,7 +896,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "Joevil is right up ahead... I don't know if we can beat him.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
@@ -961,21 +969,69 @@ export const useCutsceneStore = defineStore('cutscene', {
             "killJoevil": [
                 {
                     speaker: "Joevil",
-                    dialogue: "im dead bleh",
+                    dialogue: "Is... that.. a knife?",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
                     imgURL: "/images/joevil.png",
                     speed: 45,
                     align: "right"
+                },{
+                    speaker: "Edward",
+                    dialogue: "Sure is bud. I'm also gonna set your sprite to /images/birthday-cake.png",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/edward.caf',
+                    imgURL: "/images/edward.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Joevil",
+                    dialogue: "NOOOOOOOOOOO!!!!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    speed: 100,
+                    animation: {
+                        animationType: 'img',
+                        src: '/images/x.webp',
+                        classes: 'right-[12vw] top-[45vh] h-[20vw] w-[20vw] aspect-square z-6 opacity-0',
+                        transform: 'killJoevil'
+                    },
+                    align: "right"
                 }
             ],
             "spareJoevil": [
                 {
-                    speaker: "Joevil",
-                    dialogue: "yayyyy",
+                    speaker: "Joey",
+                    dialogue: "This should be harmless...",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
                     imgURL: "/images/joevil.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Joevil",
+                    dialogue: "AHHHHHH!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/joevil.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Joevil",
+                    dialogue: "AHHHHHH!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/jogood.png",
+                    animation: {
+                        animationType: 'div',
+                        classes: 'bg-white w-[100vw] h-[100vw] z-1 left-0 top-0 opacity-1',
+                        transform: 'flashbang'
+                    },
                     speed: 45,
                     align: "right"
                 }
@@ -985,6 +1041,11 @@ export const useCutsceneStore = defineStore('cutscene', {
 })
 
 /*
+animation: {
+                        animationType: 'div',
+                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
+                        transform: 'birthday-beam'
+                    },
 
 "template": [
                 {

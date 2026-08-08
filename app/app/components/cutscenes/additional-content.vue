@@ -8,7 +8,7 @@
     />
 
     <Transition :name="currentLine.animation?.transform" appear>
-      <div 
+      <div @animationend=""
         v-if="currentLine.animation?.animationType === 'div'"
         :key="currentLine.animation?.classes || 'div-anim'"
         :class="['absolute top-0 h-full', currentLine.animation.classes]"
@@ -98,5 +98,37 @@ const animationSpeed = computed(() => {
 .stink-enter-active,
 .stink-leave-active {
   transition: all v-bind(animationSpeed) ease;
+}
+
+.killJoevil-enter-from,
+.killJoevil-leave-to {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.killJoevil-leave-from,
+.killJoevil-enter-to {
+  opacity: 1;
+  width: 20vw;
+  height: 20vw;
+}
+
+.killJoevil-enter-active {
+  transition: all ease-in-out 1000ms
+}
+
+.flashbang-enter-from,
+.flashbang-leave-to {
+  opacity: 0;
+}
+
+.flashbang-leave-from,
+.flashbang-enter-to {
+  opacity: 1;
+}
+
+.flashbang-enter-active {
+  transition: all ease-in-out 2s
 }
 </style>
