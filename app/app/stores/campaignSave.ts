@@ -10,12 +10,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
 
         attack: 15 as number,
         defense: 0 as number,
-        currentHP: 100 as number,
-        maxHP: 100 as number,
+        currentHP: 80 as number,
+        maxHP: 80 as number,
         friendSlots: 1 as number,
         expGained: 0 as number,
-        maxMana: 100 as number,
-        currentMana: 100 as number,
+        maxMana: 60 as number,
+        currentMana: 60 as number,
 
         playerLevelData: {
             1: { attack: 10, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },

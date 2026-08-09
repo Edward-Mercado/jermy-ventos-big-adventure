@@ -26,8 +26,6 @@ if(campaignSaveStore.gameState === 0) {
     console.log(useEndStore().timeStart)
 }
 
-
-
 const currentStateKey = computed(() => {
     return stateKeys.keys[campaignSaveStore.gameState]
 })

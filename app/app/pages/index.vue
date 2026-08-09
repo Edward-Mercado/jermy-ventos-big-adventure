@@ -21,6 +21,7 @@
             </transition>
         </div>
     </div>
+    <p class="fixed text-lg dialogue-font text-white bottom-2 left-2 italic">Please play the game in widescreen (something like 720x1280) for a better viewing experience. </p>
 </template>
 
 <script setup lang="ts">
