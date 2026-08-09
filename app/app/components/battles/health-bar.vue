@@ -1,6 +1,6 @@
 <template>
     <div class="relative w-full border-2 border-white bg-slate-900 h-[30%]">
-        <div class="pl-2 absolute h-full max-w-full dialogue-font py-2 transition-all duration-300 ease-in-out" :class="HPColor" :style="{width: HPPercentage + `%`}">
+        <div class="absolute h-full max-w-full dialogue-font py-2 transition-all duration-300 ease-in-out" :class="HPColor" :style="{width: HPPercentage + `%`}">
             
         </div>
         <p class="absolute w-full h-full flex p-2 font-extrabold dialogue-font">{{ currentHP}} / {{ maxHP }}</p>
