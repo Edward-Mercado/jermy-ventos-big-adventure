@@ -9,6 +9,10 @@
                 v-if="currentKeyType === 'choice' && storyPointRunning"
                 @continue="proceedLevel()"
             ></choices-choice-basis>
+            <battles-battle-basis
+                v-if="currentKeyType === 'battle' && storyPointRunning"
+                @proceed="proceedLevel()"
+            ></battles-battle-basis>
             <ending-end-basis
                 v-if="currentKeyType === 'end'"
                 @reset-save="resetCampaign()"
@@ -43,7 +47,6 @@ function resetCampaign() {
 
 onMounted(() => {
     stateKeys.loadChoices()
-    stateKeys.choicesMade.HumdNoureBattle1 = 'battleHumd'
     stateKeys.saveChoices()
 })
 
