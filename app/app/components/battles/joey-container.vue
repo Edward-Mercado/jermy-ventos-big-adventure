@@ -1,9 +1,9 @@
 <template>
-    <div class="border-2 w-[38%] flex flex-col justify-between relative overflow-hidden"> <!-- JOEY CONTAINER-->
+    <div class="w-[35%] flex flex-col justify-between relative overflow-hidden"> <!-- JOEY CONTAINER-->
         <div
-            class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2">
+            class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2 rounded-lg">
             <h4 class="pixfont text-2xl -mb-2">Joey</h4>
-            <battles-health-bar :currentHP="100" :maxHP="100"></battles-health-bar>
+            <battles-health-bar :currentHP="campaignStore.currentHP" :maxHP="campaignStore.maxHP"></battles-health-bar>
             <button class="bg-slate-900 flex items-center justify-center w-full h-[30%] p-2 pixfont border-2 hover:bg-slate-600 
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"

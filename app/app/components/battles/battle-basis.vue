@@ -1,9 +1,14 @@
 <template>
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none">
         <h2 class="w-full text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
-        <main class="h-[85%] border-2 w-full flex justify-between">
+        <main class="h-[85%]   w-full flex justify-between">
             <battles-joey-container></battles-joey-container>
-            <div class="relative w-[60%] h-full border-2 flex items-center justify-between flex-wrap"> <!-- ENEMY CONTAINER-->
+            <div class="h-full w-2 bg-black flex flex-col justify-center items-center rounded-full">
+                <div class="bg-slate-600 border-3 border-black text-white pixfont p-2 rounded-full">
+                    VS.
+                </div>
+            </div>
+            <div class="relative w-[60%] h-full   flex items-center justify-between flex-wrap"> <!-- ENEMY CONTAINER-->
                 <battles-enemy-container v-for="enemy, index in enemies" :amount="enemies.length"
                 :enemy="enemy" :index="index" :action="'Check'" @action=""
                 >
@@ -24,8 +29,8 @@ const battleStore = useBattleStore()
 
 const enemies = [{
     name: 'Edward',
-    maxHealth: 100,
-    currentHealth: 20,
+    maxHP: 100,
+    currentHP: 20,
     desc: 'This is a sample description.',
     level: 1,
     title: '',
@@ -35,8 +40,8 @@ const enemies = [{
     currentMana: 5,
 },{
     name: 'Glorbus 2',
-    maxHealth: 100,
-    currentHealth: 20,
+    maxHP: 130,
+    currentHP: 50,
     desc: 'This is a sample description.',
     level: 1,
     title: '',
@@ -46,8 +51,8 @@ const enemies = [{
     currentMana: 5,
 },{
     name: 'Glorbus 3',
-    maxHealth: 100,
-    currentHealth: 20,
+    maxHP: 100,
+    currentHP: 30,
     desc: 'This is a sample description.',
     level: 1,
     title: '',

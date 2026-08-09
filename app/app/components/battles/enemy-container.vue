@@ -5,7 +5,7 @@
         <div class="border-2 h-35 bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between w-full rounded-md">
             <div class="flex justify-between items-center h-[40%]">
             <h4 class="pixfont text-md lg:text-2xl h-full pt-2">{{ enemy.name }}</h4>
-            <battles-health-bar :currentHP="100" :maxHP="100"></battles-health-bar>
+            <battles-health-bar :currentHP="enemy.currentHP" :maxHP="enemy.maxHP"></battles-health-bar>
             </div>
             <button class="bg-slate-900 flex items-center justify-center w-full h-[30%] p-2 pixfont border-2 hover:bg-slate-600 
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
