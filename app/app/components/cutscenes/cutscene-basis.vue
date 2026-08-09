@@ -21,9 +21,12 @@ const stateKeys = useStateKeys()
 //@ts-ignore
 const linePlaying = ref<boolean>(stateKeys.keys[campaignSaveStore.gameState]?.name ? true : false)
 
-watch(() => campaignSaveStore.gameState, () => {
-    console.log(campaignSaveStore.gameState)
-})
+if(campaignSaveStore.gameState === 0) {
+    useEndStore().getStartTime()
+    console.log(useEndStore().timeStart)
+}
+
+
 
 const currentStateKey = computed(() => {
     return stateKeys.keys[campaignSaveStore.gameState]

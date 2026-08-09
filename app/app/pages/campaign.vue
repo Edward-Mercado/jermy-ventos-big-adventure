@@ -33,6 +33,7 @@ const campaignRunning = ref<boolean>(false)
 const storyPointRunning = ref<boolean>(true)
 
 function resetCampaign() {
+    storyPointRunning.value = false
     campaignStore.$reset()
     campaignStore.saveGame()
     stateKeys.$reset()
@@ -53,7 +54,6 @@ const storyPoint = computed((): number => {
 // Guarded lookup - avoids the '!' non-null assertion throwing if
 // gameState ever points past the end of the keys array
 const currentKeyType = computed(() => {
-    console.log(stateKeys.keys[storyPoint.value] ?? null)
     return stateKeys.keys[storyPoint.value]?.type ?? null
 })
 

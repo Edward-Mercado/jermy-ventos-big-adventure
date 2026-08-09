@@ -19,7 +19,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 align: "left"
             }, {
                 speaker: "Edward",
-                dialogue: "Still 15, you haven't completed your birthday challenge yet! But I, am 16.",
+                dialogue: "Still 15, you haven't completed your birthday challenge yet! But I, whose birthday already passed, am 16.",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
                 sound: '/sounds/edward.caf',
@@ -47,6 +47,62 @@ export const useCutsceneStore = defineStore('cutscene', {
                 sound: '/sounds/gab.m4a',
                 speed: 45,
                 align: "left"
+            }, {
+                speaker: "Scott the Woz",
+                dialogue: "I just got off the phone with a fool and ya know what he said to me?",
+                imgURL: "/images/scottthewoz.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/scottthewoz.m4a',
+                speed: 45,
+                align: "right"
+            }, {
+                speaker: "Thira",
+                dialogue: "What did he say?",
+                imgURL: "/images/thira.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/thira.m4a',
+                speed: 45,
+                align: "left"
+            }, {
+                speaker: "Scott the Woz",
+                dialogue: "Something like...",
+                imgURL: "/images/scottthewoz.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/scottthewoz.m4a',
+                speed: 45,
+                align: "right"
+            }, {
+                speaker: "Scott the Woz",
+                dialogue: "He's obviously making a game. I doubt its a coding thing since I dont think he'd put that effort in for me.",
+                imgURL: "/images/scottthewoz.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/scottthewoz.m4a',
+                speed: 45,
+                align: "right"
+            }, {
+                speaker: "Humd",
+                dialogue: "What does that even mean...",
+                imgURL: "/images/humd.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/humd.m4a',
+                speed: 45,
+                align: "left"
+            }, {
+                speaker: "Edward",
+                dialogue: "Ignore it baby...",
+                imgURL: "/images/edward.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/edward.caf',
+                speed: 45,
+                align: "left"
+            }, {
+                speaker: "Scott the Woz",
+                dialogue: "I don't even know!",
+                imgURL: "/images/scottthewoz.png",
+                backgroundURL: '/backgrounds/summer.png',
+                sound: '/sounds/scottthewoz.m4a',
+                speed: 45,
+                align: "right"
             }, {
                 speaker: "Kortnee",
                 dialogue: "GUYS! THERE'S SOMETHING COMING THIS WAY! WHO IS THAT?",
@@ -997,6 +1053,20 @@ export const useCutsceneStore = defineStore('cutscene', {
                         transform: 'killJoevil'
                     },
                     align: "right"
+                },{
+                    speaker: "Edward",
+                    dialogue: "NOOOOOOOOOOO!!!!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/birthday-cake.png",
+                    speed: 100,
+                    animation: {
+                        animationType: 'img',
+                        src: '/images/x.webp',
+                        classes: 'right-[12vw] top-[32vh] h-[20vw] w-[20vw] aspect-square z-6 opacity-0',
+                        transform: 'killJoevil'
+                    },
+                    align: "right"
                 }
             ],
             "spareJoevil": [
@@ -1005,7 +1075,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     dialogue: "This should be harmless...",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
-                    imgURL: "/images/joevil.png",
+                    imgURL: "/images/joey.png",
                     speed: 45,
                     align: "left"
                 },{
@@ -1051,21 +1121,45 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speed: 45,
                     align: "left"
                 },{
-                    speaker: "Columbo",
+                    speaker: "Thira",
                     dialogue: "What does this even mean? Is Joey like.. Joneutral now?",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/columbo.m4a',
-                    imgURL: "/images/columbo.png",
+                    sound: '/sounds/thira.m4a',
+                    imgURL: "/images/thira.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Gab",
+                    dialogue: "Do I have two brothers?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gab.m4a',
+                    imgURL: "/images/gab.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Gavin",
+                    dialogue: "Do I have two cousins?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gavin.m4a',
+                    imgURL: "/images/gavin.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Mrs. Paula Vento",
+                    dialogue: "Do I have two sons?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/mrspaulavento.png",
                     speed: 45,
                     align: "left"
                 },{
                     speaker: "Scott the Woz",
-                    dialogue: "This blows...",
+                    dialogue: "Do I have two subscribers?",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/scottthewoz.m4a',
                     imgURL: "/images/scottthewoz.png",
                     speed: 45,
-                    align: "left"
+                    align: "right"
                 },{
                     speaker: "Kortnee",
                     dialogue: "I guess... he's just not evil anymore?",
@@ -1091,6 +1185,14 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speed: 45,
                     align: "left"
                 },{
+                    speaker: "Columbo",
+                    dialogue: "Oh, just one more thing... That Noure has...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/columbo.m4a',
+                    imgURL: "/images/columbo.png",
+                    speed: 45,
+                    align: "right"
+                },{
                     speaker: "Noure",
                     dialogue: "Guys!!! I made us all a cake!!!",
                     backgroundURL: '/backgrounds/summer.png',
@@ -1103,6 +1205,70 @@ export const useCutsceneStore = defineStore('cutscene', {
                         transform: 'cake-show'
                     },
                     speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Humd",
+                    dialogue: "WOW!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/humd.m4a',
+                    imgURL: "/images/humd.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Mrs. Paula Vento",
+                    dialogue: "Let's dig in!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/basehigh.m4a',
+                    imgURL: "/images/mrspaulavento.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Scott the Woz",
+                    dialogue: "This blows...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/scottthewoz.m4a',
+                    imgURL: "/images/scottthewoz.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Scott the Woz",
+                    dialogue: "Is what I would say if I was lying!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/scottthewoz.m4a',
+                    imgURL: "/images/scottthewoz.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Kortnee",
+                    dialogue: "This is GREAT Noure!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/kortnee.m4a',
+                    imgURL: "/images/kortnee.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Pierce",
+                    dialogue: "Maybe I'll write my next story on this!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/pierce.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Jogood",
+                    dialogue: "Wow!!! Thanks for the cake guys!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/jogood.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "All",
+                    dialogue: "Happy Birthday Joey!!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/baselow.caf',
+                    imgURL: "/images/crowd.png",
+                    speed: 70,
                     align: "right"
                 }
             ],
