@@ -50,5 +50,5 @@ export interface DialogueLine {
 export interface StateKey {
     name: string,
     dynamic?: string,
-    type: ("cutscene" | "battle" | "choice" | "shop"),
+    type: ("cutscene" | "battle" | "choice" | "shop" | "end"),
 }

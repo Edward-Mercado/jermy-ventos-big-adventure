@@ -30,9 +30,6 @@ const props = defineProps<{
 }>()
 
 const opacityClass = ref<string>('opacity-0')
-if(props.currentLine.animation?.animationType === 'img') {
-    console.log(props.currentLine.animation.src)
-}
 
 async function fadeIn() {
   opacityClass.value = 'opacity-0'
@@ -115,7 +112,7 @@ const animationSpeed = computed(() => {
 }
 
 .killJoevil-enter-active {
-  transition: all ease-in-out 1000ms
+  transition: all ease-in-out 2s
 }
 
 .flashbang-enter-from,
@@ -131,4 +128,22 @@ const animationSpeed = computed(() => {
 .flashbang-enter-active {
   transition: all ease-in-out 2s
 }
+
+.cake-show-enter-from,
+.cake-show-leave-to {
+  transform: translateY(50%);
+  opacity: 0
+}
+
+.cake-show-enter-to,
+.cake-show-leave-from {
+  transform: translateY(0);
+  opacity: 1
+}
+
+.cake-show-enter-active,
+.cake-show-leave-active {
+  transition: all 2s ease-in-out
+}
+
 </style>

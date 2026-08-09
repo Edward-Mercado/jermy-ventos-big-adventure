@@ -611,11 +611,11 @@ export const useCutsceneStore = defineStore('cutscene', {
                     align: "left"
                 },
                 {
-                    speaker: "Edward",
+                    speaker: "Edward (evil)",
                     dialogue: "I'll defeat all of you!",
                     backgroundURL: '/backgrounds/evil.png',
                     sound: '/sounds/edward.caf',
-                    imgURL: "/images/edward.png",
+                    imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
                 },
@@ -723,7 +723,7 @@ export const useCutsceneStore = defineStore('cutscene', {
             "saveMatteo": [
                 {
                     speaker: "Matteo (evil)",
-                    dialogue: "AHHHH!",
+                    dialogue: "STINKY (x1000)!",
                     backgroundURL: '/backgrounds/matteo-domain-expansion.png',
                     sound: '/sounds/baselow.caf',
                     imgURL: "/images/matteo.png",
@@ -791,7 +791,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 },
                 {
                     speaker: "Lucia",
-                    dialogue: "Damn he is so cool. I should have never called him a ch",
+                    dialogue: "Damn he is so cool. I should have never called him a ch-",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/lucia.m4a',
                     imgURL: "/images/lucia.png",
@@ -811,7 +811,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "SUP FUCKERS?",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edwardevil.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -842,9 +842,9 @@ export const useCutsceneStore = defineStore('cutscene', {
                 },
                 {
                     speaker: "Noure",
-                    dialogue: "No. Anyways, let's kill this guy.",
+                    dialogue: "No. Anyways, let's just kill this guy.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/noure.m4a',
+                    sound: '/sounds/noure.caf',
                     imgURL: "/images/noure.png",
                     speed: 45,
                     align: "left"
@@ -853,7 +853,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "I'D LIKE TO SEE YOU TRY!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edwardevil.m4a',
+                    sound: '/sounds/edward.caf',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -872,16 +872,16 @@ export const useCutsceneStore = defineStore('cutscene', {
                         transform: 'birthday-beam'
                     },
                     speed: 60,
-                    align: "left"
+                    align: "right"
                 },
                 {
                     speaker: "Joey",
-                    dialogue: "Hey all. How's it going?",
+                    dialogue: "Hey all... How's it going?",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
                     imgURL: "/images/joey.png",
                     speed: 45,
-                    align: "right"
+                    align: "left"
                 },
                 {
                     speaker: "Edward",
@@ -988,12 +988,12 @@ export const useCutsceneStore = defineStore('cutscene', {
                     dialogue: "NOOOOOOOOOOO!!!!!!!",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
-                    imgURL: "/images/joevil.png",
+                    imgURL: "/images/birthday-cake.png",
                     speed: 100,
                     animation: {
                         animationType: 'img',
                         src: '/images/x.webp',
-                        classes: 'right-[12vw] top-[45vh] h-[20vw] w-[20vw] aspect-square z-6 opacity-0',
+                        classes: 'right-[12vw] top-[32vh] h-[20vw] w-[20vw] aspect-square z-6 opacity-0',
                         transform: 'killJoevil'
                     },
                     align: "right"
@@ -1026,11 +1026,81 @@ export const useCutsceneStore = defineStore('cutscene', {
                     dialogue: "AHHHHHH!!!!",
                     backgroundURL: '/backgrounds/summer.png',
                     sound: '/sounds/joey.m4a',
-                    imgURL: "/images/jogood.png",
+                    imgURL: "/images/joevil.png",
                     animation: {
                         animationType: 'div',
                         classes: 'bg-white w-[100vw] h-[100vw] z-1 left-0 top-0 opacity-1',
                         transform: 'flashbang'
+                    },
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Jogood",
+                    dialogue: "Woah... What happened to me?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/jogood.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Edward",
+                    dialogue: "Joey purified you! Now you're a good guy!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/edward.caf',
+                    imgURL: "/images/edward.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Columbo",
+                    dialogue: "What does this even mean? Is Joey like.. Joneutral now?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/columbo.m4a',
+                    imgURL: "/images/columbo.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Scott the Woz",
+                    dialogue: "This blows...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/scottthewoz.m4a',
+                    imgURL: "/images/scottthewoz.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Kortnee",
+                    dialogue: "I guess... he's just not evil anymore?",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/kortnee.m4a',
+                    imgURL: "/images/kortnee.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Jogood",
+                    dialogue: "I guess... I'm good! I'm no longer gonna kill you all!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/joey.m4a',
+                    imgURL: "/images/jogood.png",
+                    speed: 45,
+                    align: "right"
+                },{
+                    speaker: "Gavin",
+                    dialogue: "Well... this... birthday boy... can just put you back in shape if that happens...",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/gavin.m4a',
+                    imgURL: "/images/gavin.png",
+                    speed: 45,
+                    align: "left"
+                },{
+                    speaker: "Noure",
+                    dialogue: "Guys!!! I made us all a cake!!!",
+                    backgroundURL: '/backgrounds/summer.png',
+                    sound: '/sounds/noure.caf',
+                    imgURL: "/images/noure.png",
+                    animation: {
+                        animationType: 'img',
+                        src: '/images/birthday-cake.png',
+                        classes: 'min-w-[50%] left-[25%] top-[0] absolute',
+                        transform: 'cake-show'
                     },
                     speed: 45,
                     align: "right"

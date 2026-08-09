@@ -9,6 +9,10 @@
                 v-if="currentKeyType === 'choice' && storyPointRunning"
                 @continue="proceedLevel()"
             ></choices-choice-basis>
+            <ending-end-basis
+                v-if="currentKeyType === 'end'"
+                @reset-save="resetCampaign()"
+            ></ending-end-basis>
         </client-only>
         <div v-else class="w-full flex items-center justify-center gap-[20%] h-[80%]">
             <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl 
@@ -28,6 +32,14 @@ const stateKeys = useStateKeys()
 const campaignRunning = ref<boolean>(false)
 const storyPointRunning = ref<boolean>(true)
 
+function resetCampaign() {
+    campaignStore.$reset()
+    campaignStore.saveGame()
+    stateKeys.$reset()
+    stateKeys.saveChoices()
+    return navigateTo("/")
+}
+
 onMounted(() => {
     stateKeys.loadChoices()
     stateKeys.choicesMade.HumdNoureBattle1 = 'battleHumd'
@@ -41,6 +53,7 @@ const storyPoint = computed((): number => {
 // Guarded lookup - avoids the '!' non-null assertion throwing if
 // gameState ever points past the end of the keys array
 const currentKeyType = computed(() => {
+    console.log(stateKeys.keys[storyPoint.value] ?? null)
     return stateKeys.keys[storyPoint.value]?.type ?? null
 })
 
