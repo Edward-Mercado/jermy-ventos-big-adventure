@@ -38,6 +38,7 @@ const enemies = [{
     defense: 0,
     maxMana: 10,
     currentMana: 5,
+    img: '/images/edward.png'
 },{
     name: 'Glorbus 2',
     maxHP: 130,
@@ -49,6 +50,7 @@ const enemies = [{
     defense: 0,
     maxMana: 10,
     currentMana: 5,
+    img: '/images/edward.png'
 },{
     name: 'Glorbus 3',
     maxHP: 100,
@@ -60,6 +62,7 @@ const enemies = [{
     defense: 0,
     maxMana: 10,
     currentMana: 5,
+    img: '/images/edward.png'
 }]
 
 const currentStateKey = computed(() => {
