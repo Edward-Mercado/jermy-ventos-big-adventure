@@ -16,10 +16,10 @@
             <div class="h-1 rounded-full w-full bg-white -my-1"></div>
             <div class="relative mt-1">
                 <div class="flex justify-between">
-                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4" :class="selectedMove === 'attack' ? 'text-black' : 'text-white'">Attack</p>
-                    
+                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'attack' ? 'text-slate-800' : 'text-white'" @click="selectedMove = 'attack' ">Attack</p>
+                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'block' ? 'text-slate-800' : 'text-white'" @click="selectedMove = 'block'">Block</p>
                 </div>
-                <div class="bg-white h-full absolute w-[50%] rounded-md top-0" :class="selectedMoveClass">
+                <div class="bg-white h-full absolute w-[50%] rounded-md top-0 transition-all duration-300 ease-in-out" :class="selectedMoveClass">
 
                 </div>
             </div>
@@ -54,11 +54,11 @@
 const campaignStore = useCampaignSaveStore()
 const checking = ref<boolean>(false)
 
-const selectedMove = ref<'nothing' | "attack" | 'block'>('nothing')
+const selectedMove = ref<null | "attack" | 'block'>(null)
 const selectedMoveClass = computed(() => {
-    if(selectedMove.value === 'nothing') return 'opacity-0'
-    else if (selectedMove.value === 'attack') return 'left-0'
-    else if (selectedMove.value === 'block') return 'right-0'
+    if(selectedMove.value === null) return 'opacity-0'
+    else if (selectedMove.value === 'attack') return 'translate-x-0'
+    else if (selectedMove.value === 'block') return 'translate-x-full'
 })
 
 function getTitle() {
