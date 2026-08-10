@@ -16,8 +16,8 @@
             <div class="h-1 rounded-full w-full bg-white -my-1"></div>
             <div class="relative mt-1">
                 <div class="flex justify-between">
-                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'attack' ? 'text-slate-800' : 'text-white'" @click="selectedMove = 'attack' ">Attack</p>
-                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'block' ? 'text-slate-800' : 'text-white'" @click="selectedMove = 'block'">Block</p>
+                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'attack' ? 'text-slate-800' : 'text-white'" @click="clickSFX(); selectedMove = 'attack' ">Attack</p>
+                    <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]" :class="selectedMove === 'block' ? 'text-slate-800' : 'text-white'" @click="clickSFX(); selectedMove = 'block'">Block</p>
                 </div>
                 <div class="bg-white h-full absolute w-[50%] rounded-md top-0 transition-all duration-300 ease-in-out" :class="selectedMoveClass">
 
