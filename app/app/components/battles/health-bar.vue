@@ -6,7 +6,7 @@
         <div class="absolute h-full max-w-full dialogue-font py-2" :class="HPColor, (prop.isEXP || prop.isMana) ? 'rounded-sm' : ''" :style="{width: (displayedHP / maxHP)*100 + `%`}">
             
         </div>
-        <p class="absolute w-full h-full flex p-1.5 font-extrabold dialogue-font lg:text-xl md:text-md text-xs transition-colors duration-200 ease-in-out" :class="textClass">{{ prop.isEXP ? `To LV. ${prop.nextLevel}:  ` : '' }} {{ displayedHP }} / {{ maxHP }}</p>
+        <p class="absolute w-full h-full flex p-1.5 font-extrabold dialogue-font text-lg transition-colors duration-200 ease-in-out" :class="textClass">{{ prop.isEXP ? `To LV. ${prop.nextLevel}:  ` : '' }} {{ displayedHP }} / {{ maxHP }}</p>
     </div>
     </div>
 </template>
