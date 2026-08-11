@@ -11,9 +11,7 @@ export const useFriendsStore = defineStore('friends', {
             ability: () => {
                 
             },
-            manaCost: (enemy:Enemy) => {
-                return enemy.currentHP
-            }
+            manaCost: 60
         } as Friend,
         "Gavin": {
             name: "Gavin",
@@ -32,7 +30,7 @@ export const useFriendsStore = defineStore('friends', {
             name: "Noure",
             eachTurnCheck: null,
             abilityName: "MultiWielding",
-            abilityDesc: "Hit three more times, with decreasing power.",
+            abilityDesc: "Hit four times, with decreasing power.",
             abilityTiming: "With Attack",
             targetType: "Single",
             spriteURL: "/images/noure.png",

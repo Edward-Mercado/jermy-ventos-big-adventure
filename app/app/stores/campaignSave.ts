@@ -3,7 +3,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
         playerName: "Joey",
         playerLevel: 1,
         gameState: 0,
-        friends: [] as string[],
+        friends: ['Noure'] as string[],
         friendsData: [] as Friend[],
         sprite: "/public/images/joey.png" as string,
         currentStatus: null as string | null,
@@ -31,7 +31,8 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.playerName = localStorage.getItem("name") || "Joey"
             this.playerLevel = Number(localStorage.getItem("playerLevel")) || 1
             this.gameState = Number(localStorage.getItem("gameState")) || 0
-            this.friends = JSON.parse(localStorage.getItem("friends") || "[]")
+            //@ts-ignore
+            this.friends = [...new Set(JSON.parse(localStorage.getItem("friends") || "[]"))]
             this.currentStatus = localStorage.getItem("status") || null
             this.maxHP = this.playerLevelData[this.playerLevel]!.maxHP
             this.currentHP = Number(localStorage.getItem("currentHP")) || this.playerLevelData[this.playerLevel]!.maxHP
@@ -39,6 +40,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.defense = this.playerLevelData[this.playerLevel]!.defense
             this.friendSlots = this.playerLevel
             this.expGained = Number(localStorage.getItem("expGained")) || this.playerLevelData[this.playerLevel]!.expRequirement
+            this.loadFriends()
         },
         listenLevelUp() {
             let potentialLevelUp = true
@@ -56,12 +58,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
                 }
             }
         },
-        loadFriends() { // lowers the burden on localStorage
-            const friendsList = JSON.parse(localStorage.getItem("friends") || "[]")
+        loadFriends() {
+            const friendsList = this.friends
             const friendsStore = useFriendsStore()
-            friendsList.forEach((friend: string) => {
+            friendsList.forEach((friend:string) => {
                 //@ts-ignore
-                this.friendsData.push(friendsStore.friend)
+                if(!this.friendsData.find((person) => person.name === friend)) this.friendsData.push(friendsStore[friend])
             })
         },
         saveGame() {
@@ -83,12 +85,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
             const currentManaPercent: number = this.currentMana / this.maxMana;
 
             [this.attack, this.defense, this.maxHP, this.currentHP, this.friendSlots, this.maxMana, this.currentMana] = [this.playerLevelData[this.playerLevel]!.attack,
-                this.playerLevelData[this.playerLevel]!.defense,
-                this.playerLevelData[this.playerLevel]!.maxHP,
-                Math.floor(this.playerLevelData[this.playerLevel]!.maxHP * currentHPPercent),
-                this.playerLevel,
-                this.playerLevelData[this.playerLevel]!.maxMana,
-                Math.floor(this.playerLevelData[this.playerLevel]!.maxMana * currentManaPercent)
+            this.playerLevelData[this.playerLevel]!.defense,
+            this.playerLevelData[this.playerLevel]!.maxHP,
+            Math.floor(this.playerLevelData[this.playerLevel]!.maxHP * currentHPPercent),
+            this.playerLevel,
+            this.playerLevelData[this.playerLevel]!.maxMana,
+            Math.floor(this.playerLevelData[this.playerLevel]!.maxMana * currentManaPercent)
             ]
         },
     }

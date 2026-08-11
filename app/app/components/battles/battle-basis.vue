@@ -70,8 +70,6 @@ const currentStateKey = computed(() => {
     return battleStore[stateKeys.keys[campaignSaveStore.gameState]!.name as keyof battleStore]
 })
 
-console.log(currentStateKey.value)
-
 </script>
 
 <style scoped>

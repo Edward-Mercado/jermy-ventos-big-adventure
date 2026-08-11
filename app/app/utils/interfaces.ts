@@ -7,7 +7,7 @@ export interface Friend {
     targetType: ("Single" | "AOE" | "Self" | "Special"),
     spriteURL: string,
     ability: Function,
-    manaCost: number | Function
+    manaCost: number
 }
 
 export interface Enemy {

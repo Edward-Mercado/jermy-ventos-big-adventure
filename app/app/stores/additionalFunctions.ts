@@ -5,3 +5,11 @@ export function clickSFX() {
     })
     click.play()
 }
+
+export function errorSFX() {
+    console.log("ERROR SFX")
+    var error = new Howl({
+        src: ['/sounds/error.mp3']
+    })
+    error.play()
+}
