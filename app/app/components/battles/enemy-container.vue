@@ -10,10 +10,10 @@
             <button class="bg-slate-900 flex items-center justify-center w-full h-[30%] p-2 pixfont border-2 hover:bg-slate-600 
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
-                    @click="clickSFX(); performAction()">{{ props.action }}</button>
+                    @click="clickSFX(); performAction()" v-if="pickingMove">{{ props.action }}</button>
         </div>
         <img :src="enemy.img" :alt="enemy.name" :class="imgClasses">
-        <transition name="checking-container">
+        <transition name="checking-container" v-if="pickingMove">
             <div class="top-0 left-0 absolute w-full p-2 h-full bg-linear-to-tr from-sky-100/96 to-white/96 rounded-2xl flex flex-col justify-between z-2" v-if="checking">
                 <button class="pixfont text-black w-full text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500" @click="clickSFX(); checking = false">X</button>
                 <div class="h-[90%] flex flex-col gap-6">
@@ -44,7 +44,8 @@ const props = defineProps<{
     enemy: any,
     index: number,
     amount: number,
-    action: "Check" | "Target"
+    action: "Check" | "Target",
+    pickingMove: boolean,
 }>()
 
 const fullClasses = computed(() => {

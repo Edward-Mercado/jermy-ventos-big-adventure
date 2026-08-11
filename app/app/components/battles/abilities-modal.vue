@@ -27,8 +27,8 @@
                     <p class="text-2xl dialogue-font transition-colors ease-in-out duration-300"
                         :class="battleGuiStore.selectedFriends.length === useCampaignSaveStore().friendSlots || battleGuiStore.selectedFriends.reduce((accumulator, value) => accumulator + value.manaCost, 0) === useCampaignSaveStore().currentMana ? 'text-red-500' : 'text-black'">
                         {{battleGuiStore.selectedFriends.reduce((accumulator, value) => accumulator + value.manaCost,
-                        0) }}/{{ useCampaignSaveStore().currentMana }} MANA |||
-                        {{ battleGuiStore.selectedFriends.length }}/{{ useCampaignSaveStore().friendSlots }} SLOTS</p>
+                        0) }}/{{ useCampaignSaveStore().currentMana }} <span class="uppercase pixfont">Mana</span> |||
+                        {{ battleGuiStore.selectedFriends.length }}/{{ useCampaignSaveStore().friendSlots }} <span class="uppercase pixfont">Slots</span></p>
                 </div>
                 <div class="h-1 rounded-full w-full bg-black mt-2"></div>
                 <div class="carousel pt-2 min-h-full mt-2 w-full flex-col gap-3">

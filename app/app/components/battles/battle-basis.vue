@@ -1,23 +1,31 @@
 <template>
-    <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none">
-        <h2 class="w-full text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
+    <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
-            <battles-joey-container></battles-joey-container>
+            <battles-joey-container :pickingMove="pickingMove"
+            @finish="pickingMove = false"></battles-joey-container>
             <div class="h-full w-2 bg-black flex flex-col justify-center items-center rounded-full">
-                <div class="bg-slate-600 border-3 border-black text-white pixfont p-2 rounded-full">
+                <div class="bg-slate-600 border-3 border-black text-white pixfont p-2 rounded-full hover:bg-sky-700 hover:rotate-180 transition-all duration-3000 ease-in-out">
                     VS.
                 </div>
             </div>
             <div class="relative w-[60%] h-full   flex items-center justify-between flex-wrap"> <!-- ENEMY CONTAINER-->
                 <battles-enemy-container v-for="enemy, index in enemies" :amount="enemies.length"
-                :enemy="enemy" :index="index" :action="'Check'" @action=""
+                :enemy="enemy" :index="index" :action="'Check'" :pickingMove="pickingMove" @action=""
                 >
-
                 </battles-enemy-container>
             </div>
         </main>
         <button class="px-2 h-[5%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] my-2 border-black border-4 text-lg select-none
-            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center " @click="$emit('proceed')">SKIP</button>
+            active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center fixed top-2 left-[40%]" @click="$emit('proceed')">SKIP</button>
+    </div>
+    <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
+        <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
+        <battles-dialogue-box v-if="!pickingMove"
+        :speed="45"
+        :sound="'/sounds/basehigh.m4a'"
+        :text="'TRIPLE FINISH!'"
+        :speaker="'Scott the Woz'"
+        ></battles-dialogue-box>
     </div>
 </template>
 
@@ -26,6 +34,7 @@ const emit = defineEmits(['proceed'])
 const stateKeys = useStateKeys()
 const campaignSaveStore = useCampaignSaveStore()
 const battleStore = useBattleStore()
+const pickingMove = ref<boolean>(true)
 
 const enemies = [{
     name: 'Edward',

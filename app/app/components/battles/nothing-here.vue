@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-full text-[3rem] shaky flex items-center justify-center text-center">
-        <p class="pixfont text-black mt-[20%]">{{!selected ? "NO MORE ABILITIES..." : "SELECT SOMETHING..."}}</p>
+        <p class="pixfont text-black mt-[20%] uppercase">{{!selected ? "No more abilities..." : "Select something..."}}</p>
     </div>
 </template>
 
