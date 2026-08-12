@@ -1,4 +1,4 @@
-export const useCurrentBattleStore = defineStore('currnet-battle', {
+export const useCurrentBattleStore = defineStore('current-battle', {
     state: () => ({
         currentEnemies: [] as Enemy[],
         columboActive: false as boolean,

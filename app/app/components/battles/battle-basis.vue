@@ -2,7 +2,7 @@
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
             <battles-joey-container :pickingMove="pickingMove"
-            @finish="pickingMove = false"></battles-joey-container>
+            @finish-selection="pickingMove = false"></battles-joey-container>
             <div class="h-full w-2 bg-black flex flex-col justify-center items-center rounded-full">
                 <div class="bg-slate-600 border-3 border-black text-white pixfont p-2 rounded-full hover:bg-sky-700 hover:rotate-180 transition-all duration-3000 ease-in-out">
                     VS.

@@ -73,10 +73,11 @@ function checkAbilitySelections(): boolean {
 }
 
 function handleClick() {
-    clickSFX();
     if (checkAbilitySelections()) {
+        clickSFX();
         emit('confirm', battleGuiStore.selectedFriends)
     } else {
+        errorSFX();
         showSingleError.value = true
         setTimeout(() => {
             showSingleError.value = false

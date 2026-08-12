@@ -20,7 +20,6 @@ const emit = defineEmits(['close'])
 
 let bgClass = ref<'bg-white/70' | 'bg-white'>('bg-white/70')
 onMounted(() => {
-    console.log(prop.enemy.targetOf)
     bgClass.value = prop.enemy.targetOf?.name === prop.friend.name ? 'bg-white' : 'bg-white/70'
 })
 
