@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="relative w-[60%] h-full   flex items-center justify-between flex-wrap"> <!-- ENEMY CONTAINER-->
-                <battles-enemy-container v-for="enemy, index in enemies" :amount="enemies.length"
+                <battles-enemy-container v-for="enemy, index in currentEnemies" :amount="currentEnemies.length"
                 :enemy="enemy" :index="index" :action="'Check'" :pickingMove="pickingMove" @action=""
                 >
                 </battles-enemy-container>
@@ -33,51 +33,15 @@
 const emit = defineEmits(['proceed'])
 const stateKeys = useStateKeys()
 const campaignSaveStore = useCampaignSaveStore()
-const battleStore = useBattleStore()
+const currentBattleStore = useCurrentBattleStore()
 const pickingMove = ref<boolean>(true)
-
-const enemies = [{
-    name: 'Edward',
-    maxHP: 100,
-    currentHP: 20,
-    desc: 'This is a sample description.',
-    level: 1,
-    title: '',
-    attack: 10,
-    defense: 0,
-    maxMana: 10,
-    currentMana: 5,
-    img: '/images/edward.png'
-},{
-    name: 'Glorbus 2',
-    maxHP: 130,
-    currentHP: 50,
-    desc: 'This is a sample description.',
-    level: 1,
-    title: '',
-    attack: 10,
-    defense: 0,
-    maxMana: 10,
-    currentMana: 5,
-    img: '/images/edward.png'
-},{
-    name: 'Glorbus 3',
-    maxHP: 100,
-    currentHP: 30,
-    desc: 'This is a sample description.',
-    level: 1,
-    title: '',
-    attack: 10,
-    defense: 0,
-    maxMana: 10,
-    currentMana: 5,
-    img: '/images/edward.png'
-}]
+const currentEnemies = useCurrentBattleStore().currentEnemies
 
 const currentStateKey = computed(() => {
-    //@ts-ignore
-    return battleStore[stateKeys.keys[campaignSaveStore.gameState]!.name as keyof battleStore]
+    return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
+
+currentBattleStore.initialize(currentStateKey.value)
 
 </script>
 

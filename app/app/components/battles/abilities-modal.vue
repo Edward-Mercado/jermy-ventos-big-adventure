@@ -27,8 +27,9 @@
                     <p class="text-2xl dialogue-font transition-colors ease-in-out duration-300"
                         :class="battleGuiStore.selectedFriends.length === useCampaignSaveStore().friendSlots || battleGuiStore.selectedFriends.reduce((accumulator, value) => accumulator + value.manaCost, 0) === useCampaignSaveStore().currentMana ? 'text-red-500' : 'text-black'">
                         {{battleGuiStore.selectedFriends.reduce((accumulator, value) => accumulator + value.manaCost,
-                        0) }}/{{ useCampaignSaveStore().currentMana }} <span class="uppercase pixfont">Mana</span> |||
-                        {{ battleGuiStore.selectedFriends.length }}/{{ useCampaignSaveStore().friendSlots }} <span class="uppercase pixfont">Slots</span></p>
+                            0)}}/{{ useCampaignSaveStore().currentMana }} <span class="uppercase pixfont">Mana</span> |||
+                        {{ battleGuiStore.selectedFriends.length }}/{{ useCampaignSaveStore().friendSlots }} <span
+                            class="uppercase pixfont">Slots</span></p>
                 </div>
                 <div class="h-1 rounded-full w-full bg-black mt-2"></div>
                 <div class="carousel pt-2 min-h-full mt-2 w-full flex-col gap-3">
@@ -39,8 +40,12 @@
                     </transition>
                 </div>
                 <button class="absolute bottom-2 w-[90%] rounded-lg text-2xl hover:bg-slate-800 active:bg-slate-900 transition-all duration-300 ease-in-out left-[5%] h-[10%] pixfont bg-slate-700 shadow-md hover:shadow-lg active:shadow-none
-                hover:-translate-y-1 active:translate-y-0.5"
-                    @click="clickSFX(); $emit('confirm', battleGuiStore.selectedFriends)">CONFIRM!</button>
+                hover:-translate-y-1 active:translate-y-0.5" @click="handleClick">CONFIRM!</button>
+                <transition name="fade" appear>
+                    <div class="flex fixed bottom-[16%] left-[30%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2" v-if="showSingleError">
+                        Select a target for all single-target abilities.
+                    </div>
+                </transition>
             </div>
         </div>
     </div>
@@ -48,20 +53,51 @@
 
 <script setup lang="ts">
 const battleGuiStore = useBattleGuiStore()
+const currentBattleStore = useCurrentBattleStore()
+const showSingleError = ref<boolean>(false)
 const emit = defineEmits(['close', 'confirm'])
 onMounted(() => {
     battleGuiStore.initialize()
 })
+
+function checkAbilitySelections(): boolean {
+    let passesTest = true
+    battleGuiStore.selectedFriends.forEach((friend: Friend) => {
+        if (friend.targetType === 'Single') {
+            if (!currentBattleStore.currentEnemies.find((enemy: Enemy) => enemy.targetOf === friend)) {
+                passesTest = false
+            }
+        }
+    })
+    return passesTest
+}
+
+function handleClick() {
+    clickSFX();
+    if (checkAbilitySelections()) {
+        emit('confirm', battleGuiStore.selectedFriends)
+    } else {
+        showSingleError.value = true
+        setTimeout(() => {
+            showSingleError.value = false
+        }, 3000)
+    }
+}
 </script>
 
 <style scoped>
 .fade-leave-active,
 .fade-enter-active {
-    transition: opacity 1s ease-in-out
+    transition: all ease-in-out 1s
 }
 
-.fade-leave-from,
 .fade-enter-to {
+    opacity: 1;
+    scale: 1.05;
+    rotate: -3deg
+}
+
+.fade-leave-from {
     opacity: 1
 }
 

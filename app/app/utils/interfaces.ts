@@ -10,7 +10,7 @@ export interface Friend {
     manaCost: number
 }
 
-export interface Enemy {
+export interface EnemyData {
     name: string,
     attack: number,
     defense: number,
@@ -18,9 +18,22 @@ export interface Enemy {
     currentHP: number,
     maxHP: number,
     currentMana: number,
+    manaCost: number
     maxMana: number,
-    spriteURL: string,
+    img: string,
     expDrop: number,
+    desc: string,
+    level: number,
+    title: string
+}
+
+export interface Enemy extends EnemyData {
+    nextMove: ("Attack" | "Block" | "Use Ability" | null),
+    targetOf: (Friend | null) 
+}
+
+export interface EnemyGroup {
+    enemies: EnemyData[]
 }
 
 export interface LevelStats {
