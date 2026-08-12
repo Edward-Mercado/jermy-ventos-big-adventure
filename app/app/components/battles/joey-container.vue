@@ -67,6 +67,12 @@
                 Select either Attack or Block.
             </div>
         </transition>
+        <transition name="fade" appear>
+            <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2"
+                v-if="showNoTargetError">
+                Target your Attack at an enemy.
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -85,6 +91,8 @@ const viewAbilities = ref<boolean>(false)
 const selectedMove = ref<null | "Attack" | 'Block'>(null)
 
 const showSelectMoveError = ref<boolean>(false)
+const showNoTargetError = ref<boolean>(false)
+
 const selectedMoveClass = computed(() => {
     if (selectedMove.value === null) return 'opacity-0'
     else if (selectedMove.value === 'Attack') return 'translate-x-0'
@@ -96,12 +104,17 @@ function updateSelectedFriends(chosenFriends: Friend[]) {
     selectedFriends.value = chosenFriends
 }
 function handleConfirm() {
-    if (selectedMove.value) { clickSFX(); useCurrentBattleStore().populateUserChoices(selectedFriends.value, selectedMove.value); emit('finishSelection') }
+    if (selectedMove.value === 'Block' || (selectedMove.value === 'Attack' && prop.atkTarget)) { clickSFX(); useCurrentBattleStore().populateUserChoices(selectedFriends.value, selectedMove.value); emit('finishSelection') }
     else {
         errorSFX()
-        showSelectMoveError.value = true
+        if(!selectedMove.value) {
+            showSelectMoveError.value = true
+        } else {
+            showNoTargetError.value = true
+        }
         setTimeout(() => {
             showSelectMoveError.value = false
+            showNoTargetError.value = false
         }, 3000)
     }
 }
