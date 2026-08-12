@@ -16,23 +16,26 @@ const prop = defineProps<{
     friend: Friend
 }>()
 
-const emit = defineEmits(['close'])
-
-let bgClass = ref<'bg-white/70' | 'bg-white'>('bg-white/70')
+let bgClass = ref<'bg-sky-200' | 'bg-white/50'>('bg-white/50')
 onMounted(() => {
-    bgClass.value = prop.enemy.targetOf?.name === prop.friend.name ? 'bg-white' : 'bg-white/70'
+    bgClass.value = prop.enemy.targetOf.find((friend:Friend) => friend.name === prop.friend.name) ? 'bg-sky-200' : 'bg-white/50'
+})
+watch(() => prop.enemy.targetOf, () => {
+    bgClass.value = prop.enemy.targetOf.find((friend:Friend) => friend.name === prop.friend.name) ? 'bg-sky-200' : 'bg-white/50'
 })
 
 function handleClick() {
     clickSFX()
     useCurrentBattleStore().currentEnemies.forEach((enemy: Enemy) => {
-        if (enemy.targetOf?.name === prop.friend.name) {
-            enemy.targetOf = null
+        if (enemy.targetOf?.find((friend:Friend) => friend.name === prop.friend.name)) {
+            enemy.targetOf = enemy.targetOf.filter((friend:Friend) => friend.name !== prop.friend.name)
         }
     })
-    prop.enemy.targetOf = prop.friend
-    console.log(JSON.parse(JSON.stringify(useCurrentBattleStore().currentEnemies)))
-    emit('close', prop.enemy.name)
+    useCurrentBattleStore().currentEnemies.forEach((enemy: Enemy) => {
+        if (enemy.name === prop.enemy.name) enemy.targetOf.push(prop.friend); prop.enemy.targetOf.push(prop.friend)
+        enemy.targetOf = [... new Set(enemy.targetOf)]
+        prop.enemy.targetOf = [... new Set(prop.enemy.targetOf)]
+    })
 }
 </script>
 

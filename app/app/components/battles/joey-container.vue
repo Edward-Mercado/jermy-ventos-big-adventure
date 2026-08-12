@@ -18,16 +18,24 @@
                 <div class="relative mt-1">
                     <div class="flex justify-between">
                         <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]"
-                            :class="selectedMove === 'attack' ? 'text-slate-800' : 'text-white'"
-                            @click="clickSFX(); selectedMove = 'attack'">Attack</p>
+                            :class="selectedMove === 'Attack' ? 'text-slate-800' : 'text-white'"
+                            @click="clickSFX(); selectedMove = 'Attack';
+                            $emit('selectMove', 'Attack')
+                            ">Attack</p>
                         <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]"
-                            :class="selectedMove === 'block' ? 'text-slate-800' : 'text-white'"
-                            @click="clickSFX(); selectedMove = 'block'">Block</p>
+                            :class="selectedMove === 'Block' ? 'text-slate-800' : 'text-white'"
+                            @click="clickSFX(); selectedMove = 'Block';
+                            $emit('selectMove', 'Block')">Block</p>
                     </div>
-                    <div class="bg-white h-full absolute w-[50%] rounded-md top-0 transition-all duration-300 ease-in-out"
+                    <div class="bg-white hover:bg-slate-100 active:bg-slate-200 h-full absolute w-[50%] rounded-md top-0 transition-all duration-300 ease-in-out"
                         :class="selectedMoveClass">
 
                     </div>
+                    <transition name="fade">
+                        <div class="absolute right-full mr-2 w-full bg-white/70 flex items-center justify-center text-black pixfont py-1 px-2 rounded-sm border-white border-2" v-if="selectedMove === 'Attack' && !atkTarget?.name">
+                            Select a target.
+                        </div>
+                    </transition>
                 </div>
             </div>
             <div class="h-1 rounded-full w-full bg-white mt-2"></div>
@@ -42,9 +50,9 @@
                     <img :src="friend.spriteURL" :alt="friend.name" class="bottom-0 w-full h-full object-cover">
                 </div>
             </div>
-            <button class="text-black bg-white rounded-md pixfont text-[0.92rem] absolute bottom-1 left-[2%] w-[96%]
+            <button class="text-black bg-white rounded-md pixfont text-[1rem] absolute bottom-1 left-[2%] w-[96%]
             transition-all duration-300 ease-in-out hover:bg-slate-100 active:bg-slate-300 shadow-md hover:shadow-lg active:shadow-none
-            hover:-translate-y-0.5 active:translate-y-px max-h-[30%] py-2" @click="handleConfirm">Confirm</button>
+            hover:-translate-y-0.5 active:translate-y-px max-h-[30%] py-2 uppercase" @click="handleConfirm">Confirm</button>
         </div>
         <transition name="modal">
             <battles-joey-checker v-if="checking && pickingMove" @close="checking = false"></battles-joey-checker>
@@ -65,20 +73,22 @@
 <script setup lang="ts">
 const prop = defineProps<{
     pickingMove: boolean,
+    atkTarget: Enemy | null
 }>()
-const emit = defineEmits(['finishSelection'])
+const emit = defineEmits(['finishSelection', 'selectMove'])
 
 const selectedFriends = ref<Friend[]>([])
 const campaignStore = useCampaignSaveStore()
 const checking = ref<boolean>(false)
 const viewAbilities = ref<boolean>(false)
 
-const selectedMove = ref<null | "attack" | 'block'>(null)
+const selectedMove = ref<null | "Attack" | 'Block'>(null)
+
 const showSelectMoveError = ref<boolean>(false)
 const selectedMoveClass = computed(() => {
     if (selectedMove.value === null) return 'opacity-0'
-    else if (selectedMove.value === 'attack') return 'translate-x-0'
-    else if (selectedMove.value === 'block') return 'translate-x-full'
+    else if (selectedMove.value === 'Attack') return 'translate-x-0'
+    else if (selectedMove.value === 'Block') return 'translate-x-full'
 })
 
 function updateSelectedFriends(chosenFriends: Friend[]) {
@@ -86,7 +96,7 @@ function updateSelectedFriends(chosenFriends: Friend[]) {
     selectedFriends.value = chosenFriends
 }
 function handleConfirm() {
-    if (selectedMove.value) { clickSFX(); emit('finishSelection') }
+    if (selectedMove.value) { clickSFX(); useCurrentBattleStore().populateUserChoices(selectedFriends.value, selectedMove.value); emit('finishSelection') }
     else {
         errorSFX()
         showSelectMoveError.value = true

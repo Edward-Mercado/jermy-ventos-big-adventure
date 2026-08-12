@@ -65,7 +65,7 @@ function checkAbilitySelections(): boolean {
     let passesTest = true
     battleGuiStore.selectedFriends.forEach((friend: Friend) => {
         if (friend.targetType === 'Single') {
-            if (!currentBattleStore.currentEnemies.find((enemy: Enemy) => enemy.targetOf === friend)) {
+            if (!currentBattleStore.currentEnemies.find((enemy: Enemy) => enemy.targetOf.includes(friend))) {
                 passesTest = false
             }
         }

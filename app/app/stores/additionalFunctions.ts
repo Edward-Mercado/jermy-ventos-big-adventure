@@ -7,9 +7,18 @@ export function clickSFX() {
 }
 
 export function errorSFX() {
-    console.log("ERROR SFX")
     var error = new Howl({
         src: ['/sounds/error.mp3']
     })
     error.play()
+}
+
+
+// placeholder functions for linter
+export function blockAttacks() {
+    
+}
+
+export function attack() {
+
 }

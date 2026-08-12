@@ -1,5 +1,5 @@
 export const useBattleGuiStore = defineStore('battlegui', {
-    state: () =>({
+    state: () => ({
         fullFriendsList: [] as Friend[],
         selectedFriends: [] as Friend[],
         notSelectedFriends: [] as Friend[],
@@ -9,16 +9,18 @@ export const useBattleGuiStore = defineStore('battlegui', {
             this.fullFriendsList = useCampaignSaveStore().friendsData
             this.notSelectedFriends = this.fullFriendsList
         },
-        move(friend:Friend) {
-            if(this.notSelectedFriends.find(person => person.name === friend.name)) {
+        move(friend: Friend) {
+            if (this.notSelectedFriends.find(person => person.name === friend.name)) {
                 this.selectedFriends.push(friend)
                 this.notSelectedFriends.splice(this.notSelectedFriends.indexOf(friend), 1)
             } else {
                 this.notSelectedFriends.push(friend)
                 this.selectedFriends.splice(this.selectedFriends.indexOf(friend), 1)
                 const currentBattleStore = useCurrentBattleStore()
-                currentBattleStore.currentEnemies.forEach((enemy:Enemy) => {
-                    if(enemy.targetOf?.name === friend.name) enemy.targetOf = null
+                currentBattleStore.currentEnemies.forEach((enemy: Enemy) => {
+                    if (enemy.targetOf?.find((targetFriend: Friend) => targetFriend.name === friend.name)) {
+                        enemy.targetOf = enemy.targetOf.filter((targetFriend: Friend) => targetFriend.name !== friend.name)
+                    }
                 })
                 console.log(JSON.parse(JSON.stringify(currentBattleStore)))
             }

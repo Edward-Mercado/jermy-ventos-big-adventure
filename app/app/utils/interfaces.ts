@@ -14,6 +14,7 @@ export interface EnemyData {
     name: string,
     attack: number,
     defense: number,
+    abilityType: ("offense" | "defense"),
     ability: Function,
     currentHP: number,
     maxHP: number,
@@ -29,7 +30,7 @@ export interface EnemyData {
 
 export interface Enemy extends EnemyData {
     nextMove: ("Attack" | "Block" | "Use Ability" | null),
-    targetOf: (Friend | null) 
+    targetOf: Friend[]
 }
 
 export interface EnemyGroup {
@@ -64,4 +65,11 @@ export interface StateKey {
     name: string,
     dynamic?: string,
     type: ("cutscene" | "battle" | "choice" | "shop" | "end"),
+}
+
+export interface BattleEvent {
+    user: string,
+    spriteURL: string,
+    flavorText: string,
+    action: Function
 }
