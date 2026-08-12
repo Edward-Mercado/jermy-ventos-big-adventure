@@ -64,7 +64,7 @@
 
 <script setup lang="ts">
 const prop = defineProps<{
-    pickingMove: boolean
+    pickingMove: boolean,
 }>()
 const emit = defineEmits(['finishSelection'])
 

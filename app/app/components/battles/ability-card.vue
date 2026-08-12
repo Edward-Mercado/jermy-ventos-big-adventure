@@ -16,10 +16,10 @@
         <div class="w-[35%] rounded-lg border border-white hover:bg-sky-50/10 transition-all duration-500 ease-in-out h-[90%] px-2 flex items-center justify-center" @mouseleave="showTiming=true"
             @mouseover="showTiming=false">
             <transition name="fade" appear v-if="!showTiming">
-                <p class="dialogue-font text-[0.8rem]" >{{friend.abilityDesc}}</p>
+                <p class="dialogue-font text-[0.8rem] text-center" >{{friend.abilityDesc}}</p>
             </transition>
             <transition name="fade" appear v-else>
-                <p class="dialogue-font xl:text-[0.9rem] text-[0.8rem] text-white" >Timing: {{ friend.abilityTiming }}, Targets: {{ friend.targetType }}</p>  
+                <p class="dialogue-font xl:text-[0.9rem] text-[0.8rem] text-white text-center" >Timing: {{ friend.abilityTiming }}, Targets: {{ friend.targetType }}</p>  
             </transition>
         </div>
         <button class="rounded-lg h-[95%] hover:-translate-x-2 active:translate-x-1 aspect-square bg-white hover:bg-sky-200 active:bg-sky-400 ease-in-out transition-all

@@ -20,12 +20,14 @@
     </div>
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
-        <battles-dialogue-box v-if="!pickingMove"
-        :speed="45"
-        :sound="'/sounds/basehigh.m4a'"
-        :text="'TRIPLE FINISH!'"
-        :speaker="'Scott the Woz'"
-        ></battles-dialogue-box>
+        <transition name="slide-up">
+            <battles-dialogue-box v-if="!pickingMove"
+            :speed="45"
+            :sound="'/sounds/basehigh.m4a'"
+            :text="'TRIPLE FINISH!'"
+            :speaker="'Scott the Woz'"
+            ></battles-dialogue-box>
+        </transition>
     </div>
 </template>
 
@@ -37,7 +39,7 @@ const currentBattleStore = useCurrentBattleStore()
 const pickingMove = ref<boolean>(true)
 const currentEnemies = useCurrentBattleStore().currentEnemies
 
-const currentStateKey = computed(() => {
+const currentStateKey = computed(():string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
@@ -75,5 +77,20 @@ currentBattleStore.initialize(currentStateKey.value)
 .shaky {
     animation: shaky 5s ease-in-out infinite;
     display: inline-block;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+    transform: translateY(50%);
+    opacity: 0
+}
+
+.slide-up-enter-to,
+.slide-up-leave-from {
+    opacity: 1
+}
+
+.slide-up-enter-active {
+    transition: all ease-in-out 500ms
 }
 </style>

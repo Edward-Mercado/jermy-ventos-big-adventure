@@ -3,7 +3,8 @@
         <div class="flex flex-row w-full justify-between items-center">
             <button
                 class="pixfont text-black text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500"
-                @click="clickSFX(); $emit('close')">X</button>
+                @click="clickSFX(); unselectAll();
+                $emit('close')">X</button>
             <h4 class="text-2xl pixfont text-black">Abilities</h4>
         </div>
         <div class="flex flex-row justify-between h-full px-1">
@@ -83,6 +84,12 @@ function handleClick() {
             showSingleError.value = false
         }, 3000)
     }
+}
+
+function unselectAll() {
+    battleGuiStore.selectedFriends.forEach((friend:Friend) => {
+        battleGuiStore.move(friend)
+    })
 }
 </script>
 
