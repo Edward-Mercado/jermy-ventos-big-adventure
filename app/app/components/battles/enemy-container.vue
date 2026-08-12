@@ -19,10 +19,11 @@
         </div>
         <img :src="enemy.img" :alt="enemy.name" :class="imgClasses">
         <transition name="checking-container" v-if="pickingMove">
-            <div class="top-0 left-0 absolute w-full p-2 h-full bg-linear-to-tr from-sky-100/96 to-white/96 rounded-2xl flex flex-col justify-between z-2 overflow-y-scroll" v-if="checking">
+            <div class="top-0 left-0 absolute w-full p-2 h-full bg-linear-to-tr from-sky-100/96 to-white/96 rounded-2xl flex flex-col justify-between z-10 overflow-y-scroll" v-if="checking">
                 <div class="flex w-full flex-between items-center">
                     <button class="pixfont text-black w-full text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500" @click="clickSFX(); checking = false">X</button>
                     <Target :size="32" v-if="isTarget" color="black"/>
+                    <Target :size="32" v-for="i in enemy.targetOf" color="#1a3b70"/>
                 </div>
                 <div class="h-[90%] flex flex-col gap-6">
                     <div class="flex flex-row w-full justify-between">
