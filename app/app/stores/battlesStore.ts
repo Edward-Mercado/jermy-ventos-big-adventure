@@ -6,6 +6,7 @@ export const useBattleStore = defineStore('battle', {
                 attack: 10,
                 defense: 3,
                 abilityType: "defense",
+                abilityName: "Shrink",
                 ability: () => {},
                 manaCost: 20,
                 currentHP: 20,
@@ -16,12 +17,14 @@ export const useBattleStore = defineStore('battle', {
                 expDrop: 20,
                 desc: "A guy so little he's hard to find.",
                 level: 1,
-                title: "Smallish Person"
+                title: "Smallish Person",
+                sound: '/sounds/basehigh.m4a',
             }, {
                 name: "Little Guy 2",
                 attack: 10,
                 defense: 3,
                 abilityType: "defense",
+                abilityName: "Shrink",
                 ability: () => {},
                 manaCost: 20,
                 currentHP: 20,
@@ -32,7 +35,8 @@ export const useBattleStore = defineStore('battle', {
                 expDrop: 20,
                 desc: "A guy so little he's hard to find.",
                 level: 1,
-                title: "Smallish Person"
+                title: "Smallish Person",
+                sound: '/sounds/basehigh.m4a',
             }]
         }
     } as Record<string, EnemyGroup>),

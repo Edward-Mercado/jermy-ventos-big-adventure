@@ -2,7 +2,7 @@
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
             <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget"
-                @finish-selection="pickingMove = false" @select-move="(move: 'Attack' | 'Block') => {
+                @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
                     attackTarget = null;
                     if (move === 'Attack') enemyMode = 'Target'
                     if (move === 'Block') enemyMode = 'Check'
@@ -20,7 +20,6 @@
                     :mode="enemyMode" :isTarget="attackTarget?.name === enemy.name" @target="(enemyName: string) => {
                         attackTarget = useCurrentBattleStore().currentEnemies.find((enemy: Enemy) => enemy.name === enemyName)!
                         enemyMode = 'Check'
-                        console.log(attackTarget.name)
                     }">
                 </battles-enemy-container>
             </div>
@@ -33,8 +32,10 @@
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
         <transition name="slide-up">
-            <battles-dialogue-box v-if="!pickingMove" :speed="45" :sound="'/sounds/basehigh.m4a'"
-                :text="'TRIPLE FINISH!'" :speaker="'Scott the Woz'"></battles-dialogue-box>
+            <battles-dialogue-box v-if="battleIndex > -1 && battlePlaying" :battle-instance="thisTurnActions[battleIndex]!" 
+            :speed="45"
+            @proceed="proceedBattle()"    
+            ></battles-dialogue-box>
         </transition>
     </div>
 </template>
@@ -48,12 +49,36 @@ const currentBattleStore = useCurrentBattleStore()
 const pickingMove = ref<boolean>(true)
 const currentEnemies = useCurrentBattleStore().currentEnemies
 const enemyMode = ref<("Check" | "Target")>("Check")
+const battleIndex = ref<number>(-1)
+const thisTurnActions = ref<BattleEvent[]>([])
+const battlePlaying = ref<boolean>(false)
 
 const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
 if (!currentBattleStore.currentEnemies.length) currentBattleStore.initialize(currentStateKey.value)
+
+function beginTurn() {
+    pickingMove.value = false; 
+    battlePlaying.value = true;
+    thisTurnActions.value = currentBattleStore.compileTurnData(attackTarget.value);
+    battleIndex.value++;
+    attackTarget.value = null;
+    enemyMode.value = "Check";
+}
+
+async function proceedBattle() {
+    battlePlaying.value = false
+    battleIndex.value++
+    if(battleIndex.value === thisTurnActions.value.length) {
+        battleIndex.value = -1
+        pickingMove.value = true
+    } else {
+        await nextTick()
+        battlePlaying.value = true
+    }
+}
 
 </script>
 

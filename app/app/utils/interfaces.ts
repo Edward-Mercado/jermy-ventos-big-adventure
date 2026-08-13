@@ -7,6 +7,7 @@ export interface Friend {
     targetType: ("Single" | "AOE" | "Self" | "Special"),
     spriteURL: string,
     ability: Function,
+    sound: string,
     manaCost: number
 }
 
@@ -16,6 +17,7 @@ export interface EnemyData {
     defense: number,
     abilityType: ("offense" | "defense"),
     ability: Function,
+    abilityName: string,
     currentHP: number,
     maxHP: number,
     currentMana: number,
@@ -25,12 +27,15 @@ export interface EnemyData {
     expDrop: number,
     desc: string,
     level: number,
-    title: string
+    title: string,
+    sound: string
 }
 
 export interface Enemy extends EnemyData {
     nextMove: ("Attack" | "Block" | "Use Ability" | null),
-    targetOf: Friend[]
+    targetOf: Friend[],
+    status: Status,
+    counter: number
 }
 
 export interface EnemyGroup {
@@ -71,5 +76,13 @@ export interface BattleEvent {
     user: string,
     spriteURL: string,
     flavorText: string,
-    action: Function
+    action: Function,
+    sound: string
+}
+
+export interface Status {
+    name: string,
+    img: string,
+    type: ("Inhibit" | "DOT" | "Double Attack"),
+    action: Function,
 }

@@ -2,9 +2,9 @@
     <div
         class="bg-slate-950/70 min-w-[80vw] h-full text-2xl border-2 border-black relative overflow-b-hidden justify-end flex">
         <div class="absolute pl-1 bottom-0 -left-1 h-[120%] w-[10%] pixfont overflow-hidden">
-            <img src="/images/scottthewoz.png" alt="scott the woz" class="h-full w-full object-cover">
+            <img :src="battleInstance.spriteURL" :alt="battleInstance.user" class="h-full w-full object-cover">
         </div>
-        <div class="absolute py-1 px-2 top-[-45%] bg-slate-950 -left-2 border-white pixfont border-2">{{ speaker }}</div>
+        <div class="absolute py-1 px-2 top-[-45%] bg-slate-950 -left-2 border-white pixfont border-2">{{ battleInstance.user }}</div>
         <p class="w-[90%] h-full mr-0 pixfont text-xl p-2">
             <span class="typewriter dialogue-font text-xl select-none">{{ displayedText }}<span class="cursor pixfont"
                     v-if="!isDone">|</span></span>
@@ -13,7 +13,7 @@
             <button v-if="isDone"
                 class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] right-[-1%] bottom-[-15%] border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute"
-                @click="clickSFX()">
+                @click="clickSFX(); $emit('proceed')">
                 Proceed.
             </button>
         </transition>
@@ -24,9 +24,7 @@
 import { Howl, Howler } from 'howler';
 
 const prop = defineProps<{
-    sound: string,
-    text: string,
-    speaker: string,
+    battleInstance: BattleEvent
     speed: number
 }>()
 
@@ -37,7 +35,7 @@ const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
 var dialogueBeep = new Howl({
-    src: [prop.sound as string | '/sounds/basehigh.m4a'],
+    src: [prop.battleInstance.sound as string | '/sounds/basehigh.m4a'],
     volume: 0.8
 })
 
@@ -48,9 +46,9 @@ onMounted(() => {
     let index = 0
 
     interval = setInterval(() => {
-        if (index < prop.text.length) {
+        if (index < prop.battleInstance.flavorText.length) {
             if (!(index % 2)) dialogueBeep.play()
-            displayedText.value += prop.text[index]
+            displayedText.value += prop.battleInstance.flavorText[index]
             index++
         } else {
             clearInterval(interval)

@@ -6,7 +6,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
         friends: ['Noure'] as string[],
         friendsData: [] as Friend[],
         sprite: "/public/images/joey.png" as string,
-        currentStatus: null as string | null,
+        currentStatus: null as Status | null,
 
         attack: 15 as number,
         defense: 0 as number,
@@ -33,7 +33,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.gameState = Number(localStorage.getItem("gameState")) || 0
             //@ts-ignore
             this.friends = [...new Set(JSON.parse(localStorage.getItem("friends") || "[]"))]
-            this.currentStatus = localStorage.getItem("status") || null
+            this.currentStatus = JSON.parse(localStorage.getItem("status") || "null") || null
             this.maxHP = this.playerLevelData[this.playerLevel]!.maxHP
             this.currentHP = Number(localStorage.getItem("currentHP")) || this.playerLevelData[this.playerLevel]!.maxHP
             this.attack = this.playerLevelData[this.playerLevel]!.attack

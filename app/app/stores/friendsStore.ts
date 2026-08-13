@@ -8,6 +8,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Single",
             spriteURL: "/images/gab.png",
+            sound: "/sounds/gab.m4a",
             ability: () => {
                 
             },
@@ -21,6 +22,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "AOE",
             spriteURL: "/images/gavin.png",
+            sound: "/sounds/gavin.m4a",
             ability: () => {
                 
             },
@@ -34,6 +36,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Single",
             spriteURL: "/images/noure.png",
+            sound: "/sounds/noure.caf",
             ability: () => {
                 
             },
@@ -47,6 +50,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "AOE",
             spriteURL: "/images/kortnee.png",
+            sound: "/sounds/kortnee.m4a",
             ability: () => {
                 
             },
@@ -60,6 +64,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "Follows Enemy",
             targetType: "AOE",
             spriteURL: "/images/matteo.png",
+            sound: "/sounds/baselow.caf",
             ability: () => {
                 
             },
@@ -73,6 +78,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/mrspaulavento.png",
+            sound: "/sounds/basehigh.m4a",
             ability: () => {
                 
             },
@@ -86,6 +92,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "After Turn",
             targetType: "Special",
             spriteURL: "/images/pierce.png",
+            sound: "/sounds/baselow.caf",
             ability: () => {
                 
             },
@@ -99,6 +106,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "Before Turn",
             targetType: "Self",
             spriteURL: "/images/scottthewoz.png",
+            sound: "/sounds/scottthewoz.m4a",
             ability: () => {
                 
             },
@@ -112,6 +120,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/gil.png",
+            sound: "/sounds/gil.m4a",
             ability: () => {
                 
             },
@@ -125,6 +134,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/kellan.png",
+            sound: "/sounds/kellan.m4a",
             ability: () => {
                 
             },
@@ -138,6 +148,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "After Turn",
             targetType: "Single",
             spriteURL: "/images/columbo.png",
+            sound: "/sounds/columbo.m4a",
             ability: () => {
                 
             },
@@ -151,6 +162,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "After Turn",
             targetType: "Special",
             spriteURL: "/images/thira.png",
+            sound: "/sounds/thira.m4a",
             ability: () => {
                 
             },
@@ -164,6 +176,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Single",
             spriteURL: "/images/lucia.png",
+            sound: "/sounds/lucia.m4a",
             ability: () => {
                 
             },
@@ -177,6 +190,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/humd.png",
+            sound: "/sounds/humd.m4a",
             ability: () => {
                 
             },
