@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-slate-950/70 min-w-[80vw] h-full text-2xl border-2 border-black relative overflow-b-hidden justify-end flex">
+        class="bg-slate-950/70 min-w-[80vw] h-full text-2xl border-4 border-black relative overflow-b-hidden justify-end flex">
         <div class="absolute pl-1 bottom-0 -left-1 h-[120%] w-[10%] pixfont overflow-hidden">
             <img :src="battleInstance.spriteURL" :alt="battleInstance.user" class="h-full w-full object-cover">
         </div>

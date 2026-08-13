@@ -28,14 +28,16 @@ export interface EnemyData {
     desc: string,
     level: number,
     title: string,
-    sound: string
+    sound: string,
 }
 
 export interface Enemy extends EnemyData {
     nextMove: ("Attack" | "Block" | "Use Ability" | null),
     targetOf: Friend[],
     status: Status,
-    counter: number
+    counter: number,
+    shrinkCount: number,
+    consecutiveBlocks: number,
 }
 
 export interface EnemyGroup {

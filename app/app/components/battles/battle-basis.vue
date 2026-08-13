@@ -72,8 +72,11 @@ async function proceedBattle() {
     battlePlaying.value = false
     battleIndex.value++
     if(battleIndex.value === thisTurnActions.value.length) {
-        battleIndex.value = -1
-        pickingMove.value = true
+        battleIndex.value = -1;
+        pickingMove.value = true;
+        useBattleGuiStore().selectedFriends.forEach((friend:Friend) => {
+            useBattleGuiStore().move(friend)
+        })
     } else {
         await nextTick()
         battlePlaying.value = true

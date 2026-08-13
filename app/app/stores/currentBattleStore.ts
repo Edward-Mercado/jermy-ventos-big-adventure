@@ -3,16 +3,18 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         currentEnemies: [] as Enemy[],
         columboActive: false as boolean,
         usedAbilities: [] as Friend[],
-        usedMove: null as (null | 'Attack' | 'Block')
+        usedMove: null as (null | 'Attack' | 'Block'),
     }),
     actions: {
         initialize(currentStateKey: string) {
             const battlesStore = useBattleStore()
             battlesStore[currentStateKey]?.enemies.forEach((enemy: EnemyData) => {
                 let enemyConstructor: any = enemy
-                enemyConstructor.nextMove = null,
-                enemyConstructor.targetOf = [] as Friend[],
-                enemyConstructor.status = null
+                enemyConstructor.nextMove = null;
+                enemyConstructor.targetOf = [] as Friend[];
+                enemyConstructor.status = null;
+                enemyConstructor.shrinkCount = 0;
+                enemyConstructor.consecutiveBlocks = 0;
                 let finishedEnemy:Enemy = enemyConstructor
                 this.enemyChooseMove(enemyConstructor)
                 this.currentEnemies.push(finishedEnemy)
@@ -63,7 +65,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             if (this.usedMove === "Block") resultingActions.push({ // blocks
                 user: "Joey",
                 spriteURL: "/images/joey.png",
-                flavorText: "You got ready to block incoming attacks!",
+                flavorText: "I'm ready to block incoming attacks!",
                 action: blockAttacks,
                 sound: "/sounds/joey.m4a",
             })
@@ -134,7 +136,11 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         resultingActions.push({
                             user: friend.name,
                             spriteURL: friend.spriteURL,
-                            flavorText: `I cast ${friend.abilityName} on ${this.currentEnemies.find((enemy:Enemy)=>enemy.targetOf.includes(friend))!.name}!`,
+                            flavorText: `I cast ${friend.abilityName} on ${
+                                this.currentEnemies.find((enemy: Enemy) =>
+                                enemy.targetOf.find((targeter: Friend) => targeter.name === friend.name)
+                                )!.name
+}!`,
                             action: friend.ability,
                             sound: friend.sound,
                         });

@@ -16,6 +16,8 @@ export const useCampaignSaveStore = defineStore('campaign', {
         expGained: 0 as number,
         maxMana: 60 as number,
         currentMana: 60 as number,
+        shrinkCount: 0 as number,
+        consecutiveBlocks: 0 as number,
 
         playerLevelData: {
             1: { attack: 10, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },
