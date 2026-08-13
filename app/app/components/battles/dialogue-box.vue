@@ -42,6 +42,11 @@ var dialogueBeep = new Howl({
 let interval: any = null
 
 onMounted(() => {
+    if(!useCurrentBattleStore().battleEventsDone.find((battleEvent:BattleEvent) =>battleEvent === prop.battleInstance)) {
+        prop.battleInstance.action(prop.battleInstance.actionArgs)
+        prop.battleInstance.actionPerformed = true
+        useCurrentBattleStore().battleEventsDone.push(prop.battleInstance)
+    }
     const charSpeed = prop.speed ?? 50
     let index = 0
 

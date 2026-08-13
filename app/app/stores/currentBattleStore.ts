@@ -4,6 +4,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         columboActive: false as boolean,
         usedAbilities: [] as Friend[],
         usedMove: null as (null | 'Attack' | 'Block'),
+        battleEventsDone: [] as BattleEvent[],
+        thisTurnEvents: [] as BattleEvent[],
     }),
     actions: {
         initialize(currentStateKey: string) {
@@ -62,7 +64,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: enemy.img,
                             flavorText: `I'm ready to block your attacks birthday boy!`,
                             action: blockAttacks,
-                            sound: enemy.sound
+                            sound: enemy.sound,
+                            actionPerformed: false,
                         })
                     }
                     else {
@@ -71,7 +74,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: enemy.img,
                             flavorText: `Oh no! My block failed!`,
                             action: () => { },
-                            sound: enemy.sound
+                            sound: enemy.sound,
+                            actionPerformed: false,
                         })
                     }
                 }
@@ -83,7 +87,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: "/images/joey.png",
                         flavorText: `You get ready to block their attacks!`,
                         action: blockAttacks,
-                        sound: "/sounds/joey.m4a"
+                        sound: "/sounds/joey.m4a",
+                        actionPerformed: false,
                     })
                 }
                 else {
@@ -92,7 +97,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: "/images/joey.png",
                         flavorText: `You tried to block, but it failed!`,
                         action: () => { },
-                        sound: "/sounds/joey.m4a"
+                        sound: "/sounds/joey.m4a",
+                        actionPerformed: false,
                     })
                 }
             }
@@ -103,7 +109,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: friend.spriteURL,
                         flavorText: `I cast ${friend.abilityName}!`,
                         action: friend.ability,
-                        sound: friend.sound
+                        sound: friend.sound,
+                        actionPerformed: false,
                     })
                 })
 
@@ -115,7 +122,9 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: enemy.img,
                         flavorText: `I'm gonna get you Joey! BAM!`,
                         action: attack,
-                        sound: enemy.sound
+                        actionArgs: [enemy, 'user'],
+                        sound: enemy.sound,
+                        actionPerformed: false,
                     })
                     if (useCampaignSaveStore().isBlocking) {
                         resultingActions.push({
@@ -123,7 +132,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: "/images/joey.png",
                             flavorText: `Nobody's gonna be in those pews, ${enemy.name}!`,
                             action: () => { },
-                            sound: "/images/joey.m4a"
+                            sound: "/images/joey.m4a",
+                            actionPerformed: false,
                         })
                     }
                 }
@@ -133,7 +143,9 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: enemy.img,
                         flavorText: `I cast ${enemy.abilityName}!`,
                         action: enemy.ability,
-                        sound: enemy.sound
+                        actionArgs: [enemy],
+                        sound: enemy.sound,
+                        actionPerformed: false,
                     })
                     if (enemy.abilityType === "offense" && useCampaignSaveStore().isBlocking) {
                         resultingActions.push({
@@ -141,7 +153,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: "/images/joey.png",
                             flavorText: `Nobody's gonna be in those pews, ${enemy.name}!`,
                             action: () => { },
-                            sound: "/images/joey.m4a"
+                            sound: "/sounds/joey.m4a",
+                            actionPerformed: false,
                         })
                     }
                 }
@@ -153,7 +166,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: friend.spriteURL,
                             flavorText: `I cast ${friend.abilityName}!`,
                             action: friend.ability,
-                            sound: friend.sound
+                            sound: friend.sound,
+                            actionPerformed: false,
                         })
                         followEnemyPairs.push(friend)
                     })
@@ -166,15 +180,18 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                     spriteURL: "/images/joey.png",
                     flavorText: `I am gonna get you ${attackTarget.name}!`,
                     action: attack,
-                    sound: "/sounds/joey.m4a"
+                    actionArgs: ['user', attackTarget],
+                    sound: "/sounds/joey.m4a",
+                    actionPerformed: false,
                 })
                 if (attackTarget.isBlocking) {
                     resultingActions.push({
                         user: attackTarget.name,
                         spriteURL: attackTarget.img,
                         flavorText: "Zonk off birthday boy! I blocked your attack!",
-                        action: attack,
+                        action: blockAttacks,
                         sound: attackTarget.sound,
+                        actionPerformed: false,
                     })
                 }
             }
@@ -187,6 +204,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             flavorText: `I cast ${friend.abilityName}!`,
                             action: friend.ability,
                             sound: friend.sound,
+                            actionPerformed: false,
                         });
                         if (friend.targetType === "AOE") {
                             let blockingEnemies: string[] = []
@@ -219,13 +237,15 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                                     flavorText: fullText,
                                     action: () => { },
                                     sound: "/sounds/joey.sound",
+                                    actionPerformed: false,
                                 })
                                 resultingActions.push({
                                     user: friend.name,
                                     spriteURL: friend.spriteURL,
                                     flavorText: "Dammit! They blocked me!",
                                     action: () => { },
-                                    sound: friend.sound
+                                    sound: friend.sound,
+                                    actionPerformed: false,
                                 })
                             }
                         }
@@ -239,6 +259,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                                 }!`,
                             action: friend.ability,
                             sound: friend.sound,
+                            actionPerformed: false,
                         });
 
                         let potentialEnemy: Enemy | undefined = this.currentEnemies.find((e: Enemy) =>
@@ -251,6 +272,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                                 flavorText: "Zonk off birthday boy! I blocked your attack!",
                                 action: attack,
                                 sound: potentialEnemy.sound,
+                            actionPerformed: false,
                             })
                         }
                     }
@@ -264,6 +286,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         flavorText: `My ${friend.abilityName} failed! The enemy didn't attack!`,
                         action: friend.ability,
                         sound: friend.sound,
+                        actionPerformed: false,
                     });
                 })
 
@@ -276,6 +299,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         flavorText: `I cast ${friend.abilityName}!`,
                         action: friend.ability,
                         sound: friend.sound,
+                        actionPerformed: false,
                     });
                 })  // at abilities
 
@@ -287,7 +311,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         spriteURL: enemy.img,
                         flavorText: `Ouch.. The ${status.name}... It's affecting me...`,
                         action: status.action,
-                        sound: enemy.sound
+                        sound: enemy.sound,
+                        actionPerformed: false,
                     });
                 }
             }) // enemy statuses
@@ -301,6 +326,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         flavorText: `Dammit.. I'm being affected by the ${status.name}...`,
                         action: status.action,
                         sound: "/sounds/joey.m4a",
+                        actionPerformed: false,
                     });
                 }
             } // user statuses

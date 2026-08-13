@@ -80,7 +80,9 @@ export interface BattleEvent {
     spriteURL: string,
     flavorText: string,
     action: Function,
-    sound: string
+    actionArgs?: any[],
+    sound: string,
+    actionPerformed: boolean,
 }
 
 export interface Status {

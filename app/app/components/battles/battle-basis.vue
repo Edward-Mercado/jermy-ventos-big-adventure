@@ -32,7 +32,7 @@
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
         <transition name="slide-up">
-            <battles-dialogue-box v-if="battleIndex > -1 && battlePlaying" :battle-instance="thisTurnActions[battleIndex]!" 
+            <battles-dialogue-box v-if="battleIndex > -1 && battlePlaying" :battle-instance="useCurrentBattleStore().thisTurnEvents[battleIndex]!" 
             :speed="45"
             @proceed="proceedBattle()"    
             ></battles-dialogue-box>
@@ -47,10 +47,9 @@ const stateKeys = useStateKeys()
 const campaignSaveStore = useCampaignSaveStore()
 const currentBattleStore = useCurrentBattleStore()
 const pickingMove = ref<boolean>(true)
-const currentEnemies = useCurrentBattleStore().currentEnemies
+const currentEnemies = computed(() => useCurrentBattleStore().currentEnemies)
 const enemyMode = ref<("Check" | "Target")>("Check")
 const battleIndex = ref<number>(-1)
-const thisTurnActions = ref<BattleEvent[]>([])
 const battlePlaying = ref<boolean>(false)
 
 const currentStateKey = computed((): string => {
@@ -63,7 +62,7 @@ useCampaignSaveStore().consecutiveBlocks = 0
 function beginTurn() {
     pickingMove.value = false; 
     battlePlaying.value = true;
-    thisTurnActions.value = currentBattleStore.compileTurnData(attackTarget.value);
+    useCurrentBattleStore().thisTurnEvents = currentBattleStore.compileTurnData(attackTarget.value);
     battleIndex.value++;
     attackTarget.value = null;
     enemyMode.value = "Check";
@@ -75,7 +74,11 @@ function beginTurn() {
 async function proceedBattle() {
     battlePlaying.value = false
     battleIndex.value++
-    if(battleIndex.value === thisTurnActions.value.length) {
+    if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
+        useCurrentBattleStore().battleEventsDone.length = 0
+        useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
+        console.log(useCurrentBattleStore().currentEnemies)
+
         battleIndex.value = -1;
         pickingMove.value = true;
         campaignSaveStore.isBlocking = false;
