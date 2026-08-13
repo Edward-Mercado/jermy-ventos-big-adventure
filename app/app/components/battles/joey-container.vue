@@ -9,9 +9,15 @@
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
                 @click="clickSFX(); checking = true">Check</button>
         </div>
-        <img src="/images/joey.png" alt="Joey"
-            class="border-b-6 border-black rounded-2xl absolute bottom-0 left-0 max-w-full max-h-[60%] m-2 mx-2 transition-all duration-300 ease-in-out"
-            :style="{ transform: `scale(${1 * (0.66 ** campaignStore.shrinkCount)})` }">
+        <transition name="fade">
+            <img src="/images/joey.png" alt="Joey" v-if="campaignStore.currentHP > 0"
+                class="border-b-6 border-black rounded-2xl absolute bottom-0 left-0 max-w-full max-h-[60%] m-2 mx-2 transition-all duration-300 ease-in-out"
+                :style="{ transform: `scale(${1 * (0.66 ** campaignStore.shrinkCount)})` }">
+        </transition>
+        <transition name="fade"> 
+            <img v-if="campaignStore.currentHP === 0"
+            src="/images/deadsmoke.png" alt="deadsmoke" class="absolute bottom-0">
+        </transition>
         <div v-if="pickingMove"
             class="w-[35%] absolute bottom-2 right-2 bg-slate-600/70 rounded-lg h-[65%] border-2 border-black shadow-md shadow-slate-900/20 p-2 flex flex-col gap-2">
             <h2 class="pixfont text-white text-xl">Actions:</h2>

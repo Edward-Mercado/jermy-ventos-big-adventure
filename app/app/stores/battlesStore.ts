@@ -3,7 +3,7 @@ export const useBattleStore = defineStore('battle', {
         'littleGuys1': {
             enemies: [{
                 name: "Little Guy 1",
-                attack: 10,
+                attack: 1000,
                 defense: 3,
                 abilityType: "defense",
                 abilityName: "Shrink",
@@ -21,7 +21,7 @@ export const useBattleStore = defineStore('battle', {
                 sound: '/sounds/basehigh.m4a',
             }, {
                 name: "Little Guy 2",
-                attack: 10,
+                attack: 1000,
                 defense: 3,
                 abilityType: "defense",
                 abilityName: "Shrink",

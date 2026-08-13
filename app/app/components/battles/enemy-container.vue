@@ -20,8 +20,14 @@
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
                     @click="clickSFX(); handleAction()" v-if="pickingMove" :class="mode === 'Target' ? 'uppercase' : ''">{{mode}}</button>
         </div>
-        <img class="transition-all duration-300 ease-in-out"
-        :src="enemy.img" :alt="enemy.name" :class="imgClasses" :style="{ transform: `scale(${1*(0.66**enemy.shrinkCount)})`}">
+        <transition name="fade">
+            <img class="transition-all duration-300 ease-in-out" v-if="enemy.currentHP > 0"
+            :src="enemy.img" :alt="enemy.name" :class="imgClasses" :style="{ transform: `scale(${1*(0.66**enemy.shrinkCount)})`}">
+        </transition>
+        <transition name="fade"> 
+            <img v-if="enemy.currentHP === 0"
+            src="/images/deadsmoke.png" alt="deadsmoke" :class="imgClasses" class="absolute bottom-0" >
+        </transition>
         <transition name="checking-container" v-if="pickingMove">
             <div class="top-0 left-0 absolute w-full p-2 h-full bg-linear-to-tr from-sky-100/96 to-white/96 rounded-2xl flex flex-col justify-between z-10 overflow-y-scroll" v-if="checking">
                 <div class="flex w-full flex-between items-center">
@@ -109,5 +115,20 @@ function handleAction() {
 .checking-container-leave-active {
     transition: all 500ms ease;
     transform-origin: bottom;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: ease-out 0.5s all
 }
 </style>

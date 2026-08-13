@@ -76,8 +76,13 @@ async function proceedBattle() {
     battleIndex.value++
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
         useCurrentBattleStore().battleEventsDone.length = 0
-        useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
-        console.log(useCurrentBattleStore().currentEnemies)
+        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+            if(e.currentHP === 0) {
+                useCampaignSaveStore().expGained += e.expDrop
+                useCampaignSaveStore().listenLevelUp()
+            }
+        })
+        useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
 
         battleIndex.value = -1;
         pickingMove.value = true;
