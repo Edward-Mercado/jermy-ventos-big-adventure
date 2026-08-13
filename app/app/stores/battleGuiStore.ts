@@ -11,10 +11,10 @@ export const useBattleGuiStore = defineStore('battlegui', {
         },
         move(friend: Friend) {
             if (this.notSelectedFriends.find(person => person.name === friend.name)) {
-                this.selectedFriends.push(friend)
+                this.selectedFriends.unshift(friend)
                 this.notSelectedFriends.splice(this.notSelectedFriends.indexOf(friend), 1)
             } else {
-                this.notSelectedFriends.push(friend)
+                this.notSelectedFriends.unshift(friend)
                 this.selectedFriends.splice(this.selectedFriends.indexOf(friend), 1)
                 const currentBattleStore = useCurrentBattleStore()
                 currentBattleStore.currentEnemies.forEach((enemy: Enemy) => {

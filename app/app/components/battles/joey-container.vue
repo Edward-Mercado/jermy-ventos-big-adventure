@@ -103,7 +103,7 @@ function updateSelectedFriends(chosenFriends: Friend[]) {
     viewAbilities.value = false
     selectedFriends.value = chosenFriends
 }
-function handleConfirm() {
+async function handleConfirm() {
     if (selectedMove.value === 'Block' || (selectedMove.value === 'Attack' && prop.atkTarget)) { clickSFX(); useCurrentBattleStore().populateUserChoices(selectedFriends.value, selectedMove.value); emit('finishSelection') }
     else {
         errorSFX()
