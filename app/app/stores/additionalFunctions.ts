@@ -13,12 +13,20 @@ export function errorSFX() {
     error.play()
 }
 
+export function calculateBlock(user:any):boolean {
+    const successfulBlock = Math.random() < (1/2)**user.consecutiveBlocks
+    if(successfulBlock) {
+        user.consecutiveBlocks++
+        user.isBlocking = true
+    } else user.consecutiveBlocks = 0
+    return successfulBlock
+}
 
 // placeholder functions for linter
 export function blockAttacks() {
     
 }
 
-export function attack() {
-
+export function attack(attacker:Enemy, defender:Enemy, defenderIsBlocking:boolean) {
+    
 }

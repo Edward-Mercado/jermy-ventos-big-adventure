@@ -3,10 +3,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
         playerName: "Joey",
         playerLevel: 1,
         gameState: 0,
-        friends: ['Noure'] as string[],
+        friends: ['Noure', 'Kortnee'] as string[],
         friendsData: [] as Friend[],
         sprite: "/public/images/joey.png" as string,
         currentStatus: null as Status | null,
+
+        isBlocking: false,
 
         attack: 15 as number,
         defense: 0 as number,

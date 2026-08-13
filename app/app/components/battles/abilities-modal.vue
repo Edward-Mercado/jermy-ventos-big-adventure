@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white/90 fixed w-[96vw] h-[80vh] top-[10vh] left-[2vw] flex flex-col gap-2 z-8 rounded-2xl p-2">
+    <div class="bg-white/90 fixed w-[96vw] h-[80vh] top-[10vh] left-[2vw] flex flex-col gap-2 rounded-2xl p-2 z-12">
         <div class="flex flex-row w-full justify-between items-center">
             <button
                 class="pixfont text-black text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500"

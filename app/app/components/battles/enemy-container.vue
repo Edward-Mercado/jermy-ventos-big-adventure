@@ -8,6 +8,9 @@
             <div class="absolute bottom-13 z-9 left-2 flex ">
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
                 <Target :size="32" v-for="friend in enemy.targetOf" color=" #bae6fd" class=""/>
+                <Target :size="32" v-for="friend in useBattleGuiStore().selectedFriends.filter((friend:Friend) => friend.targetType === 'AOE')" 
+                color="#dfc7ff"    
+                />
             </div>
             <battles-health-bar :currentHP="enemy.currentHP" :maxHP="enemy.maxHP"></battles-health-bar>
             </div>
@@ -24,6 +27,9 @@
                     <button class="pixfont text-black w-full text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500" @click="clickSFX(); checking = false">X</button>
                     <Target :size="32" v-if="isTarget" color="black"/>
                     <Target :size="32" v-for="i in enemy.targetOf" color="#1a3b70"/>
+                    <Target :size="32" v-for="friend in useBattleGuiStore().selectedFriends.filter((friend:Friend) => friend.targetType === 'AOE')" 
+                    color="#430e8a"    
+                    />
                 </div>
                 <div class="h-[90%] flex flex-col gap-6">
                     <div class="flex flex-row w-full justify-between">

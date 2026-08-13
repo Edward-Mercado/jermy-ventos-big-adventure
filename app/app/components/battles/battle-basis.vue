@@ -58,6 +58,7 @@ const currentStateKey = computed((): string => {
 })
 
 if (!currentBattleStore.currentEnemies.length) currentBattleStore.initialize(currentStateKey.value)
+useCampaignSaveStore().consecutiveBlocks = 0
 
 function beginTurn() {
     pickingMove.value = false; 
@@ -66,6 +67,9 @@ function beginTurn() {
     battleIndex.value++;
     attackTarget.value = null;
     enemyMode.value = "Check";
+    useBattleGuiStore().selectedFriends.forEach((friend:Friend) => {
+        useBattleGuiStore().move(friend)
+    })
 }
 
 async function proceedBattle() {
@@ -74,9 +78,8 @@ async function proceedBattle() {
     if(battleIndex.value === thisTurnActions.value.length) {
         battleIndex.value = -1;
         pickingMove.value = true;
-        useBattleGuiStore().selectedFriends.forEach((friend:Friend) => {
-            useBattleGuiStore().move(friend)
-        })
+        campaignSaveStore.isBlocking = false;
+        useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => enemy.isBlocking = false)
     } else {
         await nextTick()
         battlePlaying.value = true
