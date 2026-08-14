@@ -60,6 +60,7 @@ export function attack(args:any[]) {
     } else if (isEnemy(defender)) {
         if(!defender.isBlocking) {
             let practicalAttack = modifyAttack(attacker.attack)
+            console.log(attacker)
             defender.currentHP -= Math.round(Math.floor(Math.max(1-(defender.defense/100), 0)*practicalAttack))
             defender.currentHP = Math.max(defender.currentHP, 0)
         }

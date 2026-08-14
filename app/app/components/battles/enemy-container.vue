@@ -22,12 +22,18 @@
         </div>
         <transition name="fade">
             <img class="transition-all duration-300 ease-in-out" v-if="enemy.currentHP > 0"
-            :src="enemy.img" :alt="enemy.name" :class="imgClasses" :style="{ transform: `scale(${1*(0.66**enemy.shrinkCount)})`}">
+            :src="enemy.img" :alt="enemy.name" :class="[imgClasses, moveClasses]" :style="{ transform: `scale(${1*(0.66**enemy.shrinkCount)})`}">
         </transition>
         <transition name="fade"> 
             <img v-if="enemy.currentHP === 0"
             src="/images/deadsmoke.png" alt="deadsmoke" :class="imgClasses" class="absolute bottom-0" >
         </transition>
+        <transition name="fade">
+            <img v-if="enemy.isBlocking" src="/images/shield.png" alt="shield"
+            class="absolute bottom-[12%] left-0 h-[35%] opacity-80">
+        </transition>
+
+
         <transition name="checking-container" v-if="pickingMove">
             <div class="top-0 left-0 absolute w-full p-2 h-full bg-linear-to-tr from-sky-100/96 to-white/96 rounded-2xl flex flex-col justify-between z-10 overflow-y-scroll" v-if="checking">
                 <div class="flex w-full flex-between items-center">
@@ -74,6 +80,22 @@ const props = defineProps<{
     isTarget: boolean,
     mode: ("Check" | "Target")
 }>()
+
+const moveClasses = ref<string>('')
+
+watch(() => props.enemy.currentHP, async () => {
+    moveClasses.value = "rotate-45 translate-x-[20%] translate-y-[5%]"
+    setInterval(() => {
+        moveClasses.value = ""
+    }, 1000)
+})
+
+watch(() => props.enemy.attackThisEvent, async () => {
+    moveClasses.value = "-rotate-45 translate-x-[-20%] translate-y-[5%]"
+    setInterval(() => {
+        moveClasses.value = ""
+    }, 1000)
+})
 
 const fullClasses = computed(() => {
     if(props.amount === 1) {

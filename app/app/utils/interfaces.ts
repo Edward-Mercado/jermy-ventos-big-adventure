@@ -38,7 +38,8 @@ export interface Enemy extends EnemyData {
     counter: number,
     shrinkCount: number,
     consecutiveBlocks: number,
-    isBlocking: boolean
+    isBlocking: boolean,
+    attackThisEvent: boolean,
 }
 
 export interface EnemyGroup {

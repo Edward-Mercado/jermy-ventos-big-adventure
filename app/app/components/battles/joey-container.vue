@@ -18,6 +18,14 @@
             <img v-if="campaignStore.currentHP === 0"
             src="/images/deadsmoke.png" alt="deadsmoke" class="absolute bottom-0">
         </transition>
+        <transition name="wandStrike">
+            <img v-if="wandStriking" src="/images/birthday_wand.png" alt="birthday_wand"
+            class="absolute bottom-0 h-[50%]">
+        </transition>
+        <transition name="fade">
+            <img v-if="campaignStore.isBlocking" src="/images/shield.png" alt="shield"
+            class="absolute bottom-0 left-[35%] h-[35%] opacity-80">
+        </transition>
         <div v-if="pickingMove"
             class="w-[35%] absolute bottom-2 right-2 bg-slate-600/70 rounded-lg h-[65%] border-2 border-black shadow-md shadow-slate-900/20 p-2 flex flex-col gap-2">
             <h2 class="pixfont text-white text-xl">Actions:</h2>
@@ -86,7 +94,8 @@
 <script setup lang="ts">
 const prop = defineProps<{
     pickingMove: boolean,
-    atkTarget: Enemy | null
+    atkTarget: Enemy | null,
+    wandStriking: boolean,
 }>()
 const emit = defineEmits(['finishSelection', 'selectMove'])
 
@@ -164,5 +173,29 @@ async function handleConfirm() {
 .fade-leave-to,
 .fade-enter-from {
     opacity: 0
+}
+
+.wandStrike-enter-from {
+    rotate: 0;
+    transform: translateX(0) translateY(0);
+}
+.wandStrike-enter-to {
+    rotate: 50deg;
+    transform: translateX(20%) translateY(33%)
+}
+
+.wandStrike-leave-from {
+    rotate: 0deg;
+    opacity: 1
+}
+
+.wandStrike-leave-to {
+    rotate: 0deg;
+    opacity: 0
+}
+
+.wandStrike-enter-active,
+.wandStrike-leave-active {
+    transition: all 300ms ease-in-out
 }
 </style>

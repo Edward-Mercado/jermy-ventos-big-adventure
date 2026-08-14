@@ -6,22 +6,27 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         usedMove: null as (null | 'Attack' | 'Block'),
         battleEventsDone: [] as BattleEvent[],
         thisTurnEvents: [] as BattleEvent[],
+        thisTurnIndex: -1 as number,
     }),
     actions: {
         initialize(currentStateKey: string) {
             const battlesStore = useBattleStore()
+            this.currentEnemies.length = 0
             battlesStore[currentStateKey]?.enemies.forEach((enemy: EnemyData) => {
                 let enemyConstructor: any = enemy
+                enemyConstructor.currentHP = enemyConstructor.maxHP
                 enemyConstructor.nextMove = null;
                 enemyConstructor.targetOf = [] as Friend[];
                 enemyConstructor.status = null;
                 enemyConstructor.shrinkCount = 0;
                 enemyConstructor.consecutiveBlocks = 0;
                 enemyConstructor.isBlocking = false;
+                enemyConstructor.attackThisEvent = false;
                 let finishedEnemy: Enemy = enemyConstructor
                 this.enemyChooseMove(enemyConstructor)
                 this.currentEnemies.push(finishedEnemy)
             })
+            console.log(this.currentEnemies)
         },
 
         enemyChooseMove(enemy: Enemy) {

@@ -22,7 +22,6 @@ export const useBattleGuiStore = defineStore('battlegui', {
                         enemy.targetOf = enemy.targetOf.filter((targetFriend: Friend) => targetFriend.name !== friend.name)
                     }
                 })
-                console.log(JSON.parse(JSON.stringify(currentBattleStore)))
             }
         }
     }

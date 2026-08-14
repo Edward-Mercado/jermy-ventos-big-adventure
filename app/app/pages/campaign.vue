@@ -5,8 +5,17 @@
                 @continue="proceedLevel()"></cutscenes-cutscene-basis>
             <choices-choice-basis v-if="currentKeyType === 'choice' && storyPointRunning"
                 @continue="proceedLevel()"></choices-choice-basis>
-            <battles-battle-basis v-if="currentKeyType === 'battle' && storyPointRunning"
-                @proceed="proceedLevel()"></battles-battle-basis>
+            <battles-battle-basis v-if="currentKeyType === 'battle' && storyPointRunning && (battleOutcome === null)"
+                @proceed="proceedLevel()"
+                @lose="battleOutcome = 'Lost'"
+                @win="battleOutcome = 'Won'"
+                ></battles-battle-basis>
+            <battles-you-lost v-if="currentKeyType === 'battle' && storyPointRunning && (battleOutcome === 'Lost')"
+            @retry="() => { campaignStore.gameState--; battleOutcome=null; useCampaignSaveStore().currentHP = useCampaignSaveStore().maxHP; proceedLevel()}"
+            ></battles-you-lost>
+            <battles-you-won v-if="currentKeyType === 'battle' && storyPointRunning && (battleOutcome === 'Won')"
+            @continue="proceedLevel()"
+            ></battles-you-won>
             <ending-end-basis v-if="currentKeyType === 'end'" @reset-save="resetCampaign()"></ending-end-basis>
         </client-only>
         <div v-else class="w-full flex items-center justify-center gap-[20%] h-[80%]">
@@ -32,6 +41,10 @@ const stateKeys = useStateKeys()
 const campaignRunning = ref<boolean>(false)
 const storyPointRunning = ref<boolean>(true)
 
+const battleOutcome = ref<null | "Lost" | "Won">(null)
+watch(() => battleOutcome.value, () => {
+    console.log(battleOutcome.value)
+})
 function resetCampaign() {
     storyPointRunning.value = false
     campaignStore.$reset()

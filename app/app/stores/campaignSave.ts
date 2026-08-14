@@ -10,7 +10,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
 
         isBlocking: false,
 
-        attack: 15 as number,
+        attack: 10 as number,
         defense: 0 as number,
         currentHP: 80 as number,
         maxHP: 80 as number,

@@ -2,6 +2,7 @@
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
             <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget"
+            :wand-striking="wandStriking"
                 @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
                     attackTarget = null;
                     if (move === 'Attack') enemyMode = 'Target'
@@ -41,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['proceed'])
+const emit = defineEmits(['proceed', 'lose', 'win'])
 const attackTarget = ref<null | Enemy>(null)
 const stateKeys = useStateKeys()
 const campaignSaveStore = useCampaignSaveStore()
@@ -51,12 +52,15 @@ const currentEnemies = computed(() => useCurrentBattleStore().currentEnemies)
 const enemyMode = ref<("Check" | "Target")>("Check")
 const battleIndex = ref<number>(-1)
 const battlePlaying = ref<boolean>(false)
+const wandStriking = ref<boolean>(false)
+
+watch(() => battleIndex.value, () => useCurrentBattleStore().thisTurnIndex = battleIndex.value)
 
 const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
-if (!currentBattleStore.currentEnemies.length) currentBattleStore.initialize(currentStateKey.value)
+currentBattleStore.initialize(currentStateKey.value)
 useCampaignSaveStore().consecutiveBlocks = 0
 
 function beginTurn() {
@@ -73,6 +77,14 @@ function beginTurn() {
 
 async function proceedBattle() {
     battlePlaying.value = false
+    if(campaignSaveStore.currentHP === 0) {
+        useCurrentBattleStore().thisTurnEvents.forEach((event:BattleEvent, index) => {
+            if(index >= battleIndex.value && event.user === 'Joey') {
+                useCurrentBattleStore().thisTurnEvents.splice(index)
+                index--
+            }
+        })
+    } 
     battleIndex.value++
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
         useCurrentBattleStore().battleEventsDone.length = 0
@@ -82,15 +94,33 @@ async function proceedBattle() {
                 useCampaignSaveStore().listenLevelUp()
             }
         })
-        useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
+        useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
+        
+        if(useCampaignSaveStore().currentHP === 0) {
+            emit('lose')
+        } else if (useCurrentBattleStore().currentEnemies.length === 0) {
+            emit('win')
+        }
 
         battleIndex.value = -1;
         pickingMove.value = true;
         campaignSaveStore.isBlocking = false;
+        wandStriking.value = false
         useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => enemy.isBlocking = false)
+    
     } else {
         await nextTick()
         battlePlaying.value = true
+        wandStriking.value = false
+        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => e.attackThisEvent = false)
+        
+        if(useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack 
+        && useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user === "Joey") {
+            wandStriking.value = true
+        } else if (useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack) {
+            useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name === useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user)!
+            .attackThisEvent = true
+        }
     }
 }
 

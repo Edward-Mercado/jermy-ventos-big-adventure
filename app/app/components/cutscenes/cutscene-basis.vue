@@ -23,7 +23,6 @@ const linePlaying = ref<boolean>(stateKeys.keys[campaignSaveStore.gameState]?.na
 
 if(campaignSaveStore.gameState === 0) {
     useEndStore().getStartTime()
-    console.log(useEndStore().timeStart)
 }
 
 const currentStateKey = computed(() => {
