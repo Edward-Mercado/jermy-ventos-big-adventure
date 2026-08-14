@@ -19,6 +19,7 @@
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
                     @click="clickSFX(); handleAction()" v-if="pickingMove" :class="mode === 'Target' ? 'uppercase' : ''">{{mode}}</button>
+            <battles-health-bar v-else :currentHP="enemy.currentMana" :maxHP="enemy.maxMana" :isMana="true"></battles-health-bar>
         </div>
         <transition name="fade">
             <img class="transition-all duration-300 ease-in-out" v-if="enemy.currentHP > 0"
@@ -49,7 +50,7 @@
                         <p class="text-2xl text-black pixfont">{{ enemy.name }}</p>
                         <p class="text-2xl text-black pixfont">{{ campaignStore.currentHP }}/{{ campaignStore.maxHP }}</p>
                     </div>
-                    <p class="text-2xl text-slate-700 pixfont italic">LV. {{ enemy.level }} Thing</p>
+                    <p class="text-2xl text-slate-700 pixfont italic">LV. {{ enemy.level }} {{enemy.title}}</p>
                     <p class="text-md text-slate-700 pixfont italic">{{ enemy.desc }}</p>
                     <p class="text-2xl text-black pixfont">Stats:</p>
                     <div class="flex items-between justify-between flex-wrap gap-2 flex-row w-full">
@@ -57,7 +58,7 @@
                         <p class="min-w-10 w-[48%] text-lg pixfont text-black">DEF: {{ enemy.defense }}</p>
                     </div>
                     <p class="text-2xl text-black pixfont">MANA:</p>
-                    <battles-health-bar :currentHP="campaignStore.currentMana" :maxHP="campaignStore.maxMana" :isMana="true" :nextLevel="campaignStore.playerLevel + 1"></battles-health-bar>
+                    <battles-health-bar :currentHP="enemy.currentMana" :maxHP="enemy.maxMana" :isMana="true" :nextLevel="campaignStore.playerLevel + 1"></battles-health-bar>
                     <p class="text-lg text-black pixfont" v-if="useCurrentBattleStore().columboActive">Enemy Next Move: {{ enemy.nextMove }}</p>
                     <p class="text-lg text-slate-800 pixfont italic" v-else>Maybe using an ability would allow you to see this enemy's next move.</p>
                 </div>

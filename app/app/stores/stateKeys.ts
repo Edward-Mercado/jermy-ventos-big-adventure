@@ -49,8 +49,10 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'cutscene', name: 'opening' },
                 { type: 'cutscene', name: 'firstEncounter' },
                 { type: 'battle', name: 'littleGuys1' },
+                { type: 'battle', name: 'battleKellan' },
                 { type: 'cutscene', name: 'saveKellan' },
                 { type: 'choice', name: 'HumdNoure'}, 
+                { type: 'battle', name: 'blockyBall1' },
                 { type: 'cutscene', dynamic: 'HumdNoureSave1', name: 'saveNoure' },
                 { type: 'cutscene', dynamic: 'HumdNoureSave2', name: 'saveHumd' },
                 { type: 'cutscene', name: 'saveKortnee' },
@@ -106,3 +108,20 @@ export const useStateKeys = defineStore('stateKeys', {
         }
     }
 })
+
+export const abilityGainKeys:Record<string, string>[] = [
+    {battleGab: "Gab"},
+    {battleGav: "Gavin"},
+    {battleNoure: "Noure"},
+    {battleKortnee: "Kortnee"},
+    {battleMatteo: "Matteo"},
+    {battleMom: "Mrs. Paula Vento"},
+    {battlePierce: "Pierce"},
+    {battleWoz: "Scott the Woz"},
+    {battleGil: "Gil"},
+    {battleKellan: "Kellan"},
+    {battleColumbo: "Columbo"},
+    {battleThira: "Thira"},
+    {battleLucia: "Lucia"},
+    {battleHumd: "Humd"},
+]

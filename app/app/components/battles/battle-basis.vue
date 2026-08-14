@@ -1,4 +1,9 @@
 <template>
+    <transition name="fade">
+        <div class="fixed h-screen w-screen bg-black z-15 top-0" v-if="lost">
+
+        </div>
+    </transition>
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
             <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget"
@@ -28,7 +33,7 @@
         <button
             class="px-2 h-[5%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] my-2 border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center fixed top-2 left-[40%]"
-            @click="$emit('proceed')">SKIP</button>
+            @click="clickSFX(); $emit('win')">SKIP</button>
     </div>
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
@@ -42,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['proceed', 'lose', 'win'])
+const emit = defineEmits(['lose', 'win'])
 const attackTarget = ref<null | Enemy>(null)
 const stateKeys = useStateKeys()
 const campaignSaveStore = useCampaignSaveStore()
@@ -53,6 +58,8 @@ const enemyMode = ref<("Check" | "Target")>("Check")
 const battleIndex = ref<number>(-1)
 const battlePlaying = ref<boolean>(false)
 const wandStriking = ref<boolean>(false)
+
+const lost = ref<boolean>(false)
 
 watch(() => battleIndex.value, () => useCurrentBattleStore().thisTurnIndex = battleIndex.value)
 
@@ -87,6 +94,8 @@ async function proceedBattle() {
     } 
     battleIndex.value++
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
+        
+        campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10+campaignSaveStore.playerLevel * 5))
         useCurrentBattleStore().battleEventsDone.length = 0
         useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
             if(e.currentHP === 0) {
@@ -97,7 +106,8 @@ async function proceedBattle() {
         useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
         
         if(useCampaignSaveStore().currentHP === 0) {
-            emit('lose')
+            lost.value = true
+            setTimeout(() => {emit('lose')}, 1000)
         } else if (useCurrentBattleStore().currentEnemies.length === 0) {
             emit('win')
         }
@@ -106,14 +116,19 @@ async function proceedBattle() {
         pickingMove.value = true;
         campaignSaveStore.isBlocking = false;
         wandStriking.value = false
-        useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => enemy.isBlocking = false)
+        useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => {
+            enemy.isBlocking = false
+            enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + (10 + enemy.level*5))
+        })
     
     } else {
         await nextTick()
         battlePlaying.value = true
         wandStriking.value = false
-        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => e.attackThisEvent = false)
-        
+        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+            e.attackThisEvent = false
+        })
+
         if(useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack 
         && useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user === "Joey") {
             wandStriking.value = true
@@ -171,5 +186,18 @@ async function proceedBattle() {
 
 .slide-up-enter-active {
     transition: all ease-in-out 500ms
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0
+}
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 1s
 }
 </style>

@@ -135,10 +135,8 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Self",
             spriteURL: "/images/kellan.png",
             sound: "/sounds/kellan.m4a",
-            ability: () => {
-                
-            },
-            manaCost: 100
+            ability: shrink,
+            manaCost: 40
         } as Friend,
         "Columbo": {
             name: "Columbo",

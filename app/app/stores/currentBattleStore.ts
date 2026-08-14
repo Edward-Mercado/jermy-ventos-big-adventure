@@ -137,7 +137,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: "/images/joey.png",
                             flavorText: `Nobody's gonna be in those pews, ${enemy.name}!`,
                             action: () => { },
-                            sound: "/images/joey.m4a",
+                            sound: "/sounds/joey.m4a",
                             actionPerformed: false,
                         })
                     }
@@ -152,6 +152,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         sound: enemy.sound,
                         actionPerformed: false,
                     })
+
                     if (enemy.abilityType === "offense" && useCampaignSaveStore().isBlocking) {
                         resultingActions.push({
                             user: "Joey",
@@ -175,6 +176,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             actionPerformed: false,
                         })
                         followEnemyPairs.push(friend)
+
                     })
                 }
             });
@@ -200,9 +202,11 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                     })
                 }
             }
+
             this.usedAbilities.filter((possibleAbility: Friend) => possibleAbility.abilityTiming === 'With Attack') // wa abilities
                 .forEach((friend: Friend) => {
                     if (friend.targetType !== 'Single') {
+
                         resultingActions.push({
                             user: friend.name,
                             spriteURL: friend.spriteURL,
@@ -280,6 +284,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             actionPerformed: false,
                             })
                         }
+
                     }
 
                 })
@@ -306,6 +311,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         sound: friend.sound,
                         actionPerformed: false,
                     });
+
                 })  // at abilities
 
             this.currentEnemies.filter((enemy: Enemy) => enemy.status).forEach((enemy: Enemy) => {

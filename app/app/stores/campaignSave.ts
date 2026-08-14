@@ -3,14 +3,14 @@ export const useCampaignSaveStore = defineStore('campaign', {
         playerName: "Joey",
         playerLevel: 1,
         gameState: 0,
-        friends: ['Noure', 'Kortnee'] as string[],
+        friends: [] as string[],
         friendsData: [] as Friend[],
         sprite: "/public/images/joey.png" as string,
         currentStatus: null as Status | null,
 
         isBlocking: false,
 
-        attack: 10 as number,
+        attack: 12 as number,
         defense: 0 as number,
         currentHP: 80 as number,
         maxHP: 80 as number,
@@ -22,8 +22,8 @@ export const useCampaignSaveStore = defineStore('campaign', {
         consecutiveBlocks: 0 as number,
 
         playerLevelData: {
-            1: { attack: 10, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },
-            2: { attack: 16, defense: 5, maxHP: 120, maxMana: 90, expRequirement: 100 },
+            1: { attack: 12, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },
+            2: { attack: 18, defense: 5, maxHP: 120, maxMana: 90, expRequirement: 100 },
             3: { attack: 25, defense: 17, maxHP: 160, maxMana: 120, expRequirement: 220 },
             4: { attack: 30, defense: 20, maxHP: 160, maxMana: 160, expRequirement: 340 },
             5: { attack: 40, defense: 30, maxHP: 220, maxMana: 200, expRequirement: 500 },
@@ -44,6 +44,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.defense = this.playerLevelData[this.playerLevel]!.defense
             this.friendSlots = this.playerLevel
             this.expGained = Number(localStorage.getItem("expGained")) || this.playerLevelData[this.playerLevel]!.expRequirement
+            this.shrinkCount = Number(localStorage.getItem("shrinkCount") || 0)
             this.loadFriends()
         },
         listenLevelUp() {
@@ -80,6 +81,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             localStorage.setItem("attack", (this.attack).toString())
             localStorage.setItem("defense", (this.defense).toString())
             localStorage.setItem("expGained", (this.expGained).toString())
+            localStorage.setItem("shrinkCount", this.shrinkCount.toString())
         },
         changeStats() {
             if (this.playerLevel > 5) {

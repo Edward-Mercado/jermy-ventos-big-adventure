@@ -6,7 +6,7 @@
             <choices-choice-basis v-if="currentKeyType === 'choice' && storyPointRunning"
                 @continue="proceedLevel()"></choices-choice-basis>
             <battles-battle-basis v-if="currentKeyType === 'battle' && storyPointRunning && (battleOutcome === null)"
-                @proceed="proceedLevel()"
+                @proceed="battleOutcome = null; proceedLevel()"
                 @lose="battleOutcome = 'Lost'"
                 @win="battleOutcome = 'Won'"
                 ></battles-battle-basis>
@@ -41,6 +41,8 @@ const stateKeys = useStateKeys()
 const campaignRunning = ref<boolean>(false)
 const storyPointRunning = ref<boolean>(true)
 
+watch(() => campaignStore.gameState, () => battleOutcome.value = null)
+
 const battleOutcome = ref<null | "Lost" | "Won">(null)
 watch(() => battleOutcome.value, () => {
     console.log(battleOutcome.value)
@@ -48,8 +50,8 @@ watch(() => battleOutcome.value, () => {
 function resetCampaign() {
     storyPointRunning.value = false
     campaignStore.$reset()
-    campaignStore.saveGame()
     stateKeys.$reset()
+    campaignStore.saveGame()
     stateKeys.saveChoices()
     return navigateTo("/")
 }

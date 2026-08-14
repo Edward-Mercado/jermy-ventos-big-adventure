@@ -8,7 +8,7 @@ export interface Friend {
     spriteURL: string,
     ability: Function,
     sound: string,
-    manaCost: number
+    manaCost: number,
 }
 
 export interface EnemyData {

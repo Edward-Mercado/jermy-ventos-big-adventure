@@ -8,6 +8,7 @@
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
                 @click="clickSFX(); checking = true">Check</button>
+            <battles-health-bar v-else :currentHP="campaignStore.currentMana" :maxHP="campaignStore.maxMana" :isMana="true"></battles-health-bar>
         </div>
         <transition name="fade">
             <img src="/images/joey.png" alt="Joey" v-if="campaignStore.currentHP > 0"
