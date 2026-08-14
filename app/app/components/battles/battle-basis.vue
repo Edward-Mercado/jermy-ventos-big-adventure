@@ -85,6 +85,7 @@ function beginTurn() {
 }
 
 async function proceedBattle() {
+    useCurrentBattleStore().joeyURL = '/images/joey.png'
     battlePlaying.value = false
     if(campaignSaveStore.currentHP === 0) {
         useCurrentBattleStore().thisTurnEvents.forEach((event:BattleEvent, index) => {
@@ -106,8 +107,9 @@ async function proceedBattle() {
             if(e.currentHP === 0) {
                 useCampaignSaveStore().expGained += e.expDrop
                 useCampaignSaveStore().listenLevelUp()
-            }
+            } else useCurrentBattleStore().enemyChooseMove(e)
         })
+
         useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
         
         if(useCampaignSaveStore().currentHP === 0) {

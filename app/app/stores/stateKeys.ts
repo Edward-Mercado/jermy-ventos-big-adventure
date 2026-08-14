@@ -55,6 +55,7 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'battle', name: 'blockyBall1' },
                 { type: 'battle', dynamic: 'HumdNoureBattle1', name: 'battleNoure' },
                 { type: 'cutscene', dynamic: 'HumdNoureSave1', name: 'saveNoure' },
+                { type: 'battle', dynamic: 'HumdNoureBattle2', name: 'battleHumd' },
                 { type: 'cutscene', dynamic: 'HumdNoureSave2', name: 'saveHumd' },
                 { type: 'cutscene', name: 'saveKortnee' },
                 { type: 'choice', name: 'GsVentos' },
@@ -83,11 +84,9 @@ export const useStateKeys = defineStore('stateKeys', {
     },
     actions: {
         loadChoices() {
-            // Loop through the keys array exactly ONE time instead of running array.find() 50+ times
             for (const keyObj of this.keys) {
                 const dynamicKey = keyObj.dynamic as ChoiceKey | undefined;
                 
-                // If the key object has a dynamic property and it exists in our defaults list
                 if (dynamicKey && dynamicKey in DEFAULT_CHOICES) {
                     const stored = localStorage.getItem(dynamicKey)
                     const choice = stored ?? DEFAULT_CHOICES[dynamicKey]
@@ -99,9 +98,7 @@ export const useStateKeys = defineStore('stateKeys', {
         },
         
         saveChoices() {
-            // Iterate over the object entries to save them to storage
             for (const [key, value] of Object.entries(this.choicesMade)) {
-                // Only save if it's not null to prevent saving "null" as a literal string
                 if (value !== null) {
                     localStorage.setItem(key, value as string)
                 }

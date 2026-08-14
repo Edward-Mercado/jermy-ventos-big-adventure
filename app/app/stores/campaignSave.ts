@@ -10,7 +10,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
 
         isBlocking: false,
 
-        attack: 12 as number,
+        attack: 120 as number,
         defense: 0 as number,
         currentHP: 80 as number,
         maxHP: 80 as number,
@@ -22,11 +22,11 @@ export const useCampaignSaveStore = defineStore('campaign', {
         consecutiveBlocks: 0 as number,
 
         playerLevelData: {
-            1: { attack: 12, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },
-            2: { attack: 18, defense: 5, maxHP: 120, maxMana: 90, expRequirement: 100 },
-            3: { attack: 25, defense: 17, maxHP: 160, maxMana: 120, expRequirement: 220 },
-            4: { attack: 30, defense: 20, maxHP: 160, maxMana: 160, expRequirement: 340 },
-            5: { attack: 40, defense: 30, maxHP: 220, maxMana: 200, expRequirement: 500 },
+            1: { attack: 120, defense: 0, maxHP: 80, maxMana: 60, expRequirement: 0 },
+            2: { attack: 180, defense: 5, maxHP: 120, maxMana: 90, expRequirement: 100 },
+            3: { attack: 250, defense: 17, maxHP: 160, maxMana: 120, expRequirement: 220 },
+            4: { attack: 300, defense: 20, maxHP: 160, maxMana: 160, expRequirement: 340 },
+            5: { attack: 400, defense: 30, maxHP: 220, maxMana: 200, expRequirement: 500 },
         } as Record<number, LevelStats>,
     }),
     actions: {
@@ -39,7 +39,9 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.friends = [...new Set(JSON.parse(localStorage.getItem("friends") || "[]"))]
             this.currentStatus = JSON.parse(localStorage.getItem("status") || "null") || null
             this.maxHP = this.playerLevelData[this.playerLevel]!.maxHP
-            this.currentHP = Number(localStorage.getItem("currentHP")) || this.playerLevelData[this.playerLevel]!.maxHP
+            this.maxMana  = Number(localStorage.getItem("maxMana") || this.playerLevelData[this.playerLevel]!.maxMana)
+            this.currentHP = this.maxHP
+            this.currentMana = this.maxMana
             this.attack = this.playerLevelData[this.playerLevel]!.attack
             this.defense = this.playerLevelData[this.playerLevel]!.defense
             this.friendSlots = this.playerLevel
@@ -58,10 +60,12 @@ export const useCampaignSaveStore = defineStore('campaign', {
                 if (this.expGained > this.playerLevelData[nextLevel]!.expRequirement) {
                     this.playerLevel++
                     this.changeStats()
+                    this.saveGame()
                 } else {
                     potentialLevelUp = false
                 }
             }
+            console.log(this.playerLevel)
         },
         loadFriends() {
             const friendsList = this.friends
@@ -72,12 +76,15 @@ export const useCampaignSaveStore = defineStore('campaign', {
             })
         },
         saveGame() {
+            localStorage.setItem("playerLevel", this.playerLevel.toString())
             localStorage.setItem("name", this.playerName);
             localStorage.setItem("level", (this.playerLevel).toString())
             localStorage.setItem("gameState", (this.gameState).toString())
             localStorage.setItem("friends", JSON.stringify(this.friends))
-            localStorage.setItem("currentHP", (this.currentHP).toString())
-            localStorage.setItem("maxHP", (this.currentHP).toString())
+            localStorage.setItem("currentHP", (this.maxHP).toString())
+            localStorage.setItem("maxHP", (this.maxHP).toString())
+            localStorage.setItem("maxMana", (this.maxMana).toString())
+            localStorage.setItem("currentMana", (this.maxMana).toString())
             localStorage.setItem("attack", (this.attack).toString())
             localStorage.setItem("defense", (this.defense).toString())
             localStorage.setItem("expGained", (this.expGained).toString())
@@ -87,17 +94,13 @@ export const useCampaignSaveStore = defineStore('campaign', {
             if (this.playerLevel > 5) {
                 this.playerLevel = 5
             }
-            const currentHPPercent: number = this.currentHP / this.maxHP;
-            const currentManaPercent: number = this.currentMana / this.maxMana;
 
-            [this.attack, this.defense, this.maxHP, this.currentHP, this.friendSlots, this.maxMana, this.currentMana] = [this.playerLevelData[this.playerLevel]!.attack,
-            this.playerLevelData[this.playerLevel]!.defense,
-            this.playerLevelData[this.playerLevel]!.maxHP,
-            Math.floor(this.playerLevelData[this.playerLevel]!.maxHP * currentHPPercent),
-            this.playerLevel,
-            this.playerLevelData[this.playerLevel]!.maxMana,
-            Math.floor(this.playerLevelData[this.playerLevel]!.maxMana * currentManaPercent)
-            ]
+            this.attack = this.playerLevelData[this.playerLevel]!.attack
+            this.defense = this.playerLevelData[this.playerLevel]!.defense
+            this.maxMana = this.playerLevelData[this.playerLevel]!.maxMana
+            this.currentMana = this.playerLevelData[this.playerLevel]!.maxMana
+            this.currentHP = this.playerLevelData[this.playerLevel]!.maxHP
+            this.maxHP = this.currentHP
         },
     }
 })

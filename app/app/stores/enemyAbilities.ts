@@ -43,13 +43,15 @@ export function multiWielding(user?:Enemy[]) {
     } else {
         let playerUser = useCampaignSaveStore()
         useCurrentBattleStore().animation.doneByEnemy = false
-        
+
         //@ts-ignore
-        let friendFound:Friend = useBattleGuiStore().notSelectedFriends.find((f:Friend) => f.abilityName === 'MultiWielding')
+        let friendFound:Friend = useBattleGuiStore().fullFriendsList.find((f:Friend) => f.abilityName === "MultiWielding")
+        console.log(useBattleGuiStore().fullFriendsList)
 
         if(friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound].manaCost
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            useCurrentBattleStore().joeyURL = '/images/joey-multihit.png'
             setTimeout(() => {
                 attack(['user', 
                 useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.targetOf.find((target:Friend) => target.abilityName === 'MultiWielding'))!,
@@ -68,6 +70,37 @@ export function multiWielding(user?:Enemy[]) {
                 0.2
             ])
             }, 2300)
+        }
+    }
+}
+
+export function ballRam(user:Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name===user[0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'ballRam'
+    useCurrentBattleStore().animation.doneByEnemy = true
+    enemyUser.currentMana -= enemyUser.manaCost
+    setTimeout(() => {
+        attack([enemyUser, 'user', 1.15])
+    }, 400)
+}
+
+export function mangoConsumption(user?:Enemy[]) {
+    if(user) {
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name===user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(enemyUser) {
+            enemyUser.currentHP = Math.round(Math.min(enemyUser.currentHP + .4*enemyUser.maxHP, enemyUser.maxHP))
+        }
+    } else {
+        let playerUser = useCampaignSaveStore()
+
+        //@ts-ignore
+        let friendFound:Friend = useBattleGuiStore().notSelectedFriends.find((f:Friend) => f.abilityName === 'Shrink')
+        if(friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            playerUser.shrinkCount++
         }
     }
 }

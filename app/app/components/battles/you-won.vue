@@ -47,7 +47,7 @@ const totalExpDrop = computed(() => {
 if(abilityGainKeys.find(key => key[currentStateKey.value])) {
     let abilityGain:string = abilityGainKeys.find(key => key[currentStateKey.value])![currentStateKey.value]!
     useCampaignSaveStore().friends.push(abilityGain)
-    
+
     abilityGained.value = true
 }
 
@@ -57,8 +57,6 @@ campaignSaveStore.currentMana = campaignSaveStore.maxMana
 
 campaignSaveStore.saveGame()
 campaignSaveStore.loadFromLocalStorage()
-
-console.log(campaignSaveStore.$state)
 </script>
 
 

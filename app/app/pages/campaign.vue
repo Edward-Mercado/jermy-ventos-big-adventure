@@ -43,9 +43,7 @@ const storyPointRunning = ref<boolean>(true)
 watch(() => campaignStore.gameState, () => battleOutcome.value = null)
 
 const battleOutcome = ref<null | "Lost" | "Won">(null)
-watch(() => battleOutcome.value, () => {
-    console.log(battleOutcome.value)
-})
+
 function resetCampaign() {
     storyPointRunning.value = false
     campaignStore.$reset()
@@ -76,7 +74,6 @@ async function proceedLevel() {
     campaignStore.saveGame()
     await nextTick()
     storyPointRunning.value = true
-    console.log(storyPoint.value)
 }
 </script>
 

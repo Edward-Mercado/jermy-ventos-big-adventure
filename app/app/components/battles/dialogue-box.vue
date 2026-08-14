@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 const prop = defineProps<{
     battleInstance: BattleEvent

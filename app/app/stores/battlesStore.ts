@@ -68,7 +68,7 @@ export const useBattleStore = defineStore('battle', {
                 defense: 7,
                 abilityType: "offense",
                 abilityName: "Ball Ram",
-                ability: shrink,
+                ability: ballRam,
                 manaCost: 25,
                 currentHP: 40,
                 maxHP: 40,
@@ -86,7 +86,7 @@ export const useBattleStore = defineStore('battle', {
         'battleNoure': {
             enemies: [{
                 name: "Noure (evil)",
-                attack: 13,
+                attack: 15,
                 defense: 8,
                 abilityType: "offense",
                 abilityName: "MultiWielding",
@@ -102,6 +102,28 @@ export const useBattleStore = defineStore('battle', {
                 level: 2,
                 title: "Pain in Dev's Ass",
                 sound: '/sounds/noure.caf',
+            }]
+        },
+
+        'battleHumd': {
+            enemies: [{
+                name: "Humd (evil, but not so evil)",
+                attack: 10,
+                defense: 15,
+                abilityType: "defense",
+                abilityName: "Mango Consumption",
+                ability: mangoConsumption,
+                manaCost: 30,
+                currentHP: 20,
+                maxHP: 20,
+                currentMana: 35,
+                maxMana: 35,
+                img: '/images/humd.png',
+                expDrop: 35,
+                desc: "The best.",
+                level: 2,
+                title: "Lovely Partner",
+                sound: '/sounds/humd.m4a',
             }]
         }
 

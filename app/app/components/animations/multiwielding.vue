@@ -1,21 +1,22 @@
 <template>
-    <div class="fixed w-screen h-screen z-20" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
+    <div class="fixed w-screen h-screen z-20 top-0" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
             <transition name="black-bg">
         <div class="w-full h-full absolute bottom-0 bg-black/50" v-if="mounted">
-
+            <img v-if="doneByEnemy" src="/images/noure-multihit.png" alt="noure multihit" class="h-[80%] top-[10%] absolute">
+            <img v-else src="/images/joey-multihit.png" alt="noure multihit" class="h-[80%] top-[10%] absolute">
         </div>
     </transition>
     <transition name="arm">
         <img v-if="armIndex === 1 && armVisible" src="/images/multihit-arm.png" alt="Multihit Arm"
-        class="fixed left-[40%] h-[60%] top-[05%] rotate-200 translate-y-[10%]">
+        class="fixed left-[40%] h-[60%] rotate-200 bottom-[10vh]">
     </transition>
     <transition name="arm">
         <img v-if="armIndex === 2 && armVisible" src="/images/multihit-arm.png" alt="Multihit Arm"
-        class="fixed left-[40%] h-[60%] top-[5%] rotate-200 translate-y-[10%]">
+        class="fixed left-[40%] h-[60%] rotate-200 bottom-[10vh]">
     </transition>
     <transition name="arm">
         <img v-if="armIndex === 3 && armVisible" src="/images/multihit-arm.png" alt="Multihit Arm"
-        class="fixed left-[40%] h-[60%] top-[5%] rotate-200 translate-y-[10%]">
+        class="fixed left-[40%] h-[60%] rotate-200 bottom-[10vh]">
     </transition>
     </div>
 </template>
@@ -59,7 +60,7 @@ setTimeout(() => {
 }, 2600)
 
 setTimeout(() => {
-    useCurrentBattleStore().animation.playing = false
+    useCurrentBattleStore().animReset()
 }, 2900)
 
 </script>
@@ -83,18 +84,25 @@ setTimeout(() => {
 .arm-enter-from {
     opacity: 0;
     rotate: 90deg;
-    transform: translateY(-10%)
+    bottom: 39vh;
+    right: 10vw;
 }
-.arm-enter-to, .arm-leave-from {
+
+.arm-enter-to,
+.arm-leave-from,
+.arm-leave-to {
     rotate: 200deg;
-    opacity: 1;
-    transform: translateY(10%)
+    bottom: 0vh;
+    right: 1vw;
 }
 
 .arm-leave-to {
     opacity: 0;
-    rotate: 200deg;
-    transform: translateY(10%)
+}
+
+.arm-enter-active,
+.arm-leave-active {
+    transition: all 300ms ease-in-out;
 }
 
 .arm-enter-active, .arm-leave-active {

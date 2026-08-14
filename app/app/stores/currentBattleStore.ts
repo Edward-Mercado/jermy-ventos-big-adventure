@@ -11,9 +11,16 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             name: null as string | null,
             playing: false as boolean,
             doneByEnemy: false as boolean
-        }
+        },
+        joeyURL: '/images/joey.png'
     }),
     actions: {
+        animReset() {
+            this.animation.name = null
+            this.animation.playing = false
+            this.animation.doneByEnemy = false
+        },
+
         initialize(currentStateKey: string) {
             const battlesStore = useBattleStore()
             this.currentEnemies.length = 0
@@ -31,27 +38,31 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                 this.enemyChooseMove(enemyConstructor)
                 this.currentEnemies.push(finishedEnemy)
             })
-            console.log(this.currentEnemies)
         },
 
         enemyChooseMove(enemy: Enemy) {
             const playerStore = useCampaignSaveStore()
             if (enemy.abilityType === 'offense') {
-                if (Math.random() < 0.85) enemy.nextMove = 'Attack' // 85% chance attack
-                else enemy.nextMove = 'Block' // 15% chance defense
-                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block' // always block if HP less than 20%
-                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack' // always attack if player HP is less than 20%
+                if (Math.random() < 0.85) enemy.nextMove = 'Attack'
+                else enemy.nextMove = 'Block'
+                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block'
+                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack'
             } else {
-                if (Math.random() < 0.85) enemy.nextMove = 'Block' // 85% chance attack
-                else enemy.nextMove = 'Attack' // 15% chance defense
-                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack' // always attack if player HP is less than 20%
-                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block' // always block if HP less than 20%
+                if (Math.random() < 0.85) enemy.nextMove = 'Block'
+                else enemy.nextMove = 'Attack'
+                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack'
+                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block'
             }
-            if (enemy.currentMana > enemy.manaCost) {
+
+            const canAffordAbility = enemy.manaCost === 0 || enemy.currentMana >= enemy.manaCost
+
+            if (canAffordAbility) {
                 if (enemy.manaCost) {
-                    let abilityChance = Math.min(((enemy.manaCost / enemy.currentMana) + .2), 1) // higher chance the more mana the enemy has
+                    let abilityChance = Math.min((enemy.manaCost / enemy.currentMana) + 0.2, 1)
                     if (Math.random() < abilityChance) enemy.nextMove = 'Use Ability'
-                } else enemy.nextMove = 'Use Ability'
+                } else {
+                    enemy.nextMove = 'Use Ability'
+                }
             }
         },
 
@@ -77,8 +88,9 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             sound: enemy.sound,
                             actionPerformed: false,
                         })
-                        enemy.currentHP = Math.min(enemy.maxHP, enemy.currentHP + enemy.maxHP / 10)
-                        enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + enemy.level * 5)
+                        let hpRegen:number = enemy.maxHP * 0.05
+                        enemy.currentHP = Math.round(Math.min(enemy.currentHP + hpRegen, enemy.maxHP))
+                        enemy.currentMana = Math.min(enemy.maxMana, (enemy.currentMana + enemy.level * 3))
                     }
                     else {
                         resultingActions.push({
@@ -356,7 +368,6 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                 }
             } // user statuses
 
-            this.currentEnemies.forEach((enemy: Enemy) => this.enemyChooseMove(enemy));
             this.currentEnemies.forEach((enemy: Enemy) => enemy.targetOf.length = 0);
 
             return resultingActions;
