@@ -12,7 +12,7 @@
         </div>
         <transition name="fade">
             <img src="/images/joey.png" alt="Joey" v-if="campaignStore.currentHP > 0"
-                class="border-b-6 border-black rounded-2xl absolute bottom-0 left-0 max-w-full max-h-[60%] m-2 mx-2 transition-all duration-300 ease-in-out"
+                class="border-b-6 border-black rounded-2xl absolute bottom-0 left-0 max-w-full max-h-[60%] m-2 mx-2 transition-all duration-300 ease-in-out scale-x-[-1]"
                 :style="{ transform: `scale(${1 * (0.66 ** campaignStore.shrinkCount)})` }">
         </transition>
         <transition name="fade"> 

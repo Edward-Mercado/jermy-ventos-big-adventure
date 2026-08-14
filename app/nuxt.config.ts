@@ -21,5 +21,14 @@ export default defineNuxtConfig({
         'reicon-vue',
       ]
     }
+  },
+  vue: {
+    compilerOptions: {
+      comments: true
+    }
+  },
+  experimental: {
+    // no direct toggle needed; the verbose logging is automatic in dev mode
   }
-})
+}
+)
