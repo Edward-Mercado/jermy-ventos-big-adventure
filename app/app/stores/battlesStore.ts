@@ -81,6 +81,28 @@ export const useBattleStore = defineStore('battle', {
                 title: "Racer",
                 sound: '/sounds/basehigh.m4a',
             }]
+        },
+
+        'battleNoure': {
+            enemies: [{
+                name: "Noure (evil)",
+                attack: 13,
+                defense: 8,
+                abilityType: "offense",
+                abilityName: "MultiWielding",
+                ability: multiWielding,
+                manaCost: 30,
+                currentHP: 50,
+                maxHP: 50,
+                currentMana: 50,
+                maxMana: 50,
+                img: '/images/noure.png',
+                expDrop: 35,
+                desc: "Conspires against Edward even though they are on the same team.",
+                level: 2,
+                title: "Pain in Dev's Ass",
+                sound: '/sounds/noure.caf',
+            }]
         }
 
 

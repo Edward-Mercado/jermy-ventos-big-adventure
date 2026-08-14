@@ -30,7 +30,7 @@ const prop = defineProps<{
     speed: number
 }>()
 
-const emit = defineEmits(["proceed", "skip"])
+const emit = defineEmits(["proceed"])
 
 const displayedText = ref<string>("")
 const isDone = ref<boolean>(false)

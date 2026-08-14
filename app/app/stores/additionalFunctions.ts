@@ -1,4 +1,4 @@
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 export function clickSFX() {
     var click = new Howl({
         src: ['/sounds/click.mp3']
@@ -13,9 +13,9 @@ export function errorSFX() {
     error.play()
 }
 
-export function calculateBlock(user:any):boolean {
-    const successfulBlock = Math.random() < (1/2)**user.consecutiveBlocks
-    if(successfulBlock) {
+export function calculateBlock(user: any): boolean {
+    const successfulBlock = Math.random() < (1 / 2) ** user.consecutiveBlocks
+    if (successfulBlock) {
         user.consecutiveBlocks++
         user.isBlocking = true
     } else user.consecutiveBlocks = 0
@@ -23,44 +23,50 @@ export function calculateBlock(user:any):boolean {
 }
 
 // placeholder functions for linter
-export function blockAttacks() {
-    
-}
+export function blockAttacks() { }
 
-export function isEnemy(entity:any):boolean {
+export function isEnemy(entity: any): boolean {
     return "targetOf" in entity
 }
 
-export function modifyDefense(defense:number) {
+export function modifyDefense(defense: number) {
     return defense
 }
 
-export function modifyAttack(attack:number) {
+export function modifyAttack(attack: number) {
     return attack
 }
 
-export function attack(args:any[]) {
+export function attack(args: any[]) {
     let attacker = args[0]
     let defender = args[1]
 
-    if(typeof attacker === 'string') {
+    let attackMulti: number = 1
+    if (args.length === 3) {
+        attackMulti = args[2]
+    }
+
+    if (typeof attacker === 'string') {
         attacker = useCampaignSaveStore()
-        defender = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name === defender.name)
+        defender = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === defender.name)
     } else {
-        attacker = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name === attacker.name)
+        attacker = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === attacker.name)
         defender = useCampaignSaveStore()
     }
 
-    if(isEnemy(attacker)) {
-        if(!defender.isBlocking) {
+    if (isEnemy(attacker)) {
+        if (!defender.isBlocking) {
             let practicalDefense = modifyDefense(defender.defense)
-            defender.currentHP -= Math.round(Math.floor(Math.max(1-(practicalDefense/100), 0)*attacker.attack))
-            defender.currentHP = Math.max(defender.currentHP, 0)
+            let baseDamage = Math.max(1 - (practicalDefense / 100), 0) * attacker.attack
+            let finalDamage = Math.round(baseDamage * attackMulti)
+
+            defender.currentHP = Math.max(defender.currentHP - finalDamage, 0)
+            console.log(attackMulti, defender.currentHP)
         }
     } else if (isEnemy(defender)) {
-        if(!defender.isBlocking) {
+        if (!defender.isBlocking) {
             let practicalAttack = modifyAttack(attacker.attack)
-            defender.currentHP -= Math.round(Math.floor(Math.max(1-(defender.defense/100), 0)*practicalAttack))
+            defender.currentHP -= Math.round(Math.floor(Math.max(1 - (defender.defense / 100), 0) * practicalAttack)) * attackMulti
             defender.currentHP = Math.max(defender.currentHP, 0)
         }
     }

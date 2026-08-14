@@ -6,7 +6,6 @@
             <choices-choice-basis v-if="currentKeyType === 'choice' && storyPointRunning"
                 @continue="proceedLevel()"></choices-choice-basis>
             <battles-battle-basis v-if="currentKeyType === 'battle' && storyPointRunning && (battleOutcome === null)"
-                @proceed="battleOutcome = null; proceedLevel()"
                 @lose="battleOutcome = 'Lost'"
                 @win="battleOutcome = 'Won'"
                 ></battles-battle-basis>

@@ -7,6 +7,9 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         battleEventsDone: [] as BattleEvent[],
         thisTurnEvents: [] as BattleEvent[],
         thisTurnIndex: -1 as number,
+        animationName: null as string | null,
+        animationPlaying: false as boolean,
+
     }),
     actions: {
         initialize(currentStateKey: string) {

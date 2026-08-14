@@ -1,4 +1,6 @@
 <template>
+    <animations-anim-basis v-if="useCurrentBattleStore().animationPlaying"
+    :animation-name="useCurrentBattleStore().animationName"></animations-anim-basis>
     <transition name="fade">
         <div class="fixed h-screen w-screen bg-black z-15 top-0" v-if="lost">
 
