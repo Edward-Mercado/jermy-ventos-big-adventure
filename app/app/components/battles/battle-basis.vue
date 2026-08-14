@@ -1,6 +1,6 @@
 <template>
-    <animations-anim-basis v-if="useCurrentBattleStore().animationPlaying"
-    :animation-name="useCurrentBattleStore().animationName"></animations-anim-basis>
+    <animations-anim-basis v-if="useCurrentBattleStore().animation.playing"
+    :animation-name="useCurrentBattleStore().animation.name" :done-by-enemy="useCurrentBattleStore().animation.doneByEnemy"></animations-anim-basis>
     <transition name="fade">
         <div class="fixed h-screen w-screen bg-black z-15 top-0" v-if="lost">
 
@@ -95,6 +95,9 @@ async function proceedBattle() {
         })
     } 
     battleIndex.value++
+    useCurrentBattleStore().animation.name = null
+    useCurrentBattleStore().animation.playing = false
+    useCurrentBattleStore().animation.doneByEnemy = false
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
         
         campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10+campaignSaveStore.playerLevel * 5))
@@ -125,6 +128,7 @@ async function proceedBattle() {
     
     } else {
         await nextTick()
+
         battlePlaying.value = true
         wandStriking.value = false
         useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {

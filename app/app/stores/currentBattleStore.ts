@@ -7,9 +7,11 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         battleEventsDone: [] as BattleEvent[],
         thisTurnEvents: [] as BattleEvent[],
         thisTurnIndex: -1 as number,
-        animationName: null as string | null,
-        animationPlaying: false as boolean,
-
+        animation: {
+            name: null as string | null,
+            playing: false as boolean,
+            doneByEnemy: false as boolean
+        }
     }),
     actions: {
         initialize(currentStateKey: string) {
@@ -75,6 +77,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             sound: enemy.sound,
                             actionPerformed: false,
                         })
+                        enemy.currentHP = Math.min(enemy.maxHP, enemy.currentHP + enemy.maxHP / 10)
+                        enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + enemy.level * 5)
                     }
                     else {
                         resultingActions.push({
@@ -98,6 +102,13 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         sound: "/sounds/joey.m4a",
                         actionPerformed: false,
                     })
+                    const store = useCampaignSaveStore()
+
+                    const hpGain = Math.round((store.maxHP ?? 0) / 5)
+                    store.currentHP = Math.min(store.maxHP ?? 0, (store.currentHP ?? 0) + hpGain)
+
+                    const manaGain = (store.playerLevel ?? 1) * 5
+                    store.currentMana = Math.min(store.maxMana ?? 0, (store.currentMana ?? 0) + manaGain)
                 }
                 else {
                     resultingActions.push({
@@ -284,7 +295,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                                 flavorText: "Zonk off birthday boy! I blocked your attack!",
                                 action: attack,
                                 sound: potentialEnemy.sound,
-                            actionPerformed: false,
+                                actionPerformed: false,
                             })
                         }
 

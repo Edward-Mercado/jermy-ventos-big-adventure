@@ -17,29 +17,33 @@ export function shrink(user?:Enemy[]) {
 }
 
 export function multiWielding(user?:Enemy[]) {
+    useCurrentBattleStore().animation.name = 'multiwielding'
+    useCurrentBattleStore().animation.playing = true
+
     if(user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name===user[0]!.name)
         enemyUser!.currentMana -= enemyUser!.manaCost
-
+        useCurrentBattleStore().animation.doneByEnemy = true
         setTimeout(() => {
                 attack([enemyUser!, 'user',
                 0.6
             ])
-            }, 0)
+            }, 300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
                 0.4
             ])
-            }, 1000)
+            }, 1300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
                 0.2
             ])
-            }, 1500)
+            }, 2300)
 
     } else {
         let playerUser = useCampaignSaveStore()
-
+        useCurrentBattleStore().animation.doneByEnemy = false
+        
         //@ts-ignore
         let friendFound:Friend = useBattleGuiStore().notSelectedFriends.find((f:Friend) => f.abilityName === 'MultiWielding')
 
@@ -49,21 +53,21 @@ export function multiWielding(user?:Enemy[]) {
             setTimeout(() => {
                 attack(['user', 
                 useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.targetOf.find((target:Friend) => target.abilityName === 'MultiWielding'))!,
-                1.2
+                0.8
             ])
-            }, 500)
+            }, 300)
             setTimeout(() => {
                 attack(['user', 
                 useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.targetOf.find((target:Friend) => target.abilityName === 'MultiWielding'))!,
-                0.6
+                0.5
             ])
-            }, 1000)
+            }, 1300)
             setTimeout(() => {
                 attack(['user', 
                 useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.targetOf.find((target:Friend) => target.abilityName === 'MultiWielding'))!,
-                0.3
+                0.2
             ])
-            }, 1500)
+            }, 2300)
         }
     }
 }
