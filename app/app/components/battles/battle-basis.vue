@@ -35,7 +35,7 @@
         <button
             class="px-2 h-[5%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] my-2 border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center fixed top-2 left-[40%]"
-            @click="clickSFX(); $emit('win')">SKIP</button>
+            @click="clickSFX(); getExp(); $emit('win')">SKIP</button>
     </div>
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
@@ -81,6 +81,13 @@ function beginTurn() {
     enemyMode.value = "Check";
     useBattleGuiStore().selectedFriends.forEach((friend:Friend) => {
         useBattleGuiStore().move(friend)
+    })
+}
+
+function getExp() {
+    useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+        useCampaignSaveStore().expGained += e.expDrop
+        useCampaignSaveStore().listenLevelUp()
     })
 }
 

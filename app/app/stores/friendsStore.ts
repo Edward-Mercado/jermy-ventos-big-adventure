@@ -5,7 +5,7 @@ export const useFriendsStore = defineStore('friends', {
             eachTurnCheck: null,
             abilityName: "Magically Touch Nose With Tongue",
             abilityDesc: "Touch your nose with your tongue. Magically. Confuse the target.",
-            abilityTiming: "With Attack",
+            abilityTiming: "Before Turn",
             targetType: "Single",
             spriteURL: "/images/gab.png",
             sound: "/sounds/gab.m4a",
@@ -49,9 +49,7 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "AOE",
             spriteURL: "/images/kortnee.png",
             sound: "/sounds/kortnee.m4a",
-            ability: () => {
-                
-            },
+            ability: moonPrincessHalation,
             manaCost: 60
         } as Friend,
         "Matteo": {

@@ -93,3 +93,23 @@ export function mangoConsumption(user?: Enemy[]) {
         }
     }
 }
+
+export function moonPrincessHalation(user?: Enemy[]) {
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)!
+        useCurrentBattleStore().animation.playing = true
+        useCurrentBattleStore().animation.name = 'moonPrincessHalation'
+        if(enemyUser) {
+            useCurrentBattleStore().animation.doneByEnemy = false
+
+            attack([enemyUser, 'user', 1.2])
+        } else {
+            useCurrentBattleStore().animation.doneByEnemy = true
+            let damageMultis:number[] = [1.6, 1.3, 0.9, 0.75]
+            let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
+            let damageMulti:number = damageMultis[length]!
+
+            useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+                attack(['user', e, damageMulti])
+            })
+        }
+}
