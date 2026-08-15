@@ -25,7 +25,6 @@ setTimeout(() => {mangoCounter.value++}, 750)
 setTimeout(() => {mangoCounter.value++}, 850)
 setTimeout(() => {mangoCounter.value++}, 900)
 setTimeout(() => {mangoCounter.value++; useCurrentBattleStore().animReset()}, 1000)
-
 </script>
 
 <style scoped>
