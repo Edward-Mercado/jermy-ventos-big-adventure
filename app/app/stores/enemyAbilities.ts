@@ -86,7 +86,10 @@ export function ballRam(user:Enemy[]) {
 }
 
 export function mangoConsumption(user?:Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'mangoConsumption'
     if(user) {
+        useCurrentBattleStore().animation.doneByEnemy = true
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name===user[0]!.name)
         enemyUser!.currentMana -= enemyUser!.manaCost
         if(enemyUser) {
@@ -94,6 +97,7 @@ export function mangoConsumption(user?:Enemy[]) {
         }
     } else {
         let playerUser = useCampaignSaveStore()
+        useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
         let friendFound:Friend = useBattleGuiStore().notSelectedFriends.find((f:Friend) => f.abilityName === 'Shrink')
