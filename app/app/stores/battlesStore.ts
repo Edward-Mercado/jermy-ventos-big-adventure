@@ -127,25 +127,25 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
-        'Lemon Alien': {
+        'lemonAlien1': {
             enemies: [{
                 name: "Lemon Alien",
                 attack: 10,
                 defense: 15,
                 abilityType: "defense",
-                abilityName: "Mango Consumption",
-                ability: mangoConsumption,
+                abilityName: "Lemon Rebirth",
+                ability: lemonRebirth,
                 manaCost: 30,
                 currentHP: 60,
                 maxHP: 60,
-                currentMana: 35,
-                maxMana: 35,
-                img: '/images/humd.png',
-                expDrop: 35,
-                desc: "The best.",
+                currentMana: 50,
+                maxMana: 50,
+                img: '/images/lemonalien.png',
+                expDrop: 30,
+                desc: "From another dimension seeking the finest of fruits.",
                 level: 2,
-                title: "Lovely Partner",
-                sound: '/sounds/baselow.m4a',
+                title: "Venture Capitalist",
+                sound: '/sounds/baselow.caf',
             }]
         },
 

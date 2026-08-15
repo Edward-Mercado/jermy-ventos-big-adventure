@@ -1,6 +1,6 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
-            <transition name="black-bg">
+    <transition name="black-bg">
         <div class="w-full h-full absolute bottom-0 bg-black/50" v-if="mounted">
             <img v-if="doneByEnemy" src="/images/noure-multihit.png" alt="noure multihit" class="h-[80%] top-[10%] absolute">
             <img v-else src="/images/joey-multihit.png" alt="noure multihit" class="h-[80%] top-[10%] absolute">

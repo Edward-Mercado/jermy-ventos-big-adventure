@@ -113,3 +113,15 @@ export function moonPrincessHalation(user?: Enemy[]) {
             })
         }
 }
+
+export function lemonRebirth(user?: Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'lemonRebirth'
+    useCurrentBattleStore().animation.doneByEnemy = true
+    if(enemyUser) {
+        enemyUser.maxHP = Math.floor(enemyUser.maxHP * 1.1)
+        enemyUser.defense = Math.floor(enemyUser.defense * 1.1)
+        enemyUser.attack = Math.floor(enemyUser.attack * 1.1)
+    }
+}
