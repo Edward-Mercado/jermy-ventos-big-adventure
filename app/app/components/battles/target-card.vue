@@ -35,7 +35,7 @@ function handleClick() {
         if (enemy.name === prop.enemy.name) enemy.targetOf.push(prop.friend); prop.enemy.targetOf.push(prop.friend)
         enemy.targetOf = [... new Set(enemy.targetOf)]
         prop.enemy.targetOf = [... new Set(prop.enemy.targetOf)]
-    })
+    }) 
 }
 </script>
 

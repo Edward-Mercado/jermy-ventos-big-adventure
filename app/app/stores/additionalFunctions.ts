@@ -61,7 +61,6 @@ export function attack(args: any[]) {
             let finalDamage = Math.round(baseDamage * attackMulti)
 
             defender.currentHP = Math.max(defender.currentHP - finalDamage, 0)
-            console.log(attackMulti, defender.currentHP)
         }
     } else if (isEnemy(defender)) {
         if (!defender.isBlocking) {

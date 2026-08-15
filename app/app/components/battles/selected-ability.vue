@@ -38,7 +38,8 @@ const prop = defineProps<{
     friend: Friend
 }>()
 const targetText = computed(() => {
-    const targeting = currentBattleStore.currentEnemies.find((enemy: Enemy) => enemy.targetOf.includes(prop.friend))
+    const targeting = useCurrentBattleStore().currentEnemies.find((enemy: Enemy) => enemy.targetOf.find((f:Friend) => f.name === prop.friend.name))
+
     if (targeting) {
         target.value = targeting.name
     } else {

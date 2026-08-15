@@ -111,6 +111,7 @@ async function proceedBattle() {
         })
 
         useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
+        useCurrentBattleStore().singleTargetPairs.length = 0
         
         if(useCampaignSaveStore().currentHP === 0) {
             lost.value = true
@@ -126,6 +127,7 @@ async function proceedBattle() {
         useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => {
             enemy.isBlocking = false
             enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + (10 + enemy.level*5))
+            enemy.targetOf.length = 0
         })
     
     } else {

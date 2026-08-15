@@ -5,7 +5,7 @@
         <div class="border-2 h-35 bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between w-full rounded-md relative">
             <div class="flex justify-between items-center h-[40%]">
             <h4 class="pixfont text-md lg:text-2xl h-full pt-2">{{ enemy.name }}</h4>
-            <div class="absolute bottom-13 z-9 left-2 flex ">
+            <div class="absolute bottom-13 z-9 left-2 flex" v-if="pickingMove">
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
                 <Target :size="32" v-for="friend in enemy.targetOf" color=" #bae6fd" class=""/>
                 <Target :size="32" v-for="friend in useBattleGuiStore().selectedFriends.filter((friend:Friend) => friend.targetType === 'AOE')" 

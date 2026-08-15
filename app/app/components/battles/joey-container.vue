@@ -75,7 +75,7 @@
         </transition>
         <transition name="modal">
             <battles-abilities-modal v-if="viewAbilities && pickingMove" @close="viewAbilities = false"
-                @confirm="(chosenFriends: Friend[]) => updateSelectedFriends(chosenFriends)"></battles-abilities-modal>
+                @confirm="(chosenFriends: Friend[]) => {updateSelectedFriends(chosenFriends)}"></battles-abilities-modal>
         </transition>
         <transition name="fade" appear>
             <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2"
@@ -135,9 +135,6 @@ async function handleConfirm() {
         }, 3000)
     }
 }
-
-console.log(campaignStore.maxHP)
-
 </script>
 
 <style scoped>

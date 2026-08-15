@@ -12,7 +12,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             playing: false as boolean,
             doneByEnemy: false as boolean
         },
-        joeyURL: '/images/joey.png'
+        joeyURL: '/images/joey.png',
+        singleTargetPairs: [] as (Enemy | Friend)[][]
     }),
     actions: {
         animReset() {
@@ -72,7 +73,6 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
         },
 
         compileTurnData(attackTarget: Enemy | null) {
-
             // before main turn flow
             const resultingActions = [] as BattleEvent[];
             const followEnemyPairs = [] as Friend[];
@@ -368,8 +368,13 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                 }
             } // user statuses
 
-            this.currentEnemies.forEach((enemy: Enemy) => enemy.targetOf.length = 0);
-
+            this.currentEnemies.forEach((e:Enemy) => {
+                e.targetOf.forEach((f:Friend) => {
+                    if(f.targetType === 'Single') {
+                        this.singleTargetPairs.push([e, f])
+                    }
+                })
+            })
             return resultingActions;
         },
 

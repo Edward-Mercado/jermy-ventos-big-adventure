@@ -65,7 +65,6 @@ export const useCampaignSaveStore = defineStore('campaign', {
                     potentialLevelUp = false
                 }
             }
-            console.log(this.playerLevel)
         },
         loadFriends() {
             const friendsList = this.friends
