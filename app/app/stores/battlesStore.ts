@@ -523,6 +523,28 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
+        'edward1': {
+            enemies: [{
+                name: "Edward (evil)",
+                attack: 50,
+                defense: 30,
+                abilityType: "offense",
+                abilityName: "THE SLAYER",
+                ability: theSlayer,
+                manaCost: 80,
+                currentHP: 400,
+                maxHP: 400,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/edwardevil.png',
+                expDrop: 120,
+                desc: "This fight is being coded at hour ~60 of the development process.",
+                level: 4,
+                title: "Developer, Friend, and SLAYER",
+                sound: '/sounds/edward.caf',
+            }]
+        },
+
     } as Record<string, EnemyGroup>),
     actions: {
 

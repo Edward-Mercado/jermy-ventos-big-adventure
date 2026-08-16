@@ -30,8 +30,6 @@ onMounted(() => mounted.value = true)
 
 let enemyURL: string = useCurrentBattleStore().currentEnemies[Math.floor(Math.random() * useCurrentBattleStore().currentEnemies.length)]!.img
 
-console.log(enemyURL, prop.doneByEnemy)
-
 setTimeout(() => fightersOnScreen.value = true, 400)
 
 setTimeout(() => cloudActive.value = true, 900)

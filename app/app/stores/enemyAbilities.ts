@@ -47,15 +47,16 @@ export function multiWielding(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.abilityName === "MultiWielding")
-
+        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.ability === multiWielding)
+        console.log(friendFound)
         if (friendFound) {
             //@ts-ignore
             playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
-            const target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
+            let target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
 
-            if (!target) return
+            if (!target) target = useCurrentBattleStore().currentEnemies[0]
 
+            console.log(target)
             setTimeout(() => { attack(['user', target, 1]) }, 300)
             setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
             setTimeout(() => { attack(['user', target, 0.3]) }, 2300)
@@ -238,8 +239,8 @@ export function makeItWild(user?: Enemy[]) {
         setTimeout(() => {
             enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
             enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
-            enemyUser.maxHP = Math.floor(Math.random() * enemyUser.maxHP * 2)
-            enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
+            enemyUser.maxHP = enemyUser.maxHP + Math.floor(Math.random() * enemyUser.maxHP)
+            enemyUser.currentHP = Math.min(Math.floor((enemyUser.currentHP * 0.5) + Math.random() * enemyUser.currentHP), enemyUser.maxHP)
             enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
 
             const ucss = useCampaignSaveStore()
@@ -480,5 +481,44 @@ export function drifting(user: Enemy[]) {
             sound: enemyUser.sound,
             actionPerformed: false
         })
+    }
+}
+
+export function theSlayer(user?:Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'theSlayer'
+    if (user) {
+
+        useCurrentBattleStore().animation.doneByEnemy = true
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+
+        console.log("THE SLAYER")
+        if (enemyUser) {
+            if(Math.random() < 0.5) {
+                setTimeout(() => {
+                    let healAmount:number = Math.round(0.2 * enemyUser.maxHP)
+                    enemyUser.currentHP = Math.min(enemyUser.currentHP + healAmount, enemyUser.maxHP)
+                }, 2200)
+                console.log("HEAL")
+            } else {
+                setTimeout(() => {
+                    enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
+                }, 2200)
+                console.log("ATK BOOST")
+            }
+        }
+    } else {
+        let playerUser = useCampaignSaveStore()
+        useCurrentBattleStore().animation.doneByEnemy = false
+
+        //@ts-ignore
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            
+            playerUser.slayerActive = true
+        }
     }
 }

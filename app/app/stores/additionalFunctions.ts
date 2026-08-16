@@ -35,6 +35,7 @@ export function modifyDefense(propDefense: number): number {
 }
 
 export function modifyAttack(propAttack: number): number {
+    let result = propAttack
     if (useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.2) {
         let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === 'Joey' && e.action === attack)
         if (indexInsert === -1) {
@@ -58,9 +59,10 @@ export function modifyAttack(propAttack: number): number {
         }
         return 0
     }
-    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25 * (propAttack))
+    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') result *= 1.2
+    if(useCampaignSaveStore().slayerActive) result *=1.4
 
-    return propAttack
+    return Math.floor(result)
 }
 
 export function attack(args: any[]) {
