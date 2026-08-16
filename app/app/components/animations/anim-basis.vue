@@ -12,6 +12,7 @@
         <animations-minion-summon v-if="animationName==='minionSummon'" :done-by-enemy="doneByEnemy"></animations-minion-summon>
         <animations-alastor-summon v-if="animationName==='alastorSummon'" :done-by-enemy="doneByEnemy"></animations-alastor-summon>
         <animations-magic-ntt v-if="animationName==='magicNoseTongueTouch'" :done-by-enemy="doneByEnemy"></animations-magic-ntt>
+        <animations-mind-clear v-if="animationName==='mindClear'" :done-by-enemy="doneByEnemy"></animations-mind-clear>
     </div>
 </template>
 

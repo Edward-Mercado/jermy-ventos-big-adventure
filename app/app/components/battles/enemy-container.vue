@@ -54,8 +54,8 @@
                     <p class="text-md text-slate-700 pixfont italic">{{ enemy.desc }}</p>
                     <p class="text-2xl text-black pixfont">Stats:</p>
                     <div class="flex items-between justify-between flex-wrap gap-2 flex-row w-full">
-                        <p class="min-w-10 w-[48%] text-lg pixfont text-black">ATK: {{ enemy.attack }}</p>
-                        <p class="min-w-10 w-[48%] text-lg pixfont text-black">DEF: {{ enemy.defense }}</p>
+                        <p class="min-w-10 w-[48%] text-lg pixfont text-black">ATK: <span class="dialogue-font">{{ enemy.attack }}</span></p>
+                        <p class="min-w-10 w-[48%] text-lg pixfont text-black">DEF: <span class="dialogue-font">{{ enemy.defense }}</span></p>
                     </div>
                     <p class="text-2xl text-black pixfont">MANA:</p>
                     <battles-health-bar :currentHP="enemy.currentMana" :maxHP="enemy.maxMana" :isMana="true" :nextLevel="campaignStore.playerLevel + 1"></battles-health-bar>

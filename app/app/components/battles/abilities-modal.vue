@@ -12,7 +12,7 @@
                 class="w-[50%] h-full p-2 rounded-sm bg-linear-to-tr from-slate-300/90 to-slate-200/90 shadow-lg overflow-y-scroll">
                 <p class="text-black text-2xl pixfont">Choose Abilities To Use</p>
                 <div class="h-1 rounded-full w-full bg-black mt-2"></div>
-                <div class="carousel pt-2 min-h-full mt-2 w-full flex-col gap-3">
+                <div class="carousel pt-2 min-h-full mt-2 w-full flex-col gap-3 pb-20">
                     <battles-ability-card v-if="battleGuiStore.notSelectedFriends.length"
                         v-for="friend in battleGuiStore.notSelectedFriends" :friend="friend"
                         :full="battleGuiStore.selectedFriends.length === useCampaignSaveStore().friendSlots"></battles-ability-card>
@@ -40,7 +40,7 @@
                         <battles-nothing-here :selected="true"></battles-nothing-here>
                     </transition>
                 </div>
-                <button class="absolute bottom-2 w-[90%] rounded-lg text-2xl hover:bg-slate-800 active:bg-slate-900 transition-all duration-300 ease-in-out left-[5%] h-[10%] pixfont bg-slate-700 shadow-md hover:shadow-lg active:shadow-none
+                <button class="absolute bottom-10 w-[90%] rounded-lg text-2xl hover:bg-slate-800 active:bg-slate-900 transition-all duration-300 ease-in-out left-[5%] h-[10%] pixfont bg-slate-700 shadow-md hover:shadow-lg active:shadow-none
                 hover:-translate-y-1 active:translate-y-0.5" @click="handleClick">CONFIRM!</button>
                 <transition name="fade" appear>
                     <div class="flex fixed bottom-[16%] left-[30%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2" v-if="showSingleError">

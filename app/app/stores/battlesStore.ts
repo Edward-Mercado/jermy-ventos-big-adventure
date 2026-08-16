@@ -393,9 +393,31 @@ export const useBattleStore = defineStore('battle', {
                 img: '/images/gab.png',
                 expDrop: 65,
                 desc: "Your sister. Where did the 'stinky' moniker come from anyway?",
-                level: 4,
+                level: 3,
                 title: "Sister",
                 sound: '/sounds/gab.m4a',
+            }]
+        },
+
+        'battleMom': {
+            enemies: [{
+                name: "Mrs. Paula Vento",
+                attack: 20,
+                defense: 35,
+                abilityType: "defense",
+                abilityName: "Mind Clear",
+                ability: mindClear,
+                manaCost: 60,
+                currentHP: 160,
+                maxHP: 160,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/mrspaulavento.png',
+                expDrop: 65,
+                desc: "Your mother. Been there since the start.",
+                level: 4,
+                title: "Mother",
+                sound: '/sounds/basehigh.m4a',
             }]
         },
 

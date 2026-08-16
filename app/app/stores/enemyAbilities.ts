@@ -352,7 +352,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
                         action: null,
                         spriteURL: '/images/gab.png',
                         sound: '/sounds/gab.m4a',
-                        flavorText: "My failed!",
+                        flavorText: "My ability failed!",
                         actionPerformed: false
                     })
                 } else {
@@ -361,7 +361,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
                         action: null,
                         spriteURL: '/images/gab.png',
                         sound: '/sounds/gab.m4a',
-                        flavorText: "My failed!",
+                        flavorText: "My ability failed!",
                         actionPerformed: false
                     })
                 }
@@ -419,6 +419,36 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
                 }
 
             }, 300)
+        }
+    }
+}
+
+
+export function mindClear(user?: Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'mindClear'
+    if (user) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+        if (enemyUser) {
+            enemyUser.currentHP = Math.round(Math.min(enemyUser.currentHP + .55 * enemyUser.maxHP, enemyUser.maxHP))
+            enemyUser.defense -= 10
+            enemyUser.status = null
+        }
+    } else {
+        let playerUser = useCampaignSaveStore()
+        useCurrentBattleStore().animation.doneByEnemy = false
+
+        //@ts-ignore
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            let healFactor = Math.round(0.50 * (playerUser.maxHP))
+            playerUser.currentHP = Math.min(playerUser.currentHP + healFactor, playerUser.maxHP)
+            playerUser.defense -= 5
+            playerUser.currentStatus = null
         }
     }
 }

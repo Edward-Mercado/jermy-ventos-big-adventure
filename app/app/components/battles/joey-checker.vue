@@ -15,9 +15,9 @@
             </p>
             <p class="text-2xl text-black pixfont">Stats:</p>
             <div class="flex items-between justify-between flex-wrap gap-2 flex-row w-full">
-                <p class="min-w-10 w-[48%] text-lg pixfont text-black">ATK: {{ campaignStore.attack }}</p>
-                <p class="min-w-10 w-[48%] text-lg pixfont text-black">DEF: {{ campaignStore.defense }}</p>
-                <p class="min-w-10 w-[48%] text-lg pixfont text-black">FRIEND SLOTS: {{ campaignStore.friendSlots }}</p>
+                <p class="min-w-10 w-[48%] text-lg pixfont text-black">ATK: <span class="dialogue-font">{{ campaignStore.attack }}</span></p>
+                <p class="min-w-10 w-[48%] text-lg pixfont text-black">DEF: <span class="dialogue-font">{{ campaignStore.defense }}</span> </p>
+                <p class="min-w-10 w-[48%] text-lg pixfont text-black">FRIEND SLOTS: <span class="dialogue-font">{{ campaignStore.friendSlots }}</span></p>
             </div>
             <p class="text-2xl text-black pixfont">MANA:</p>
             <battles-health-bar :currentHP="campaignStore.currentMana" :maxHP="campaignStore.maxMana" :isMana="true"
