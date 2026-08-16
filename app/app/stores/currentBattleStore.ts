@@ -351,7 +351,19 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         sound: enemy.sound,
                         actionPerformed: false,
                     });
+                } else if (status.type === 'Double Attack') {
+                    resultingActions.push({
+                        user: enemy.name,
+                        spriteURL: enemy.img,
+                        flavorText: `I can attack again!`,
+                        action: attack,
+                        actionArgs: [enemy, 'user', 0.6],
+                        sound: enemy.sound,
+                        actionPerformed: false,
+                    });
                 }
+
+
             }) // enemy statuses
 
             if (useCampaignSaveStore().currentStatus) {

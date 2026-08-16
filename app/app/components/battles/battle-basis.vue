@@ -109,7 +109,6 @@ async function proceedBattle() {
 
 
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
-        
         campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10+campaignSaveStore.playerLevel * 5))
         useCurrentBattleStore().battleEventsDone.length = 0
         useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {

@@ -467,5 +467,18 @@ export function drifting(user: Enemy[]) {
             action: null,
             length: 2
         }
+        attack([enemyUser, 'user', 0.3])
+
+        if((useCurrentBattleStore().thisTurnEvents.filter((e:BattleEvent) => e.action === attack && e.user === enemyUser.name)).length > 1) return
+
+        useCurrentBattleStore().thisTurnEvents.push({
+            user: enemyUser.name,
+            action: attack,
+            actionArgs: [enemyUser, 'user', 1],
+            flavorText: "I, the Drift King, can attack again!", 
+            spriteURL: enemyUser.img,
+            sound: enemyUser.sound,
+            actionPerformed: false
+        })
     }
 }

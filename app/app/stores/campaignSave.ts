@@ -111,8 +111,8 @@ export const useCampaignSaveStore = defineStore('campaign', {
             localStorage.setItem("shrinkCount", this.shrinkCount.toString())
         },
         changeStats() {
-            if (this.playerLevel > 5) {
-                this.playerLevel = 5
+            if (this.playerLevel > 25) {
+                return
             }
 
             this.attack = this.playerLevelData[this.playerLevel]!.attack
