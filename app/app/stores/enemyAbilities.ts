@@ -99,11 +99,17 @@ export function moonPrincessHalation(user?: Enemy[]) {
         useCurrentBattleStore().animation.playing = true
         useCurrentBattleStore().animation.name = 'moonPrincessHalation'
         if(enemyUser) {
-            useCurrentBattleStore().animation.doneByEnemy = false
+            useCurrentBattleStore().animation.doneByEnemy = true
+            enemyUser.currentMana -= enemyUser.manaCost
 
             attack([enemyUser, 'user', 1.2])
         } else {
-            useCurrentBattleStore().animation.doneByEnemy = true
+            useCurrentBattleStore().animation.doneByEnemy = false
+            let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
+            if(friendFound) {
+                useCampaignSaveStore().currentMana -= friendFound.manaCost
+            }
+
             let damageMultis:number[] = [1.6, 1.3, 0.9, 0.75]
             let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
             let damageMulti:number = damageMultis[length]!
@@ -123,5 +129,6 @@ export function lemonRebirth(user?: Enemy[]) {
         enemyUser.maxHP = Math.floor(enemyUser.maxHP * 1.1)
         enemyUser.defense = Math.floor(enemyUser.defense * 1.1)
         enemyUser.attack = Math.floor(enemyUser.attack * 1.1)
+        enemyUser.maxMana = Math.floor(enemyUser.maxMana * 1.1)
     }
 }

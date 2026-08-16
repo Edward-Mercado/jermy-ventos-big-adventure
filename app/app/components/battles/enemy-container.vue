@@ -48,7 +48,7 @@
                 <div class="h-[90%] flex flex-col gap-6">
                     <div class="flex flex-row w-full justify-between">
                         <p class="text-2xl text-black pixfont">{{ enemy.name }}</p>
-                        <p class="text-2xl text-black pixfont">{{ campaignStore.currentHP }}/{{ campaignStore.maxHP }}</p>
+                        <p class="text-2xl text-black pixfont">{{ enemy.currentHP }}/{{ enemy.maxHP }}</p>
                     </div>
                     <p class="text-2xl text-slate-700 pixfont italic">LV. {{ enemy.level }} {{enemy.title}}</p>
                     <p class="text-md text-slate-700 pixfont italic">{{ enemy.desc }}</p>
