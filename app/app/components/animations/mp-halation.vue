@@ -9,7 +9,7 @@
             <img v-if="wandActive" src="/images/sailor-moon-wand.png" alt="sailor moon wand" class="h-[50vh] top-[25vh] fixed left-[15vw] transition-all duration-300 ease-in-out z-22" :class="rotateActive ? 'rotate-90 translate-x-[10vw]' : ''">
         </transition>
         <transition name="fade">
-            <img v-if="wandActive" :src="doneByEnemy ? '/images/sailorkortnee.png' : '/images/sailorjoey.png'" alt="sailor moon" class="h-[50vh] top-[25vh] fixed z-21 left-[5vw]">
+            <img v-if="wandActive" :src="doneByEnemy ? '/images/sailorkortnee.png' : '/images/sailorjoey.png'" :class="doneByEnemy ? '' : 'scale-x-[-1]'" alt="sailor moon" class="h-[50vh] top-[25vh] fixed z-21 left-[5vw]">
         </transition>
         <transition name="flying">
             <img v-if="flyingActive" src="/images/moon-cutter.png" alt="moon-cutter" class="h-[50vh] top-[25vh] fixed z-21 right-[-50vw]">

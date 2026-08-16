@@ -46,13 +46,13 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             if (enemy.abilityType === 'offense') {
                 if (Math.random() < 0.85) enemy.nextMove = 'Attack'
                 else enemy.nextMove = 'Block'
-                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block'
-                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack'
+                if (enemy.currentHP / enemy.maxHP < 0.1) enemy.nextMove = 'Block'
+                if (playerStore.currentHP / playerStore.maxHP < 0.1) enemy.nextMove = 'Attack'
             } else {
-                if (Math.random() < 0.85) enemy.nextMove = 'Block'
+                if (Math.random() < 0.5) enemy.nextMove = 'Block'
                 else enemy.nextMove = 'Attack'
-                if (playerStore.currentHP / playerStore.maxHP < 0.2) enemy.nextMove = 'Attack'
-                if (enemy.currentHP / enemy.maxHP < 0.2) enemy.nextMove = 'Block'
+                if (playerStore.currentHP / playerStore.maxHP < 0.1) enemy.nextMove = 'Attack'
+                if (enemy.currentHP / enemy.maxHP < 0.1) enemy.nextMove = 'Block'
             }
 
             const canAffordAbility = enemy.manaCost === 0 || enemy.currentMana >= enemy.manaCost
@@ -290,7 +290,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             spriteURL: friend.spriteURL,
                             flavorText: `I cast ${friend.abilityName} on ${this.currentEnemies.find((enemy: Enemy) =>
                                 enemy.targetOf.find((targeter: Friend) => targeter.name === friend.name)
-                            )!.name
+                            )!.name ?? this.currentEnemies[0]!.name
                                 }!`,
                             action: friend.ability,
                             sound: friend.sound,

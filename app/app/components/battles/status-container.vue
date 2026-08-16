@@ -10,7 +10,8 @@ const prop = defineProps<{
 }>()
 
 let colors: Record<string, string> = {
-    'Confusion': 'bg-purple-600 border-purple-700'
+    'Confusion': 'bg-purple-600 border-purple-700',
+    'Buff Truth': 'bg-yellow-500 border-amber-700'
 }
 </script>
 

@@ -34,7 +34,7 @@ export function modifyDefense(defense: number):number {
 }
 
 export function modifyAttack(propAttack: number):number {
-    if(useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.25) {
+    if(useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.2) {
         let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === 'Joey' && e.action === attack)
         if (indexInsert === -1) {
             useCurrentBattleStore().thisTurnEvents.push({

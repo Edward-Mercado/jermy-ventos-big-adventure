@@ -1,3 +1,5 @@
+import BuffLie from "~/components/animations/buff-lie.vue";
+
 export const useBattleStore = defineStore('battle', {
     state: () => ({
         'littleGuys1': {
@@ -301,11 +303,33 @@ export const useBattleStore = defineStore('battle', {
                 currentMana: 100,
                 maxMana: 100,
                 img: '/images/mini-crossword.png',
-                expDrop: 40,
+                expDrop: 65,
                 desc: "#FreeTheMini",
                 level: 3,
                 title: "NYT Puzzle Kid",
                 sound: '/sounds/baselow.caf',
+            }]
+        },
+
+        'battleGil': {
+            enemies: [{
+                name: "Gil",
+                attack: 25,
+                defense: 25,
+                abilityType: "defense",
+                abilityName: "Buff Lie",
+                ability: buffLie,
+                manaCost: 50,
+                currentHP: 140,
+                maxHP: 140,
+                currentMana: 100,
+                maxMana: 100,
+                img: '/images/gil.png',
+                expDrop: 65,
+                desc: "Seems pretty cool but egos me too much :/",
+                level: 3,
+                title: "Unresponsive Boyfriend Haver",
+                sound: '/sounds/gil.m4a',
             }]
         },
 

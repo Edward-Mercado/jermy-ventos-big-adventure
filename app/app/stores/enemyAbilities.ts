@@ -163,7 +163,7 @@ export function miniCrossword(user:Enemy[]) {
     useCurrentBattleStore().animation.doneByEnemy = true
     enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
-        attack([enemyUser, 'user', 1.2])
+        attack([enemyUser, 'user', 0.6])
         useCampaignSaveStore().currentStatus = {
             name: "Confusion",
             type: "Inhibit",
@@ -172,4 +172,55 @@ export function miniCrossword(user:Enemy[]) {
             length: 3
         }
     }, 4200)
+}
+
+export function circleSmash(user:Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'circleSmash'
+    useCurrentBattleStore().animation.doneByEnemy = true
+    enemyUser.currentMana -= enemyUser.manaCost
+    setTimeout(() => {
+        attack([enemyUser, 'user', 1.3])
+    }, 900)
+}
+
+export function buffLie(user?:Enemy[]) {
+    let enemyUser = null
+    if(user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
+    }
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'buffLie'
+    if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        enemyUser.currentMana -= enemyUser.manaCost
+        setTimeout(() => {
+            if(Math.random() < 0.5) {
+                enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
+                enemyUser.defense = Math.floor(enemyUser.defense * 1.05)
+                enemyUser.maxMana = Math.floor(enemyUser.maxMana * 1.2)
+            }
+        }, 1800)
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
+        if (friendFound) {
+            useCampaignSaveStore().currentMana -= friendFound.manaCost
+        }
+
+        setTimeout(() => {
+            useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+                if(Math.random() < 0.5) {
+                    useCampaignSaveStore().currentStatus = {
+                        name: 'Buff Truth',
+                        type: 'Inhibit',
+                        afflictedName: "Joey",
+                        action: null,
+                        length: 3
+                    }
+                }
+            })
+        }, 1800)
+    }
 }

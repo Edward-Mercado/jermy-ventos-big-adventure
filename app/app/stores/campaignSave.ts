@@ -9,6 +9,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
         currentStatus: null as Status | null,
 
         isBlocking: false,
+        slayerActive: false,
 
         attack: 120 as number,
         defense: 0 as number,

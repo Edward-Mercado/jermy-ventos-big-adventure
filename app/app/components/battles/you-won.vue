@@ -54,6 +54,7 @@ if(abilityGainKeys.find(key => key[currentStateKey.value])) {
 campaignSaveStore.currentStatus = null
 campaignSaveStore.currentHP = campaignSaveStore.maxHP
 campaignSaveStore.currentMana = campaignSaveStore.maxMana
+campaignSaveStore.slayerActive = false
 
 campaignSaveStore.saveGame()
 campaignSaveStore.loadFromLocalStorage()
