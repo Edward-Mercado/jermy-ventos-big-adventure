@@ -29,8 +29,9 @@ export function isEnemy(entity: any): boolean {
     return "targetOf" in entity
 }
 
-export function modifyDefense(defense: number):number {
-    return defense
+export function modifyDefense(propDefense: number):number {
+        if(useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25*(propDefense))
+    return propDefense
 }
 
 export function modifyAttack(propAttack: number):number {
@@ -57,6 +58,7 @@ export function modifyAttack(propAttack: number):number {
         }
         return 0
     }
+    if(useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25*(propAttack))
 
     return propAttack
 }

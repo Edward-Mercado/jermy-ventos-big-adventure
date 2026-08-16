@@ -19,6 +19,8 @@ const prop = defineProps<{
     doneByEnemy: boolean
 }>()
 
+console.log(prop.doneByEnemy)
+
 const mounted = ref<boolean>(false)
 const itemsMoving = ref<boolean>(false)
 onMounted(() => mounted.value = true)
@@ -35,6 +37,21 @@ setTimeout(() => {
 </script>
 
 <style scoped>
+.black-bg-enter-from,
+.black-bg-leave-to {
+    opacity: 0
+}
+
+.black-bg-enter-to,
+.black-bg-leave-from {
+    opacity: 0.5
+}
+
+.black-bg-enter-active,
+.black-bg-leave-active {
+    transition: opacity 0.3s ease-in-out
+}
+
 .fade-right-enter-from,
 .fade-right-leave-to {
     opacity: 0;

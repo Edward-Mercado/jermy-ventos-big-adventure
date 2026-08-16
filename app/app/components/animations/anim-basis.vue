@@ -8,6 +8,10 @@
         <animations-mp-halation v-if="animationName==='moonPrincessHalation'" :done-by-enemy="doneByEnemy"></animations-mp-halation>
         <animations-mini-crossword v-if="animationName==='miniCrossword'" :done-by-enemy="doneByEnemy"></animations-mini-crossword>
         <animations-buff-lie v-if="animationName==='buffLie'" :done-by-enemy="doneByEnemy"></animations-buff-lie>
+        <animations-make-it-wild v-if="animationName==='makeItWild'" :done-by-enemy="doneByEnemy"></animations-make-it-wild>
+        <animations-minion-summon v-if="animationName==='minionSummon'" :done-by-enemy="doneByEnemy"></animations-minion-summon>
+        <animations-alastor-summon v-if="animationName==='alastorSummon'" :done-by-enemy="doneByEnemy"></animations-alastor-summon>
+        <animations-magic-ntt v-if="animationName==='magicNoseTongueTouch'" :done-by-enemy="doneByEnemy"></animations-magic-ntt>
     </div>
 </template>
 
@@ -19,5 +23,14 @@ const prop = defineProps<{
 </script>
 
 <style scoped>
+@keyframes shaky {
+    0%, 100% { transform: rotate(0deg) }
+    16% {transform: rotate(5deg); }
+    33% { scale: 0.9; transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    67% { scale: 1.1; transform: rotate(-5deg);}
+}
+
+
 
 </style>

@@ -18,14 +18,12 @@ export const useFriendsStore = defineStore('friends', {
             name: "Gavin",
             eachTurnCheck: null,
             abilityName: "Make it Wild",
-            abilityDesc: "Randomize enemy health, defense, and attack.",
+            abilityDesc: "Randomize all stats.",
             abilityTiming: "With Attack",
             targetType: "AOE",
             spriteURL: "/images/gavin.png",
             sound: "/sounds/gavin.m4a",
-            ability: () => {
-                
-            },
+            ability: makeItWild,
             manaCost: 15
         } as Friend,
         "Noure": {
@@ -117,9 +115,7 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Self",
             spriteURL: "/images/gil.png",
             sound: "/sounds/gil.m4a",
-            ability: () => {
-                
-            },
+            ability: buffLie,
             manaCost: 35
         } as Friend,
         "Kellan": {

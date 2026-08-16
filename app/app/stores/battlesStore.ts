@@ -333,6 +333,72 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
+        'battleGav': {
+            enemies: [{
+                name: "Gavin",
+                attack: 25,
+                defense: 25,
+                abilityType: "offense",
+                abilityName: "Make it Wild",
+                ability: makeItWild,
+                manaCost: 50,
+                currentHP: 140,
+                maxHP: 140,
+                currentMana: 100,
+                maxMana: 100,
+                img: '/images/gavin.png',
+                expDrop: 65,
+                desc: "Your cousin.",
+                level: 4,
+                title: "Responsive Boyfriend Is-er",
+                sound: '/sounds/gavin.m4a',
+            }]
+        },
+
+        'alastor1': {
+            enemies: [{
+                name: "Alastor",
+                attack: 35,
+                defense: 20,
+                abilityType: "offense",
+                abilityName: "Minion Summon",
+                ability: minionSummon,
+                manaCost: 70,
+                currentHP: 130,
+                maxHP: 130,
+                currentMana: 100,
+                maxMana: 100,
+                img: '/images/alastor.png',
+                expDrop: 50,
+                desc: "Hater of TV and Hated by U/Me",
+                level: 4,
+                title: "Radio Demon",
+                sound: '/sounds/alastor.m4a',
+            }]
+        },
+
+        'battleGab': {
+            enemies: [{
+                name: "Gab",
+                attack: 35,
+                defense: 15,
+                abilityType: "defense",
+                abilityName: "Magically Touch Nose With Tongue",
+                ability: magicNoseTongueTouch,
+                manaCost: 50,
+                currentHP: 150,
+                maxHP: 150,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/gab.png',
+                expDrop: 65,
+                desc: "Your sister. Where did the 'stinky' moniker come from anyway?",
+                level: 4,
+                title: "Sister",
+                sound: '/sounds/gab.m4a',
+            }]
+        },
+
 
     } as Record<string, EnemyGroup>),
     actions: {

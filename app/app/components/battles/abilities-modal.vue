@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white/90 fixed w-[96vw] h-[80vh] top-[10vh] left-[2vw] flex flex-col gap-2 rounded-2xl p-2 z-12">
+    <div class="bg-white/90 fixed w-[96vw] h-[90vh] top-[5vh] left-[2vw] flex flex-col gap-2 rounded-2xl p-2 z-12 overflow-y-hidden">
         <div class="flex flex-row w-full justify-between items-center">
             <button
                 class="pixfont text-black text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500"
@@ -9,7 +9,7 @@
         </div>
         <div class="flex flex-row justify-between h-full px-1">
             <div
-                class="w-[50%] h-full p-2 rounded-sm overflow-y-hidden bg-linear-to-tr from-slate-300/90 to-slate-200/90 shadow-lg">
+                class="w-[50%] h-full p-2 rounded-sm bg-linear-to-tr from-slate-300/90 to-slate-200/90 shadow-lg overflow-y-scroll">
                 <p class="text-black text-2xl pixfont">Choose Abilities To Use</p>
                 <div class="h-1 rounded-full w-full bg-black mt-2"></div>
                 <div class="carousel pt-2 min-h-full mt-2 w-full flex-col gap-3">

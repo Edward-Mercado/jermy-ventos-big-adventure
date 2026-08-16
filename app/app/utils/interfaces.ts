@@ -34,8 +34,7 @@ export interface EnemyData {
 export interface Enemy extends EnemyData {
     nextMove: ("Attack" | "Block" | "Use Ability" | null),
     targetOf: Friend[],
-    status: Status,
-    counter: number,
+    status: Status | null,
     shrinkCount: number,
     consecutiveBlocks: number,
     isBlocking: boolean,

@@ -94,7 +94,7 @@ export function mangoConsumption(user?: Enemy[]) {
         if (friendFound) {
             //@ts-ignore
             playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
-            let healFactor = Math.round(0.4*(playerUser.maxHP))
+            let healFactor = Math.round(0.4 * (playerUser.maxHP))
             playerUser.currentHP = Math.min(playerUser.currentHP + healFactor, playerUser.maxHP)
         }
     }
@@ -102,7 +102,7 @@ export function mangoConsumption(user?: Enemy[]) {
 
 export function moonPrincessHalation(user?: Enemy[]) {
     let enemyUser = null
-    if(user) {
+    if (user) {
         enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
     }
     useCurrentBattleStore().animation.playing = true
@@ -122,7 +122,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
 
         let damageMultis: number[] = [1.8, 1.5, 1.2, 1]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
-        let damageMulti: number = damageMultis[length-1]!
+        let damageMulti: number = damageMultis[length - 1]!
 
         setTimeout(() => {
             useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
@@ -145,7 +145,7 @@ export function lemonRebirth(user: Enemy[]) {
     }
 }
 
-export function grassCut(user:Enemy[]) {
+export function grassCut(user: Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'miniCrossword'
@@ -156,7 +156,7 @@ export function grassCut(user:Enemy[]) {
     }, 900)
 }
 
-export function miniCrossword(user:Enemy[]) {
+export function miniCrossword(user: Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'miniCrossword'
@@ -174,7 +174,7 @@ export function miniCrossword(user:Enemy[]) {
     }, 4200)
 }
 
-export function circleSmash(user:Enemy[]) {
+export function circleSmash(user: Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'circleSmash'
@@ -185,9 +185,9 @@ export function circleSmash(user:Enemy[]) {
     }, 900)
 }
 
-export function buffLie(user?:Enemy[]) {
+export function buffLie(user?: Enemy[]) {
     let enemyUser = null
-    if(user) {
+    if (user) {
         enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
     }
     useCurrentBattleStore().animation.playing = true
@@ -196,7 +196,7 @@ export function buffLie(user?:Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
-            if(Math.random() < 0.5) {
+            if (Math.random() < 0.5) {
                 enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
                 enemyUser.defense = Math.floor(enemyUser.defense * 1.05)
                 enemyUser.maxMana = Math.floor(enemyUser.maxMana * 1.2)
@@ -211,7 +211,7 @@ export function buffLie(user?:Enemy[]) {
 
         setTimeout(() => {
             useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
-                if(Math.random() < 0.5) {
+                if (Math.random() < 0.3) {
                     useCampaignSaveStore().currentStatus = {
                         name: 'Buff Truth',
                         type: 'Inhibit',
@@ -222,5 +222,203 @@ export function buffLie(user?:Enemy[]) {
                 }
             })
         }, 1800)
+    }
+}
+
+
+export function makeItWild(user?: Enemy[]) {
+    let enemyUser = null
+    if (user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
+    }
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'makeItWild'
+    if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        enemyUser.currentMana -= enemyUser.manaCost
+        setTimeout(() => {
+            enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
+            enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
+            enemyUser.maxHP = Math.floor(Math.random() * enemyUser.maxHP * 2)
+            enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
+            enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
+
+            const ucss = useCampaignSaveStore()
+            if (!ucss.isBlocking) {
+                ucss.attack = Math.floor(Math.floor(Math.random() * ucss.attack * 2))
+                ucss.defense = Math.floor(Math.floor(Math.random() * ucss.defense * 2))
+                ucss.maxHP = Math.floor(Math.floor(Math.random() * ucss.maxHP * 2))
+                ucss.currentHP = Math.min(Math.floor(Math.floor(Math.random() * ucss.currentHP * 2)), ucss.maxHP)
+                ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
+            }
+        }, 3900)
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
+        if (friendFound) {
+            useCampaignSaveStore().currentMana -= friendFound.manaCost
+        }
+
+        setTimeout(() => {
+            useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+                const ucss = useCampaignSaveStore()
+
+                ucss.attack = Math.floor(Math.floor(Math.random() * ucss.attack * 2))
+                ucss.defense = Math.floor(Math.floor(Math.random() * ucss.defense * 2))
+                ucss.maxHP = Math.floor(Math.floor(Math.random() * ucss.maxHP * 2))
+                ucss.currentHP = Math.min(Math.floor(Math.floor(Math.random() * ucss.currentHP * 2)), ucss.maxHP)
+                ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
+                ucss.currentMana = Math.floor(Math.max(Math.random() * ucss.currentMana * 2, 0))
+
+                useCurrentBattleStore().currentEnemies.forEach((enemyUser: Enemy) => {
+                    enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
+                    enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
+                    enemyUser.maxHP = Math.floor(Math.random() * enemyUser.maxHP * 2)
+                    enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
+                    enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
+                })
+            })
+        }, 3900)
+    }
+}
+
+export function minionSummon(user: Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.doneByEnemy = true
+    enemyUser.currentMana -= enemyUser.manaCost
+    setTimeout(() => {
+        let rolledAlastor = Math.random() < 0.04
+        if (useCurrentBattleStore().currentEnemies.length < 4 && !rolledAlastor) {
+            useCurrentBattleStore().animation.name = 'minionSummon'
+            useCurrentBattleStore().currentEnemies.push({
+                name: "Alastor Minion",
+                attack: Math.ceil(enemyUser.attack / 4),
+                defense: Math.ceil(enemyUser.defense / 4),
+                abilityType: "offense",
+                ability: () => { },
+                abilityName: 'nothing',
+                maxHP: Math.ceil(enemyUser.maxHP / 2),
+                currentHP: Math.max(Math.ceil(enemyUser.currentHP / 4), Math.ceil(enemyUser.maxHP / 2)),
+                currentMana: 10,
+                manaCost: 30000,
+                maxMana: 10,
+                img: '/images/alastor-minion.png',
+                expDrop: 0,
+                desc: 'A shadow minion summoned by Alastor',
+                level: 1,
+                title: 'Shadow Creature',
+                sound: '/sounds/basehigh.m4a',
+                nextMove: "Attack",
+                targetOf: [],
+                status: null,
+                shrinkCount: 0,
+                consecutiveBlocks: 0,
+                isBlocking: false,
+                attackThisEvent: false,
+            })
+        } else if (useCurrentBattleStore().currentEnemies.length < 4) {
+            useCurrentBattleStore().animation.name = 'alastorSummon'
+            useCurrentBattleStore().currentEnemies.push(enemyUser)
+        }
+    }, 900)
+}
+
+export function magicNoseTongueTouch(user?: Enemy[]) {
+    let enemyUser = null
+    if (user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
+    }
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'magicNoseTongueTouch'
+    if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        enemyUser.currentMana -= enemyUser.manaCost
+        setTimeout(() => {
+            const success: boolean = Math.random() < (useCampaignSaveStore().currentHP / useCampaignSaveStore().maxHP)
+            if (!useCampaignSaveStore().isBlocking && success) {
+                useCampaignSaveStore().currentStatus = {
+                    name: "Confusion",
+                    type: "Inhibit",
+                    action: null,
+                    afflictedName: 'user',
+                    length: 4
+                }
+            } else if (!success) {
+                let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.action === magicNoseTongueTouch)
+                if (indexInsert === -1) {
+                    useCurrentBattleStore().thisTurnEvents.push({
+                        user: "Gab",
+                        action: null,
+                        spriteURL: '/images/gab.png',
+                        sound: '/sounds/gab.m4a',
+                        flavorText: "My failed!",
+                        actionPerformed: false
+                    })
+                } else {
+                    useCurrentBattleStore().thisTurnEvents.splice(indexInsert + 1, 0, {
+                        user: "Gab",
+                        action: null,
+                        spriteURL: '/images/gab.png',
+                        sound: '/sounds/gab.m4a',
+                        flavorText: "My failed!",
+                        actionPerformed: false
+                    })
+                }
+            }
+        }, 500)
+    } else {
+        let playerUser = useCampaignSaveStore()
+        useCurrentBattleStore().animation.doneByEnemy = false
+
+        //@ts-ignore
+        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.abilityName === "MultiWielding")
+
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            const target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
+            if (!target) return
+
+            console.log(target)
+
+            setTimeout(() => {
+                //@ts-ignore
+                const success = Math.random() < (target.currentHP / target.maxHP)
+                //@ts-ignore
+                if (!target.isBlocking && success) {
+                    //@ts-ignore
+                    target.status = {
+                        name: "Confusion",
+                        type: "Inhibit",
+                        action: null,
+                        afflictedName: 'user',
+                        length: 3
+                    }
+                } else if (!success) {
+                    let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.action === magicNoseTongueTouch)
+                    if (indexInsert === -1) {
+                        useCurrentBattleStore().thisTurnEvents.push({
+                            user: "Joey",
+                            action: null,
+                            spriteURL: '/images/joey.png',
+                            sound: '/sounds/joey.m4a',
+                            flavorText: "Your attack failed!",
+                            actionPerformed: false
+                        })
+                    } else {
+                        useCurrentBattleStore().thisTurnEvents.splice(indexInsert + 1, 0, {
+                            user: "Joey",
+                            action: null,
+                            spriteURL: '/images/joey.png',
+                            sound: '/sounds/joey.m4a',
+                            flavorText: "Your attack failed!",
+                            actionPerformed: false
+                        })
+                    }
+                }
+
+            }, 300)
+        }
     }
 }

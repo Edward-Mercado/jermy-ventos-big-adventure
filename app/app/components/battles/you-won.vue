@@ -58,6 +58,7 @@ campaignSaveStore.slayerActive = false
 
 campaignSaveStore.saveGame()
 campaignSaveStore.loadFromLocalStorage()
+campaignSaveStore.changeStats()
 </script>
 
 
