@@ -3,6 +3,9 @@
         <div
             class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2 rounded-lg">
             <h4 class="pixfont text-2xl -mb-2">Joey</h4>
+            <transition name="fade-enlarge">
+                <battles-status-container v-if="useCampaignSaveStore().currentStatus" :status="useCampaignSaveStore().currentStatus!"></battles-status-container>
+            </transition>
             <battles-health-bar :currentHP="campaignStore.currentHP" :maxHP="campaignStore.maxHP"></battles-health-bar>
             <button v-if="pickingMove" class="bg-slate-900 flex items-center justify-center w-full h-[30%] p-2 pixfont border-2 hover:bg-slate-600 
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
@@ -198,5 +201,31 @@ async function handleConfirm() {
 .wandStrike-enter-active,
 .wandStrike-leave-active {
     transition: all 300ms ease-in-out
+}
+
+@keyframes fade-enlarge {
+    0% {
+        scale: 0;
+        opacity: 0;
+        rotate: 5deg
+    }
+    80% {
+        scale: 1.2;
+        opacity: 1;
+        rotate: -1deg
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+        rotate: 0deg;
+    }
+}
+
+.fade-enlarge-enter-active {
+    animation: fade-enlarge ease-in-out 800ms;
+}
+
+.fade-enlarge-leave-active {
+    animation: fade-enlarge ease-in-out 800ms reverse;
 }
 </style>

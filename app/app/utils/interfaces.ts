@@ -80,7 +80,7 @@ export interface BattleEvent {
     user: string,
     spriteURL: string,
     flavorText: string,
-    action: Function,
+    action: Function | null,
     actionArgs?: any[],
     sound: string,
     actionPerformed: boolean,
@@ -88,7 +88,8 @@ export interface BattleEvent {
 
 export interface Status {
     name: string,
-    img: string,
     type: ("Inhibit" | "DOT" | "Double Attack"),
-    action: Function,
+    action: Function | null,
+    afflictedName: string,
+    length: number,
 }

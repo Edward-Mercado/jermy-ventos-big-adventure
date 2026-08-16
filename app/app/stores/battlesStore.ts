@@ -287,6 +287,27 @@ export const useBattleStore = defineStore('battle', {
             },]
         },
 
+        'miniCrossword1': {
+            enemies: [{
+                name: "Mini Crossword",
+                attack: 10,
+                defense: 15,
+                abilityType: "offense",
+                abilityName: "Quick Puzzle Confusion",
+                ability: miniCrossword,
+                manaCost: 60,
+                currentHP: 90,
+                maxHP: 90,
+                currentMana: 100,
+                maxMana: 100,
+                img: '/images/mini-crossword.png',
+                expDrop: 40,
+                desc: "#FreeTheMini",
+                level: 3,
+                title: "NYT Puzzle Kid",
+                sound: '/sounds/baselow.caf',
+            }]
+        },
 
 
     } as Record<string, EnemyGroup>),

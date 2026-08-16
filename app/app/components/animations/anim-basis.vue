@@ -6,6 +6,7 @@
         <animations-grass-cut v-if="animationName==='grassCutting'" :done-by-enemy="doneByEnemy"></animations-grass-cut>
         <animations-lemon-rebirth v-if="animationName==='lemonRebirth'" :done-by-enemy="doneByEnemy"></animations-lemon-rebirth>
         <animations-mp-halation v-if="animationName==='moonPrincessHalation'" :done-by-enemy="doneByEnemy"></animations-mp-halation>
+        <animations-mini-crossword v-if="animationName==='miniCrossword'" :done-by-enemy="doneByEnemy"></animations-mini-crossword>
     </div>
 </template>
 

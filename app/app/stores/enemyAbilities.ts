@@ -148,10 +148,28 @@ export function lemonRebirth(user: Enemy[]) {
 export function grassCut(user:Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
-    useCurrentBattleStore().animation.name = 'grassCutting'
+    useCurrentBattleStore().animation.name = 'miniCrossword'
     useCurrentBattleStore().animation.doneByEnemy = true
     enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         attack([enemyUser, 'user', 1.2])
     }, 900)
+}
+
+export function miniCrossword(user:Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'miniCrossword'
+    useCurrentBattleStore().animation.doneByEnemy = true
+    enemyUser.currentMana -= enemyUser.manaCost
+    setTimeout(() => {
+        attack([enemyUser, 'user', 1.2])
+        useCampaignSaveStore().currentStatus = {
+            name: "Confusion",
+            type: "Inhibit",
+            action: null,
+            afflictedName: 'user',
+            length: 3
+        }
+    }, 4200)
 }

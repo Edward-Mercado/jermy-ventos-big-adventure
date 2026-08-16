@@ -33,8 +33,32 @@ export function modifyDefense(defense: number):number {
     return defense
 }
 
-export function modifyAttack(attack: number):number {
-    return attack
+export function modifyAttack(propAttack: number):number {
+    if(useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.25) {
+        let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === 'Joey' && e.action === attack)
+        if (indexInsert === -1) {
+            useCurrentBattleStore().thisTurnEvents.push({
+                user: "Joey",
+                action: null,
+                spriteURL: '/images/joey.png',
+                sound: '/sounds/joey.m4a',
+                flavorText: "You were confused and unable to attack!",
+                actionPerformed: false
+            })
+        } else {
+            useCurrentBattleStore().thisTurnEvents.splice(indexInsert+1, 0, {
+                user: "Joey",
+                action: null,
+                spriteURL: '/images/joey.png',
+                sound: '/sounds/joey.m4a',
+                flavorText: "You were confused and unable to attack!",
+                actionPerformed: false
+            })
+        }
+        return 0
+    }
+
+    return propAttack
 }
 
 export function attack(args: any[]) {

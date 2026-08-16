@@ -106,6 +106,8 @@ async function proceedBattle() {
     useCurrentBattleStore().animation.name = null
     useCurrentBattleStore().animation.playing = false
     useCurrentBattleStore().animation.doneByEnemy = false
+
+
     if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
         
         campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10+campaignSaveStore.playerLevel * 5))
@@ -116,6 +118,11 @@ async function proceedBattle() {
                 useCampaignSaveStore().listenLevelUp()
             } else useCurrentBattleStore().enemyChooseMove(e)
         })
+
+        if(campaignSaveStore.currentStatus?.length) {
+            campaignSaveStore.currentStatus.length--
+            if(campaignSaveStore.currentStatus.length === 0) campaignSaveStore.currentStatus = null
+        }
 
         useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
         useCurrentBattleStore().singleTargetPairs.length = 0
