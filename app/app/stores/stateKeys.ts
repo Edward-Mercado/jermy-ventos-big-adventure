@@ -61,6 +61,7 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'battle', name: 'lemonAlien1' },
                 { type: 'battle', name: 'battleKortnee' },
                 { type: 'cutscene', name: 'saveKortnee' },
+                { type: 'shop', name: 'noureShop' },
                 { type: 'battle', name: 'littleGuys2' },
                 { type: 'choice', name: 'GsVentos' },
                 { type: 'battle', name: 'miniCrossword1' },

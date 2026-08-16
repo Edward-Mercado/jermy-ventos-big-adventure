@@ -11,6 +11,9 @@
         <transition name="fade-left">
             <img v-if="fightersOnScreen" src="/images/joey.png" alt="joey" class="h-[50vh] z-21 top-[25vh] shake-loop">
         </transition>
+        <transition name="fade-left">
+            <img v-if="fightersOnScreen && shirt" :src="shirt.img" alt="shirt" class="h-[50vh] z-21 top-[25vh] shake-loop fixed translate-y-[80%] translate-x-[-25%]">
+        </transition>
         <transition name="fade-right">
             <img v-if="fightersOnScreen" :src="enemyURL" alt="enemy" class="h-[50vh] z-21 top-[25vh] shake-loop">
         </transition>
@@ -25,6 +28,10 @@ const prop = defineProps<{
 const mounted = ref<boolean>(false)
 const cloudActive = ref<boolean>(false)
 const fightersOnScreen = ref<boolean>(false)
+
+const shirt = computed(() => {
+    return useCampaignSaveStore().items.find((i:storeItem) => i.name.includes("the Shirt"))
+})
 
 onMounted(() => mounted.value = true)
 

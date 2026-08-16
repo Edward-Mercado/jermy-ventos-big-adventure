@@ -92,3 +92,14 @@ export interface Status {
     afflictedName: string,
     length: number,
 }
+
+export type ChoiceOption = { img: string; desc: string; func: () => void }
+
+export interface storeItem {
+    name: string,
+    img: string,
+    stats: {
+        attack: number,
+        defense: number
+    }
+}

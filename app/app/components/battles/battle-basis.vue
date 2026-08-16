@@ -1,6 +1,7 @@
 <template>
     <animations-anim-basis v-if="useCurrentBattleStore().animation.playing"
-    :animation-name="useCurrentBattleStore().animation.name" :done-by-enemy="useCurrentBattleStore().animation.doneByEnemy"></animations-anim-basis>
+        :animation-name="useCurrentBattleStore().animation.name"
+        :done-by-enemy="useCurrentBattleStore().animation.doneByEnemy"></animations-anim-basis>
     <transition name="fade">
         <div class="fixed h-screen w-screen bg-black z-15 top-0" v-if="lost">
 
@@ -8,8 +9,7 @@
     </transition>
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
-            <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget"
-            :wand-striking="wandStriking"
+            <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget" :wand-striking="wandStriking"
                 @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
                     attackTarget = null;
                     if (move === 'Attack') enemyMode = 'Target'
@@ -37,13 +37,12 @@
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center fixed top-2 left-[40%]"
             @click="clickSFX(); getExp(); $emit('win')">SKIP</button>
     </div>
-    <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%]">
+    <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%] z-16">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
         <transition name="slide-up">
-            <battles-dialogue-box v-if="battleIndex > -1 && battlePlaying" :battle-instance="useCurrentBattleStore().thisTurnEvents[battleIndex]!" 
-            :speed="45"
-            @proceed="proceedBattle()"    
-            ></battles-dialogue-box>
+            <battles-dialogue-box v-if="battleIndex > -1 && battlePlaying"
+                :battle-instance="useCurrentBattleStore().thisTurnEvents[battleIndex]!" :speed="45"
+                @proceed="proceedBattle()"></battles-dialogue-box>
         </transition>
     </div>
 </template>
@@ -69,23 +68,25 @@ const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
+console.log(useCampaignSaveStore().items)
+
 currentBattleStore.initialize(currentStateKey.value)
 useCampaignSaveStore().consecutiveBlocks = 0
 
 function beginTurn() {
-    pickingMove.value = false; 
+    pickingMove.value = false;
     battlePlaying.value = true;
     useCurrentBattleStore().thisTurnEvents = currentBattleStore.compileTurnData(attackTarget.value);
     battleIndex.value++;
     attackTarget.value = null;
     enemyMode.value = "Check";
-    useBattleGuiStore().selectedFriends.forEach((friend:Friend) => {
+    useBattleGuiStore().selectedFriends.forEach((friend: Friend) => {
         useBattleGuiStore().move(friend)
     })
 }
 
 function getExp() {
-    useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+    useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
         useCampaignSaveStore().expGained += e.expDrop
         useCampaignSaveStore().listenLevelUp()
     })
@@ -94,47 +95,47 @@ function getExp() {
 async function proceedBattle() {
     useCurrentBattleStore().joeyURL = '/images/joey.png'
     battlePlaying.value = false
-    if(campaignSaveStore.currentHP === 0) {
-        useCurrentBattleStore().thisTurnEvents.forEach((event:BattleEvent, index) => {
-            if(index >= battleIndex.value && event.user === 'Joey') {
+    if (campaignSaveStore.currentHP === 0) {
+        useCurrentBattleStore().thisTurnEvents.forEach((event: BattleEvent, index) => {
+            if (index >= battleIndex.value && event.user === 'Joey') {
                 useCurrentBattleStore().thisTurnEvents.splice(index)
                 index--
             }
         })
-    } 
+    }
     battleIndex.value++
     useCurrentBattleStore().animation.name = null
     useCurrentBattleStore().animation.playing = false
     useCurrentBattleStore().animation.doneByEnemy = false
 
 
-    if(battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
-        campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10+campaignSaveStore.playerLevel * 5))
+    if (battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
+        campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10 + campaignSaveStore.playerLevel * 5))
         useCurrentBattleStore().battleEventsDone.length = 0
-        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
-            if(e.currentHP === 0) {
+        useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+            if (e.currentHP === 0) {
                 useCampaignSaveStore().expGained += e.expDrop
                 useCampaignSaveStore().listenLevelUp()
             } else {
                 useCurrentBattleStore().enemyChooseMove(e)
-                if(e.status) {
+                if (e.status) {
                     e.status.length--
-                    if(e.status.length === 0) e.status = null
+                    if (e.status.length === 0) e.status = null
                 }
             }
         })
 
-        if(campaignSaveStore.currentStatus?.length) {
+        if (campaignSaveStore.currentStatus?.length) {
             campaignSaveStore.currentStatus.length--
-            if(campaignSaveStore.currentStatus.length === 0) campaignSaveStore.currentStatus = null
+            if (campaignSaveStore.currentStatus.length === 0) campaignSaveStore.currentStatus = null
         }
 
-        useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e:Enemy) => e.currentHP > 0)
+        useCurrentBattleStore().currentEnemies = useCurrentBattleStore().currentEnemies.filter((e: Enemy) => e.currentHP > 0)
         useCurrentBattleStore().singleTargetPairs.length = 0
-        
-        if(useCampaignSaveStore().currentHP === 0) {
+
+        if (useCampaignSaveStore().currentHP === 0) {
             lost.value = true
-            setTimeout(() => {emit('lose')}, 1000)
+            setTimeout(() => { emit('lose') }, 1000)
         } else if (useCurrentBattleStore().currentEnemies.length === 0) {
             emit('win')
         }
@@ -143,27 +144,27 @@ async function proceedBattle() {
         pickingMove.value = true;
         campaignSaveStore.isBlocking = false;
         wandStriking.value = false
-        useCurrentBattleStore().currentEnemies.forEach((enemy:Enemy) => {
+        useCurrentBattleStore().currentEnemies.forEach((enemy: Enemy) => {
             enemy.isBlocking = false
-            enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + (10 + enemy.level*5))
+            enemy.currentMana = Math.min(enemy.maxMana, enemy.currentMana + (10 + enemy.level * 5))
             enemy.targetOf.length = 0
         })
-    
+
     } else {
         await nextTick()
 
         battlePlaying.value = true
         wandStriking.value = false
-        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => {
+        useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
             e.attackThisEvent = false
         })
 
-        if(useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack 
-        && useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user === "Joey") {
+        if (useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack
+            && useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user === "Joey") {
             wandStriking.value = true
         } else if (useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.action === attack) {
-            useCurrentBattleStore().currentEnemies.find((e:Enemy) => e.name === useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user)!
-            .attackThisEvent = true
+            useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === useCurrentBattleStore().thisTurnEvents[battleIndex.value]!.user)!
+                .attackThisEvent = true
         }
     }
 }
@@ -221,10 +222,12 @@ async function proceedBattle() {
 .fade-leave-to {
     opacity: 0
 }
+
 .fade-enter-to,
 .fade-leave-from {
     opacity: 1
 }
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 1s

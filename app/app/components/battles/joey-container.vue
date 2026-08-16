@@ -1,5 +1,6 @@
 <template>
     <div class="w-[35%] flex flex-col justify-between relative overflow-hidden"> <!-- JOEY CONTAINER-->
+        <battles-item-handler></battles-item-handler>
         <div
             class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2 rounded-lg">
             <h4 class="pixfont text-2xl -mb-2">Joey</h4>
@@ -24,14 +25,14 @@
         </transition>
         <transition name="wandStrike">
             <img v-if="wandStriking" src="/images/birthday_wand.png" alt="birthday_wand"
-            class="absolute bottom-0 h-[50%]">
+            class="absolute bottom-0 h-[50%] z-13">
         </transition>
         <transition name="fade">
             <img v-if="campaignStore.isBlocking" src="/images/shield.png" alt="shield"
-            class="absolute bottom-0 left-[35%] h-[35%] opacity-80">
+            class="absolute bottom-0 left-[35%] h-[35%] opacity-80 z-13">
         </transition>
         <div v-if="pickingMove"
-            class="w-[35%] absolute bottom-2 right-2 bg-slate-600/70 rounded-lg h-[65%] border-2 border-black shadow-md shadow-slate-900/20 p-2 flex flex-col gap-2">
+            class="w-[35%] absolute bottom-2 right-2 bg-slate-600/70 rounded-lg h-[65%] border-2 border-black shadow-md shadow-slate-900/20 p-2 flex flex-col gap-2 z-11">
             <h2 class="pixfont text-white text-xl">Actions:</h2>
             <div class="relative mt-1">
                 <div class="relative mt-1">
@@ -76,18 +77,21 @@
         <transition name="modal">
             <battles-joey-checker v-if="checking && pickingMove" @close="checking = false"></battles-joey-checker>
         </transition>
-        <transition name="modal">
-            <battles-abilities-modal v-if="viewAbilities && pickingMove" @close="viewAbilities = false"
-                @confirm="(chosenFriends: Friend[]) => {updateSelectedFriends(chosenFriends)}"></battles-abilities-modal>
-        </transition>
+        <div class="z-18 fixed">
+
+            <transition name="modal">
+                <battles-abilities-modal v-if="viewAbilities && pickingMove" @close="viewAbilities = false"
+                    @confirm="(chosenFriends: Friend[]) => {updateSelectedFriends(chosenFriends)}"></battles-abilities-modal>
+            </transition>
+        </div>
         <transition name="fade" appear>
-            <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2"
+            <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2 z-20"
                 v-if="showSelectMoveError">
                 Select either Attack or Block.
             </div>
         </transition>
         <transition name="fade" appear>
-            <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2"
+            <div class="flex fixed bottom-[16%] left-[3%] bg-red-900/70 border-red-900 rounded-lg pixfont px-4 py-2 border-2 z-20"
                 v-if="showNoTargetError">
                 Target your Attack at an enemy.
             </div>

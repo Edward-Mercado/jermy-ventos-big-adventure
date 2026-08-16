@@ -8,6 +8,8 @@ export const useCampaignSaveStore = defineStore('campaign', {
         sprite: "/public/images/joey.png" as string,
         currentStatus: null as Status | null,
 
+        items: [] as storeItem[],
+
         isBlocking: false,
         slayerActive: false,
 
@@ -68,6 +70,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             this.friendSlots = Math.min(Math.max(Math.floor(this.playerLevel/2), 1), 10)
             this.expGained = Number(localStorage.getItem("expGained")) || this.playerLevelData[this.playerLevel]!.expRequirement
             this.shrinkCount = Number(localStorage.getItem("shrinkCount") || 0)
+            this.items = JSON.parse(localStorage.getItem('storeItems') || '[]')
             this.loadFriends()
         },
         listenLevelUp() {
@@ -109,6 +112,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
             localStorage.setItem("defense", (this.defense).toString())
             localStorage.setItem("expGained", (this.expGained).toString())
             localStorage.setItem("shrinkCount", this.shrinkCount.toString())
+            localStorage.setItem("storeItems", JSON.stringify(this.items))
         },
         changeStats() {
             if (this.playerLevel > 25) {

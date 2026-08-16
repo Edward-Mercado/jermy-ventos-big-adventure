@@ -477,7 +477,7 @@ export const useBattleStore = defineStore('battle', {
                 img: '/images/mini-crossword.png',
                 expDrop: 55,
                 desc: "#FreeTheMini",
-                level: 3,
+                level: 4,
                 title: "NYT Puzzle Kid",
                 sound: '/sounds/baselow.caf',
             },{
@@ -495,7 +495,7 @@ export const useBattleStore = defineStore('battle', {
                 img: '/images/mini-crossword.png',
                 expDrop: 55,
                 desc: "#FreeTheMini",
-                level: 3,
+                level: 4,
                 title: "NYT Puzzle Kid",
                 sound: '/sounds/baselow.caf',
             }]
@@ -517,7 +517,7 @@ export const useBattleStore = defineStore('battle', {
                 img: '/images/rtgame.png',
                 expDrop: 65,
                 desc: "That's what they called him back in HIGH SCHOOL.",
-                level: 4,
+                level: 5,
                 title: "Drift King",
                 sound: '/sounds/baselow.caf',
             }]
@@ -539,7 +539,7 @@ export const useBattleStore = defineStore('battle', {
                 img: '/images/edwardevil.png',
                 expDrop: 120,
                 desc: "This fight is being coded at hour ~60 of the development process.",
-                level: 4,
+                level: 7,
                 title: "Developer, Friend, and SLAYER",
                 sound: '/sounds/edward.caf',
             }]

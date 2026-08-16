@@ -30,12 +30,16 @@ export function isEnemy(entity: any): boolean {
 }
 
 export function modifyDefense(propDefense: number): number {
-    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25 * (propDefense))
-    return propDefense
+    let result = propDefense
+
+    useCampaignSaveStore().items.forEach((i:storeItem) => result += i.stats.defense)
+    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') result *= 1.25
+    return Math.floor(propDefense)
 }
 
 export function modifyAttack(propAttack: number): number {
     let result = propAttack
+    useCampaignSaveStore().items.forEach((i:storeItem) => result += i.stats.attack)
     if (useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.2) {
         let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === 'Joey' && e.action === attack)
         if (indexInsert === -1) {

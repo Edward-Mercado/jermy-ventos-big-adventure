@@ -5,12 +5,12 @@
         flex-col items-center hover:-rotate-3 active:-rotate-6 relative text-center overflow-hidden"
         :class="choiceMade === currentStateKey.choiceA ? 'bg-white' : 'bg-slate-600/70'"
         @click="clickSFX(); choiceMade = currentStateKey.choiceA">
-         <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
-         :class="choiceMade === currentStateKey.choiceA ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceA.desc }}</h3>
-         <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
+        <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
+        :class="choiceMade === currentStateKey.choiceA ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceA.desc }}</h3>
+        <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
             <img :src="currentStateKey.choiceA.img" :alt="currentStateKey.choiceA.desc"
             :class="currentStateKey.choiceA.imgClasses ?? 'w-full'">
-         </div>
+        </div>
         </div>
         <div class="pixfont text-black text-[1.5rem] lg:text-[2rem] text-center w-[20vw]">
         {{ currentStateKey.question }}
@@ -20,12 +20,12 @@
         flex-col items-center hover:rotate-3 active:rotate-6 relative text-center overflow-hidden"
         :class="choiceMade === currentStateKey.choiceB ? 'bg-white' : 'bg-slate-600/70'"
         @click="clickSFX(); choiceMade = currentStateKey.choiceB">
-         <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
-         :class="choiceMade === currentStateKey.choiceB ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceB.desc }}</h3>
-         <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
+        <h3 class="pixfont text-[2rem] z-2 rounded-2xl px-2 transition-colors duration-300 ease-in-out"
+        :class="choiceMade === currentStateKey.choiceB ? 'text-slate-900 bg-white/70' : 'text-white bg-slate-600/70'">{{ currentStateKey.choiceB.desc }}</h3>
+        <div class="h-[80%] w-full flex items-end absolute bottom-0 left-0">
             <img :src="currentStateKey.choiceB.img" :alt="currentStateKey.choiceB.desc"
-         :class="currentStateKey.choiceB.imgClasses ?? 'w-full'">
-         </div>
+        :class="currentStateKey.choiceB.imgClasses ?? 'w-full'">
+        </div>
         </div>
     </div>
     <button class="bg-slate-600/70 w-[90vw] h-[10%] fixed bottom-5 left-[5vw] border-black border-4 hover:bg-slate-800 active:bg-slate-950 shadow-md hover:shadow-lg 
@@ -39,8 +39,6 @@ const campaignSaveStore = useCampaignSaveStore()
 const choicesStore = useChoicesStore()
 const stateKeys = useStateKeys()
 
-type ChoiceOption = { img: string; desc: string; func: () => void }
-
 const choiceMade = ref<ChoiceOption | null>(null)
 const buttonText = ref<string>("CONFIRM CHOICE")
 
@@ -52,7 +50,6 @@ const currentStateKey = computed(() => {
     const key = stateKeys.keys[campaignSaveStore.gameState]?.name
     if (!key) return null
 
-    console.log(useChoicesStore().$state)
     return choicesStore.$state[key as keyof typeof choicesStore.$state] ?? null
 })
 

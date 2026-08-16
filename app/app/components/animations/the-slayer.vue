@@ -9,7 +9,10 @@
             <img v-if="doneByEnemy && slayerVisible" src="/images/edwardevil.png" alt="eviledward" class="fixed w-[20vw] left-[40vw] rounded-2xl">
         </transition>
         <transition name="fade-up">
-            <img v-if="!doneByEnemy && slayerVisible" src="/images/joey.png" alt="joey" class="fixed w-[20vw] left-[40vw] rounded-2xl">
+            <div>
+                <img v-if="!doneByEnemy && slayerVisible" src="/images/joey.png" alt="joey" class="fixed w-[20vw] left-[40vw] rounded-2xl">
+                <img v-if="!doneByEnemy && slayerVisible && shirt" :shirt="shirt.img" alt="shirt" class="fixed w-[20vw] left-[40vw] top-[60%] rounded-2xl">
+            </div>
         </transition>
         <div class='fixed h-screen w-screen flex items-center ease-in-out'>
             <transition name="fade-enlarge" v-for="i in 5">
@@ -23,6 +26,10 @@
 const prop = defineProps<{
     doneByEnemy: boolean
 }>()
+
+const shirt = computed(() => {
+    return useCampaignSaveStore().items.find((i:storeItem) => i.name.includes("the Shirt"))
+})
 
 const mounted = ref<boolean>(false)
 const slayerVisible = ref<boolean>(false)

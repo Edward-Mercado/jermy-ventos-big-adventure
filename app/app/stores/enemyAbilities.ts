@@ -148,7 +148,7 @@ export function lemonRebirth(user: Enemy[]) {
 export function grassCut(user: Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
-    useCurrentBattleStore().animation.name = 'miniCrossword'
+    useCurrentBattleStore().animation.name = 'grassCut'
     useCurrentBattleStore().animation.doneByEnemy = true
     enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
@@ -163,13 +163,15 @@ export function miniCrossword(user: Enemy[]) {
     useCurrentBattleStore().animation.doneByEnemy = true
     enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
-        attack([enemyUser, 'user', 0.6])
-        useCampaignSaveStore().currentStatus = {
-            name: "Confusion",
-            type: "Inhibit",
-            action: null,
-            afflictedName: 'user',
-            length: 3
+        if (!useCampaignSaveStore().isBlocking) {
+            attack([enemyUser, 'user', 0.6])
+            useCampaignSaveStore().currentStatus = {
+                name: "Confusion",
+                type: "Inhibit",
+                action: null,
+                afflictedName: 'user',
+                length: 3
+            }
         }
     }, 4200)
 }
@@ -291,7 +293,7 @@ export function minionSummon(user: Enemy[]) {
         let rolledAlastor = Math.random() < 0.04
         if (useCurrentBattleStore().currentEnemies.length < 4 && !rolledAlastor) {
             useCurrentBattleStore().animation.name = 'minionSummon'
-            let randomNumber = Math.floor(Math.random()*998+1)
+            let randomNumber = Math.floor(Math.random() * 998 + 1)
             useCurrentBattleStore().currentEnemies.push({
                 name: `Minion ${randomNumber}`,
                 attack: Math.ceil(enemyUser.attack / 4),
@@ -470,13 +472,13 @@ export function drifting(user: Enemy[]) {
         }
         attack([enemyUser, 'user', 0.3])
 
-        if((useCurrentBattleStore().thisTurnEvents.filter((e:BattleEvent) => e.action === attack && e.user === enemyUser.name)).length > 1) return
+        if ((useCurrentBattleStore().thisTurnEvents.filter((e: BattleEvent) => e.action === attack && e.user === enemyUser.name)).length > 1) return
 
         useCurrentBattleStore().thisTurnEvents.push({
             user: enemyUser.name,
             action: attack,
             actionArgs: [enemyUser, 'user', 1],
-            flavorText: "I, the Drift King, can attack again!", 
+            flavorText: "I, the Drift King, can attack again!",
             spriteURL: enemyUser.img,
             sound: enemyUser.sound,
             actionPerformed: false
@@ -484,7 +486,7 @@ export function drifting(user: Enemy[]) {
     }
 }
 
-export function theSlayer(user?:Enemy[]) {
+export function theSlayer(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'theSlayer'
     if (user) {
@@ -495,9 +497,9 @@ export function theSlayer(user?:Enemy[]) {
 
         console.log("THE SLAYER")
         if (enemyUser) {
-            if(Math.random() < 0.5) {
+            if (Math.random() < 0.5) {
                 setTimeout(() => {
-                    let healAmount:number = Math.round(0.2 * enemyUser.maxHP)
+                    let healAmount: number = Math.round(0.2 * enemyUser.maxHP)
                     enemyUser.currentHP = Math.min(enemyUser.currentHP + healAmount, enemyUser.maxHP)
                 }, 2200)
                 console.log("HEAL")
@@ -517,7 +519,7 @@ export function theSlayer(user?:Enemy[]) {
         if (friendFound) {
             //@ts-ignore
             playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
-            
+
             playerUser.slayerActive = true
         }
     }

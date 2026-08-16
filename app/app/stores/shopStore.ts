@@ -1,0 +1,63 @@
+export const useShopStore = defineStore('shopStore', {
+    state: () => ({
+        noureShop: {
+            sellerURL: "/images/noure.png",
+            shopName: "Tee Parloure",
+            shopDesc: "Get some nice shirts and boost your stats!",
+            storeItems: [
+                {
+                    name: "This is my Devlin Shirt, the Shirt",
+                    img: "/images/shirt-devlin.png",
+                    stats: {
+                        attack: 5,
+                        defense: 3
+                    }
+                },{
+                    name: "I have Feelings You Know, the Shirt",
+                    img: "/images/shirt-ihavefeelings.png",
+                    stats: {
+                        attack: 0,
+                        defense: 7
+                    }
+                },{
+                    name: "Okay Wise Guy, the Shirt",
+                    img: "/images/shirt-okaywiseguy.png",
+                    stats: {
+                        attack: 10,
+                        defense: 0
+                    }
+                },
+            ]
+        },
+
+        kortneeShop: {
+            sellerURL: "/images/kortnee.png",
+            shopName: "Tee Parloure",
+            shopDesc: "Get some nice shirts and boost your stats!",
+            storeItems: [
+                {
+                    name: "This is my Devlin Shirt, the Shirt",
+                    img: "/images/shirt-devlin.png",
+                    stats: {
+                        attack: 5,
+                        defense: 3
+                    }
+                },{
+                    name: "I have Feelings You Know, the Shirt",
+                    img: "/images/shirt-ihavefeelings.png",
+                    stats: {
+                        attack: 0,
+                        defense: 7
+                    }
+                },{
+                    name: "Okay Wise Guy, the Shirt",
+                    img: "/images/shirt-okaywiseguy.png",
+                    stats: {
+                        attack: 10,
+                        defense: 0
+                    }
+                },
+            ]
+        }
+    }),
+})
