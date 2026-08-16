@@ -13,6 +13,7 @@
         <animations-alastor-summon v-if="animationName==='alastorSummon'" :done-by-enemy="doneByEnemy"></animations-alastor-summon>
         <animations-magic-ntt v-if="animationName==='magicNoseTongueTouch'" :done-by-enemy="doneByEnemy"></animations-magic-ntt>
         <animations-mind-clear v-if="animationName==='mindClear'" :done-by-enemy="doneByEnemy"></animations-mind-clear>
+        <animations-circle-smash v-if="animationName==='circleSmash'" :done-by-enemy="doneByEnemy"></animations-circle-smash>
     </div>
 </template>
 

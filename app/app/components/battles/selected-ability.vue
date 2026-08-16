@@ -20,7 +20,7 @@
             </div>
             <transition name="fade-down" appear mode="out-in">
                 <div v-if="viewTargetWindow"
-                    class="z-7 carousel bg-slate-700 w-full h-24 rounded-lg shadow-md p-1 gap-[2%] absolute top-[110%] left-0">
+                    class="z-7 carousel bg-slate-700/80 w-full h-24 rounded-lg shadow-md p-1 gap-[2%] absolute top-[110%] left-0">
                     <battles-target-card v-for="enemy in currentBattleStore.currentEnemies" :key="enemy.name"
                     :enemy="enemy" :friend="friend" @close="(enemyName:string) => {viewTargetWindow = false; target=enemyName}"></battles-target-card>
                 </div>

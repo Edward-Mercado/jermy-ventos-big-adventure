@@ -421,6 +421,45 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
+        'circle1': {
+            enemies: [{
+                name: "Circle 1",
+                attack: 35,
+                defense: 20,
+                abilityType: "offense",
+                abilityName: "Circle Smash",
+                ability: circleSmash,
+                manaCost: 60,
+                currentHP: 90,
+                maxHP: 90,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/circle.png',
+                expDrop: 65,
+                desc: "She's in my area because I... errr squared the pi.",
+                level: 4,
+                title: "Incrementalite",
+                sound: '/sounds/baselow.caf',
+            },{
+                name: "Circle 2",
+                attack: 35,
+                defense: 20,
+                abilityType: "offense",
+                abilityName: "Circle Smash",
+                ability: circleSmash,
+                manaCost: 60,
+                currentHP: 90,
+                maxHP: 90,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/circle.png',
+                expDrop: 65,
+                desc: "She's in my area because I... errr squared the pi.",
+                level: 4,
+                title: "Incrementalite",
+                sound: '/sounds/baselow.caf',
+            }]
+        },
 
     } as Record<string, EnemyGroup>),
     actions: {

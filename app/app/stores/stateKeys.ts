@@ -73,6 +73,7 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'cutscene', dynamic: 'GilGabSave2', name: 'saveGil' },
                 { type: 'battle', dynamic: 'GavMomBattle1', name: 'battleGav' },
                 { type: 'cutscene', dynamic: 'GavMomSave2', name: 'saveGav' },
+                { type: 'battle', name: 'circle1' },
                 { type: 'cutscene', name: 'approachingEdward' },
                 { type: 'cutscene', name: 'edwardDefeat' },
                 { type: 'choice', name: 'ElementariesFakes' },
