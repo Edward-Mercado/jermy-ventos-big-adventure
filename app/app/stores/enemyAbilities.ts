@@ -148,13 +148,10 @@ export function lemonRebirth(user: Enemy[]) {
 export function grassCut(user:Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
-    useCurrentBattleStore().animation.name = 'ballRam'
+    useCurrentBattleStore().animation.name = 'grassCutting'
     useCurrentBattleStore().animation.doneByEnemy = true
     enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
-        attack([enemyUser, 'user', 0.9])
-    }, 400)
-    setTimeout(() => {
-        attack([enemyUser, 'user', 0.9])
-    }, 400)
+        attack([enemyUser, 'user', 1.2])
+    }, 900)
 }

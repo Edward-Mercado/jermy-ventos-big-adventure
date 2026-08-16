@@ -105,6 +105,46 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
+        'grassMan1': {
+            enemies: [{
+                name: "Grass Man 1",
+                attack: 19,
+                defense: 7,
+                abilityType: "offense",
+                abilityName: "Grass Cutting",
+                ability: grassCut,
+                manaCost: 25,
+                currentHP: 40,
+                maxHP: 40,
+                currentMana: 50,
+                maxMana: 50,
+                img: '/images/grassman.png',
+                expDrop: 20,
+                desc: "Grass 'Cutting Incremental' Man. Is this an NFT?",
+                level: 2,
+                title: "Grassy Boy",
+                sound: '/sounds/baselow.caf',
+            },{
+                name: "Grass Man 2",
+                attack: 19,
+                defense: 7,
+                abilityType: "offense",
+                abilityName: "Grass Cutting",
+                ability: grassCut,
+                manaCost: 25,
+                currentHP: 40,
+                maxHP: 40,
+                currentMana: 50,
+                maxMana: 50,
+                img: '/images/grassman.png',
+                expDrop: 20,
+                desc: "Grass 'Cutting Incremental' Man. Is this an NFT?",
+                level: 2,
+                title: "Grassy Boy",
+                sound: '/sounds/baselow.caf',
+            }]
+        },
+
         'battleHumd': {
             enemies: [{
                 name: "Humd (evil, but not so evil)",
