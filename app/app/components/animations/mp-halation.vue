@@ -27,6 +27,8 @@ const prop = defineProps<{
 
 const mounted = ref<boolean>(false)
 
+if(!prop.doneByEnemy) useCurrentBattleStore().joeyURL = '/images/sailorjoey.png'
+
 const rotateActive = ref<boolean>(false)
 const wandActive = ref<boolean>(false)
 const flyingActive = ref<boolean>(false)

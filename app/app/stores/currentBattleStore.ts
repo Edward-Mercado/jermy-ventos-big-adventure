@@ -271,7 +271,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                                     spriteURL: "/images/joey.png",
                                     flavorText: fullText,
                                     action: () => { },
-                                    sound: "/sounds/joey.sound",
+                                    sound: "/sounds/joey.m4a",
                                     actionPerformed: false,
                                 })
                                 resultingActions.push({

@@ -29,15 +29,16 @@ export function isEnemy(entity: any): boolean {
     return "targetOf" in entity
 }
 
-export function modifyDefense(defense: number) {
+export function modifyDefense(defense: number):number {
     return defense
 }
 
-export function modifyAttack(attack: number) {
+export function modifyAttack(attack: number):number {
     return attack
 }
 
 export function attack(args: any[]) {
+    if (!args) return
     let attacker = args[0]
     let defender = args[1]
 
@@ -47,7 +48,7 @@ export function attack(args: any[]) {
     }
 
     if (typeof attacker === 'string') {
-        attacker = useCampaignSaveStore()
+        attacker = useCampaignSaveStore().$state
         defender = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === defender.name)
     } else {
         attacker = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === attacker.name)
@@ -65,8 +66,11 @@ export function attack(args: any[]) {
     } else if (isEnemy(defender)) {
         if (!defender.isBlocking) {
             let practicalAttack = modifyAttack(attacker.attack)
-            defender.currentHP -= Math.round(Math.floor(Math.max(1 - (defender.defense / 100), 0) * practicalAttack)) * attackMulti
-            defender.currentHP = Math.max(defender.currentHP, 0)
+            let baseHpChange = Math.round(Math.floor(Math.max(1 - (defender.defense / 100), 0) * practicalAttack))
+            let finalHpChange = baseHpChange * attackMulti
+
+            defender.currentHP -= finalHpChange
+            defender.currentHP = Math.max(Math.round(defender.currentHP), 0)
         }
     }
 }
