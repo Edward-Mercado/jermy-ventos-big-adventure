@@ -29,13 +29,13 @@ export function isEnemy(entity: any): boolean {
     return "targetOf" in entity
 }
 
-export function modifyDefense(propDefense: number):number {
-        if(useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25*(propDefense))
+export function modifyDefense(propDefense: number): number {
+    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25 * (propDefense))
     return propDefense
 }
 
-export function modifyAttack(propAttack: number):number {
-    if(useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.2) {
+export function modifyAttack(propAttack: number): number {
+    if (useCampaignSaveStore().currentStatus?.name === 'Confusion' && Math.random() < 0.2) {
         let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === 'Joey' && e.action === attack)
         if (indexInsert === -1) {
             useCurrentBattleStore().thisTurnEvents.push({
@@ -47,7 +47,7 @@ export function modifyAttack(propAttack: number):number {
                 actionPerformed: false
             })
         } else {
-            useCurrentBattleStore().thisTurnEvents.splice(indexInsert+1, 0, {
+            useCurrentBattleStore().thisTurnEvents.splice(indexInsert + 1, 0, {
                 user: "Joey",
                 action: null,
                 spriteURL: '/images/joey.png',
@@ -58,7 +58,7 @@ export function modifyAttack(propAttack: number):number {
         }
         return 0
     }
-    if(useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25*(propAttack))
+    if (useCampaignSaveStore().currentStatus?.name === 'Buffed') return Math.floor(1.25 * (propAttack))
 
     return propAttack
 }
@@ -86,6 +86,30 @@ export function attack(args: any[]) {
             let practicalDefense = modifyDefense(defender.defense)
             let baseDamage = Math.max(1 - (practicalDefense / 100), 0) * attacker.attack
             let finalDamage = Math.round(baseDamage * attackMulti)
+
+            if (defender.status?.name === "Confusion" && Math.random() < 0.4) {
+                let indexInsert = useCurrentBattleStore().thisTurnEvents.findIndex((e: BattleEvent) => e.user === defender.name)
+                if (indexInsert === -1) {
+                    useCurrentBattleStore().thisTurnEvents.push({
+                        user: defender.name,
+                        action: null,
+                        spriteURL: defender.img,
+                        sound: defender.sound,
+                        flavorText: `${defender} was unable to attack in their confusion!`,
+                        actionPerformed: false
+                    })
+                } else {
+                    useCurrentBattleStore().thisTurnEvents.splice(indexInsert + 1, 0, {
+                        user: defender.name,
+                        action: null,
+                        spriteURL: defender.img,
+                        sound: defender.sound,
+                        flavorText: `${defender} was unable to attack in their confusion!`,
+                        actionPerformed: false
+                    })
+                }
+                return
+            }
 
             defender.currentHP = Math.max(defender.currentHP - finalDamage, 0)
         }

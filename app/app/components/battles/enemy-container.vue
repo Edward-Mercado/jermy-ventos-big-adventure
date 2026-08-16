@@ -3,9 +3,12 @@
     :class="fullClasses"
     >
         <div class="border-2 h-35 bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between w-full rounded-md relative">
+            <transition name="fade-enlarge">
+                <battles-status-container v-if="enemy.status" :status="enemy.status!" :class="'absolute w-[50%] z-8 translate-y-[250%]'"></battles-status-container>
+            </transition>
             <div class="flex justify-between items-center h-[40%]">
             <h4 class="pixfont text-md lg:text-2xl h-full pt-2">{{ enemy.name }}</h4>
-            <div class="absolute bottom-13 z-9 left-2 flex" v-if="pickingMove">
+            <div class="absolute bottom-13 z-9 left-2 flex " v-if="pickingMove">
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
                 <Target :size="32" v-for="friend in enemy.targetOf" color=" #bae6fd" class=""/>
                 <Target :size="32" v-for="friend in useBattleGuiStore().selectedFriends.filter((friend:Friend) => friend.targetType === 'AOE')" 
@@ -153,5 +156,32 @@ function handleAction() {
 .fade-enter-active,
 .fade-leave-active {
     transition: ease-out 0.5s all
+}
+
+
+@keyframes fade-enlarge {
+    0% {
+        scale: 0;
+        opacity: 0;
+        rotate: 5deg
+    }
+    80% {
+        scale: 1.2;
+        opacity: 1;
+        rotate: -1deg
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+        rotate: 0deg;
+    }
+}
+
+.fade-enlarge-enter-active {
+    animation: fade-enlarge ease-in-out 800ms;
+}
+
+.fade-enlarge-leave-active {
+    animation: fade-enlarge ease-in-out 800ms reverse;
 }
 </style>

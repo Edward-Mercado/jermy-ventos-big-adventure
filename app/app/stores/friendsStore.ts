@@ -9,9 +9,7 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Single",
             spriteURL: "/images/gab.png",
             sound: "/sounds/gab.m4a",
-            ability: () => {
-                
-            },
+            ability: magicNoseTongueTouch,
             manaCost: 60
         } as Friend,
         "Gavin": {
@@ -36,7 +34,7 @@ export const useFriendsStore = defineStore('friends', {
             spriteURL: "/images/noure.png",
             sound: "/sounds/noure.caf",
             ability: multiWielding,
-            manaCost: 25
+            manaCost: 30
         } as Friend,
         "Kortnee": {
             name: "Kortnee",

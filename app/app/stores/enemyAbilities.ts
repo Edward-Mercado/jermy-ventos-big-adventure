@@ -53,13 +53,12 @@ export function multiWielding(user?: Enemy[]) {
             //@ts-ignore
             playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             const target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
+
             if (!target) return
 
-            console.log(target)
-
-            setTimeout(() => { attack(['user', target, 0.8]) }, 300)
-            setTimeout(() => { attack(['user', target, 0.5]) }, 1300)
-            setTimeout(() => { attack(['user', target, 0.2]) }, 2300)
+            setTimeout(() => { attack(['user', target, 1]) }, 300)
+            setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
+            setTimeout(() => { attack(['user', target, 0.3]) }, 2300)
         }
     }
 }
@@ -120,7 +119,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
             useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [1.8, 1.5, 1.2, 1]
+        let damageMultis: number[] = [1.6, 1.4, 1.15, 1]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -291,8 +290,9 @@ export function minionSummon(user: Enemy[]) {
         let rolledAlastor = Math.random() < 0.04
         if (useCurrentBattleStore().currentEnemies.length < 4 && !rolledAlastor) {
             useCurrentBattleStore().animation.name = 'minionSummon'
+            let randomNumber = Math.floor(Math.random()*998+1)
             useCurrentBattleStore().currentEnemies.push({
-                name: "Alastor Minion",
+                name: `Minion ${randomNumber}`,
                 attack: Math.ceil(enemyUser.attack / 4),
                 defense: Math.ceil(enemyUser.defense / 4),
                 abilityType: "offense",
@@ -335,7 +335,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
-            const success: boolean = Math.random() < (useCampaignSaveStore().currentHP / useCampaignSaveStore().maxHP)
+            const success: boolean = Math.random() < (useCampaignSaveStore().currentHP / 500)
             if (!useCampaignSaveStore().isBlocking && success) {
                 useCampaignSaveStore().currentStatus = {
                     name: "Confusion",
@@ -366,13 +366,13 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
                     })
                 }
             }
-        }, 500)
+        }, 2000)
     } else {
         let playerUser = useCampaignSaveStore()
         useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.abilityName === "MultiWielding")
+        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.ability === magicNoseTongueTouch)
 
         if (friendFound) {
             //@ts-ignore
@@ -418,7 +418,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
                     }
                 }
 
-            }, 300)
+            }, 2000)
         }
     }
 }
@@ -449,6 +449,23 @@ export function mindClear(user?: Enemy[]) {
             playerUser.currentHP = Math.min(playerUser.currentHP + healFactor, playerUser.maxHP)
             playerUser.defense -= 5
             playerUser.currentStatus = null
+        }
+    }
+}
+
+export function drifting(user: Enemy[]) {
+    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'drifting'
+    useCurrentBattleStore().animation.doneByEnemy = true
+
+    if (enemyUser) {
+        enemyUser.status = {
+            name: "Drifting",
+            afflictedName: enemyUser.name,
+            type: "Double Attack",
+            action: null,
+            length: 2
         }
     }
 }

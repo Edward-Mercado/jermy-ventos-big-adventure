@@ -116,7 +116,13 @@ async function proceedBattle() {
             if(e.currentHP === 0) {
                 useCampaignSaveStore().expGained += e.expDrop
                 useCampaignSaveStore().listenLevelUp()
-            } else useCurrentBattleStore().enemyChooseMove(e)
+            } else {
+                useCurrentBattleStore().enemyChooseMove(e)
+                if(e.status) {
+                    e.status.length--
+                    if(e.status.length === 0) e.status = null
+                }
+            }
         })
 
         if(campaignSaveStore.currentStatus?.length) {

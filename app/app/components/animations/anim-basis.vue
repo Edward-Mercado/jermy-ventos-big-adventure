@@ -14,6 +14,7 @@
         <animations-magic-ntt v-if="animationName==='magicNoseTongueTouch'" :done-by-enemy="doneByEnemy"></animations-magic-ntt>
         <animations-mind-clear v-if="animationName==='mindClear'" :done-by-enemy="doneByEnemy"></animations-mind-clear>
         <animations-circle-smash v-if="animationName==='circleSmash'" :done-by-enemy="doneByEnemy"></animations-circle-smash>
+        <animations-drifting v-if="animationName==='drifting'" :done-by-enemy="doneByEnemy"></animations-drifting>
     </div>
 </template>
 
