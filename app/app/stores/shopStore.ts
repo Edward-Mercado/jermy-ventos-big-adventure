@@ -36,25 +36,25 @@ export const useShopStore = defineStore('shopStore', {
             shopDesc: "Get some nice shirts and boost your stats!",
             storeItems: [
                 {
-                    name: "This is my Devlin Shirt, the Shirt",
-                    img: "/images/shirt-devlin.png",
+                    name: "Pet Dragon",
+                    img: "/images/pet-dragon.png",
                     stats: {
-                        attack: 5,
-                        defense: 3
+                        attack: 11,
+                        defense: 1
                     }
                 },{
-                    name: "I have Feelings You Know, the Shirt",
-                    img: "/images/shirt-ihavefeelings.png",
+                    name: "Pet Allicorn",
+                    img: "/images/pet-allicorn.png",
                     stats: {
-                        attack: 0,
-                        defense: 7
+                        attack: 3,
+                        defense: 10
                     }
                 },{
-                    name: "Okay Wise Guy, the Shirt",
-                    img: "/images/shirt-okaywiseguy.png",
+                    name: "Pet Cerberus",
+                    img: "/images/pet-cerberus.png",
                     stats: {
-                        attack: 10,
-                        defense: 0
+                        attack: 7,
+                        defense: 6
                     }
                 },
             ]
