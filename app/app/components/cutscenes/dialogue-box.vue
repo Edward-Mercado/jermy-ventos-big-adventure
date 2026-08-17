@@ -4,13 +4,13 @@
         <span class="typewriter dialogue-font text-xl select-none">{{ displayedText }}<span class="cursor pixfont"
                 v-if="!isDone">|</span></span>
         <transition name="slide-up">
-            <button v-if="canProceed" @click="$emit('proceed')"
+            <button v-if="canProceed" @click="clickSFX(); $emit('proceed')"
                 class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] right-[5%] bottom-[-30%] border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center absolute">
                 Proceed.
             </button>
         </transition>
-        <button @click="stopInterval(); $emit('skip')"
+        <button @click="clickSFX(); stopInterval(); $emit('skip')"
             class="px-2 h-[50%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] left-[5%] bottom-[-30%] border-black border-4 text-lg
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center select-none absolute">
             Skip

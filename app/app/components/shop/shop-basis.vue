@@ -9,7 +9,7 @@
         <div class="border-black border-4 w-full h-full bg-slate-600/70 p-3 overflow-y-scroll">
             <h3 class="text-4xl pixfont text-white text-center">SELECT AN ITEM!</h3>
             <div class="w-full rounded-full bg-black h-2 my-2"></div>
-            <shop-store-item v-for="item in currentStateKey.storeItems" :item="item" :selected="choiceMade === item" @click="choiceMade = item"
+            <shop-store-item v-for="item in currentStateKey.storeItems" :item="item" :selected="choiceMade === item" @click="clickSFX(); choiceMade = item"
             ></shop-store-item>
         </div>
     </div>

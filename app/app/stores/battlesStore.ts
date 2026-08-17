@@ -545,6 +545,28 @@ export const useBattleStore = defineStore('battle', {
             }]
         },
 
+        'alastor2': {
+            enemies: [{
+                name: "Alastor",
+                attack: 45,
+                defense: 25,
+                abilityType: "offense",
+                abilityName: "Minion Summon",
+                ability: minionSummon,
+                manaCost: 70,
+                currentHP: 170,
+                maxHP: 170,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/alastor.png',
+                expDrop: 70,
+                desc: "Hater of TV and Hated by U/Me",
+                level: 6,
+                title: "Radio Demon",
+                sound: '/sounds/alastor.m4a',
+            }]
+        },
+
     } as Record<string, EnemyGroup>),
     actions: {
 

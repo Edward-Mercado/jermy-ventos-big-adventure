@@ -32,8 +32,8 @@ export const useShopStore = defineStore('shopStore', {
 
         kortneeShop: {
             sellerURL: "/images/kortnee.png",
-            shopName: "Tee Parloure",
-            shopDesc: "Get some nice shirts and boost your stats!",
+            shopName: "Featured Creatures",
+            shopDesc: "Adopt a pet! Please.",
             storeItems: [
                 {
                     name: "Pet Dragon",
