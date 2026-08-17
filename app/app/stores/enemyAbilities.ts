@@ -550,6 +550,7 @@ export function reviveSong(user?: Enemy[]) {
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
         enemyUser!.currentMana -= enemyUser!.manaCost
+        useCurrentBattleStore().animation.doneByEnemy = true
 
         enemyUser!.status = {
             name: "Will Revive",
@@ -571,13 +572,28 @@ export function reviveSong(user?: Enemy[]) {
         
     } else {
         let playerUser = useCampaignSaveStore()
+        useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === reviveSong)
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
-            playerUser.shrinkCount += 3
+            playerUser.currentStatus = {
+                name: "Will Revive",
+                type: "Revive",
+                length: 1,
+                action: null,
+                afflictedName: 'Joey'
+            }
+            useCurrentBattleStore().thisTurnEvents.push({
+                user: 'Joey',
+                action: reviveTest,
+                actionArgs: [useCampaignSaveStore()],
+                flavorText: "REVIVE ENERGY AWAKEN!",
+                spriteURL: '/images/joey.png',
+                sound: '/sounds/joey.m4a',
+                actionPerformed: false
+            })
         }
     }
 }
