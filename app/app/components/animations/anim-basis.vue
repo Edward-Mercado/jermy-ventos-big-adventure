@@ -20,7 +20,9 @@
         <animations-time-reversal v-if="animationName==='timeReversal'" :done-by-enemy="doneByEnemy"></animations-time-reversal>
         <animations-examine v-if="animationName==='examine'" :done-by-enemy="doneByEnemy"></animations-examine>    
         <animations-meta-narrative v-if="animationName==='metaNarrative'" :done-by-enemy="doneByEnemy"></animations-meta-narrative>    
-        <animations-wii-wollop v-if="animationName==='wiiGameWollop'" :done-by-enemy="doneByEnemy"></animations-wii-wollop>    
+        <animations-wii-wollop v-if="animationName==='wiiGameWollop'" :done-by-enemy="doneByEnemy"></animations-wii-wollop>  
+        <animations-birthday-beam v-if="animationName==='birthdayBeam'" :done-by-enemy="doneByEnemy"></animations-birthday-beam>   
+        <animations-evil-beam v-if="animationName==='evilBeam'" :done-by-enemy="doneByEnemy"></animations-evil-beam>     
     </div>
 </template>
 

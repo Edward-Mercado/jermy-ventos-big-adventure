@@ -11,7 +11,7 @@
         <transition name="fade-up">
             <div>
                 <img v-if="!doneByEnemy && slayerVisible" src="/images/joey.png" alt="joey" class="fixed w-[20vw] left-[40vw] rounded-2xl">
-                <img v-if="!doneByEnemy && slayerVisible && shirt" :shirt="shirt.img" alt="shirt" class="fixed w-[20vw] left-[40vw] top-[60%] rounded-2xl">
+                <img v-if="!doneByEnemy && slayerVisible && shirt?.name" :src="shirt.img" alt="shirt" class="fixed w-[20vw] left-[40vw] top-[60%] rounded-2xl translate-y-[70%]">
             </div>
         </transition>
         <div class='fixed h-screen w-screen flex items-center ease-in-out'>
@@ -28,7 +28,7 @@ const prop = defineProps<{
 }>()
 
 const shirt = computed(() => {
-    return useCampaignSaveStore().items.find((i:storeItem) => i.name.includes("the Shirt"))
+    return useCampaignSaveStore().items.find((i:storeItem) => i.name.toLowerCase().includes("shirt"))
 })
 
 const mounted = ref<boolean>(false)

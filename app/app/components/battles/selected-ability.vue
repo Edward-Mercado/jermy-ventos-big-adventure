@@ -15,8 +15,8 @@
                 </div>
                 <p class="pixfont text-[1.3rem] text-white w-full text-center uppercase">{{ friend.abilityName }}</p>
             </div>
-            <div class="h-[90%] aspect-square bg-sky-200 rounded-full overflow-hidden flex items-center justify-center">
-                <img :src="friend.spriteURL" :alt="friend.name" class="bottom-0 w-full h-full object-cover">
+            <div class="h-[90%] aspect-square rounded-full overflow-hidden flex items-center justify-center" :class="friend.name === 'Scott the Woz' ? 'bg-blue-500' : 'bg-sky-100'">
+                <img :src="friend.spriteURL" :alt="friend.name" class="w-full h-full bottom-0 object-cover" :class="friend.name === 'Scott the Woz' ? 'rotate-90' : ''">
             </div>
             <transition name="fade-down" appear mode="out-in">
                 <div v-if="viewTargetWindow"

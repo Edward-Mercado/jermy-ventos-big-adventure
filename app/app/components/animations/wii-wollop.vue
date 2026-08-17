@@ -9,7 +9,7 @@
             <img v-if="gamesShown" :src="getRandomImage()" alt="img" :style="{
                 transitionDuration: `${Math.floor(Math.random()*60)*50}ms`,
                 top: `${Math.random()*140 - 20}vh`}"
-                class="w-[5vw] -rotate-90 right-[-60vw] fixed"
+                class="w-[5vw] -rotate-90 right-[-60vw] fixed border-2 border-white"
             >
         </transition>
     </div>

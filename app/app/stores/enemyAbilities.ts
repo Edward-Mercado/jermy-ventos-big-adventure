@@ -526,8 +526,19 @@ export function theSlayer(user?: Enemy[]) {
                 }, 2200)
             } else {
                 setTimeout(() => {
-                    enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
+                    enemyUser.attack = Math.floor(enemyUser.attack * 1.5)
                 }, 2200)
+            }
+            if(Math.random() < .4 && useCampaignSaveStore().gameState > 40) {
+                useCurrentBattleStore().thisTurnEvents.push({
+                    user: enemyUser!.name,
+                    action: attack,
+                    actionArgs: [enemyUser, 'user', 0.7],
+                    flavorText: "Prepare to be slain!",
+                    spriteURL: enemyUser!.img,
+                    sound: enemyUser!.sound,
+                    actionPerformed: false
+                })
             }
         }
     } else {
@@ -734,5 +745,56 @@ export function wiiGameWollop(user: Enemy[]) {
             hitsCount++
             if(hitsCount > 24) clearInterval(interval)
         }, 150)
+    }
+}
+
+export function presidentialAuthority() {
+    
+}
+
+export function sandySleep() {
+
+}
+
+export function joeBidenSandman() {
+
+}
+
+export function evilBeam(user?:Enemy) {
+    if(user) {
+        useCurrentBattleStore().animation.playing = true
+        useCurrentBattleStore().animation.doneByEnemy = true
+        useCurrentBattleStore().animation.name = 'evilBeam'
+        if(useCurrentBattleStore().usingMana) user.currentMana -= user.manaCost
+        attack([user, 'user', 2])
+    }
+}
+
+export function birthdayBeam(user?:any) {
+    let friendFound = useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === birthdayBeam)
+    if(friendFound){
+        if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
+
+        useCurrentBattleStore().animation.playing = true
+        useCurrentBattleStore().animation.doneByEnemy = false
+        useCurrentBattleStore().animation.name = 'birthdayBeam'
+        attack(['user', useCurrentBattleStore().currentEnemies[0]!, 2])
+    }
+}
+
+export function evilReign(user:Enemy[]) {
+    let callableAbilities:Function[] = [
+        shrink, mangoConsumption, multiWielding, ballRam, moonPrincessHalation, 
+        lemonRebirth, grassCut, miniCrossword, circleSmash, buffLie, makeItWild,
+        magicNoseTongueTouch, mindClear, drifting, theSlayer, hide,
+        reviveSong, timeReversal, youTellMe, examine, wiiGameWollop
+    ]
+
+    setTimeout(() => useCurrentBattleStore().animReset(), 3000)
+
+    if(Math.random() < .4) {
+        evilBeam(user[0])
+    } else {
+        callableAbilities[Math.floor(Math.random()* callableAbilities.length)]!([user[0]])
     }
 }

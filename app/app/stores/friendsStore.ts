@@ -1,5 +1,17 @@
 export const useFriendsStore = defineStore('friends', {
     state: () => ({
+        "Joey": {
+            name: "Joey",
+            eachTurnCheck: null,
+            abilityName: "Birthday Beam",
+            abilityDesc: "Show em the power of birthday, king.",
+            abilityTiming: "With Attack",
+            targetType: "AOE",
+            spriteURL: "/images/joey.png",
+            sound: "/sounds/joey.m4a",
+            ability: birthdayBeam,
+            manaCost: 0
+        } as Friend,
         "Gab": {
             name: "Gab",
             eachTurnCheck: null,
@@ -34,7 +46,7 @@ export const useFriendsStore = defineStore('friends', {
             spriteURL: "/images/noure.png",
             sound: "/sounds/noure.caf",
             ability: multiWielding,
-            manaCost: 30
+            manaCost: 40
         } as Friend,
         "Kortnee": {
             name: "Kortnee",
@@ -81,9 +93,7 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Special",
             spriteURL: "/images/pierce.png",
             sound: "/sounds/baselow.caf",
-            ability: () => {
-                
-            },
+            ability: metaNarrative,
             manaCost: 50
         } as Friend,
         "Scott the Woz": {
@@ -96,7 +106,7 @@ export const useFriendsStore = defineStore('friends', {
             spriteURL: "/images/scottthewoz.png",
             sound: "/sounds/scottthewoz.m4a",
             ability: wiiGameWollop,
-            manaCost: 40
+            manaCost: 80
         } as Friend,
         "Gil": {
             name: "Gil",

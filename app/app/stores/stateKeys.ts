@@ -109,7 +109,10 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'cutscene', dynamic: 'MatteoWozSave2', name: 'saveMatteo' },
 
                 { type: 'cutscene', name: 'allSaved' },
+
+                { type: 'battle', name: 'battleEdward' },
                 { type: 'cutscene', name: 'saveEdward' },
+                { type: 'battle', name: 'battleJoevil' },
                 { type: 'cutscene', name: 'joevilsPlea' },
                 { type: 'choice', name: 'EndingChoice' },
                 { type: 'cutscene', dynamic: 'ending', name: 'killJoevil' },

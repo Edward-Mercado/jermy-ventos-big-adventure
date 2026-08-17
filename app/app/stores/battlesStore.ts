@@ -313,7 +313,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleGil': {
             enemies: [{
-                name: "Gil",
+                name: "Gil (evil)",
                 attack: 25,
                 defense: 25,
                 abilityType: "defense",
@@ -335,7 +335,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleGav': {
             enemies: [{
-                name: "Gavin",
+                name: "Gavin (evil)",
                 attack: 25,
                 defense: 25,
                 abilityType: "offense",
@@ -379,7 +379,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleGab': {
             enemies: [{
-                name: "Gab",
+                name: "Gab (evil)",
                 attack: 35,
                 defense: 15,
                 abilityType: "defense",
@@ -401,7 +401,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleMom': {
             enemies: [{
-                name: "Mrs. Paula Vento",
+                name: "Mrs. Paula Vento (evil)",
                 attack: 20,
                 defense: 35,
                 abilityType: "defense",
@@ -627,7 +627,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleLucia': {
             enemies: [{
-                name: "Lucia",
+                name: "Lucia (evil)",
                 attack: 30,
                 defense: 40,
                 abilityType: "defense",
@@ -648,7 +648,7 @@ export const useBattleStore = defineStore('battle', {
         },
         'battleThira': {
             enemies: [{
-                name: "Thira",
+                name: "Thira (evil)",
                 attack: 34,
                 defense: 38,
                 abilityType: "defense",
@@ -669,7 +669,7 @@ export const useBattleStore = defineStore('battle', {
         },
         'battleMatteo': {
             enemies: [{
-                name: "Matteo",
+                name: "Matteo (evil)",
                 attack: 45,
                 defense: 25,
                 abilityType: "offense",
@@ -751,7 +751,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleColumbo': {
             enemies: [{
-                name: "Columbo",
+                name: "Columbo (evil)",
                 attack: 30,
                 defense: 40,
                 abilityType: "offense",
@@ -813,7 +813,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battlePierce': {
             enemies: [{
-                name: "Pierce",
+                name: "Pierce (evil)",
                 attack: 30,
                 defense: 40,
                 abilityType: "offense",
@@ -874,7 +874,7 @@ export const useBattleStore = defineStore('battle', {
 
         'battleWoz': {
             enemies: [{
-                name: "Scott the Woz",
+                name: "Scott the Woz (evil)",
                 attack: 30,
                 defense: 40,
                 abilityType: "offense",
@@ -891,6 +891,72 @@ export const useBattleStore = defineStore('battle', {
                 level: 8,
                 title: "Virgin",
                 sound: '/sounds/scottthewoz.m4a',
+            }]
+        },
+
+        'joeBidenSandman': {
+            enemies: [{
+                name: "Joe Biden",
+                attack: 40,
+                defense: 40,
+                abilityType: "offense",
+                abilityName: "Presidential Authority",
+                ability: joeBidenSandman,
+                manaCost: 100,
+                currentHP: 300,
+                maxHP: 300,
+                currentMana: 200,
+                maxMana: 200,
+                img: '/images/scottthewoz.png',
+                expDrop: 100,
+                desc: "The strongest rap battle of history.",
+                level: 7,
+                title: "Virgin",
+                sound: '/sounds/baselow.caf',
+            }]
+        },
+
+        'battleEdward': {
+            enemies: [{
+                name: "Edward (evil)",
+                attack: 60,
+                defense: 45,
+                abilityType: "offense",
+                abilityName: "THE SLAYER",
+                ability: theSlayer,
+                manaCost: 100,
+                currentHP: 750,
+                maxHP: 750,
+                currentMana: 250,
+                maxMana: 250,
+                img: '/images/edwardevil.png',
+                expDrop: 300,
+                desc: "This fight is being coded at ~hour 80 of the coding process.",
+                level: 12,
+                title: "Developer, Friend, and SLAYER",
+                sound: '/sounds/edward.caf',
+            }]
+        },
+
+        'battleJoevil': {
+            enemies: [{
+                name: "Joevil (BOSS)",
+                attack: 70,
+                defense: 45,
+                abilityType: "offense",
+                abilityName: "Reign of Evil",
+                ability: evilReign,
+                manaCost: 100,
+                currentHP: 400,
+                maxHP: 400,
+                currentMana: 300,
+                maxMana: 300,
+                img: '/images/joevil.png',
+                expDrop: 300,
+                desc: "This is the end.",
+                level: 16,
+                title: "Birthday Bane",
+                sound: '/sounds/joey.m4a',
             }]
         },
         

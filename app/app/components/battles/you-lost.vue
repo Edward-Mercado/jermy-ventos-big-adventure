@@ -24,6 +24,11 @@ const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
+onMounted(() => {
+    useEndStore().load()
+    useEndStore().die()
+})
+
 const battleData = useBattleStore().$state[currentStateKey.value]
 
 const totalExpDrop = computed(() => {

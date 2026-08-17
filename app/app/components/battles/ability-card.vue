@@ -1,8 +1,8 @@
 <template>
     <transition name="fade-in" appear>
         <div class="h-24 w-full rounded-lg bg-slate-700 py-1 px-2 gap-5 flex flex-row items-center justify-between">
-        <div class="h-[90%] aspect-square bg-sky-200 rounded-full overflow-hidden flex items-center justify-center">
-            <img :src="friend.spriteURL" :alt="friend.name" class="w-full h-full bottom-0 object-cover">
+        <div class="h-[90%] aspect-square rounded-full overflow-hidden flex items-center justify-center" :class="friend.name === 'Scott the Woz' ? 'bg-blue-500' : 'bg-sky-100'">
+            <img :src="friend.spriteURL" :alt="friend.name" class="w-full h-full bottom-0 object-cover" :class="friend.name === 'Scott the Woz' ? 'rotate-90' : ''">
         </div>
         <div class="flex flex-col w-[30%]">
             <div class="w-full flex flex-row items-center gap-px">
