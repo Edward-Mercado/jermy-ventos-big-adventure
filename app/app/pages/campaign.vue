@@ -81,6 +81,8 @@ async function proceedLevel() {
     await nextTick()
     storyPointRunning.value = true
 }
+
+console.log(currentKeyType.value)
 </script>
 
 <style scoped></style>

@@ -63,6 +63,9 @@ const wandStriking = ref<boolean>(false)
 const lost = ref<boolean>(false)
 
 watch(() => battleIndex.value, () => useCurrentBattleStore().thisTurnIndex = battleIndex.value)
+watch(() => useCampaignSaveStore().currentMana, () => {
+    useCampaignSaveStore().currentMana = Math.max(useCampaignSaveStore().currentMana, 0)
+})
 
 const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
@@ -95,12 +98,24 @@ function getExp() {
 async function proceedBattle() {
     useCurrentBattleStore().joeyURL = '/images/joey.png'
     battlePlaying.value = false
-    if (campaignSaveStore.currentHP === 0) {
+    if (campaignSaveStore.currentHP === 0 && campaignSaveStore.currentStatus?.name !== "Will Revive"
+        && campaignSaveStore.currentStatus?.length === 1
+    ) {
         useCurrentBattleStore().thisTurnEvents.forEach((event: BattleEvent, index) => {
             if (index >= battleIndex.value && event.user === 'Joey') {
                 useCurrentBattleStore().thisTurnEvents.splice(index)
                 index--
             }
+        })
+    } else if (campaignSaveStore.currentHP === 0) {
+        useCurrentBattleStore().thisTurnEvents.push({
+            user: 'Joey',
+            action: reviveTest,
+            actionArgs: [useCampaignSaveStore()],
+            flavorText: "REVIVE ENERGY AWAKEN!",
+            spriteURL: '/images/joey.png',
+            sound: '/sounds/joey.m4a',
+            actionPerformed: false
         })
     }
 

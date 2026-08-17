@@ -52,21 +52,19 @@ export const useFriendsStore = defineStore('friends', {
             name: "Matteo",
             eachTurnCheck: null,
             abilityName: "You Tell Me",
-            abilityDesc: "Counter with an exact copy of enemy attacks.",
-            abilityTiming: "Follows Enemy",
-            targetType: "AOE",
+            abilityDesc: "Use a random one of your friends' attacks.",
+            abilityTiming: "After Turn",
+            targetType: "Self",
             spriteURL: "/images/matteo.png",
             sound: "/sounds/baselow.caf",
-            ability: () => {
-                
-            },
-            manaCost: 30
+            ability: youTellMe,
+            manaCost: 40
         } as Friend,
         "Mrs. Paula Vento": {
             name: "Mrs. Paula Vento",
             eachTurnCheck: null,
             abilityName: "Mind Clear",
-            abilityDesc: "Heals statuses, health, and temporarily increases defense.",
+            abilityDesc: "Clears your statuses and heals you.",
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/mrspaulavento.png",
@@ -143,8 +141,8 @@ export const useFriendsStore = defineStore('friends', {
         "Thira": {
             name: "Thira",
             eachTurnCheck: null,
-            abilityName: "Flashback",
-            abilityDesc: "Turn back one turn",
+            abilityName: "Time Reversal",
+            abilityDesc: "Reset the game and nullify the turn.",
             abilityTiming: "After Turn",
             targetType: "Special",
             spriteURL: "/images/thira.png",
@@ -156,13 +154,13 @@ export const useFriendsStore = defineStore('friends', {
             name: "Lucia",
             eachTurnCheck: null,
             abilityName: "Revive Song",
-            abilityDesc: "If you die this turn, revive.",
-            abilityTiming: "With Attack",
+            abilityDesc: "Sets a Revive counter for 3 turns. If you die with 1 turn remaining, you revive.",
+            abilityTiming: "Before Turn",
             targetType: "Self",
             spriteURL: "/images/lucia.png",
             sound: "/sounds/lucia.m4a",
             ability: reviveSong,
-            manaCost: 180
+            manaCost: 50
         } as Friend,
         "Humd": {
             name: "Humd",

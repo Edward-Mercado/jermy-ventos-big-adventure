@@ -15,7 +15,6 @@ const prop = defineProps<{
     item: storeItem,
     selected: boolean
 }>()
-console.log(prop.selected)
 </script>
 
 <style scoped>

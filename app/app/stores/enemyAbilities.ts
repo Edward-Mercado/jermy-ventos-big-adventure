@@ -538,13 +538,14 @@ export function hide(user?: Enemy[]) {
     }
 }
 
-function reviveTest(enemyUser:Enemy[]) {
+export function reviveTest(enemyUser:Enemy[]) {
     if(enemyUser[0]) {
-        if(enemyUser[0].currentHP === 0) enemyUser[0].currentHP = Math.floor(.5* enemyUser[0].maxHP)
+        if(enemyUser[0].currentHP === 0) enemyUser[0].currentHP = Math.floor(.75* enemyUser[0].maxHP)
     }
 }
 
 export function reviveSong(user?: Enemy[]) {
+    console.log("HI")
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'reviveSong'
     if (user) {
@@ -574,26 +575,14 @@ export function reviveSong(user?: Enemy[]) {
         let playerUser = useCampaignSaveStore()
         useCurrentBattleStore().animation.doneByEnemy = false
 
-        //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === reviveSong)
-        if (friendFound) {
-            //@ts-ignore
-            playerUser.currentStatus = {
-                name: "Will Revive",
-                type: "Revive",
-                length: 1,
-                action: null,
-                afflictedName: 'Joey'
-            }
-            useCurrentBattleStore().thisTurnEvents.push({
-                user: 'Joey',
-                action: reviveTest,
-                actionArgs: [useCampaignSaveStore()],
-                flavorText: "REVIVE ENERGY AWAKEN!",
-                spriteURL: '/images/joey.png',
-                sound: '/sounds/joey.m4a',
-                actionPerformed: false
-            })
+        playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === reviveSong)?.manaCost ?? 50)
+
+        playerUser.currentStatus = {
+            name: "Will Revive",
+            type: "Revive",
+            length: 3,
+            action: null,
+            afflictedName: 'Joey'
         }
     }
 }
@@ -618,4 +607,29 @@ export function timeReversal(user?: Enemy[]) {
 
 export function metaNarrative() {
 
+}
+
+export function youTellMe(user?:Enemy[]) {
+    if (user) {
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+
+        const eligibleFriends = useBattleGuiStore().fullFriendsList.filter((f: Friend) => f.targetType !== 'Single')
+        let friendChosen: Friend = eligibleFriends[Math.floor(Math.random() * eligibleFriends.length)]!
+
+        console.log('FRIEND: ',friendChosen)
+        
+        friendChosen.ability([enemyUser])
+
+    } else {
+        let playerUser = useCampaignSaveStore()
+        
+        playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === youTellMe)?.manaCost ?? 40)
+
+        const eligibleFriends = useBattleGuiStore().fullFriendsList.filter((f: Friend) => f.targetType !== 'Single')
+        let friendChosen: Friend = eligibleFriends[Math.floor(Math.random() * eligibleFriends.length)]!
+
+        friendChosen.ability()
+        playerUser.currentMana += friendChosen.manaCost
+    } 
 }

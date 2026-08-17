@@ -342,17 +342,6 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             // after turn flow
             this.usedAbilities.filter((possibleAbility: Friend) => possibleAbility.abilityTiming === 'After Turn') // at abilities
                 .forEach((friend: Friend) => {
-                    if(friend.ability === timeReversal) {
-                        const ucss = useCampaignSaveStore()
-                        this.beforeTurnState.playerStats.attack = ucss.attack
-                        this.beforeTurnState.playerStats.defense = ucss.defense
-                        this.beforeTurnState.playerStats.currentHP = ucss.currentHP
-                        this.beforeTurnState.playerStats.maxHP = ucss.maxHP
-                        this.beforeTurnState.playerStats.currentMana = ucss.currentMana
-                        this.beforeTurnState.playerStats.maxMana = ucss.maxMana
-
-                        this.beforeTurnState.enemies = this.currentEnemies
-                    }
                     resultingActions.push({
                         user: friend.name,
                         spriteURL: friend.spriteURL,
@@ -413,7 +402,6 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             })
 
             this.currentEnemies.forEach((e:Enemy) => {
-                console.log(e.ability === timeReversal)
                 if(e.ability === timeReversal) {
                     const ucss = useCampaignSaveStore()
 
@@ -438,6 +426,17 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                     })
                 }
             })
+
+            const ucss = useCampaignSaveStore()
+
+            this.beforeTurnState.playerStats.attack = ucss.attack
+            this.beforeTurnState.playerStats.defense = ucss.defense
+            this.beforeTurnState.playerStats.currentHP = ucss.currentHP
+            this.beforeTurnState.playerStats.maxHP = ucss.maxHP
+            this.beforeTurnState.playerStats.currentMana = ucss.currentMana
+            this.beforeTurnState.playerStats.maxMana = ucss.maxMana
+
+            this.currentEnemies.forEach((e:Enemy) => this.beforeTurnState.enemies.push(JSON.parse(JSON.stringify(e))))
 
             return resultingActions;
         },
