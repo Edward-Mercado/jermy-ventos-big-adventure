@@ -127,16 +127,14 @@ export const useFriendsStore = defineStore('friends', {
         "Columbo": {
             name: "Columbo",
             eachTurnCheck: null,
-            abilityName: "Scan",
+            abilityName: "Examine",
             abilityDesc: "See what the target will do prematurely.",
             abilityTiming: "After Turn",
             targetType: "Single",
             spriteURL: "/images/columbo.png",
             sound: "/sounds/columbo.m4a",
-            ability: () => {
-                
-            },
-            manaCost: 100
+            ability: examine,
+            manaCost: 5
         } as Friend,
         "Thira": {
             name: "Thira",
@@ -173,6 +171,54 @@ export const useFriendsStore = defineStore('friends', {
             sound: "/sounds/humd.m4a",
             ability: mangoConsumption,
             manaCost: 20
-        } as Friend
+        } as Friend,
+        "Edward": {
+            name: "Edward",
+            eachTurnCheck: null,
+            abilityName: "THE SLAYER",
+            abilityDesc: "Randomly increase attack or heal.",
+            abilityTiming: "Before Turn",
+            targetType: "Self",
+            spriteURL: "/images/edward.png",
+            sound: "/sounds/edward.caf",
+            ability: theSlayer,
+            manaCost: 40
+        } as Friend,
+        "Waldo": {
+            name: "Waldo",
+            eachTurnCheck: null,
+            abilityName: "Hide",
+            abilityDesc: "Shrink thrice.",
+            abilityTiming: "With Attack",
+            targetType: "Self",
+            spriteURL: "/images/waldo.png",
+            sound: "/sounds/baselow.caf",
+            ability: hide,
+            manaCost: 40
+        } as Friend,
+        "RT Game": {
+            name: "RT Game",
+            eachTurnCheck: null,
+            abilityName: "Drifting",
+            abilityDesc: "Drift all over your enemies. Loses less damage for each additional",
+            abilityTiming: "With Attack",
+            targetType: "AOE",
+            spriteURL: "/images/rtgame.png",
+            sound: "/sounds/baselow.caf",
+            ability: drifting,
+            manaCost: 60
+        } as Friend,
+        "Lemon Alien": {
+            name: "Lemon Alien",
+            eachTurnCheck: null,
+            abilityName: "Lemon Rebirth",
+            abilityDesc: "Increase your stats.",
+            abilityTiming: "Before Turn",
+            targetType: "Self",
+            spriteURL: "/images/lemonalien.png",
+            sound: "/sounds/baselow.caf",
+            ability: drifting,
+            manaCost: 40
+        } as Friend,
     })
 })

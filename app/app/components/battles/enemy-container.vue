@@ -62,7 +62,7 @@
                     </div>
                     <p class="text-2xl text-black pixfont">MANA:</p>
                     <battles-health-bar :currentHP="enemy.currentMana" :maxHP="enemy.maxMana" :isMana="true" :nextLevel="campaignStore.playerLevel + 1"></battles-health-bar>
-                    <p class="text-lg text-black pixfont" v-if="useCurrentBattleStore().columboActive">Enemy Next Move: {{ enemy.nextMove }}</p>
+                    <p class="text-lg text-black pixfont" v-if="useCurrentBattleStore().columboActive">Enemy Next Move: {{ enemy.nextMove }}<span v-if="enemy.nextMove === 'Use Ability'">, {{ enemy.abilityName }}</span></p>
                     <p class="text-lg text-slate-800 pixfont italic" v-else>Maybe using an ability would allow you to see this enemy's next move.</p>
                 </div>
             </div>

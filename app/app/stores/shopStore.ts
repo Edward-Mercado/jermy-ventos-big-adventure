@@ -58,6 +58,27 @@ export const useShopStore = defineStore('shopStore', {
                     }
                 },
             ]
-        }
+        },
+
+        gavinShop: {
+            sellerURL: "/images/gavin.png",
+            shopName: "Spell",
+            shopDesc: "Get an ability!",
+            storeItems: [
+                {
+                    name: "RT Game",
+                    img: "/images/rtgame.png",
+                    abilityName: "Drifting"
+                },{
+                    name: "Lemon Alien",
+                    img: "/images/lemonalien.png",
+                    abilityName: "Lemon Rebirth"
+                },{
+                    name: "Waldo",
+                    img: "/images/waldo.png",
+                    abilityName: "Hide"
+                },
+            ]
+        },
     }),
 })

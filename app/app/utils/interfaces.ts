@@ -98,8 +98,9 @@ export type ChoiceOption = { img: string; desc: string; func: () => void }
 export interface storeItem {
     name: string,
     img: string,
-    stats: {
+    stats?: {
         attack: number,
         defense: number
-    }
+    },
+    abilityName?: string
 }

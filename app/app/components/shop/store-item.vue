@@ -5,7 +5,8 @@
     <img :src="item.img" :alt="item.name">
     <div class="h-full flex flex-col justify-between">
         <p class="text-2xl pixfont uppercase text-sky-200 text-right" :class="selected ? 'text-sky-900' : 'text-sky-200'">{{ item.name }}</p>
-        <p class="text-3xl dialogue-font uppercase text-right" :class="selected ? 'text-sky-900' : 'text-sky-200'">+{{ item.stats.attack }}Atk, +{{ item.stats.defense }}Def</p>
+        <p v-if="item.stats" class="text-3xl dialogue-font uppercase text-right" :class="selected ? 'text-sky-900' : 'text-sky-200'">+{{ item.stats.attack }}Atk, +{{ item.stats.defense }}Def</p>
+        <p v-if="item.abilityName" class="text-3xl dialogue-font uppercase text-right" :class="selected ? 'text-sky-900' : 'text-sky-200'">{{ item.abilityName }}</p>
     </div>
     </div>
 </template>

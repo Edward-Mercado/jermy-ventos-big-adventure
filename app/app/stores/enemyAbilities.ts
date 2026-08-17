@@ -52,7 +52,6 @@ export function multiWielding(user?: Enemy[]) {
 
         if (!target) target = useCurrentBattleStore().currentEnemies[0]
 
-        console.log(target)
         setTimeout(() => { attack(['user', target, 1]) }, 300)
         setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
         setTimeout(() => { attack(['user', target, 0.3]) }, 2300)    
@@ -127,16 +126,26 @@ export function moonPrincessHalation(user?: Enemy[]) {
     }
 }
 
-export function lemonRebirth(user: Enemy[]) {
-    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+export function lemonRebirth(user?: Enemy[]) {
+    let enemyUser = null
+    if(user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+    }  
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'lemonRebirth'
-    useCurrentBattleStore().animation.doneByEnemy = true
     if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.maxHP = Math.floor(enemyUser.maxHP * 1.1)
         enemyUser.defense = Math.floor(enemyUser.defense * 1.1)
         enemyUser.attack = Math.floor(enemyUser.attack * 1.1)
         enemyUser.maxMana = Math.floor(enemyUser.maxMana * 1.1)
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        const ucss = useCampaignSaveStore()
+        ucss.maxHP = Math.floor(ucss.maxHP * 1.05)
+        ucss.defense = Math.floor(ucss.defense * 1.05)
+        ucss.attack = Math.floor(ucss.attack * 1.05)
+        ucss.maxMana = Math.floor(ucss.maxMana * 1.05)
     }
 }
 
@@ -378,8 +387,6 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
             const target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
             if (!target) return
 
-            console.log(target)
-
             setTimeout(() => {
                 //@ts-ignore
                 const success = Math.random() < (target.currentHP / target.maxHP)
@@ -451,13 +458,16 @@ export function mindClear(user?: Enemy[]) {
     }
 }
 
-export function drifting(user: Enemy[]) {
-    let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
+export function drifting(user?: Enemy[]) {
+    let enemyUser = null
+    if(user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+    }
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'drifting'
-    useCurrentBattleStore().animation.doneByEnemy = true
 
     if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.status = {
             name: "Drifting",
             afflictedName: enemyUser.name,
@@ -478,6 +488,22 @@ export function drifting(user: Enemy[]) {
             sound: enemyUser.sound,
             actionPerformed: false
         })
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === drifting)!
+        if (friendFound) {
+            useCampaignSaveStore().currentMana -= friendFound.manaCost
+        }
+
+        let damageMultis: number[] = [1.5, 1.45, 1.3, 1.25]
+        let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
+        let damageMulti: number = damageMultis[length - 1]!
+
+        setTimeout(() => {
+            useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+                attack(['user', e, damageMulti])
+            })
+        }, 1000)
     }
 }
 
@@ -490,19 +516,16 @@ export function theSlayer(user?: Enemy[]) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
         enemyUser!.currentMana -= enemyUser!.manaCost
 
-        console.log("THE SLAYER")
         if (enemyUser) {
             if (Math.random() < 0.5) {
                 setTimeout(() => {
                     let healAmount: number = Math.round(0.2 * enemyUser.maxHP)
                     enemyUser.currentHP = Math.min(enemyUser.currentHP + healAmount, enemyUser.maxHP)
                 }, 2200)
-                console.log("HEAL")
             } else {
                 setTimeout(() => {
                     enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
                 }, 2200)
-                console.log("ATK BOOST")
             }
         }
     } else {
@@ -545,7 +568,6 @@ export function reviveTest(enemyUser:Enemy[]) {
 }
 
 export function reviveSong(user?: Enemy[]) {
-    console.log("HI")
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'reviveSong'
     if (user) {
@@ -617,7 +639,6 @@ export function youTellMe(user?:Enemy[]) {
         const eligibleFriends = useBattleGuiStore().fullFriendsList.filter((f: Friend) => f.targetType !== 'Single')
         let friendChosen: Friend = eligibleFriends[Math.floor(Math.random() * eligibleFriends.length)]!
 
-        console.log('FRIEND: ',friendChosen)
         
         friendChosen.ability([enemyUser])
 
@@ -632,4 +653,25 @@ export function youTellMe(user?:Enemy[]) {
         friendChosen.ability()
         playerUser.currentMana += friendChosen.manaCost
     } 
+}
+
+export function examine(user?: Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'examine'
+    if (user) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        setTimeout(() => {
+            attack([enemyUser, 'user', 1.6])
+        }, 2500)
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let playerUser = useCampaignSaveStore()
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === examine)!
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            useCurrentBattleStore().columboActive = true
+        }
+    }
 }

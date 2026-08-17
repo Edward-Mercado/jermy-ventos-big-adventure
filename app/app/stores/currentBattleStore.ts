@@ -87,6 +87,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             // before main turn flow
             const resultingActions = [] as BattleEvent[];
             const followEnemyPairs = [] as Friend[];
+            this.columboActive = false
 
             this.currentEnemies.forEach((enemy: Enemy) => { // blocks
                 if (enemy.nextMove === "Block") {

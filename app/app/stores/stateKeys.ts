@@ -84,15 +84,26 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'shop', name: 'kortneeShop' },
                 { type: 'battle', name: 'alastor2' },
                 { type: 'battle', name: 'waldo' },
+
                 { type: 'battle', dynamic: 'LuciaColumboBattle1', name: 'battleColumbo' },
                 { type: 'cutscene', dynamic: 'LuciaColumboSave1', name: 'saveColumbo' },
+                { type: 'battle', name: 'maidenOLuck1' },
+
                 { type: 'battle', dynamic: 'ThiraPierceBattle1', name: 'battlePierce' },
                 { type: 'cutscene', dynamic: 'ThiraPierceSave1', name: 'savePierce' },
+                { type: 'battle', name: 'rtGame2' },
+
                 { type: 'battle', dynamic: 'MatteoWozBattle1', name: 'battleMatteo' },
                 { type: 'cutscene', dynamic: 'MatteoWozSave1', name: 'saveWoz' },
+                { type: 'shop', name: 'gavinShop' },
+
+                { type: 'battle', dynamic: 'LuciaColumboBattle2', name: 'battleLucia' },
                 { type: 'cutscene', dynamic: 'LuciaColumboSave2', name: 'saveLucia' },
+
                 { type: 'cutscene', dynamic: 'ThiraPierceSave2', name: 'saveThira' },
+
                 { type: 'cutscene', dynamic: 'MatteoWozSave2', name: 'saveMatteo' },
+                
                 { type: 'cutscene', name: 'allSaved' },
                 { type: 'cutscene', name: 'saveEdward' },
                 { type: 'cutscene', name: 'joevilsPlea' },
@@ -143,4 +154,5 @@ export const abilityGainKeys:Record<string, string>[] = [
     {battleThira: "Thira"},
     {battleLucia: "Lucia"},
     {battleHumd: "Humd"},
+    {battleEdward: "Edward"},
 ]
