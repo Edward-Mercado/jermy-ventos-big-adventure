@@ -83,6 +83,8 @@ export const useStateKeys = defineStore('stateKeys', {
                 { type: 'choice', name: 'ElementariesFakes' },
                 { type: 'shop', name: 'kortneeShop' },
                 { type: 'battle', name: 'alastor2' },
+                { type: 'battle', name: 'waldo' },
+                { type: 'battle', dynamic: 'LuciaColumboBattle1', name: 'battleColumbo' },
                 { type: 'cutscene', dynamic: 'LuciaColumboSave1', name: 'saveColumbo' },
                 { type: 'cutscene', dynamic: 'ThiraPierceSave1', name: 'savePierce' },
                 { type: 'cutscene', dynamic: 'MatteoWozSave1', name: 'saveWoz' },

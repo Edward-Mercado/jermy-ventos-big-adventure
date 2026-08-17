@@ -47,20 +47,15 @@ export function multiWielding(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().fullFriendsList.find((f: Friend) => f.ability === multiWielding)
-        console.log(friendFound)
-        if (friendFound) {
-            //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
-            let target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
+        playerUser.currentMana -= useFriendsStore().$state['Noure'].manaCost
+        let target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === 'Noure')![0]
 
-            if (!target) target = useCurrentBattleStore().currentEnemies[0]
+        if (!target) target = useCurrentBattleStore().currentEnemies[0]
 
-            console.log(target)
-            setTimeout(() => { attack(['user', target, 1]) }, 300)
-            setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
-            setTimeout(() => { attack(['user', target, 0.3]) }, 2300)
-        }
+        console.log(target)
+        setTimeout(() => { attack(['user', target, 1]) }, 300)
+        setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
+        setTimeout(() => { attack(['user', target, 0.3]) }, 2300)    
     }
 }
 
@@ -521,6 +516,68 @@ export function theSlayer(user?: Enemy[]) {
             playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
 
             playerUser.slayerActive = true
+        }
+    }
+}
+
+export function hide(user?: Enemy[]) {
+    if (user) {
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+        enemyUser!.shrinkCount += 3
+    } else {
+        let playerUser = useCampaignSaveStore()
+
+        //@ts-ignore
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            playerUser.shrinkCount += 3
+        }
+    }
+}
+
+function reviveTest(enemyUser:Enemy[]) {
+    if(enemyUser[0]) {
+        if(enemyUser[0].currentHP === 0) enemyUser[0].currentHP = Math.floor(.5* enemyUser[0].maxHP)
+    }
+}
+
+export function reviveSong(user?: Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'reviveSong'
+    if (user) {
+        let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        enemyUser!.currentMana -= enemyUser!.manaCost
+
+        enemyUser!.status = {
+            name: "Will Revive",
+            type: "Revive",
+            length: 1,
+            action: null,
+            afflictedName: 'Lucia'
+        }
+
+        useCurrentBattleStore().thisTurnEvents.push({
+            user: enemyUser!.name,
+            action: reviveTest,
+            actionArgs: [enemyUser],
+            flavorText: "REVIVE ENERGY AWAKEN!",
+            spriteURL: enemyUser!.img,
+            sound: enemyUser!.sound,
+            actionPerformed: false
+        })
+        
+    } else {
+        let playerUser = useCampaignSaveStore()
+
+        //@ts-ignore
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        if (friendFound) {
+            //@ts-ignore
+            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            playerUser.shrinkCount += 3
         }
     }
 }

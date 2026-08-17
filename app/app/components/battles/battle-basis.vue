@@ -68,8 +68,7 @@ const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
-console.log(useCampaignSaveStore().items)
-
+useBattleGuiStore().initialize()
 currentBattleStore.initialize(currentStateKey.value)
 useCampaignSaveStore().consecutiveBlocks = 0
 
@@ -80,9 +79,10 @@ function beginTurn() {
     battleIndex.value++;
     attackTarget.value = null;
     enemyMode.value = "Check";
-    useBattleGuiStore().selectedFriends.forEach((friend: Friend) => {
-        useBattleGuiStore().move(friend)
-    })
+    while(useBattleGuiStore().selectedFriends.length) {
+        //@ts-ignore
+        useBattleGuiStore().move(useBattleGuiStore().selectedFriends[0])
+    }
 }
 
 function getExp() {
@@ -103,6 +103,7 @@ async function proceedBattle() {
             }
         })
     }
+
     battleIndex.value++
     useCurrentBattleStore().animation.name = null
     useCurrentBattleStore().animation.playing = false

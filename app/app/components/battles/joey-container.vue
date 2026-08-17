@@ -2,34 +2,36 @@
     <div class="w-[35%] flex flex-col justify-between relative overflow-hidden"> <!-- JOEY CONTAINER-->
         <battles-item-handler></battles-item-handler>
         <div
-            class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2 rounded-lg">
+            class="border-2 h-[30%] bg-slate-600/70 border-black shadow-lg p-2 gap-2 flex flex-col justify-between m-2 rounded-lg z-11">
             <h4 class="pixfont text-2xl -mb-2">Joey</h4>
             <transition name="fade-enlarge">
-                <battles-status-container v-if="useCampaignSaveStore().currentStatus" :status="useCampaignSaveStore().currentStatus!"></battles-status-container>
+                <battles-status-container v-if="useCampaignSaveStore().currentStatus"
+                    :status="useCampaignSaveStore().currentStatus!"></battles-status-container>
             </transition>
             <battles-health-bar :currentHP="campaignStore.currentHP" :maxHP="campaignStore.maxHP"></battles-health-bar>
             <button v-if="pickingMove" class="bg-slate-900 flex items-center justify-center w-full h-[30%] p-2 pixfont border-2 hover:bg-slate-600 
                     active:bg-slate-200 active:text-black transition-all duration-300 ease-in-out shadow-md 
                     hover:shadow-xl active:shadow-none hover:-translate-y-1 active:translate-y-0.5"
                 @click="clickSFX(); checking = true">Check</button>
-            <battles-health-bar v-else :currentHP="campaignStore.currentMana" :maxHP="campaignStore.maxMana" :isMana="true"></battles-health-bar>
+            <battles-health-bar v-else :currentHP="campaignStore.currentMana" :maxHP="campaignStore.maxMana"
+                :isMana="true"></battles-health-bar>
         </div>
         <transition name="fade">
             <img :src="useCurrentBattleStore().joeyURL" alt="Joey" v-if="campaignStore.currentHP > 0"
                 class="border-b-6 border-black rounded-2xl absolute bottom-0 left-0 max-w-full max-h-[60%] m-2 mx-2 transition-all duration-300 ease-in-out scale-x-[-1]"
                 :style="{ transform: `scale(${1 * (0.66 ** campaignStore.shrinkCount)})` }">
         </transition>
-        <transition name="fade"> 
-            <img v-if="campaignStore.currentHP === 0"
-            src="/images/deadsmoke.png" alt="deadsmoke" class="absolute bottom-0">
+        <transition name="fade">
+            <img v-if="campaignStore.currentHP === 0" src="/images/deadsmoke.png" alt="deadsmoke"
+                class="absolute bottom-0">
         </transition>
         <transition name="wandStrike">
             <img v-if="wandStriking" src="/images/birthday_wand.png" alt="birthday_wand"
-            class="absolute bottom-0 h-[50%] z-13">
+                class="absolute bottom-0 h-[50%] z-13">
         </transition>
         <transition name="fade">
             <img v-if="campaignStore.isBlocking" src="/images/shield.png" alt="shield"
-            class="absolute bottom-0 left-[35%] h-[35%] opacity-80 z-13">
+                class="absolute bottom-0 left-[35%] h-[35%] opacity-80 z-13">
         </transition>
         <div v-if="pickingMove"
             class="w-[35%] absolute bottom-2 right-2 bg-slate-600/70 rounded-lg h-[65%] border-2 border-black shadow-md shadow-slate-900/20 p-2 flex flex-col gap-2 z-11">
@@ -38,13 +40,11 @@
                 <div class="relative mt-1">
                     <div class="flex justify-between">
                         <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]"
-                            :class="selectedMove === 'Attack' ? 'text-slate-800' : 'text-white'"
-                            @click="clickSFX(); selectedMove = 'Attack';
+                            :class="selectedMove === 'Attack' ? 'text-slate-800' : 'text-white'" @click="clickSFX(); selectedMove = 'Attack';
                             $emit('selectMove', 'Attack')
-                            ">Attack</p>
+                                ">Attack</p>
                         <p class="pixfont text-lg transition-colors ease-in-out duration-200 z-4 text-center w-[50%]"
-                            :class="selectedMove === 'Block' ? 'text-slate-800' : 'text-white'"
-                            @click="clickSFX(); selectedMove = 'Block';
+                            :class="selectedMove === 'Block' ? 'text-slate-800' : 'text-white'" @click="clickSFX(); selectedMove = 'Block';
                             $emit('selectMove', 'Block')">Block</p>
                     </div>
                     <div class="bg-white hover:bg-slate-100 active:bg-slate-200 h-full absolute w-[50%] rounded-md top-0 transition-all duration-300 ease-in-out"
@@ -52,7 +52,8 @@
 
                     </div>
                     <transition name="fade">
-                        <div class="absolute right-full mr-2 w-full bg-white/70 flex items-center justify-center text-black pixfont py-1 px-2 rounded-sm border-white border-2" v-if="selectedMove === 'Attack' && !atkTarget?.name">
+                        <div class="absolute right-full mr-2 w-full bg-white/70 flex items-center justify-center text-black pixfont py-1 px-2 rounded-sm border-white border-2"
+                            v-if="selectedMove === 'Attack' && !atkTarget?.name">
                             Select a target.
                         </div>
                     </transition>
@@ -72,16 +73,17 @@
             </div>
             <button class="text-black bg-white rounded-md pixfont text-[1rem] absolute bottom-1 left-[2%] w-[96%]
             transition-all duration-300 ease-in-out hover:bg-slate-100 active:bg-slate-300 shadow-md hover:shadow-lg active:shadow-none
-            hover:-translate-y-0.5 active:translate-y-px max-h-[30%] py-2 uppercase" @click="handleConfirm">Confirm</button>
+            hover:-translate-y-0.5 active:translate-y-px max-h-[30%] py-2 uppercase"
+                @click="handleConfirm">Confirm</button>
         </div>
         <transition name="modal">
-            <battles-joey-checker v-if="checking && pickingMove" @close="checking = false"></battles-joey-checker>
+            <battles-joey-checker v-if="checking && pickingMove" @close="checking = false" :class="'z-20'"></battles-joey-checker>
         </transition>
         <div class="z-18 fixed">
 
             <transition name="modal">
                 <battles-abilities-modal v-if="viewAbilities && pickingMove" @close="viewAbilities = false"
-                    @confirm="(chosenFriends: Friend[]) => {updateSelectedFriends(chosenFriends)}"></battles-abilities-modal>
+                    @confirm="(chosenFriends: Friend[]) => { updateSelectedFriends(chosenFriends) }"></battles-abilities-modal>
             </transition>
         </div>
         <transition name="fade" appear>
@@ -131,7 +133,7 @@ async function handleConfirm() {
     if (selectedMove.value === 'Block' || (selectedMove.value === 'Attack' && prop.atkTarget)) { clickSFX(); useCurrentBattleStore().populateUserChoices(selectedFriends.value, selectedMove.value); emit('finishSelection') }
     else {
         errorSFX()
-        if(!selectedMove.value) {
+        if (!selectedMove.value) {
             showSelectMoveError.value = true
         } else {
             showNoTargetError.value = true
@@ -187,6 +189,7 @@ async function handleConfirm() {
     rotate: 0;
     transform: translateX(0) translateY(0);
 }
+
 .wandStrike-enter-to {
     rotate: 50deg;
     transform: translateX(20%) translateY(33%)
@@ -213,11 +216,13 @@ async function handleConfirm() {
         opacity: 0;
         rotate: 5deg
     }
+
     80% {
         scale: 1.2;
         opacity: 1;
         rotate: -1deg
     }
+
     100% {
         scale: 1;
         opacity: 1;

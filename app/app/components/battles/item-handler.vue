@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute w-full h-[97.9%] bg-red-600/10 z-10 overflow-hidden">
+    <div class="absolute w-full h-[97.9%] z-10 overflow-hidden">
         <!--pet-->
         <img v-if="pet" class="absolute left-0 bottom-[16%] w-[30%]" :class="pet.img==='/images/pet-dragon.png' ? 'scale-x-[-1] translate-y-[-20%] rotate-[-30deg]' : ''" :src="pet.img" :alt="pet.name">
         <!--shirt-->
@@ -15,7 +15,6 @@ const shirt = computed(() => {
 const pet = computed(() => {
     return useCampaignSaveStore().items.find((i:storeItem) => i.name.includes("Pet"))
 })
-console.log(shirt.value)
 </script>
 
 <style scoped>

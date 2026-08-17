@@ -16,6 +16,7 @@
         <animations-circle-smash v-if="animationName==='circleSmash'" :done-by-enemy="doneByEnemy"></animations-circle-smash>
         <animations-drifting v-if="animationName==='drifting'" :done-by-enemy="doneByEnemy"></animations-drifting>
         <animations-the-slayer v-if="animationName==='theSlayer'" :done-by-enemy="doneByEnemy"></animations-the-slayer>
+        <animations-revive-song v-if="animationName==='reviveSong'" :done-by-enemy="doneByEnemy"></animations-revive-song>
     </div>
 </template>
 

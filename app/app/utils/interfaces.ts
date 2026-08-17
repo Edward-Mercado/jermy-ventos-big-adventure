@@ -87,7 +87,7 @@ export interface BattleEvent {
 
 export interface Status {
     name: string,
-    type: ("Inhibit" | "DOT" | "Double Attack"),
+    type: ("Inhibit" | "DOT" | "Double Attack" | "Revive"),
     action: Function | null,
     afflictedName: string,
     length: number,
