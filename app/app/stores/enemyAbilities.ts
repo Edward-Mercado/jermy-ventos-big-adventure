@@ -712,9 +712,9 @@ export function wiiGameWollop(user: Enemy[]) {
         let hitsCount = 0
         const interval = setInterval(() => {
             hitsCount++
-            attack([enemyUser, 'user', .2])
-            if(hitsCount > 25) clearInterval(interval)
-        }, 200)
+            attack([enemyUser, 'user', .15])
+            if(hitsCount > 24) clearInterval(interval)
+        }, 150)
     } else {
         useCurrentBattleStore().animation.doneByEnemy = false
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
@@ -722,7 +722,7 @@ export function wiiGameWollop(user: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [.15, .13, .12, .11]
+        let damageMultis: number[] = [.09, .087, .083, .076]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -732,7 +732,7 @@ export function wiiGameWollop(user: Enemy[]) {
                 attack(['user', e, damageMulti])
             })
             hitsCount++
-            if(hitsCount > 14) clearInterval(interval)
-        }, 200)
+            if(hitsCount > 24) clearInterval(interval)
+        }, 150)
     }
 }
