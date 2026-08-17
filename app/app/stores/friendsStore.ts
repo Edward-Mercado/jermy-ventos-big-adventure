@@ -130,7 +130,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityName: "Examine",
             abilityDesc: "See what the target will do prematurely.",
             abilityTiming: "After Turn",
-            targetType: "Single",
+            targetType: "AOE",
             spriteURL: "/images/columbo.png",
             sound: "/sounds/columbo.m4a",
             ability: examine,

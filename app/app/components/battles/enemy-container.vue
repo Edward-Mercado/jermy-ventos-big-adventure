@@ -9,6 +9,7 @@
             <div class="flex justify-between items-center h-[40%]">
             <h4 class="pixfont text-md lg:text-2xl h-full pt-2">{{ enemy.name }}</h4>
             <div class="absolute bottom-13 z-9 left-2 flex " v-if="pickingMove">
+                <Magnifier v-if="useCurrentBattleStore().columboActive" color="white" :size="32" />
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
                 <Target :size="32" v-for="friend in enemy.targetOf" color=" #bae6fd" class=""/>
                 <Target :size="32" v-for="friend in useBattleGuiStore().selectedFriends.filter((friend:Friend) => friend.targetType === 'AOE')" 
@@ -72,6 +73,7 @@
 
 <script setup lang="ts">
 import { Target } from 'reicon-vue';
+import { Magnifier } from 'reicon-vue';
 const checking = ref<boolean>(false)
 const campaignStore = useCampaignSaveStore()
 const emit = defineEmits(['target'])
