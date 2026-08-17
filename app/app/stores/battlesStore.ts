@@ -832,6 +832,68 @@ export const useBattleStore = defineStore('battle', {
                 sound: '/sounds/baselow.caf',
             }]
         },
+        'greenBoys': {
+            enemies: [{
+                name: "Maiden O' Luck",
+                attack: 40,
+                defense: 35,
+                abilityType: "offense",
+                abilityName: "Make it Wild",
+                ability: makeItWild,
+                manaCost: 70,
+                currentHP: 230,
+                maxHP: 230,
+                currentMana: 200,
+                maxMana: 200,
+                img: '/images/maiden-o-luck.webp',
+                expDrop: 100,
+                desc: "The worst horse. Old money horse. Never worked a day in his life horse.",
+                level: 8,
+                title: "Racer",
+                sound: '/sounds/basehigh.m4a',
+            },{
+                name: "Grass Man",
+                attack: 45,
+                defense: 30,
+                abilityType: "offense",
+                abilityName: "Grass Cutting",
+                ability: grassCut,
+                manaCost: 100,
+                currentHP: 150,
+                maxHP: 150,
+                currentMana: 150,
+                maxMana: 150,
+                img: '/images/grassman.png',
+                expDrop: 100,
+                desc: "Grass 'Cutting Incremental' Man. Is this an NFT?",
+                level: 7,
+                title: "Grassy Boy",
+                sound: '/sounds/baselow.caf',
+            }]
+        },
+
+        'battleWoz': {
+            enemies: [{
+                name: "Scott the Woz",
+                attack: 30,
+                defense: 40,
+                abilityType: "offense",
+                abilityName: "Wii Game Wollop",
+                ability: wiiGameWollop,
+                manaCost: 100,
+                currentHP: 250,
+                maxHP: 250,
+                currentMana: 200,
+                maxMana: 200,
+                img: '/images/scottthewoz.png',
+                expDrop: 100,
+                desc: "The slayer of the border.",
+                level: 8,
+                title: "Virgin",
+                sound: '/sounds/scottthewoz.m4a',
+            }]
+        },
+        
 
     } as Record<string, EnemyGroup>),
     actions: {

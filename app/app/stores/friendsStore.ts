@@ -89,15 +89,13 @@ export const useFriendsStore = defineStore('friends', {
         "Scott the Woz": {
             name: "Scott the Woz",
             eachTurnCheck: null,
-            abilityName: "Blue Border",
-            abilityDesc: "Puts up a shield that blocks one hit. Negates damage with a small chance to reflect.",
-            abilityTiming: "Before Turn",
-            targetType: "Self",
+            abilityName: "Wii Game Wollop",
+            abilityDesc: "Hit your enemies with many Wii Games",
+            abilityTiming: "With Attack",
+            targetType: "AOE",
             spriteURL: "/images/scottthewoz.png",
             sound: "/sounds/scottthewoz.m4a",
-            ability: () => {
-                
-            },
+            ability: wiiGameWollop,
             manaCost: 40
         } as Friend,
         "Gil": {

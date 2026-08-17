@@ -698,3 +698,41 @@ export function examine(user?: Enemy[]) {
         }
     }
 }
+
+export function wiiGameWollop(user: Enemy[]) {
+    let enemyUser = null
+    if (user) {
+        enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user![0]!.name)
+    }
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'wiiGameWollop'
+    if (enemyUser) {
+        useCurrentBattleStore().animation.doneByEnemy = true
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
+        let hitsCount = 0
+        const interval = setInterval(() => {
+            hitsCount++
+            attack([enemyUser, 'user', .2])
+            if(hitsCount > 25) clearInterval(interval)
+        }, 200)
+    } else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
+        if (friendFound) {
+            if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
+        }
+
+        let damageMultis: number[] = [.15, .13, .12, .11]
+        let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
+        let damageMulti: number = damageMultis[length - 1]!
+
+        let hitsCount = 0
+        const interval = setInterval(() => {
+            useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+                attack(['user', e, damageMulti])
+            })
+            hitsCount++
+            if(hitsCount > 14) clearInterval(interval)
+        }, 200)
+    }
+}
