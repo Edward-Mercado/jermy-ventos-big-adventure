@@ -19,6 +19,7 @@
         <animations-revive-song v-if="animationName==='reviveSong'" :done-by-enemy="doneByEnemy"></animations-revive-song>
         <animations-time-reversal v-if="animationName==='timeReversal'" :done-by-enemy="doneByEnemy"></animations-time-reversal>
         <animations-examine v-if="animationName==='examine'" :done-by-enemy="doneByEnemy"></animations-examine>    
+        <animations-meta-narrative v-if="animationName==='metaNarrative'" :done-by-enemy="doneByEnemy"></animations-meta-narrative>    
     </div>
 </template>
 

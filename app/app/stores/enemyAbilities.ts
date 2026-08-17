@@ -1,7 +1,7 @@
 export function shrink(user?: Enemy[]) {
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         enemyUser!.shrinkCount++
     } else {
         let playerUser = useCampaignSaveStore()
@@ -10,7 +10,7 @@ export function shrink(user?: Enemy[]) {
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             playerUser.shrinkCount++
         }
     }
@@ -22,7 +22,7 @@ export function multiWielding(user?: Enemy[]) {
 
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         useCurrentBattleStore().animation.doneByEnemy = true
         if (enemyUser) {
             setTimeout(() => {
@@ -47,7 +47,7 @@ export function multiWielding(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        playerUser.currentMana -= useFriendsStore().$state['Noure'].manaCost
+        if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state['Noure'].manaCost
         let target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === 'Noure')![0]
 
         if (!target) target = useCurrentBattleStore().currentEnemies[0]
@@ -63,7 +63,7 @@ export function ballRam(user: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'ballRam'
     useCurrentBattleStore().animation.doneByEnemy = true
-    enemyUser.currentMana -= enemyUser.manaCost
+    if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         attack([enemyUser, 'user', 1.15])
     }, 400)
@@ -75,7 +75,7 @@ export function mangoConsumption(user?: Enemy[]) {
     if (user) {
         useCurrentBattleStore().animation.doneByEnemy = true
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         if (enemyUser) {
             enemyUser.currentHP = Math.round(Math.min(enemyUser.currentHP + .4 * enemyUser.maxHP, enemyUser.maxHP))
         }
@@ -87,7 +87,7 @@ export function mangoConsumption(user?: Enemy[]) {
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             let healFactor = Math.round(0.4 * (playerUser.maxHP))
             playerUser.currentHP = Math.min(playerUser.currentHP + healFactor, playerUser.maxHP)
         }
@@ -103,7 +103,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'moonPrincessHalation'
     if (enemyUser) {
         useCurrentBattleStore().animation.doneByEnemy = true
-        enemyUser.currentMana -= enemyUser.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             attack([enemyUser, 'user', 1.2])
         }, 1800)
@@ -111,7 +111,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
         if (friendFound) {
-            useCampaignSaveStore().currentMana -= friendFound.manaCost
+            if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
         let damageMultis: number[] = [1.6, 1.4, 1.15, 1]
@@ -134,6 +134,7 @@ export function lemonRebirth(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'lemonRebirth'
     if (enemyUser) {
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.maxHP = Math.floor(enemyUser.maxHP * 1.1)
         enemyUser.defense = Math.floor(enemyUser.defense * 1.1)
@@ -142,6 +143,7 @@ export function lemonRebirth(user?: Enemy[]) {
     } else {
         useCurrentBattleStore().animation.doneByEnemy = false
         const ucss = useCampaignSaveStore()
+        if(useCurrentBattleStore().usingMana) ucss.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === lemonRebirth)?.manaCost ?? 30)
         ucss.maxHP = Math.floor(ucss.maxHP * 1.05)
         ucss.defense = Math.floor(ucss.defense * 1.05)
         ucss.attack = Math.floor(ucss.attack * 1.05)
@@ -154,7 +156,7 @@ export function grassCut(user: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'grassCut'
     useCurrentBattleStore().animation.doneByEnemy = true
-    enemyUser.currentMana -= enemyUser.manaCost
+    if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         attack([enemyUser, 'user', 1.2])
     }, 900)
@@ -165,7 +167,7 @@ export function miniCrossword(user: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'miniCrossword'
     useCurrentBattleStore().animation.doneByEnemy = true
-    enemyUser.currentMana -= enemyUser.manaCost
+    if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         if (!useCampaignSaveStore().isBlocking) {
             attack([enemyUser, 'user', 0.6])
@@ -185,7 +187,7 @@ export function circleSmash(user: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'circleSmash'
     useCurrentBattleStore().animation.doneByEnemy = true
-    enemyUser.currentMana -= enemyUser.manaCost
+    if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         attack([enemyUser, 'user', 1.3])
     }, 900)
@@ -200,7 +202,7 @@ export function buffLie(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'buffLie'
     if (enemyUser) {
         useCurrentBattleStore().animation.doneByEnemy = true
-        enemyUser.currentMana -= enemyUser.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             if (Math.random() < 0.5) {
                 enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
@@ -212,7 +214,7 @@ export function buffLie(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
         if (friendFound) {
-            useCampaignSaveStore().currentMana -= friendFound.manaCost
+            if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
         setTimeout(() => {
@@ -241,7 +243,7 @@ export function makeItWild(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'makeItWild'
     if (enemyUser) {
         useCurrentBattleStore().animation.doneByEnemy = true
-        enemyUser.currentMana -= enemyUser.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
             enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
@@ -262,7 +264,7 @@ export function makeItWild(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Moon Princess Halation')!
         if (friendFound) {
-            useCampaignSaveStore().currentMana -= friendFound.manaCost
+            if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
         setTimeout(() => {
@@ -292,7 +294,7 @@ export function minionSummon(user: Enemy[]) {
     let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)!
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.doneByEnemy = true
-    enemyUser.currentMana -= enemyUser.manaCost
+    if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
     setTimeout(() => {
         let rolledAlastor = Math.random() < 0.04
         if (useCurrentBattleStore().currentEnemies.length < 4 && !rolledAlastor) {
@@ -340,7 +342,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'magicNoseTongueTouch'
     if (enemyUser) {
         useCurrentBattleStore().animation.doneByEnemy = true
-        enemyUser.currentMana -= enemyUser.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             const success: boolean = Math.random() < (useCampaignSaveStore().currentHP / 500)
             if (!useCampaignSaveStore().isBlocking && success) {
@@ -383,7 +385,7 @@ export function magicNoseTongueTouch(user?: Enemy[]) {
 
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             const target = useCurrentBattleStore().singleTargetPairs.find((p: (Enemy | Friend)[]) => p[1]!.name === friendFound.name)![0]
             if (!target) return
 
@@ -435,7 +437,7 @@ export function mindClear(user?: Enemy[]) {
     if (user) {
         useCurrentBattleStore().animation.doneByEnemy = true
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         if (enemyUser) {
             enemyUser.currentHP = Math.round(Math.min(enemyUser.currentHP + .55 * enemyUser.maxHP, enemyUser.maxHP))
             enemyUser.defense -= 10
@@ -446,10 +448,10 @@ export function mindClear(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
 
         //@ts-ignore
-        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
+        let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === mindClear)
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             let healFactor = Math.round(0.50 * (playerUser.maxHP))
             playerUser.currentHP = Math.min(playerUser.currentHP + healFactor, playerUser.maxHP)
             playerUser.defense -= 5
@@ -467,6 +469,7 @@ export function drifting(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'drifting'
 
     if (enemyUser) {
+        if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         useCurrentBattleStore().animation.doneByEnemy = true
         enemyUser.status = {
             name: "Drifting",
@@ -492,7 +495,7 @@ export function drifting(user?: Enemy[]) {
         useCurrentBattleStore().animation.doneByEnemy = false
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === drifting)!
         if (friendFound) {
-            useCampaignSaveStore().currentMana -= friendFound.manaCost
+            if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
         let damageMultis: number[] = [1.5, 1.45, 1.3, 1.25]
@@ -511,10 +514,9 @@ export function theSlayer(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'theSlayer'
     if (user) {
-
         useCurrentBattleStore().animation.doneByEnemy = true
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
 
         if (enemyUser) {
             if (Math.random() < 0.5) {
@@ -536,7 +538,7 @@ export function theSlayer(user?: Enemy[]) {
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
 
             playerUser.slayerActive = true
         }
@@ -546,7 +548,7 @@ export function theSlayer(user?: Enemy[]) {
 export function hide(user?: Enemy[]) {
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         enemyUser!.shrinkCount += 3
     } else {
         let playerUser = useCampaignSaveStore()
@@ -555,7 +557,7 @@ export function hide(user?: Enemy[]) {
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.abilityName === 'Shrink')
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             playerUser.shrinkCount += 3
         }
     }
@@ -572,7 +574,7 @@ export function reviveSong(user?: Enemy[]) {
     useCurrentBattleStore().animation.name = 'reviveSong'
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         useCurrentBattleStore().animation.doneByEnemy = true
 
         enemyUser!.status = {
@@ -597,7 +599,7 @@ export function reviveSong(user?: Enemy[]) {
         let playerUser = useCampaignSaveStore()
         useCurrentBattleStore().animation.doneByEnemy = false
 
-        playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === reviveSong)?.manaCost ?? 50)
+        if(useCurrentBattleStore().usingMana) playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === reviveSong)?.manaCost ?? 50)
 
         playerUser.currentStatus = {
             name: "Will Revive",
@@ -615,7 +617,12 @@ export function timeReversal(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'timeReversal'
     if(user) useCurrentBattleStore().animation.doneByEnemy = true
-    else useCurrentBattleStore().animation.doneByEnemy = false
+    if(user && useCurrentBattleStore().usingMana) user[0]!.currentMana -= user[0]!.manaCost
+    else {
+        useCurrentBattleStore().animation.doneByEnemy = false
+        let friendFound = useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === timeReversal)
+        if(useCurrentBattleStore().usingMana && friendFound) useCampaignSaveStore().currentMana -= friendFound.manaCost
+    }
 
     ucss.attack = useCurrentBattleStore().beforeTurnState.playerStats.attack
     ucss.defense = useCurrentBattleStore().beforeTurnState.playerStats.defense
@@ -627,14 +634,29 @@ export function timeReversal(user?: Enemy[]) {
     useCurrentBattleStore().currentEnemies = useCurrentBattleStore().beforeTurnState.enemies
 }
 
-export function metaNarrative() {
+export function metaNarrative(user?:Enemy[]) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'metaNarrative'
+    if(user?.length) {
+        user[0]!.currentMana -= user[0]!.manaCost
+        useCurrentBattleStore().animation.doneByEnemy = true
+    } else {
+        let friendFound = useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === metaNarrative)
+        useCurrentBattleStore().animation.doneByEnemy = false
+        if(friendFound) useCampaignSaveStore().currentMana -= friendFound.manaCost
+    }
 
+    let additionalEvents = useCurrentBattleStore().thisTurnEvents.filter((b:BattleEvent) => b.action !== metaNarrative)
+    additionalEvents.forEach((b:BattleEvent) => {
+        useCurrentBattleStore().thisTurnEvents.push({ ...b, actionPerformed: false })
+    })
+    useCurrentBattleStore().usingMana = false
 }
 
 export function youTellMe(user?:Enemy[]) {
     if (user) {
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
-        enemyUser!.currentMana -= enemyUser!.manaCost
+        if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
 
         const eligibleFriends = useBattleGuiStore().fullFriendsList.filter((f: Friend) => f.targetType !== 'Single')
         let friendChosen: Friend = eligibleFriends[Math.floor(Math.random() * eligibleFriends.length)]!
@@ -645,7 +667,7 @@ export function youTellMe(user?:Enemy[]) {
     } else {
         let playerUser = useCampaignSaveStore()
         
-        playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === youTellMe)?.manaCost ?? 40)
+        if(useCurrentBattleStore().usingMana) playerUser.currentMana -= (useBattleGuiStore().fullFriendsList.find((f:Friend) => f.ability === youTellMe)?.manaCost ?? 40)
 
         const eligibleFriends = useBattleGuiStore().fullFriendsList.filter((f: Friend) => f.targetType !== 'Single')
         let friendChosen: Friend = eligibleFriends[Math.floor(Math.random() * eligibleFriends.length)]!
@@ -661,6 +683,7 @@ export function examine(user?: Enemy[]) {
     if (user) {
         useCurrentBattleStore().animation.doneByEnemy = true
         let enemyUser = useCurrentBattleStore().currentEnemies.find((e: Enemy) => e.name === user[0]!.name)
+        if(useCurrentBattleStore().usingMana && enemyUser) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             attack([enemyUser, 'user', 1.6])
         }, 2500)
@@ -670,7 +693,7 @@ export function examine(user?: Enemy[]) {
         let friendFound: Friend = useBattleGuiStore().notSelectedFriends.find((f: Friend) => f.ability === examine)!
         if (friendFound) {
             //@ts-ignore
-            playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
+            if(useCurrentBattleStore().usingMana) playerUser.currentMana -= useFriendsStore().$state[friendFound.name].manaCost
             useCurrentBattleStore().columboActive = true
         }
     }

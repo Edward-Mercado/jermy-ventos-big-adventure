@@ -7,8 +7,8 @@
                 <battles-status-container v-if="enemy.status" :status="enemy.status!" :class="'absolute w-[50%] z-8 translate-y-[250%]'"></battles-status-container>
             </transition>
             <div class="flex justify-between items-center h-[40%]">
-            <h4 class="pixfont text-md lg:text-2xl h-full pt-2">{{ enemy.name }}</h4>
-            <div class="absolute bottom-13 z-9 left-2 flex " v-if="pickingMove">
+            <h4 class="pixfont text-md h-full pt-2" :class="enemy.name.length > 12 ? 'lg:text-md' : 'lg:text-2xl'">{{ enemy.name }}</h4>
+            <div class="absolute bottom-13 z-9 left-2 flex" v-if="pickingMove">
                 <Magnifier v-if="useCurrentBattleStore().columboActive" color="white" :size="32" />
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
                 <Target :size="32" v-for="friend in enemy.targetOf" color=" #bae6fd" class=""/>

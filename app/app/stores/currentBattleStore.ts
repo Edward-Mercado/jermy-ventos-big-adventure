@@ -11,6 +11,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             },
             enemies: [] as Enemy[],
         },
+        usingMana: true as boolean,
         currentEnemies: [] as Enemy[],
         columboActive: false as boolean,
         usedAbilities: [] as Friend[],
@@ -404,18 +405,17 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
 
             this.currentEnemies.forEach((e:Enemy) => {
                 if(e.ability === timeReversal) {
-                    const ucss = useCampaignSaveStore()
-
-                    this.beforeTurnState.playerStats.attack = ucss.attack
-                    this.beforeTurnState.playerStats.defense = ucss.defense
-                    this.beforeTurnState.playerStats.currentHP = ucss.currentHP
-                    this.beforeTurnState.playerStats.maxHP = ucss.maxHP
-                    this.beforeTurnState.playerStats.currentMana = ucss.currentMana
-                    this.beforeTurnState.playerStats.maxMana = ucss.maxMana
-
-
-                    this.currentEnemies.forEach((e:Enemy) => this.beforeTurnState.enemies.push(JSON.parse(JSON.stringify(e))))
-                    
+                    resultingActions.push({
+                        user: e.name,
+                        spriteURL: e.img,
+                        flavorText: `I cast ${e.abilityName}!`,
+                        action: e.ability,
+                        actionArgs: [e],
+                        sound: e.sound,
+                        actionPerformed: false,
+                    })
+                }
+                else if (e.ability === metaNarrative) {
                     resultingActions.push({
                         user: e.name,
                         spriteURL: e.img,

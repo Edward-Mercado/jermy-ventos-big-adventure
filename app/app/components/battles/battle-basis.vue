@@ -11,7 +11,6 @@
         <main class="h-[85%] w-full flex justify-between">
             <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget" :wand-striking="wandStriking"
                 @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
-                    attackTarget = null;
                     if (move === 'Attack') enemyMode = 'Target'
                     if (move === 'Block') enemyMode = 'Check'
                 }">
@@ -126,6 +125,8 @@ async function proceedBattle() {
 
 
     if (battleIndex.value >= useCurrentBattleStore().thisTurnEvents.length) {
+        attackTarget.value = null;
+        useCurrentBattleStore().usingMana = true
         campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10 + campaignSaveStore.playerLevel * 5))
         useCurrentBattleStore().battleEventsDone.length = 0
         useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
