@@ -46,8 +46,8 @@ export const useShopStore = defineStore('shopStore', {
                     name: "Pet Allicorn",
                     img: "/images/pet-allicorn.png",
                     stats: {
-                        attack: 3,
-                        defense: 10
+                        attack: 4,
+                        defense: 9
                     }
                 },{
                     name: "Pet Cerberus",

@@ -1,5 +1,16 @@
 export const useCurrentBattleStore = defineStore('currentbattle', {
     state: () => ({
+        beforeTurnState: {
+            playerStats: {
+                attack: 0,
+                defense: 0,
+                currentMana: 0,
+                maxMana: 0,
+                maxHP: 0,
+                currentHP: 0,
+            },
+            enemies: [] as Enemy[],
+        },
         currentEnemies: [] as Enemy[],
         columboActive: false as boolean,
         usedAbilities: [] as Friend[],
@@ -169,7 +180,8 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                     }
                 }
                 if (enemy.nextMove === "Use Ability") {
-                    resultingActions.push({
+                    if(enemy.abilityName !== "Time Reversal" && enemy.ability !== timeReversal && enemy.ability !== metaNarrative) {
+                        resultingActions.push({
                         user: enemy.name,
                         spriteURL: enemy.img,
                         flavorText: `I cast ${enemy.abilityName}!`,
@@ -188,6 +200,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                             sound: "/sounds/joey.m4a",
                             actionPerformed: false,
                         })
+                    }
                     }
                 }
 
@@ -329,6 +342,17 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             // after turn flow
             this.usedAbilities.filter((possibleAbility: Friend) => possibleAbility.abilityTiming === 'After Turn') // at abilities
                 .forEach((friend: Friend) => {
+                    if(friend.ability === timeReversal) {
+                        const ucss = useCampaignSaveStore()
+                        this.beforeTurnState.playerStats.attack = ucss.attack
+                        this.beforeTurnState.playerStats.defense = ucss.defense
+                        this.beforeTurnState.playerStats.currentHP = ucss.currentHP
+                        this.beforeTurnState.playerStats.maxHP = ucss.maxHP
+                        this.beforeTurnState.playerStats.currentMana = ucss.currentMana
+                        this.beforeTurnState.playerStats.maxMana = ucss.maxMana
+
+                        this.beforeTurnState.enemies = this.currentEnemies
+                    }
                     resultingActions.push({
                         user: friend.name,
                         spriteURL: friend.spriteURL,
@@ -387,6 +411,34 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                     }
                 })
             })
+
+            this.currentEnemies.forEach((e:Enemy) => {
+                console.log(e.ability === timeReversal)
+                if(e.ability === timeReversal) {
+                    const ucss = useCampaignSaveStore()
+
+                    this.beforeTurnState.playerStats.attack = ucss.attack
+                    this.beforeTurnState.playerStats.defense = ucss.defense
+                    this.beforeTurnState.playerStats.currentHP = ucss.currentHP
+                    this.beforeTurnState.playerStats.maxHP = ucss.maxHP
+                    this.beforeTurnState.playerStats.currentMana = ucss.currentMana
+                    this.beforeTurnState.playerStats.maxMana = ucss.maxMana
+
+
+                    this.currentEnemies.forEach((e:Enemy) => this.beforeTurnState.enemies.push(JSON.parse(JSON.stringify(e))))
+                    
+                    resultingActions.push({
+                        user: e.name,
+                        spriteURL: e.img,
+                        flavorText: `I cast ${e.abilityName}!`,
+                        action: e.ability,
+                        actionArgs: [e],
+                        sound: e.sound,
+                        actionPerformed: false,
+                    })
+                }
+            })
+
             return resultingActions;
         },
 

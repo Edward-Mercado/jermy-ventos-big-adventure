@@ -76,13 +76,13 @@ function beginTurn() {
     pickingMove.value = false;
     battlePlaying.value = true;
     useCurrentBattleStore().thisTurnEvents = currentBattleStore.compileTurnData(attackTarget.value);
-    battleIndex.value++;
     attackTarget.value = null;
     enemyMode.value = "Check";
     while(useBattleGuiStore().selectedFriends.length) {
         //@ts-ignore
         useBattleGuiStore().move(useBattleGuiStore().selectedFriends[0])
     }
+    proceedBattle()
 }
 
 function getExp() {

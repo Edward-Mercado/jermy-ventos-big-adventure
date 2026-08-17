@@ -66,6 +66,7 @@ export function modifyAttack(propAttack: number): number {
     if (useCampaignSaveStore().currentStatus?.name === 'Buffed') result *= 1.2
     if(useCampaignSaveStore().slayerActive) result *=1.4
 
+    result *= (Math.random() * .15 + .925)
     return Math.floor(result)
 }
 

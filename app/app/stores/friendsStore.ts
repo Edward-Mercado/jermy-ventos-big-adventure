@@ -71,9 +71,7 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Self",
             spriteURL: "/images/mrspaulavento.png",
             sound: "/sounds/basehigh.m4a",
-            ability: () => {
-                
-            },
+            ability: mindClear,
             manaCost: 40
         } as Friend,
         "Pierce": {
@@ -151,24 +149,20 @@ export const useFriendsStore = defineStore('friends', {
             targetType: "Special",
             spriteURL: "/images/thira.png",
             sound: "/sounds/thira.m4a",
-            ability: () => {
-                
-            },
+            ability: timeReversal,
             manaCost: 100
         } as Friend,
         "Lucia": {
             name: "Lucia",
             eachTurnCheck: null,
-            abilityName: "Scan",
-            abilityDesc: "See what the target will do prematurely.",
+            abilityName: "Revive Song",
+            abilityDesc: "If you die this turn, revive.",
             abilityTiming: "With Attack",
-            targetType: "Single",
+            targetType: "Self",
             spriteURL: "/images/lucia.png",
             sound: "/sounds/lucia.m4a",
-            ability: () => {
-                
-            },
-            manaCost: 100
+            ability: reviveSong,
+            manaCost: 180
         } as Friend,
         "Humd": {
             name: "Humd",

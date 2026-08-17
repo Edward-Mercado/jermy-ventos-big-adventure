@@ -17,6 +17,7 @@
         <animations-drifting v-if="animationName==='drifting'" :done-by-enemy="doneByEnemy"></animations-drifting>
         <animations-the-slayer v-if="animationName==='theSlayer'" :done-by-enemy="doneByEnemy"></animations-the-slayer>
         <animations-revive-song v-if="animationName==='reviveSong'" :done-by-enemy="doneByEnemy"></animations-revive-song>
+        <animations-time-reversal v-if="animationName==='timeReversal'" :done-by-enemy="doneByEnemy"></animations-time-reversal>
     </div>
 </template>
 

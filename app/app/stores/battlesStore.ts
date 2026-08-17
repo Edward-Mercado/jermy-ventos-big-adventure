@@ -645,6 +645,27 @@ export const useBattleStore = defineStore('battle', {
                 title: "Unfunny Person",
                 sound: '/sounds/lucia.m4a',
             }]
+        },
+        'battleThira': {
+            enemies: [{
+                name: "Thira",
+                attack: 34,
+                defense: 38,
+                abilityType: "defense",
+                abilityName: "Time Reversal",
+                ability: timeReversal,
+                manaCost: 50,
+                currentHP: 200,
+                maxHP: 200,
+                currentMana: 120,
+                maxMana: 120,
+                img: '/images/thira.png',
+                expDrop: 100,
+                desc: "Likes watches? I never really new her to be honest.",
+                level: 6,
+                title: "Time Keeper",
+                sound: '/sounds/thira.m4a',
+            }]
         }
 
     } as Record<string, EnemyGroup>),

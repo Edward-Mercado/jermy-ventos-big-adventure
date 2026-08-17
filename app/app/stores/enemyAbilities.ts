@@ -597,3 +597,25 @@ export function reviveSong(user?: Enemy[]) {
         }
     }
 }
+
+export function timeReversal(user?: Enemy[]) {
+    const ucss = useCampaignSaveStore()
+
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'timeReversal'
+    if(user) useCurrentBattleStore().animation.doneByEnemy = true
+    else useCurrentBattleStore().animation.doneByEnemy = false
+
+    ucss.attack = useCurrentBattleStore().beforeTurnState.playerStats.attack
+    ucss.defense = useCurrentBattleStore().beforeTurnState.playerStats.defense
+    ucss.currentHP = useCurrentBattleStore().beforeTurnState.playerStats.currentHP
+    ucss.maxHP = useCurrentBattleStore().beforeTurnState.playerStats.maxHP
+    ucss.currentMana = useCurrentBattleStore().beforeTurnState.playerStats.currentMana
+    ucss.maxMana = useCurrentBattleStore().beforeTurnState.playerStats.maxMana
+    useCurrentBattleStore().currentEnemies.length = 0
+    useCurrentBattleStore().currentEnemies = useCurrentBattleStore().beforeTurnState.enemies
+}
+
+export function metaNarrative() {
+
+}
