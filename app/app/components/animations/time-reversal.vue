@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
+    <div class="fixed w-screen h-screen z-20 top-0 flex items-center">
         <transition name="black-bg">
             <div class="w-full h-full absolute bottom-0 bg-black/90" v-if="mounted">
                 
@@ -8,6 +8,9 @@
         <div class='fixed h-screen w-screen flex items-center ease-in-out'>
             <transition name="fade-enlarge" v-for="i in 5">
                 <div v-if="circleCount >= i" class="w-[200vw] aspect-square left-[-50vw] rounded-full border-20 border-amber-300 fixed"></div>
+            </transition>
+            <transition name="fade-enlarge">
+                <img v-if="clockMounted" src="/images/clock.gif" alt="clock" class="fixed w-[50vw] left-[25vw] rounded-full aspect-square object-cover border-yellow-500 border-4"></img>
             </transition>
         </div>
     </div>
@@ -21,13 +24,17 @@ const prop = defineProps<{
 const mounted = ref<boolean>(false)
 
 const circleCount = ref<number>(0)
+const clockMounted = ref<boolean>(false)
+
 let circleInterval:number = 0
 
 onMounted(() => mounted.value = true)
 
+setTimeout(() => clockMounted.value = true, 300)
+
 setTimeout(() => {    
     circleInterval = setInterval(() => circleCount.value++, 400)
-}, 300)
+}, 600)
 
 setTimeout(() => {clearInterval(circleInterval)}, 2200)
 
