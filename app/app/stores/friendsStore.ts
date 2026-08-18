@@ -68,7 +68,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "After Turn",
             targetType: "Self",
             spriteURL: "/images/matteo.png",
-            sound: "/sounds/baselow.caf",
+            sound: "/sounds/matteo.m4a",
             ability: youTellMe,
             manaCost: 40
         } as Friend,
@@ -224,7 +224,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "Before Turn",
             targetType: "Self",
             spriteURL: "/images/lemonalien.png",
-            sound: "/sounds/baselow.caf",
+            sound: "/sounds/lemonalien.m4a",
             ability: drifting,
             manaCost: 40
         } as Friend,

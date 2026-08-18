@@ -187,7 +187,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "From another dimension seeking the finest of fruits.",
                 level: 2,
                 title: "Venture Capitalist",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/lemonalien.m4a',
             }]
         },
 
@@ -307,7 +307,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "#FreeTheMini",
                 level: 3,
                 title: "NYT Puzzle Kid",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/crossword.m4a',
             }]
         },
 
@@ -479,7 +479,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "#FreeTheMini",
                 level: 4,
                 title: "NYT Puzzle Kid",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/crossword.m4a',
             },{
                 name: "Mini Crossword 2",
                 attack: 25,
@@ -497,7 +497,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "#FreeTheMini",
                 level: 4,
                 title: "NYT Puzzle Kid",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/crossword.m4a',
             }]
         },
 
@@ -685,7 +685,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "stinky stinky stinky stinky stinky stinky stinky stinky stinky",
                 level: 8,
                 title: "Royal Crown Employee",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/matteo.m4a',
             }]
         },
         'maidenOLuck1': {
