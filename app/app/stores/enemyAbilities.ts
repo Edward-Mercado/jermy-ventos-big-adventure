@@ -769,7 +769,7 @@ export function sandSleep(user:Enemy) {
 
     setTimeout(() => {
         useCampaignSaveStore().currentStatus = {
-            length: 5,
+            length: 3,
             name: "Sleep",
             type: "Inhibit",
             action: null,
@@ -807,7 +807,7 @@ export function joeBidenSandman(user?:Enemy[]) {
             actionArgs: [enemyUser],
             spriteURL: enemyUser.img,
             sound: enemyUser.sound,
-            flavorText: `${enemyUser.name === 'Joe Biden' ? "Sandman" : "Joe Biden"}, swap out!`,
+            flavorText: `${enemyUser.name === 'Joe Biden' ? "Sandman" : "Joe Biden"}, hit it!`,
             actionPerformed: false
         })
     }

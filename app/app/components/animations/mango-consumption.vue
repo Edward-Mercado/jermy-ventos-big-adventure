@@ -1,6 +1,6 @@
 <template>
     <transition name="black-bg">
-        <div class="w-full h-full absolute bg-black/50 top-0 z-20" v-if="mounted">
+        <div class="w-screen h-screen absolute bg-black/50 top-0 z-20" v-if="mounted">
         </div>
     </transition>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">

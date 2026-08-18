@@ -34,7 +34,7 @@ export function modifyDefense(propDefense: number): number {
 
     useCampaignSaveStore().items.forEach((i:storeItem) => result += i.stats?.defense ?? 0)
     if (useCampaignSaveStore().currentStatus?.name === 'Buffed') result *= 1.25
-    else if (useCampaignSaveStore().currentStatus?.name === "Sleep") result *= .6
+    else if (useCampaignSaveStore().currentStatus?.name === "Sleep") result *= .75
     return Math.floor(propDefense)
 }
 
@@ -65,7 +65,7 @@ export function modifyAttack(propAttack: number): number {
         return 0
     }
     if (useCampaignSaveStore().currentStatus?.name === 'Buffed') result *= 1.2
-    else if (useCampaignSaveStore().currentStatus?.name === "Sleep") result *= .6
+    else if (useCampaignSaveStore().currentStatus?.name === "Sleep") result *= .75
     if(useCampaignSaveStore().slayerActive) result *=1.4
 
     result *= (Math.random() * .15 + .925)

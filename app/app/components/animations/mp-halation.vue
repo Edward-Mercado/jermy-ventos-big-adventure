@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
         <transition name="black-bg">
-            <div v-if="mounted" class="w-full h-full bg-linear-to-tr from-sky-500/95 to-pink-300/95">
+            <div v-if="mounted" class="w-screen h-screen bg-linear-to-tr from-sky-500/95 to-pink-300/95">
 
             </div>
         </transition>
@@ -15,7 +15,7 @@
             <img v-if="flyingActive" src="/images/moon-cutter.png" alt="moon-cutter" class="h-[50vh] top-[25vh] fixed z-21 right-[-50vw]">
         </transition>
         <transition name="effect">
-            <div v-if="effectActive" class="h-full w-[10vw] bg-linear-to-l from-yelow-500 to-white fixed z-21 right-0 rounded-l-full"></div>
+            <div v-if="effectActive" class="h-screen w-[10vw] bg-linear-to-l from-yelow-500 to-white fixed z-21 right-0 rounded-l-screen"></div>
         </transition>
     </div>
 </template>

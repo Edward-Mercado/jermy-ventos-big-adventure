@@ -1,12 +1,16 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" >
         <transition name="black-bg">
-            <div class="w-full h-full absolute bottom-0 bg-linear-to-tr from-sky-400/90 to-sky-300/90" v-if="mounted">
-                
+            <div class="w-screen h-screen absolute bottom-0 bg-linear-to-tr from-sky-400/90 to-sky-300/90" v-if="mounted">
             </div>
         </transition>
         <transition name="fade-up">
             <img v-if="mounted" src="/images/american-flag.png" alt="american flag" class="h-[60vh] fixed bottom-0 left-[-5vw]">
+        </transition>
+        <transition name="fade-up">
+            <div v-if="mounted" class="fixed bottom-0 w-screen h-[10%] z-22 bg-green-400">
+                <img src="/images/whitehouse.png" alt="white house" class="h-[60vh] fixed bottom-0 right-[-5vw]">
+            </div>
         </transition>
         <transition name="eagle">
             <img v-if="eagleActive" src="/images/eagle.png" alt="eagle"

@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
         <transition name="black-bg">
-            <div class="w-full h-full absolute bottom-0 bg-black/50" v-if="mounted"></div>
+            <div class="w-screen h-screen absolute bottom-0 bg-black/50" v-if="mounted"></div>
         </transition>
         <transition name="magnifying-glass">
             <img v-if="magnifyingGlass" src="/images/magnifying-glass.png" alt="magnifying-glass" class="fixed h-[40%] transition-all duration-150 ease-in-out" :class="imgClass">

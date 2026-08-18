@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-screen fixed items-center justify-center flex">
         <transition name="black-bg">
-            <div class="w-full h-full absolute bottom-0 bg-black/50 z-20" v-if="mounted">
+            <div class="w-screen h-screen absolute bottom-0 bg-black/50 z-20" v-if="mounted">
                 
             </div>
         </transition>

@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" >
         <transition name="black-bg">
-            <div class="w-full h-full absolute bottom-0 bg-black/96 z-20 flex items-center justify-center p-10" v-if="mounted">
+            <div class="w-screen h-screen absolute bottom-0 bg-black/96 z-20 flex items-center justify-center p-10" v-if="mounted">
                 <p class="pixfont text-[10rem] text-white text-center">I AM NOT ANIMATING THIS.</p>
             </div>
         </transition>
