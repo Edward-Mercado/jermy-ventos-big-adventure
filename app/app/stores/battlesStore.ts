@@ -81,7 +81,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Has a really good time on McManor and Tomb Ruins (Remastered).",
                 level: 1,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/blockyball.m4a',
             }]
         },
 
@@ -516,10 +516,10 @@ export const useBattleStore = defineStore('battle', {
                 maxMana: 120,
                 img: '/images/rtgame.png',
                 expDrop: 65,
-                desc: "That's what they called him back in HIGH SCHOOL.",
+                desc: "That's what they called him back in college.",
                 level: 5,
                 title: "Drift King",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/rtgame.m4a',
             }]
         },
 
@@ -585,7 +585,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Master of the Little Guys.",
                 level: 6,
                 title: "Hidden Figure",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/waldo.m4a',
             },{
                 name: "Little Guy 4",
                 attack: 20,
@@ -742,10 +742,10 @@ export const useBattleStore = defineStore('battle', {
                 maxMana: 160,
                 img: '/images/rtgame.png',
                 expDrop: 90,
-                desc: "That's what they called him back in HIGH SCHOOL.",
+                desc: "I remember he won this one Pokemon Tournament. That's the first time I heard of him.",
                 level: 7,
                 title: "Drift King",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/rtgame.m4a',
             }]
         },
 
@@ -789,7 +789,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Is ranked 47th in the world on Slime Factory",
                 level: 6,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/blockyball.m4a',
             },{
                 name: "Grass Man",
                 attack: 30,
@@ -807,7 +807,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Definitely an NFT.",
                 level: 6,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/baselow.m4a',
             }]
         },
 

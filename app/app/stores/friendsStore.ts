@@ -200,7 +200,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/waldo.png",
-            sound: "/sounds/baselow.caf",
+            sound: "/sounds/waldo.m4a",
             ability: hide,
             manaCost: 40
         } as Friend,
@@ -212,7 +212,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "AOE",
             spriteURL: "/images/rtgame.png",
-            sound: "/sounds/baselow.caf",
+            sound: "/sounds/rtgame.m4a",
             ability: drifting,
             manaCost: 60
         } as Friend,
