@@ -912,7 +912,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "The strongest rap battle of history.",
                 level: 7,
                 title: "Sleepyhead",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/joebiden.m4a',
             }]
         },
 

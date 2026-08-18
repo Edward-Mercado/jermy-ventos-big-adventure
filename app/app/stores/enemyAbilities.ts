@@ -784,6 +784,7 @@ export function swapJoeBidenSandman(enemyUser:Enemy[]) {
         enemyUser[0]!.img = '/images/sandman.png'
         enemyUser[0]!.abilityName = 'Sand Sleep'
         enemyUser[0]!.abilityType = "defense"
+        enemyUser[0]!.sound = '/sounds/sandman.m4a'
         enemyUser[0]!.attack = 25
         enemyUser[0]!.defense = 50
     } else {
@@ -791,6 +792,7 @@ export function swapJoeBidenSandman(enemyUser:Enemy[]) {
         enemyUser[0]!.img = '/images/joebiden.png'
         enemyUser[0]!.abilityName = 'Presidential Authority'
         enemyUser[0]!.abilityType = "offense"
+        enemyUser[0]!.sound = '/sounds/joebiden.m4a'
         enemyUser[0]!.attack = 50
         enemyUser[0]!.defense = 25
     }
