@@ -1,5 +1,3 @@
-import BuffLie from "~/components/animations/buff-lie.vue";
-
 export const useBattleStore = defineStore('battle', {
     state: () => ({
         'littleGuys1': {
@@ -959,6 +957,10 @@ export const useBattleStore = defineStore('battle', {
                 sound: '/sounds/joey.m4a',
             }]
         },
+
+        'endless': {
+            enemies: []
+        }
         
 
     } as Record<string, EnemyGroup>),

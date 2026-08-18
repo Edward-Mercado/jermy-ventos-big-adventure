@@ -133,3 +133,25 @@ export function attack(args: any[]) {
         }
     }
 }
+
+let enemiesPull:Record<string, endlessConstructor[]> = {
+    'common': [],
+    'rare': [],
+    'superRare': [],
+}
+
+export function generateEnemy(gameState:number) {
+
+    return {} as EnemyData
+}
+
+export function generateEndlessWave(gameState:number) {
+    let enemyCount:number = 1 + Math.min(Math.floor(Math.random()*gameState)*.3, 3)
+
+    let enemiesAdded = 0
+    useBattleStore()['endless']!.enemies.length = 0
+
+    while(enemiesAdded < enemyCount) {
+        useBattleStore()['endless']!.enemies.push(generateEnemy(gameState))
+    }
+}

@@ -104,3 +104,16 @@ export interface storeItem {
     },
     abilityName?: string
 }
+
+export interface endlessConstructor {
+    name: string,
+    img: string,
+    baseAttack: number,
+    baseDefense: number,
+    baseMana: number,
+    baseHP: number,
+    abilityType: string,
+    abilityName: string,
+    manaCost: string,
+    ability: Function | null
+}

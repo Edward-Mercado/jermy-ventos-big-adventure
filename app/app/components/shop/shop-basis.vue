@@ -3,7 +3,7 @@
         <img @mouseover="dialogueUp = true" @mouseleave="dialogueUp = false" :src="currentStateKey.sellerURL" alt="noure seller" class="w-[30%] h-full object-cover border-4 border-black bg-linear-to-tr from-sky-300 to-sky-200">
         <transition name="fade-up">
             <div v-if="dialogueUp" class="rounded-bl-none dialogue-font flex items-center justify-center text-center absolute bg-linear-to-tr from-sky-100 to-white border-2 border-black  left-[20%] w-[40%] h-[20%] rounded-2xl p-4 text-3xl text-black top-[10%]">
-                Welcome to the {{ currentStateKey.shopName }}! {{ currentStateKey.shopDesc }}
+                Welcome to {{ currentStateKey.shopName }}! {{ currentStateKey.shopDesc }}
             </div>
         </transition>
         <div class="border-black border-4 w-full h-full bg-slate-600/70 p-3 overflow-y-scroll">

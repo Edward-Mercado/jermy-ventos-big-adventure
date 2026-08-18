@@ -62,7 +62,7 @@ export const useShopStore = defineStore('shopStore', {
 
         gavinShop: {
             sellerURL: "/images/gavin.png",
-            shopName: "Spell",
+            shopName: "BOSS MODE 😈",
             shopDesc: "Get an ability!",
             storeItems: [
                 {
