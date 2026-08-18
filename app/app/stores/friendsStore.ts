@@ -92,7 +92,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "After Turn",
             targetType: "Special",
             spriteURL: "/images/pierce.png",
-            sound: "/sounds/baselow.caf",
+            sound: "/sounds/pierce.m4a",
             ability: metaNarrative,
             manaCost: 50
         } as Friend,

@@ -706,7 +706,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "The worst horse. Old money horse. Never worked a day in his life horse.",
                 level: 6,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/maidenoluck.m4a',
             },{
                 name: "Maiden O' Luck 2",
                 attack: 25,
@@ -724,7 +724,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "The worst horse. Old money horse. Never worked a day in his life horse.",
                 level: 6,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/maidenoluck.m4a',
             }]
         },
         'rtGame2': {
@@ -829,7 +829,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "The world's greatest detective. Not better than L though.",
                 level: 6,
                 title: "Detective",
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/pierce.m4a',
             }]
         },
         'greenBoys': {
@@ -850,7 +850,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "The worst horse. Old money horse. Never worked a day in his life horse.",
                 level: 8,
                 title: "Racer",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/maidenoluck.m4a',
             },{
                 name: "Grass Man",
                 attack: 45,
