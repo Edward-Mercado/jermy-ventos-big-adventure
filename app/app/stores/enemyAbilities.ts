@@ -205,9 +205,13 @@ export function buffLie(user?: Enemy[]) {
         if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
             if (Math.random() < 0.5) {
-                enemyUser.attack = Math.floor(enemyUser.attack * 1.3)
-                enemyUser.defense = Math.floor(enemyUser.defense * 1.05)
-                enemyUser.maxMana = Math.floor(enemyUser.maxMana * 1.2)
+                enemyUser.status = {
+                        name: 'Buff Truth',
+                        type: 'Inhibit',
+                        afflictedName: "Gil",
+                        action: null,
+                        length: 3
+                    }
             }
         }, 1800)
     } else {
@@ -219,7 +223,7 @@ export function buffLie(user?: Enemy[]) {
 
         setTimeout(() => {
             useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
-                if (Math.random() < 0.3) {
+                if (Math.random() < 0.4) {
                     useCampaignSaveStore().currentStatus = {
                         name: 'Buff Truth',
                         type: 'Inhibit',
@@ -748,16 +752,65 @@ export function wiiGameWollop(user: Enemy[]) {
     }
 }
 
-export function presidentialAuthority() {
-    
+export function presidentialAuthority(user:Enemy) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'presidentialAuthority'
+    useCurrentBattleStore().animation.doneByEnemy = true
+    if(useCurrentBattleStore().usingMana) user.currentMana -= user.manaCost
+    setTimeout(() => {
+        attack([user, 'user', 1.5])
+    }, 600)
 }
 
-export function sandySleep() {
+export function sandSleep(user:Enemy) {
+    useCurrentBattleStore().animation.playing = true
+    useCurrentBattleStore().animation.name = 'sandSleep'
+    useCurrentBattleStore().animation.doneByEnemy = true
 
+    setTimeout(() => {
+        useCampaignSaveStore().currentStatus = {
+            length: 5,
+            name: "Sleep",
+            type: "Inhibit",
+            action: null,
+            afflictedName: 'Joey'
+        }
+    }, 600)
 }
 
-export function joeBidenSandman() {
+export function swapJoeBidenSandman(enemyUser:Enemy[]) {
+    if(enemyUser[0]!.name === 'Joe Biden') {
+        enemyUser[0]!.name = 'Sandman'
+        enemyUser[0]!.img = '/images/sandman.png'
+        enemyUser[0]!.abilityName = 'Sand Sleep'
+        enemyUser[0]!.abilityType = "defense"
+        enemyUser[0]!.attack = 25
+        enemyUser[0]!.defense = 50
+    } else {
+        enemyUser[0]!.name = 'Joe Biden'
+        enemyUser[0]!.img = '/images/joebiden.png'
+        enemyUser[0]!.abilityName = 'Presidential Authority'
+        enemyUser[0]!.abilityType = "offense"
+        enemyUser[0]!.attack = 50
+        enemyUser[0]!.defense = 25
+    }
+}
 
+export function joeBidenSandman(user?:Enemy[]) {
+    if(user) {
+        let enemyUser = user[0]!
+        enemyUser.name === 'Joe Biden' ? presidentialAuthority(enemyUser) : sandSleep(enemyUser)
+        
+        useCurrentBattleStore().thisTurnEvents.push({
+            user: enemyUser.name,
+            action: swapJoeBidenSandman,
+            actionArgs: [enemyUser],
+            spriteURL: enemyUser.img,
+            sound: enemyUser.sound,
+            flavorText: `${enemyUser.name === 'Joe Biden' ? "Sandman" : "Joe Biden"}, swap out!`,
+            actionPerformed: false
+        })
+    }
 }
 
 export function evilBeam(user?:Enemy) {
