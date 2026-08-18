@@ -9,12 +9,14 @@
     </transition>
     <div class="flex flex-col h-[88vh] w-full justify-between overflow-x-none mb-none">
         <main class="h-[85%] w-full flex justify-between">
-            <battles-joey-container :pickingMove="pickingMove" :atk-target="attackTarget" :wand-striking="wandStriking"
-                @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
-                    if (move === 'Attack') enemyMode = 'Target'
-                    if (move === 'Block') enemyMode = 'Check'
-                }">
-            </battles-joey-container>
+            <transition name="fade-left">
+                <battles-joey-container v-if="mounted" :pickingMove="pickingMove" :atk-target="attackTarget" :wand-striking="wandStriking"
+                    @finish-selection="beginTurn()" @select-move="(move: 'Attack' | 'Block') => {
+                        if (move === 'Attack') enemyMode = 'Target'
+                        if (move === 'Block') enemyMode = 'Check'
+                    }">
+                </battles-joey-container>
+            </transition>
             <div class="h-full w-2 bg-black flex flex-col justify-center items-center rounded-full">
                 <div
                     class="bg-slate-600 border-3 border-black text-white pixfont p-2 rounded-full hover:bg-sky-700 hover:rotate-180 transition-all duration-3000 ease-in-out">
@@ -71,6 +73,8 @@ const enemyMode = ref<("Check" | "Target")>("Check")
 const battleIndex = ref<number>(-1)
 const battlePlaying = ref<boolean>(false)
 const wandStriking = ref<boolean>(false)
+const mounted = ref<boolean>(false)
+onMounted(() => mounted.value = true)
 
 const phase2 = ref<boolean>(false)
 const phase2StuffUp = ref<boolean>(false)
@@ -328,5 +332,21 @@ async function proceedBattle() {
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 1s
+}
+
+.fade-left-enter-from,
+.fade-left-leave-to {
+    opacity: 0;
+    translate: -50%
+}
+
+.fade-left-enter-to,
+.fade-left-leave-from {
+    opacity: 1;
+}
+
+.fade-left-enter-active,
+.fade-left-leave-active {
+    transition: ease-out 0.5s all
 }
 </style>

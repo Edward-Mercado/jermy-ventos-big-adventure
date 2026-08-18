@@ -124,7 +124,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Kill us? Yeah, like that's gonna happen...",
                 imgURL: "/images/pierce.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/pierce.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -204,7 +204,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I think we need to take the Royal Crown off this evil... EVIL... stinky (x1000).",
                 imgURL: "/images/matteo.png",
                 backgroundURL: '/backgrounds/matteo-domain-expansion.png',
-                sound: '/sounds/baselow.caf',
+                sound: '/sounds/matteo.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -643,7 +643,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Kellan",
                     dialogue: "This, 5'5 Filipino boy... I can surely ball on him!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/kellan.m4a',
                     imgURL: "/images/kellan.png",
                     speed: 45,
                     align: "right"
@@ -765,7 +765,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Pierce (evil)",
                     dialogue: "AHHHH!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/pierce.m4a',
                     imgURL: "/images/pierce.png",
                     animation: {
                         animationType: 'div',
@@ -781,7 +781,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Matteo (evil)",
                     dialogue: "STINKY (x1000)!",
                     backgroundURL: '/backgrounds/matteo-domain-expansion.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/matteo.m4a',
                     imgURL: "/images/matteo.png",
                     animation: {
                         animationType: 'div',
@@ -1250,7 +1250,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Pierce",
                     dialogue: "Maybe I'll write my next story on this!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/baselow.caf',
+                    sound: '/sounds/pierce.m4a',
                     imgURL: "/images/pierce.png",
                     speed: 45,
                     align: "right"
@@ -1275,51 +1275,3 @@ export const useCutsceneStore = defineStore('cutscene', {
     } as Record<string, DialogueLine[]>
     })
 })
-
-/*
-animation: {
-                        animationType: 'div',
-                        classes: 'bg-linear-to-r to-sky-50 from-yellow-200 z-3 w-[80vw] fixed top-[55vh] right-[20vw] rounded-r-full max-h-[20vh]',
-                        transform: 'birthday-beam'
-                    },
-
-"template": [
-                {
-                    speaker: "Joey",
-                    dialogue: "Damn. I must try to find my friends again. And save them from Joevil. All at 15 years old?",
-                    backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/joey.m4a',
-                    imgURL: "/images/joey.png",
-                    speed: 60,
-                    align: "left"
-                },
-                {
-                    speaker: "Little Guy 1",
-                    dialogue: "Prepare for a battle!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
-                {
-                    speaker: "Little Guy 2",
-                    dialogue: "With both of us!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/basehigh.m4a',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
-                {
-                    speaker: "Little Guy 1",
-                    dialogue: "Try to find a way to beat us little guys!",
-                    backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/baselow.caf',
-                    imgURL: "/images/littleguys.png",
-                    speed: 45,
-                    align: "right"
-                },
-            ] as DialogueLine[]
-
-*/

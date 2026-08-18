@@ -20,7 +20,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "A guy so little he's hard to find.",
                 level: 1,
                 title: "Smallish Person",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/baselow.caf',
             }, {
                 name: "Little Guy 2",
                 attack: 10,
@@ -231,7 +231,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Still hurt from your last encounter.",
                 level: 2,
                 title: "Smallish Person",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/baselow.caf',
             }, {
                 name: "Little Guy 2",
                 attack: 13,

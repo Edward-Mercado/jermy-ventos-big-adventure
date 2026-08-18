@@ -7,7 +7,7 @@
                 <battles-status-container v-if="enemy.status" :status="enemy.status!" :class="'absolute w-[50%] z-8 translate-y-[250%]'"></battles-status-container>
             </transition>
             <div class="flex justify-between items-center h-[40%]">
-            <h4 class="pixfont text-md h-full pt-2" :class="enemy.name.length > 12 ? 'lg:text-md' : 'lg:text-2xl'">{{ enemy.name }}</h4>
+            <h4 class="pixfont text-md h-full pt-2" :class="enemy.name.length > 16 ? 'lg:text-md' : 'lg:text-2xl'">{{ enemy.name }}</h4>
             <div class="absolute bottom-13 z-9 left-2 flex" v-if="pickingMove">
                 <Magnifier v-if="useCurrentBattleStore().columboActive" color="white" :size="32" />
                 <Target :size="32" v-if="isTarget" color="white" class=""/>
@@ -25,8 +25,8 @@
                     @click="clickSFX(); handleAction()" v-if="pickingMove" :class="mode === 'Target' ? 'uppercase' : ''">{{mode}}</button>
             <battles-health-bar v-else :currentHP="enemy.currentMana" :maxHP="enemy.maxMana" :isMana="true"></battles-health-bar>
         </div>
-        <transition name="fade">
-            <img class="transition-all duration-300 ease-in-out" v-if="enemy.currentHP > 0"
+        <transition name="fade-right">
+            <img class="transition-all duration-300 ease-in-out" v-if="enemy.currentHP > 0 && mounted"
             :src="enemy.img" :alt="enemy.name" :class="[imgClasses, moveClasses]" :style="{ transform: `scale(${1*(0.66**enemy.shrinkCount)})`}">
         </transition>
         <transition name="fade"> 
@@ -77,6 +77,9 @@ import { Magnifier } from 'reicon-vue';
 const checking = ref<boolean>(false)
 const campaignStore = useCampaignSaveStore()
 const emit = defineEmits(['target'])
+
+const mounted = ref(false)
+onMounted(() => mounted.value = true)
 
 const props = defineProps<{
     enemy: Enemy,
@@ -157,6 +160,22 @@ function handleAction() {
 
 .fade-enter-active,
 .fade-leave-active {
+    transition: ease-out 0.5s all
+}
+
+.fade-right-enter-from,
+.fade-right-leave-to {
+    opacity: 0;
+    translate: 50%
+}
+
+.fade-right-enter-to,
+.fade-right-leave-from {
+    opacity: 1;
+}
+
+.fade-right-enter-active,
+.fade-right-leave-active {
     transition: ease-out 0.5s all
 }
 
