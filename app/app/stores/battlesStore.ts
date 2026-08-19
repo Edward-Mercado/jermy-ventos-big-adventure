@@ -652,7 +652,7 @@ export const useBattleStore = defineStore('battle', {
                 abilityType: "defense",
                 abilityName: "Time Reversal",
                 ability: timeReversal,
-                manaCost: 50,
+                manaCost: 100,
                 currentHP: 250,
                 maxHP: 250,
                 currentMana: 120,

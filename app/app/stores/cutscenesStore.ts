@@ -76,7 +76,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "He's obviously making a game. I doubt its a coding thing since I dont think he'd put that effort in for me.",
                 imgURL: "/images/scottthewoz.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/scottthewoz.m4a',
+                sound: '/sounds/joey.m4a',
                 speed: 45,
                 align: "right"
             }, {
