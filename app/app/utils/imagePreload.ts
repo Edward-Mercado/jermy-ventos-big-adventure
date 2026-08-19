@@ -88,6 +88,10 @@ export const imageManifest: string[] = [
     '/images/wii-mario-kart.jpeg',
     '/images/wii-wiisports.png',
     '/images/x.webp',
+    '/backgrounds/matteo-domain-expansion.png',
+    '/backgrounds/evil.png',
+    '/backgrounds/summer.png',
+    '/backgrounds/greengas.png'
 ]
 
 // Images the player sees within the first few seconds of any session
