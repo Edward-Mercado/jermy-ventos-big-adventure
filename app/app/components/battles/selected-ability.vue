@@ -5,7 +5,7 @@
         duration-300 pixfont text-slate-900 text-3xl shadow-md hover:shadow-lg active:shadow-none"
                 @click="clickSFX(); battleGuiStore.move(friend)">Do not</button>
             <button v-if="friend.targetType === 'Single'" class="uppercase rounded-lg p-1 h-[95%] hover:-translate-y-2 active:translate-y-1 aspect-square bg-white hover:bg-sky-200 active:bg-sky-400 ease-in-out transition-all
-        duration-300 pixfont text-slate-900 text-3xl shadow-md hover:shadow-lg active:shadow-none"
+        duration-300 pixfont text-slate-900 text-xl shadow-md hover:shadow-lg active:shadow-none"
                 @click="clickSFX(); viewTargetWindow = !viewTargetWindow">{{ targetText }}</button>
             <div class="flex flex-col w-[50%] items-center justify-center">
                 <div class="w-full flex flex-row items-center gap-px text-center justify-center">
