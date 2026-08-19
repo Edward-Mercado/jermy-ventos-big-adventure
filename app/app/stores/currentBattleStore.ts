@@ -404,7 +404,13 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             })
 
             this.currentEnemies.forEach((e:Enemy) => {
-                if(e.ability === timeReversal) {
+                if(e.abilityName === 'Time Reversal') {
+                    e.ability = timeReversal
+                }
+                else if (e.abilityName === 'Meta Narrative') {
+                    e.ability = metaNarrative
+                }
+                if(e.ability === timeReversal && e.nextMove === 'Use Ability') {
                     resultingActions.push({
                         user: e.name,
                         spriteURL: e.img,
@@ -415,7 +421,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
                         actionPerformed: false,
                     })
                 }
-                else if (e.ability === metaNarrative) {
+                else if (e.ability === metaNarrative && e.nextMove === 'Use Ability') {
                     resultingActions.push({
                         user: e.name,
                         spriteURL: e.img,
@@ -437,6 +443,7 @@ export const useCurrentBattleStore = defineStore('currentbattle', {
             this.beforeTurnState.playerStats.currentMana = ucss.currentMana
             this.beforeTurnState.playerStats.maxMana = ucss.maxMana
 
+            this.beforeTurnState.enemies.length = 0
             this.currentEnemies.forEach((e:Enemy) => this.beforeTurnState.enemies.push(JSON.parse(JSON.stringify(e))))
 
             return resultingActions;

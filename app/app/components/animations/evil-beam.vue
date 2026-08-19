@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" >
         <transition name="black-bg">
-            <div class="w-screen h-screen absolute bottom-0 bg-black/50" v-if="mounted"></div>
+            <div class="w-screen h-screen fixed bottom-0 bg-black/50" v-if="mounted"></div>
         </transition>
         <transition name="evil-beam">
             <div v-if="beamActive" class="fixed h-[40vh] bg-linear-to-r to-red-950 from-red-500 shadow-lg shadow-red-900/50 rounded-l-full"></div>

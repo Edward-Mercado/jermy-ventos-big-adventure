@@ -9,6 +9,7 @@
         <animations-mini-crossword v-if="animationName==='miniCrossword'" :done-by-enemy="doneByEnemy"></animations-mini-crossword>
         <animations-buff-lie v-if="animationName==='buffLie'" :done-by-enemy="doneByEnemy"></animations-buff-lie>
         <animations-make-it-wild v-if="animationName==='makeItWild'" :done-by-enemy="doneByEnemy"></animations-make-it-wild>
+        <animations-maiden-wild v-if="animationName==='maidenWild'" :done-by-enemy="doneByEnemy"></animations-maiden-wild>
         <animations-minion-summon v-if="animationName==='minionSummon'" :done-by-enemy="doneByEnemy"></animations-minion-summon>
         <animations-alastor-summon v-if="animationName==='alastorSummon'" :done-by-enemy="doneByEnemy"></animations-alastor-summon>
         <animations-magic-ntt v-if="animationName==='magicNoseTongueTouch'" :done-by-enemy="doneByEnemy"></animations-magic-ntt>

@@ -36,10 +36,7 @@ const displayedText = ref<string>("")
 const isDone = ref<boolean>(false)
 const canProceed = ref<boolean>(false)
 
-var dialogueBeep = new Howl({
-    src: [prop.battleInstance.sound as string | '/sounds/basehigh.m4a'],
-    volume: 0.8
-})
+var dialogueBeep = getSound(prop.battleInstance.sound)
 
 const getShrinks = computed(() => {
     if(prop.battleInstance.user === "Joey") {

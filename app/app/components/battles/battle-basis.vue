@@ -179,6 +179,7 @@ async function proceedBattle() {
         campaignSaveStore.currentMana = Math.min(campaignSaveStore.maxMana, campaignSaveStore.currentMana + (10 + campaignSaveStore.playerLevel * 5))
         useCurrentBattleStore().battleEventsDone.length = 0
         useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
+            console.log(Number.isNaN(e.currentHP))
             if (Number.isNaN(e.currentHP) || e.currentHP === undefined) e.currentHP = 0
             if (e.currentHP === 0) {
                 useCampaignSaveStore().expGained += e.expDrop

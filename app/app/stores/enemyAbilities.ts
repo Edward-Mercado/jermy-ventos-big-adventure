@@ -27,17 +27,17 @@ export function multiWielding(user?: Enemy[]) {
         if (enemyUser) {
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.6
+                    0.8
                 ])
             }, 300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.4
+                    0.5
                 ])
             }, 1300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.2
+                    0.3
                 ])
             }, 2300)
         }
@@ -52,9 +52,9 @@ export function multiWielding(user?: Enemy[]) {
 
         if (!target) target = useCurrentBattleStore().currentEnemies[0]
 
-        setTimeout(() => { attack(['user', target, 1]) }, 300)
-        setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
-        setTimeout(() => { attack(['user', target, 0.3]) }, 2300)    
+        setTimeout(() => { attack(['user', target, 0.85]) }, 300)
+        setTimeout(() => { attack(['user', target, 0.4]) }, 1300)
+        setTimeout(() => { attack(['user', target, 0.25]) }, 2300)    
     }
 }
 
@@ -114,7 +114,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [1.6, 1.4, 1.15, 1]
+        let damageMultis: number[] = [1.45, 1.3, 1.2, 1.1]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -246,6 +246,7 @@ export function makeItWild(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'makeItWild'
     if (enemyUser) {
+        if(enemyUser.name.includes("Maiden")) useCurrentBattleStore().animation.name = 'maidenWild'
         useCurrentBattleStore().animation.doneByEnemy = true
         if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
@@ -255,6 +256,8 @@ export function makeItWild(user?: Enemy[]) {
             enemyUser.currentHP = Math.min(Math.floor((enemyUser.currentHP * 0.5) + Math.random() * enemyUser.currentHP), enemyUser.maxHP)
             enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
 
+            if(enemyUser.maxMana < enemyUser.manaCost) enemyUser.maxMana = enemyUser.manaCost;
+
             const ucss = useCampaignSaveStore()
             if (!ucss.isBlocking) {
                 ucss.attack = Math.floor(Math.floor(Math.random() * ucss.attack * 2))
@@ -262,6 +265,7 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxHP = Math.floor(Math.floor(Math.random() * ucss.maxHP * 2))
                 ucss.currentHP = Math.min(Math.floor(Math.floor(Math.random() * ucss.currentHP * 2)), ucss.maxHP)
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
+                if(ucss.maxMana < enemyUser.manaCost) ucss.maxMana = enemyUser.manaCost
             }
         }, 3900)
     } else {
@@ -282,12 +286,16 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
                 ucss.currentMana = Math.floor(Math.max(Math.random() * ucss.currentMana * 2, 0))
 
+                if(ucss.maxMana < (friendFound.manaCost ?? 15)) ucss.maxMana = (friendFound.manaCost ?? 15)
+
                 useCurrentBattleStore().currentEnemies.forEach((enemyUser: Enemy) => {
                     enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
                     enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
                     enemyUser.maxHP = Math.floor(Math.random() * enemyUser.maxHP * 2)
                     enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
                     enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
+
+                    if(enemyUser.maxMana < (friendFound.manaCost ?? 15)) enemyUser.maxMana = (friendFound.manaCost ?? 15);
                 })
             })
         }, 3900)
@@ -502,7 +510,7 @@ export function drifting(user?: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [1.5, 1.45, 1.3, 1.25]
+        let damageMultis: number[] = [1.45, 1.35, 1.2, 1.07]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -646,7 +654,7 @@ export function timeReversal(user?: Enemy[]) {
     ucss.currentMana = useCurrentBattleStore().beforeTurnState.playerStats.currentMana
     ucss.maxMana = useCurrentBattleStore().beforeTurnState.playerStats.maxMana
     useCurrentBattleStore().currentEnemies.length = 0
-    useCurrentBattleStore().currentEnemies = useCurrentBattleStore().beforeTurnState.enemies
+    useCurrentBattleStore().currentEnemies = [...useCurrentBattleStore().beforeTurnState.enemies]
 }
 
 export function metaNarrative(user?:Enemy[]) {
@@ -727,8 +735,8 @@ export function wiiGameWollop(user: Enemy[]) {
         let hitsCount = 0
         const interval = setInterval(() => {
             hitsCount++
-            attack([enemyUser, 'user', .15])
-            if(hitsCount > 24) clearInterval(interval)
+            attack([enemyUser, 'user', .135])
+            if(hitsCount > 20) clearInterval(interval)
         }, 150)
     } else {
         useCurrentBattleStore().animation.doneByEnemy = false
@@ -737,7 +745,7 @@ export function wiiGameWollop(user: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [.09, .087, .083, .076]
+        let damageMultis: number[] = [.087, .083, .076, .069]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -747,7 +755,7 @@ export function wiiGameWollop(user: Enemy[]) {
                 attack(['user', e, damageMulti])
             })
             hitsCount++
-            if(hitsCount > 24) clearInterval(interval)
+            if(hitsCount > 20) clearInterval(interval)
         }, 150)
     }
 }

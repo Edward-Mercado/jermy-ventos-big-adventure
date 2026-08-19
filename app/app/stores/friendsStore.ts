@@ -44,7 +44,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "With Attack",
             targetType: "Single",
             spriteURL: "/images/noure.png",
-            sound: "/sounds/noure.caf",
+            sound: "/sounds/noure.m4a",
             ability: multiWielding,
             manaCost: 40
         } as Friend,
@@ -188,7 +188,7 @@ export const useFriendsStore = defineStore('friends', {
             abilityTiming: "Before Turn",
             targetType: "Self",
             spriteURL: "/images/edward.png",
-            sound: "/sounds/edward.caf",
+            sound: "/sounds/edward.m4a",
             ability: theSlayer,
             manaCost: 40
         } as Friend,

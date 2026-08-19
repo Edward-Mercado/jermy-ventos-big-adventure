@@ -101,7 +101,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Conspires against Edward even though they are on the same team.",
                 level: 2,
                 title: "Pain in Dev's Ass",
-                sound: '/sounds/noure.caf',
+                sound: '/sounds/noure.m4a',
             }]
         },
 
@@ -220,8 +220,8 @@ export const useBattleStore = defineStore('battle', {
                 abilityName: "Shrink",
                 ability: shrink,
                 manaCost: 20,
-                currentHP: 23,
-                maxHP: 23,
+                currentHP: 20,
+                maxHP: 20,
                 currentMana: 60,
                 maxMana: 60,
                 img: '/images/littleguys.png',
@@ -238,8 +238,8 @@ export const useBattleStore = defineStore('battle', {
                 abilityName: "Shrink",
                 ability: shrink,
                 manaCost: 20,
-                currentHP: 23,
-                maxHP: 23,
+                currentHP: 20,
+                maxHP: 20,
                 currentMana: 60,
                 maxMana: 60,
                 img: '/images/littleguys.png',
@@ -256,8 +256,8 @@ export const useBattleStore = defineStore('battle', {
                 abilityName: "Shrink",
                 ability: shrink,
                 manaCost: 20,
-                currentHP: 23,
-                maxHP: 23,
+                currentHP: 20,
+                maxHP: 20,
                 currentMana: 60,
                 maxMana: 60,
                 img: '/images/littleguys.png',
@@ -274,8 +274,8 @@ export const useBattleStore = defineStore('battle', {
                 abilityName: "Shrink",
                 ability: shrink,
                 manaCost: 20,
-                currentHP: 23,
-                maxHP: 23,
+                currentHP: 20,
+                maxHP: 20,
                 currentMana: 60,
                 maxMana: 60,
                 img: '/images/littleguys.png',
@@ -326,7 +326,7 @@ export const useBattleStore = defineStore('battle', {
                 expDrop: 65,
                 desc: "Seems pretty cool but egos me too much :/",
                 level: 3,
-                title: "Unresponsive Boyfriend Haver",
+                title: "Irresponsive Boyfriend Haver",
                 sound: '/sounds/gil.m4a',
             }]
         },
@@ -415,7 +415,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "Your mother. Been there since the start.",
                 level: 4,
                 title: "Mother",
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/joeymom.m4a',
             }]
         },
 
@@ -539,7 +539,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "This fight is being coded at hour ~60 of the development process.",
                 level: 7,
                 title: "Developer, Friend, and SLAYER",
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
             }]
         },
 
@@ -932,7 +932,7 @@ export const useBattleStore = defineStore('battle', {
                 desc: "This fight is being coded at ~hour 80 of the coding process.",
                 level: 12,
                 title: "Developer, Friend, and SLAYER",
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
             }]
         },
 
