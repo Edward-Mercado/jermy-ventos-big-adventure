@@ -255,6 +255,8 @@ export function makeItWild(user?: Enemy[]) {
             enemyUser.currentHP = Math.min(Math.floor((enemyUser.currentHP * 0.5) + Math.random() * enemyUser.currentHP), enemyUser.maxHP)
             enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
 
+            if(enemyUser.maxMana < 15) enemyUser.maxMana = 15;
+
             const ucss = useCampaignSaveStore()
             if (!ucss.isBlocking) {
                 ucss.attack = Math.floor(Math.floor(Math.random() * ucss.attack * 2))
@@ -262,6 +264,7 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxHP = Math.floor(Math.floor(Math.random() * ucss.maxHP * 2))
                 ucss.currentHP = Math.min(Math.floor(Math.floor(Math.random() * ucss.currentHP * 2)), ucss.maxHP)
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
+                if(ucss.maxMana < 15) ucss.maxMana = 15
             }
         }, 3900)
     } else {
@@ -282,12 +285,16 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
                 ucss.currentMana = Math.floor(Math.max(Math.random() * ucss.currentMana * 2, 0))
 
+                if(ucss.maxMana < 15) ucss.maxMana = 15
+
                 useCurrentBattleStore().currentEnemies.forEach((enemyUser: Enemy) => {
                     enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
                     enemyUser.defense = Math.floor(Math.random() * enemyUser.defense * 2)
                     enemyUser.maxHP = Math.floor(Math.random() * enemyUser.maxHP * 2)
                     enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
                     enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
+
+                    if(enemyUser.maxMana < 15) enemyUser.maxMana = 15;
                 })
             })
         }, 3900)
