@@ -112,7 +112,7 @@ export const useFriendsStore = defineStore('friends', {
             name: "Gil",
             eachTurnCheck: null,
             abilityName: "Buff Lie",
-            abilityDesc: "20% chance to give a random stat boost.",
+            abilityDesc: "40% chance to give a random stat boost.",
             abilityTiming: "With Attack",
             targetType: "Self",
             spriteURL: "/images/gil.png",
