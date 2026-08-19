@@ -2,14 +2,14 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  devtools: { enabled: false },
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
   modules: ["@pinia/nuxt"],
   css: ["~/assets/main.css"],
   pages: true,
   app: {
     head: {
-      title: "Little Vento's Big Adventure"
+      title: "JermyVentos's Big Adventure"
     }
   },
   vite: {
@@ -21,5 +21,14 @@ export default defineNuxtConfig({
         'reicon-vue',
       ]
     }
+  },
+  vue: {
+    compilerOptions: {
+      comments: true
+    }
+  },
+  experimental: {
+    // no direct toggle needed; the verbose logging is automatic in dev mode
   }
-})
+}
+)
