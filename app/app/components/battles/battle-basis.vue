@@ -79,12 +79,15 @@ onMounted(() => mounted.value = true)
 onMounted(() => {
     if(useRoute().path === '/endless') {
         useEndlessStore().loadFromLocalStorage()
+        useEndlessStore().loadFriends()
         useCampaignSaveStore().playerLevel = 1
         useCampaignSaveStore().expGained = useEndlessStore().endlessExp
         useCampaignSaveStore().listenLevelUp()
         generateEndlessWave(useEndlessStore().gameState)
         currentBattleStore.initialize("endless")
-        useCampaignSaveStore().friendsData = useEndlessStore().friendsData
+    } else if (useRoute().path === '/campaign') {
+        useCampaignSaveStore().friends.length = 0
+        useCampaignSaveStore().loadFriends()
     }
 })
 

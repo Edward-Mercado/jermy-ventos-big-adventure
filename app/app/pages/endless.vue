@@ -31,9 +31,12 @@
     </div>
     <transition name="modal">
         <div v-if="showFriends" class="fixed w-[96vw] h-[94vh] left-[2vw] top-[3vh] rounded-2xl bg-white/95 p-3 flex flex-col gap-2 justify-between">
-                    <button
-            class="pixfont text-black w-full text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500"
-            @click="clickSFX(); showFriends = false">X</button>
+            <div class="flex items-center gap-6 h-[7%] justify-start w-full">
+                <button class="pixfont text-black text-left text-2xl transition-colors ease-in-out duration-300 hover:text-red-800 active:text-red-500 h-full"
+        @click="clickSFX(); showFriends = false">X</button>
+                <h3 class="text-black text-2xl pixfont w-[95%]">Friends Accquired In Your Current Endless Run</h3>
+            </div>
+            <endless-friends-carousel></endless-friends-carousel>
         </div>
     </transition>
 </template>

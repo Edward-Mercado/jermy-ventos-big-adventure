@@ -22,7 +22,7 @@ export const useEndlessStore = defineStore('endless', {
                 if (!this.friendsData.find((person) => person.name === friend)) this.friendsData.push(friendsStore[friend])
             })
         },
-        
+
         saveGame() {
             localStorage.setItem("endlessExp", this.endlessExp.toString())
             localStorage.setItem("endlessState", this.gameState.toString())
@@ -33,9 +33,10 @@ export const useEndlessStore = defineStore('endless', {
         loadFriends() {
             const friendsList = this.friendsAccquired
             const friendsStore = useFriendsStore()
+            useCampaignSaveStore().friendsData.length = 0
             friendsList.forEach((friend: string) => {
                 //@ts-ignore
-                if (!this.friendsData.find((person) => person.name === friend)) this.friendsData.push(friendsStore[friend])
+                if (!useCampaignSaveStore().friendsData.find((person) => person.name === friend)) useCampaignSaveStore().friendsData.push(friendsStore[friend])
             })
         },
     }
