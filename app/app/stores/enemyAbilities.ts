@@ -647,7 +647,10 @@ export function timeReversal(user?: Enemy[]) {
         if(useCurrentBattleStore().usingMana && friendFound) useCampaignSaveStore().currentMana -= friendFound.manaCost
     }
 
-    if((Math.random() < .5 && user) || (Math.random() < .75 && !user)) {
+    let useAsEnemy: boolean = !!user?.[0] && Math.random() < 0.5
+    let useAsPlayer: boolean = !user && Math.random() < 0.75
+
+    if(useAsEnemy || useAsPlayer) {
         ucss.attack = useCurrentBattleStore().beforeTurnState.playerStats.attack
         ucss.defense = useCurrentBattleStore().beforeTurnState.playerStats.defense
         ucss.currentHP = useCurrentBattleStore().beforeTurnState.playerStats.currentHP
