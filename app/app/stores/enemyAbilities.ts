@@ -246,6 +246,7 @@ export function makeItWild(user?: Enemy[]) {
     useCurrentBattleStore().animation.playing = true
     useCurrentBattleStore().animation.name = 'makeItWild'
     if (enemyUser) {
+        if(enemyUser.name.includes("Maiden")) useCurrentBattleStore().animation.name = 'maidenWild'
         useCurrentBattleStore().animation.doneByEnemy = true
         if(useCurrentBattleStore().usingMana) enemyUser.currentMana -= enemyUser.manaCost
         setTimeout(() => {
@@ -255,7 +256,7 @@ export function makeItWild(user?: Enemy[]) {
             enemyUser.currentHP = Math.min(Math.floor((enemyUser.currentHP * 0.5) + Math.random() * enemyUser.currentHP), enemyUser.maxHP)
             enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
 
-            if(enemyUser.maxMana < 15) enemyUser.maxMana = 15;
+            if(enemyUser.maxMana < enemyUser.manaCost) enemyUser.maxMana = enemyUser.manaCost;
 
             const ucss = useCampaignSaveStore()
             if (!ucss.isBlocking) {
@@ -264,7 +265,7 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxHP = Math.floor(Math.floor(Math.random() * ucss.maxHP * 2))
                 ucss.currentHP = Math.min(Math.floor(Math.floor(Math.random() * ucss.currentHP * 2)), ucss.maxHP)
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
-                if(ucss.maxMana < 15) ucss.maxMana = 15
+                if(ucss.maxMana < enemyUser.manaCost) ucss.maxMana = enemyUser.manaCost
             }
         }, 3900)
     } else {
@@ -285,7 +286,7 @@ export function makeItWild(user?: Enemy[]) {
                 ucss.maxMana = Math.floor(Math.floor(Math.random() * ucss.maxMana * 2))
                 ucss.currentMana = Math.floor(Math.max(Math.random() * ucss.currentMana * 2, 0))
 
-                if(ucss.maxMana < 15) ucss.maxMana = 15
+                if(ucss.maxMana < (friendFound.manaCost ?? 15)) ucss.maxMana = (friendFound.manaCost ?? 15)
 
                 useCurrentBattleStore().currentEnemies.forEach((enemyUser: Enemy) => {
                     enemyUser.attack = Math.floor(Math.random() * enemyUser.attack * 2)
@@ -294,7 +295,7 @@ export function makeItWild(user?: Enemy[]) {
                     enemyUser.currentHP = Math.min(Math.floor(Math.random() * enemyUser.currentHP * 2), enemyUser.maxHP)
                     enemyUser.maxMana = Math.floor(Math.random() * enemyUser.maxMana * 2)
 
-                    if(enemyUser.maxMana < 15) enemyUser.maxMana = 15;
+                    if(enemyUser.maxMana < (friendFound.manaCost ?? 15)) enemyUser.maxMana = (friendFound.manaCost ?? 15);
                 })
             })
         }, 3900)
@@ -653,7 +654,7 @@ export function timeReversal(user?: Enemy[]) {
     ucss.currentMana = useCurrentBattleStore().beforeTurnState.playerStats.currentMana
     ucss.maxMana = useCurrentBattleStore().beforeTurnState.playerStats.maxMana
     useCurrentBattleStore().currentEnemies.length = 0
-    useCurrentBattleStore().currentEnemies = useCurrentBattleStore().beforeTurnState.enemies
+    useCurrentBattleStore().currentEnemies = [...useCurrentBattleStore().beforeTurnState.enemies]
 }
 
 export function metaNarrative(user?:Enemy[]) {

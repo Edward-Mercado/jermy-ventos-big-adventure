@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
     <transition name="black-bg">
-        <div class="w-screen h-screen absolute bottom-0 bg-black/50 overflow-y-hidden" v-if="mounted">
+        <div class="w-screen h-screen fixed bottom-0 bg-black/50 overflow-y-hidden" v-if="mounted">
             <img v-if="doneByEnemy" src="/images/noure-multihit.png" alt="noure multihit" class="h-[80%] top-[10%] absolute">
             <img v-if="!doneByEnemy" src="/images/joey-multihit.png" alt="joey multihit" class="h-[80%] top-[10%] absolute">
             <img v-if="!doneByEnemy && shirt" :src="shirt.img" alt="shirt" class="w-[40vw] top-[65%] absolute left-[3%]">

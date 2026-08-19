@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
         <transition name="black-bg">
-            <div class="w-screen h-screen absolute bottom-0 bg-black/50" v-if="mounted"></div>
+            <div class="w-screen h-screen fixed bottom-0 bg-black/50" v-if="mounted"></div>
         </transition>
         <transition name="birthday-beam">
             <div v-if="beamActive" class="fixed h-[40vh] bg-linear-to-l to-sky-50 from-yellow-500 shadow-lg shadow-pink-400/50 rounded-r-full"></div>

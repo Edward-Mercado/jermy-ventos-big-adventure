@@ -6,7 +6,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 imgURL: "/images/noure.png",
                 dialogue: "It was a bright summer day...",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/noure.caf',
+                sound: '/sounds/noure.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -22,7 +22,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Still 15, you haven't completed your birthday challenge yet! But I, whose birthday already passed, am 16.",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -92,7 +92,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Ignore it baby...",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -140,7 +140,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "Well, that's not very nice.",
                 imgURL: "/images/mrspaulavento.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/basehigh.m4a',
+                sound: '/sounds/joeymom.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -236,7 +236,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "HII!!!!! mwahmwahmwah oh shit what is tha-",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -252,7 +252,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "OW! That hurts...",
                 imgURL: "/images/edward.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
                 animation: {
                     animationType: 'div',
                     classes: 'bg-linear-to-l to-red-500 from-red-950 z-3 w-[80vw] fixed top-[55vh] left-[20vw] rounded-l-full max-h-[20vh]',
@@ -265,7 +265,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "I... AM NOW EVIL EDWARD! HERE'S YOUR BIRTHDAY GIFT ON TIME, SUCKERS! EVIL BEAM GO!!!",
                 imgURL: "/images/edwardevil.png",
                 backgroundURL: '/backgrounds/evil.png',
-                sound: '/sounds/edward.caf',
+                sound: '/sounds/edward.m4a',
                 speed: 30,
                 align: "right"
             }, {
@@ -286,7 +286,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "One by one, they all got hit by Joevil's evil beams. They were defenseless, and the day was swiftly lost.",
                 imgURL: "/images/noure.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/noure.caf',
+                sound: '/sounds/noure.m4a',
                 speed: 45,
                 align: "left"
             }, {
@@ -302,7 +302,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                 dialogue: "OW!",
                 imgURL: "/images/noure.png",
                 backgroundURL: '/backgrounds/summer.png',
-                sound: '/sounds/noure.caf',
+                sound: '/sounds/noure.m4a',
                 animation: {
                     animationType: 'div',
                     classes: 'bg-linear-to-l to-red-500 from-red-950 z-3 w-[80vw] fixed top-[55vh] left-[20vw] rounded-l-full max-h-[20vh]',
@@ -536,7 +536,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Noure (evil)",
                     dialogue: "WHOOOOOO!!!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/noure.caf',
+                    sound: '/sounds/noure.m4a',
                     imgURL: "/images/noure.png",
                     animation: {
                         animationType: 'div',
@@ -600,7 +600,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Mrs. Paula Vento (evil)",
                     dialogue: "OH!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/basehigh.m4a',
+                    sound: '/sounds/joeymom.m4a',
                     imgURL: "/images/mrspaulavento.png",
                     animation: {
                         animationType: 'div',
@@ -634,7 +634,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Noure",
                     dialogue: "We must defeat him, this evil Deltarune fan...",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/noure.caf',
+                    sound: '/sounds/noure.m4a',
                     imgURL: "/images/noure.png",
                     speed: 45,
                     align: "left"
@@ -670,7 +670,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "I'll defeat all of you!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -690,7 +690,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "THIS ISN'T THE LAST YOU'LL SEE OF ME!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -867,7 +867,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "SUP FUCKERS?",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -900,7 +900,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Noure",
                     dialogue: "No. Anyways, let's just kill this guy.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/noure.caf',
+                    sound: '/sounds/noure.m4a',
                     imgURL: "/images/noure.png",
                     speed: 45,
                     align: "left"
@@ -909,7 +909,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "I'D LIKE TO SEE YOU TRY!",
                     backgroundURL: '/backgrounds/evil.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edwardevil.png",
                     speed: 45,
                     align: "right"
@@ -920,7 +920,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward (evil)",
                     dialogue: "NOOOOOO!!!!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edwardevil.png",
                     animation: {
                         animationType: 'div',
@@ -943,7 +943,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "I'm... alright... It's just...",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
@@ -952,7 +952,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "Joevil is right up ahead... I don't know if we can beat him.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "right"
@@ -1035,7 +1035,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "Sure is bud. I'm also gonna set your sprite to /images/birthday-cake.png",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "left"
@@ -1116,7 +1116,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Edward",
                     dialogue: "Joey purified you! Now you're a good guy!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/edward.caf',
+                    sound: '/sounds/edward.m4a',
                     imgURL: "/images/edward.png",
                     speed: 45,
                     align: "left"
@@ -1148,7 +1148,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Mrs. Paula Vento",
                     dialogue: "Do I have two sons?",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/basehigh.m4a',
+                    sound: '/sounds/joeymom.m4a',
                     imgURL: "/images/mrspaulavento.png",
                     speed: 45,
                     align: "left"
@@ -1196,7 +1196,7 @@ export const useCutsceneStore = defineStore('cutscene', {
                     speaker: "Noure",
                     dialogue: "Guys!!! I made us all a cake!!!",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/noure.caf',
+                    sound: '/sounds/noure.m4a',
                     imgURL: "/images/noure.png",
                     animation: {
                         animationType: 'img',
@@ -1216,9 +1216,9 @@ export const useCutsceneStore = defineStore('cutscene', {
                     align: "left"
                 },{
                     speaker: "Mrs. Paula Vento",
-                    dialogue: "Let's dig in!",
+                    dialogue: "Let's dig in kids! And Scott the Woz. And Columbo.",
                     backgroundURL: '/backgrounds/summer.png',
-                    sound: '/sounds/basehigh.m4a',
+                    sound: '/sounds/joeymom.m4a',
                     imgURL: "/images/mrspaulavento.png",
                     speed: 45,
                     align: "left"

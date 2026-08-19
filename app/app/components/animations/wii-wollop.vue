@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" :class="doneByEnemy ? 'scale-x-[-1]' : ''">
         <transition name="black-bg">
-            <div class="w-screen h-screen absolute bottom-0 bg-[#334BFF]/30 border-[1.5vh] border-[#334BFF]" v-if="mounted">
+            <div class="w-screen h-screen fixed bottom-0 bg-[#334BFF]/30 border-[1.5vh] border-[#334BFF]" v-if="mounted">
                 
             </div>
         </transition>

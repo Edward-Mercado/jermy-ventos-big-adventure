@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-screen h-screen z-20 top-0 flex items-center" >
         <transition name="black-bg">
-            <div class="w-screen h-screen absolute bottom-0 bg-linear-to-tr from-sky-400/90 to-sky-300/90" v-if="mounted">
+            <div class="w-screen h-screen fixed bottom-0 bg-linear-to-tr from-sky-400/90 to-sky-300/90" v-if="mounted">
             </div>
         </transition>
         <transition name="fade-up">
