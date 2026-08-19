@@ -62,6 +62,7 @@
 </template>
 
 <script setup lang="ts">
+import { Howl } from 'howler'
 const emit = defineEmits(['lose', 'win'])
 const attackTarget = ref<null | Enemy>(null)
 const stateKeys = useStateKeys()
@@ -74,6 +75,13 @@ const battleIndex = ref<number>(-1)
 const battlePlaying = ref<boolean>(false)
 const wandStriking = ref<boolean>(false)
 const mounted = ref<boolean>(false)
+
+var superSonicRacing = new Howl({
+    src: ['/sounds/click.mp3'],
+    html5: true,
+    loop: true
+})
+
 onMounted(() => mounted.value = true)
 
 onMounted(() => {
@@ -112,6 +120,10 @@ if (!phase2.value) {
     useCampaignSaveStore().saveGame()
     useCampaignSaveStore().loadFromLocalStorage()
 }
+
+onUnmounted(() => {
+    superSonicRacing.stop()
+})
 
 currentBattleStore.initialize(currentStateKey.value)
 useCampaignSaveStore().consecutiveBlocks = 0
