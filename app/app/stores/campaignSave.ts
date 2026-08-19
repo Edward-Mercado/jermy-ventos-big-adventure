@@ -84,7 +84,7 @@ export const useCampaignSaveStore = defineStore('campaign', {
                 if (this.expGained > this.playerLevelData[nextLevel]!.expRequirement) {
                     this.playerLevel++
                     this.changeStats()
-                    this.saveGame()
+                    if(!(useRoute().path === '/endless'))this.saveGame()
                 } else {
                     potentialLevelUp = false
                 }

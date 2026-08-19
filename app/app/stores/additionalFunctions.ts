@@ -134,15 +134,43 @@ export function attack(args: any[]) {
     }
 }
 
-let enemiesPull:Record<string, endlessConstructor[]> = {
-    'common': [],
-    'rare': [],
-    'superRare': [],
+export function constructEnemy(genEn:EndlessConstructor, gameState:number):EnemyData {
+    let difficultyMultiplier = 0.4 + gameState/10
+
+    let constructedEnemy:EnemyData = {
+        name: genEn.name + ` ${Math.floor(Math.random()*1000)}`,
+        attack: Math.floor(genEn.baseAttack * difficultyMultiplier),
+        defense: Math.floor(Math.min(genEn.baseDefense * difficultyMultiplier, 85)),
+        abilityType: genEn.abilityType,
+        abilityName: genEn.abilityName,
+        ability: genEn.ability,
+        manaCost: Math.floor(genEn.manaCost * difficultyMultiplier),
+        currentHP: Math.floor(genEn.baseHP * difficultyMultiplier),
+        maxHP: Math.floor(genEn.baseHP * difficultyMultiplier),
+        currentMana: Math.floor(genEn.baseMana * difficultyMultiplier),
+        maxMana: Math.floor(genEn.baseMana * difficultyMultiplier),
+        img: genEn.img,
+        expDrop: Math.floor(40 * difficultyMultiplier),
+        desc: genEn.desc,
+        level: Math.floor(Math.ceil(difficultyMultiplier)),
+        title: genEn.title,
+        sound: genEn.sound
+    }
+
+    return constructedEnemy
 }
 
-export function generateEnemy(gameState:number) {
+export function generateEnemy(gameState:number):EnemyData {
+    const rarityNum = Math.random()
+    let rarityGenerated = "common"
+    if(rarityNum < .01) rarityGenerated = "legendary"
+    else if(rarityNum < .04) rarityGenerated = "epic"
+    else if(rarityNum < .10) rarityGenerated = "superRare"
+    else if(rarityNum < .35) rarityGenerated = "rare"
 
-    return {} as EnemyData
+    let enemyGenerated:EndlessConstructor = enemiesPull[rarityGenerated]![Math.floor(Math.random()*enemiesPull[rarityGenerated]!.length)]!
+    let enemyData:EnemyData = constructEnemy(enemyGenerated, gameState)
+    return enemyData
 }
 
 export function generateEndlessWave(gameState:number) {
@@ -153,5 +181,6 @@ export function generateEndlessWave(gameState:number) {
 
     while(enemiesAdded < enemyCount) {
         useBattleStore()['endless']!.enemies.push(generateEnemy(gameState))
+        enemiesAdded++
     }
 }

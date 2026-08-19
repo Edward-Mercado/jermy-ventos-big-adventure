@@ -4,10 +4,10 @@
         <transition name="pop-in">
             <div class="w-[60%] flex flex-col items-center bg-slate-800/70 h-[70%] gap-4 border-4 border-black p-2 relative" v-if="mounted">
                 <h4 class="pixfont text-white text-[3rem] text-center">Enemies Defeated:</h4>
-                <p class="text-sky-200 dialogue-font text-2xl text-center" v-for="enemy in battleData!.enemies">{{ enemy.name }} ( + {{ enemy.expDrop }} EXP ) </p>
+                <p class="text-sky-200 dialogue-font text-lg text-center" v-for="enemy in battleData!.enemies">{{ enemy.name }} ( + {{ enemy.expDrop }} EXP ) </p>
                 <div class="bg-white w-full h-2 rounded-full my-4"></div>
-                <p class="text-sky-200 dialogue-font text-2xl text-center"> Total EXP Gained: {{ totalExpDrop }} EXP </p>
-                <p class="text-sky-200 dialogue-font text-2xl text-center" v-if="abilityGained"> You gained a new friend! You can now use their ability! </p>
+                <p class="text-sky-200 dialogue-font text-lg text-center"> Total EXP Gained: {{ totalExpDrop }} EXP </p>
+                <p class="text-sky-200 dialogue-font text-lg text-center" v-if="abilityGained"> You gained a new friend! You can now use their ability! </p>
                 <button class="absolute bottom-6 w-[80%] uppercase pixfont text-[2rem] border-black border-2
                 transition-all duration-300 ease-in-out py-2 bg-slate-900 hover:bg-slate-800 active:bg-slate-600
                 hover:-translate-y-1 active:translate-y-0.5 shadow-md hover:shadow-lg active:shadow-none"
@@ -31,7 +31,7 @@ const currentStateKey = computed((): string => {
     return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
-const battleData = useBattleStore().$state[currentStateKey.value]
+const battleData = useBattleStore().$state['endless']
 
 const totalExpDrop = computed(() => {
     let returnVal:number = 0
@@ -43,31 +43,39 @@ const totalExpDrop = computed(() => {
     return returnVal
 })
 
-//@ts-ignore
-if(abilityGainKeys.find(key => key[currentStateKey.value])) {
-    let abilityGain:string = abilityGainKeys.find(key => key[currentStateKey.value])![currentStateKey.value]!
-    useCampaignSaveStore().friends.push(abilityGain)
-
-    abilityGained.value = true
-}
-
-function getExp() {
-    useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
-        useCampaignSaveStore().expGained += e.expDrop
-        useCampaignSaveStore().listenLevelUp()
-    })
-}
-
-getExp()
-
 campaignSaveStore.currentStatus = null
 campaignSaveStore.currentHP = campaignSaveStore.maxHP
 campaignSaveStore.currentMana = campaignSaveStore.maxMana
 campaignSaveStore.slayerActive = false
 
-campaignSaveStore.saveGame()
-campaignSaveStore.loadFromLocalStorage()
-campaignSaveStore.changeStats()
+useEndlessStore().gameState++
+useEndlessStore().difficultyMultiplier += .1
+
+let beforeLevel = useCampaignSaveStore().$state.playerLevel
+useEndlessStore().endlessExp += totalExpDrop.value
+
+useCampaignSaveStore().expGained = useEndlessStore().endlessExp
+useCampaignSaveStore().listenLevelUp()
+let afterLevel = useCampaignSaveStore().$state.playerLevel
+
+if(useEndlessStore().gameState > useEndlessStore().highScore) {
+    useEndlessStore().highScore = useEndlessStore().gameState
+}
+
+if(!(beforeLevel === afterLevel)) {
+    let availableKeys:string[] = Object.keys(useFriendsStore().$state)
+    .filter((k:string) => !(useEndlessStore().friendsAccquired.find((f:string) => f === k)))
+    
+    let keyGained = availableKeys[Math.floor(Math.random()*availableKeys.length)]
+
+    if(keyGained) {
+        useEndlessStore().friendsAccquired.push(keyGained!)
+        abilityGained.value = true
+    }
+}
+
+useEndlessStore().saveGame()
+useEndlessStore().loadFromLocalStorage()
 </script>
 
 

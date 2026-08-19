@@ -801,7 +801,7 @@ export function swapJoeBidenSandman(enemyUser:Enemy[]) {
 export function joeBidenSandman(user?:Enemy[]) {
     if(user) {
         let enemyUser = user[0]!
-        enemyUser.name === 'Joe Biden' ? presidentialAuthority(enemyUser) : sandSleep(enemyUser)
+        enemyUser.name[0] === 'J' ? presidentialAuthority(enemyUser) : sandSleep(enemyUser)
         
         useCurrentBattleStore().thisTurnEvents.push({
             user: enemyUser.name,

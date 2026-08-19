@@ -23,13 +23,16 @@
 
                 <ending-end-basis v-if="currentKeyType === 'end'" @reset-save="resetCampaign()"></ending-end-basis>
         </client-only>
-        <div v-else class="w-full flex items-center justify-center gap-[20%] h-[80%]">
-            <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl 
-            shadow-md hover:shadow-lg active:shadow-none hover:-translate-y-1.5 active:translate-y-0.5"
-                @click="clickSFX(); campaignStore.$reset(); campaignRunning = true">New Save</button>
-            <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl
-            shadow-md hover:shadow-lg active:shadow-none hover:-translate-y-1.5 active:translate-y-0.5"
-                @click="clickSFX(); campaignStore.loadFromLocalStorage(); campaignRunning = true">Load Save</button>
+        <div v-else class="h-full flex flex-col justify-around items-center w-full">
+            <h2 class="pixfont text-black text-[3rem]">Welcome to <span class="uppercase text-slate-800">Campaign</span> Mode</h2>
+            <div class="w-full flex items-center justify-center gap-[20%] h-[80%]">
+                <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl 
+                shadow-md hover:shadow-lg active:shadow-none hover:-translate-y-1.5 active:translate-y-0.5"
+                    @click="clickSFX(); campaignStore.$reset(); campaignRunning = true">New Save</button>
+                <button class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl
+                shadow-md hover:shadow-lg active:shadow-none hover:-translate-y-1.5 active:translate-y-0.5"
+                    @click="clickSFX(); campaignStore.loadFromLocalStorage(); campaignRunning = true">Continue</button>
+            </div>
         </div>
     </div>
 </template>

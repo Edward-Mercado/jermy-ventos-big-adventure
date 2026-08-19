@@ -36,7 +36,7 @@
         <button
             class="px-2 h-[5%] bg-slate-700 pixfont shadow-lg hover:shadow-xl w-[20%] my-2 border-black border-4 text-lg select-none
             active:shadow-xs transition-all duration-300 ease-in-out hover:bg-slate-800 active:bg-slate-900 flex items-center justify-center fixed top-2 left-[40%]"
-            @click="clickSFX(); getExp(); $emit('win')">SKIP</button>
+            @click="clickSFX(); $emit('win')">SKIP</button>
     </div>
     <div class="mx-[2vw] w-[96vw] justify-between items-center flex m-2 h-[13vh] fixed bottom-[1vh] -pl-[2%] z-16">
         <h2 class="mx-3 text-center pixfont text-4xl underline shaky text-black">TIME TO BATTLE!</h2>
@@ -76,6 +76,18 @@ const wandStriking = ref<boolean>(false)
 const mounted = ref<boolean>(false)
 onMounted(() => mounted.value = true)
 
+onMounted(() => {
+    if(useRoute().path === '/endless') {
+        useEndlessStore().loadFromLocalStorage()
+        useCampaignSaveStore().playerLevel = 1
+        useCampaignSaveStore().expGained = useEndlessStore().endlessExp
+        useCampaignSaveStore().listenLevelUp()
+        generateEndlessWave(useEndlessStore().gameState)
+        currentBattleStore.initialize("endless")
+        useCampaignSaveStore().friendsData = useEndlessStore().friendsData
+    }
+})
+
 const phase2 = ref<boolean>(false)
 const phase2StuffUp = ref<boolean>(false)
 const visibleText = ref<string>("")
@@ -88,7 +100,8 @@ watch(() => useCampaignSaveStore().currentMana, () => {
 })
 
 const currentStateKey = computed((): string => {
-    return stateKeys.keys[campaignSaveStore.gameState]!.name
+    if(useRoute().path === '/endless') return 'endless'
+    else return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
 
 if (!phase2.value) {
@@ -97,7 +110,6 @@ if (!phase2.value) {
     useCampaignSaveStore().loadFromLocalStorage()
 }
 
-useBattleGuiStore().initialize()
 currentBattleStore.initialize(currentStateKey.value)
 useCampaignSaveStore().consecutiveBlocks = 0
 
@@ -114,28 +126,13 @@ function beginTurn() {
     proceedBattle()
 }
 
-function getExp() {
-    useCurrentBattleStore().currentEnemies.forEach((e: Enemy) => {
-        useCampaignSaveStore().expGained += e.expDrop
-        useCampaignSaveStore().listenLevelUp()
-    })
-}
-
 
 
 async function proceedBattle() {
     useCurrentBattleStore().joeyURL = '/images/joey.png'
     battlePlaying.value = false
-    if (campaignSaveStore.currentHP === 0 && campaignSaveStore.currentStatus?.name !== "Will Revive"
-        && campaignSaveStore.currentStatus?.length === 1
-    ) {
-        useCurrentBattleStore().thisTurnEvents.forEach((event: BattleEvent, index) => {
-            if (index >= battleIndex.value && event.user === 'Joey') {
-                useCurrentBattleStore().thisTurnEvents.splice(index)
-                index--
-            }
-        })
-    } else if (campaignSaveStore.currentHP === 0) {
+    if (campaignSaveStore.currentHP === 0 && campaignSaveStore.currentStatus?.name === "Will Revive"
+        && campaignSaveStore.currentStatus?.length === 1) {
         useCurrentBattleStore().thisTurnEvents.push({
             user: 'Joey',
             action: reviveTest,
@@ -145,6 +142,14 @@ async function proceedBattle() {
             sound: '/sounds/joey.m4a',
             actionPerformed: false
         })
+        
+    } else if (campaignSaveStore.currentHP === 0) {
+        useCurrentBattleStore().thisTurnEvents.forEach((event: BattleEvent, index) => {
+            if (index >= battleIndex.value && event.user === 'Joey') {
+                useCurrentBattleStore().thisTurnEvents.splice(index)
+                index--
+            }
+    })
     }
 
     battleIndex.value++

@@ -28,6 +28,8 @@ function resetData() {
     campaignStore.$reset()
     endlessStore.$reset()
     campaignStore.saveGame()
+    endlessStore.$reset()
+    endlessStore.saveGame()
     stateKeys.$reset()
     stateKeys.saveChoices()
     return navigateTo("/")

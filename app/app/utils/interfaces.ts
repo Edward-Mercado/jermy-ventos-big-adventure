@@ -105,15 +105,18 @@ export interface storeItem {
     abilityName?: string
 }
 
-export interface endlessConstructor {
+export interface EndlessConstructor {
     name: string,
     img: string,
+    desc: string,
+    title: string,
+    sound: string,
     baseAttack: number,
     baseDefense: number,
     baseMana: number,
     baseHP: number,
-    abilityType: string,
+    abilityType: ("offense" | "defense"),
     abilityName: string,
-    manaCost: string,
-    ability: Function | null
+    manaCost: number,
+    ability: Function
 }
