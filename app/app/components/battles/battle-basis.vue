@@ -77,7 +77,7 @@ const wandStriking = ref<boolean>(false)
 const mounted = ref<boolean>(false)
 
 var superSonicRacing = new Howl({
-    src: ['/sounds/click.mp3'],
+    src: ['/sounds/superSonicRacing.m4a'],
     html5: true,
     loop: true
 })
@@ -94,7 +94,7 @@ onMounted(() => {
         generateEndlessWave(useEndlessStore().gameState)
         currentBattleStore.initialize("endless")
     } else if (useRoute().path === '/campaign') {
-        useCampaignSaveStore().friends.length = 0
+        useCampaignSaveStore().friendsData.length = 0
         useCampaignSaveStore().loadFriends()
     }
 })
@@ -207,6 +207,7 @@ async function proceedBattle() {
             emit('win')
         }
         if (useCurrentBattleStore().currentEnemies.length === 0 && currentStateKey.value === 'battleJoevil') {
+            if(!phase2.value) setTimeout(() => superSonicRacing.play(), 500)
             phase2.value = true
             useCurrentBattleStore().currentEnemies = [{
                 name: "Joevil (ENRAGED)",

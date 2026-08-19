@@ -162,7 +162,7 @@ export const enemiesPull:Record<string, EndlessConstructor[]> = {
         baseAttack: 30,
         baseDefense: 12,
         baseMana: 60,
-        abilityType: "offense",
+        abilityType: "defense",
         abilityName: "Reign of Evil",
         ability: evilReign,
         manaCost: 50,

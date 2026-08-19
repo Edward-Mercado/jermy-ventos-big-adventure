@@ -941,7 +941,7 @@ export const useBattleStore = defineStore('battle', {
                 name: "Joevil (BOSS)",
                 attack: 70,
                 defense: 45,
-                abilityType: "offense",
+                abilityType: "defense",
                 abilityName: "Reign of Evil",
                 ability: evilReign,
                 manaCost: 100,
