@@ -27,17 +27,17 @@ export function multiWielding(user?: Enemy[]) {
         if (enemyUser) {
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.6
+                    0.8
                 ])
             }, 300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.4
+                    0.5
                 ])
             }, 1300)
             setTimeout(() => {
                 attack([enemyUser!, 'user',
-                    0.2
+                    0.3
                 ])
             }, 2300)
         }
@@ -52,9 +52,9 @@ export function multiWielding(user?: Enemy[]) {
 
         if (!target) target = useCurrentBattleStore().currentEnemies[0]
 
-        setTimeout(() => { attack(['user', target, 1]) }, 300)
-        setTimeout(() => { attack(['user', target, 0.6]) }, 1300)
-        setTimeout(() => { attack(['user', target, 0.3]) }, 2300)    
+        setTimeout(() => { attack(['user', target, 0.85]) }, 300)
+        setTimeout(() => { attack(['user', target, 0.4]) }, 1300)
+        setTimeout(() => { attack(['user', target, 0.25]) }, 2300)    
     }
 }
 
@@ -114,7 +114,7 @@ export function moonPrincessHalation(user?: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [1.6, 1.4, 1.15, 1]
+        let damageMultis: number[] = [1.45, 1.3, 1.2, 1.1]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -502,7 +502,7 @@ export function drifting(user?: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [1.5, 1.45, 1.3, 1.25]
+        let damageMultis: number[] = [1.45, 1.35, 1.2, 1.07]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -727,8 +727,8 @@ export function wiiGameWollop(user: Enemy[]) {
         let hitsCount = 0
         const interval = setInterval(() => {
             hitsCount++
-            attack([enemyUser, 'user', .15])
-            if(hitsCount > 24) clearInterval(interval)
+            attack([enemyUser, 'user', .135])
+            if(hitsCount > 20) clearInterval(interval)
         }, 150)
     } else {
         useCurrentBattleStore().animation.doneByEnemy = false
@@ -737,7 +737,7 @@ export function wiiGameWollop(user: Enemy[]) {
             if(useCurrentBattleStore().usingMana) useCampaignSaveStore().currentMana -= friendFound.manaCost
         }
 
-        let damageMultis: number[] = [.09, .087, .083, .076]
+        let damageMultis: number[] = [.087, .083, .076, .069]
         let length = useCurrentBattleStore().currentEnemies.length < 5 ? useCurrentBattleStore().currentEnemies.length : 4
         let damageMulti: number = damageMultis[length - 1]!
 
@@ -747,7 +747,7 @@ export function wiiGameWollop(user: Enemy[]) {
                 attack(['user', e, damageMulti])
             })
             hitsCount++
-            if(hitsCount > 24) clearInterval(interval)
+            if(hitsCount > 20) clearInterval(interval)
         }, 150)
     }
 }

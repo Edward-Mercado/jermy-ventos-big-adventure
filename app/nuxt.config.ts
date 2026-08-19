@@ -4,13 +4,20 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   devtools: { enabled: false },
   compatibilityDate: "2025-07-15",
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxt/image"],
   css: ["~/assets/main.css"],
   pages: true,
   app: {
     head: {
       title: "JermyVentos's Big Adventure"
     }
+  },
+  routeRules: {
+    '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/sounds/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+  },
+  nitro: {
+    preset: 'netlify-static'
   },
   vite: {
     plugins: [tailwindcss()],
@@ -26,9 +33,6 @@ export default defineNuxtConfig({
     compilerOptions: {
       comments: true
     }
-  },
-  experimental: {
-    // no direct toggle needed; the verbose logging is automatic in dev mode
   }
 }
 )
