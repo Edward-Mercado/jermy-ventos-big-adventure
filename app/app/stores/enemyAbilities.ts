@@ -647,14 +647,17 @@ export function timeReversal(user?: Enemy[]) {
         if(useCurrentBattleStore().usingMana && friendFound) useCampaignSaveStore().currentMana -= friendFound.manaCost
     }
 
-    ucss.attack = useCurrentBattleStore().beforeTurnState.playerStats.attack
-    ucss.defense = useCurrentBattleStore().beforeTurnState.playerStats.defense
-    ucss.currentHP = useCurrentBattleStore().beforeTurnState.playerStats.currentHP
-    ucss.maxHP = useCurrentBattleStore().beforeTurnState.playerStats.maxHP
-    ucss.currentMana = useCurrentBattleStore().beforeTurnState.playerStats.currentMana
-    ucss.maxMana = useCurrentBattleStore().beforeTurnState.playerStats.maxMana
-    useCurrentBattleStore().currentEnemies.length = 0
-    useCurrentBattleStore().currentEnemies = [...useCurrentBattleStore().beforeTurnState.enemies]
+    if((Math.random() < .5 && user) || (Math.random() < .75 && !user)) {
+        ucss.attack = useCurrentBattleStore().beforeTurnState.playerStats.attack
+        ucss.defense = useCurrentBattleStore().beforeTurnState.playerStats.defense
+        ucss.currentHP = useCurrentBattleStore().beforeTurnState.playerStats.currentHP
+        ucss.maxHP = useCurrentBattleStore().beforeTurnState.playerStats.maxHP
+        ucss.currentMana = useCurrentBattleStore().beforeTurnState.playerStats.currentMana
+        ucss.maxMana = useCurrentBattleStore().beforeTurnState.playerStats.maxMana
+        useCurrentBattleStore().currentEnemies.length = 0
+        useCurrentBattleStore().currentEnemies = [...useCurrentBattleStore().beforeTurnState.enemies]
+    }
+
 }
 
 export function metaNarrative(user?:Enemy[]) {
