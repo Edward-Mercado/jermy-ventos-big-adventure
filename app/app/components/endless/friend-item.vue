@@ -57,6 +57,8 @@ function playTargetSound() {
     }
 }
 
+onUnmounted(() => {clearInterval(interval); soundPlaying.value = false})
+
 </script>
 
 <style scoped>

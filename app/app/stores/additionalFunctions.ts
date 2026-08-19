@@ -174,7 +174,7 @@ export function generateEnemy(gameState:number):EnemyData {
 }
 
 export function generateEndlessWave(gameState:number) {
-    let enemyCount:number = 1 + Math.min(Math.floor(Math.random()*gameState)*.3, 3)
+    let enemyCount:number = 1 + Math.min(Math.floor(Math.random()*gameState)*.3, 4)
 
     let enemiesAdded = 0
     useBattleStore()['endless']!.enemies.length = 0

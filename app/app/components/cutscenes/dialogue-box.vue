@@ -76,6 +76,8 @@ function stopInterval() {
     if(interval) clearInterval(interval)
 }
 
+onUnmounted(() => stopInterval())
+
 const transitionSpeed = computed(() => {
     return `${props.currentLine.speed * 10}ms`
 })

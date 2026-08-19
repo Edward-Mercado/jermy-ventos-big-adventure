@@ -50,7 +50,9 @@ const getShrinks = computed(() => {
     } else return `scale(1)`
 })
 
-let interval: any = null
+let interval: number = 0
+
+onUnmounted(() => {if(interval) clearInterval(interval)})
 
 onMounted(() => {
     if(!useCurrentBattleStore().battleEventsDone.find((battleEvent:BattleEvent) =>battleEvent === prop.battleInstance)) {
