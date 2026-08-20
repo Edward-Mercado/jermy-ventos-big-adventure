@@ -24,7 +24,7 @@
                 </button>
                 <button v-if="endlessStore.gameState > 1" class="h-full w-full bg-slate-600 hover:bg-slate-700 active:bg-slate-900 transition-all duration-300 border-black border-4 text-white pixfont p-4 text-4xl 
                 shadow-md hover:shadow-lg active:shadow-none hover:-translate-y-1.5 active:translate-y-0.5"
-                @click="clickSFX(); generateEndlessWave(endlessStore.gameState); gameActive = true"> Continue
+                @click="clickSFX(); useEndlessStore().loadFromLocalStorage(); generateEndlessWave(endlessStore.gameState); gameActive = true"> Continue
                 </button>
             </div>
         </div>
