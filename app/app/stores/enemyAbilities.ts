@@ -847,7 +847,10 @@ export function birthdayBeam(user?:any) {
         useCurrentBattleStore().animation.playing = true
         useCurrentBattleStore().animation.doneByEnemy = false
         useCurrentBattleStore().animation.name = 'birthdayBeam'
-        attack(['user', useCurrentBattleStore().currentEnemies[0]!, 2])
+        let damageMultis = [2.1, 2.05, 1.97, 1.95]
+        useCurrentBattleStore().currentEnemies.forEach((e:Enemy) => [
+            attack(['user', e,, damageMultis[useCurrentBattleStore().currentEnemies.length - 1]])
+        ])
     }
 }
 

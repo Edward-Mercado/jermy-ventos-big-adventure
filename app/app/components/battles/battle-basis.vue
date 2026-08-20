@@ -76,8 +76,15 @@ const battlePlaying = ref<boolean>(false)
 const wandStriking = ref<boolean>(false)
 const mounted = ref<boolean>(false)
 
+if(useCampaignSaveStore().playerLevel === 16) {
+    useCampaignSaveStore().playerLevel = 15
+    useCampaignSaveStore().changeStats()
+    useCampaignSaveStore().saveGame()
+}
+
 var superSonicRacing = new Howl({
     src: ['/sounds/superSonicRacing.m4a'],
+    volume: 0.75,
     html5: true,
     loop: true
 })
@@ -114,6 +121,13 @@ const currentStateKey = computed((): string => {
     if(useRoute().path === '/endless') return 'endless'
     else return stateKeys.keys[campaignSaveStore.gameState]!.name
 })
+
+if(currentStateKey.value === 'battleJoevil') {
+    useCampaignSaveStore().playerLevel = 15;
+    useCampaignSaveStore().changeStats();
+    useCampaignSaveStore().saveGame();
+    useCampaignSaveStore().loadFromLocalStorage();
+}
 
 if (!phase2.value) {
     useCampaignSaveStore().friends = useCampaignSaveStore().friends.filter((f: string) => f !== 'Joey')

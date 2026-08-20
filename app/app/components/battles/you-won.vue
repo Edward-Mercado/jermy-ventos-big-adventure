@@ -64,6 +64,7 @@ campaignSaveStore.currentStatus = null
 campaignSaveStore.currentHP = campaignSaveStore.maxHP
 campaignSaveStore.currentMana = campaignSaveStore.maxMana
 campaignSaveStore.slayerActive = false
+useCurrentBattleStore().columboActive = false
 
 campaignSaveStore.saveGame()
 campaignSaveStore.loadFromLocalStorage()

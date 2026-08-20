@@ -47,6 +47,7 @@ campaignSaveStore.currentStatus = null
 campaignSaveStore.currentHP = campaignSaveStore.maxHP
 campaignSaveStore.currentMana = campaignSaveStore.maxMana
 campaignSaveStore.slayerActive = false
+useCurrentBattleStore().columboActive = false
 
 useEndlessStore().gameState++
 useEndlessStore().difficultyMultiplier += .1
