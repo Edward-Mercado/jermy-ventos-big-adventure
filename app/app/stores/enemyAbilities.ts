@@ -78,6 +78,7 @@ export function mangoConsumption(user?: Enemy[]) {
         if(useCurrentBattleStore().usingMana) enemyUser!.currentMana -= enemyUser!.manaCost
         if (enemyUser) {
             enemyUser.currentHP = Math.round(Math.min(enemyUser.currentHP + .4 * enemyUser.maxHP, enemyUser.maxHP))
+            enemyUser.defense-=5;
         }
     } else {
         let playerUser = useCampaignSaveStore()
